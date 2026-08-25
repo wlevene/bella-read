@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《被讨厌的勇气》- 阿德勒心理学课堂讲义</title>
+<style>
+:root {
+  --bg: #f5f0e8;
+  --card-bg: #fffef9;
+  --accent: #c0392b;
+  --accent-soft: #e74c3c;
+  --text: #2c2c2c;
+  --text-light: #5a5a5a;
+  --muted: #8a8a7a;
+  --border: #e0d8c8;
+  --highlight: #fff3cd;
+  --green: #27ae60;
+  --blue: #2980b9;
+  --purple: #8e44ad;
+  --orange: #e67e22;
+  --tag-k: #2980b9;
+  --tag-p: #8e44ad;
+  --tag-i: #e67e22;
+  --tag-t: #27ae60;
+  --shadow: 0 2px 12px rgba(0,0,0,0.06);
+  --radius: 12px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Navigation */
+.top-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(245,240,232,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex; align-items: center; gap: 12px;
+  flex-wrap: wrap;
+}
+.top-nav .logo { font-weight: 700; font-size: 18px; color: var(--accent); white-space: nowrap; }
+.top-nav .nav-tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+.top-nav .nav-tab {
+  padding: 6px 14px; border-radius: 20px; border: 1px solid transparent;
+  background: transparent; cursor: pointer; font-size: 14px;
+  color: var(--text-light); transition: var(--transition);
+  white-space: nowrap;
+}
+.top-nav .nav-tab:hover { background: #fff; border-color: var(--border); }
+.top-nav .nav-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* Container */
+.container { max-width: 860px; margin: 0 auto; padding: 24px 20px 60px; }
+
+/* Section */
+.section { display: none; }
+.section.active { display: block; animation: fadeSlideIn 0.4s ease; }
+@keyframes fadeSlideIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Cards */
+.card {
+  background: var(--card-bg); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 28px 24px;
+  margin-bottom: 20px; border: 1px solid var(--border);
+}
+.card h2 {
+  font-size: 22px; margin-bottom: 16px; color: var(--text);
+  padding-bottom: 10px; border-bottom: 2px solid var(--accent);
+  display: inline-block;
+}
+.card h3 { font-size: 18px; margin: 20px 0 10px; color: var(--text); }
+.card h4 { font-size: 16px; margin: 16px 0 8px; color: var(--accent); }
+
+/* Badges */
+.badge {
+  display: inline-block; padding: 3px 10px; border-radius: 12px;
+  font-size: 12px; font-weight: 600; color: #fff; margin-right: 6px;
+  vertical-align: middle;
+}
+.badge-k { background: var(--tag-k); }
+.badge-p { background: var(--tag-p); }
+.badge-i { background: var(--tag-i); }
+.badge-t { background: var(--tag-t); }
+
+/* Module labels */
+.module-label {
+  display: inline-block; padding: 4px 12px; border-radius: 4px;
+  font-size: 13px; font-weight: 600; margin-bottom: 12px;
+}
+.module-k { background: #e8f4fd; color: var(--tag-k); }
+.module-p { background: #f3e8f8; color: var(--tag-p); }
+.module-i { background: #fef3e8; color: var(--tag-i); }
+.module-t { background: #e8f8ef; color: var(--tag-t); }
+
+/* Collapse */
+.collapse-header {
+  cursor: pointer; padding: 14px 18px; background: #faf7f0;
+  border: 1px solid var(--border); border-radius: 8px;
+  font-weight: 600; font-size: 16px; display: flex;
+  justify-content: space-between; align-items: center;
+  transition: var(--transition); user-select: none;
+  margin-bottom: 4px;
+}
+.collapse-header:hover { background: #f0ebe0; }
+.collapse-header .arrow { transition: var(--transition); font-size: 12px; color: var(--muted); }
+.collapse-header.open .arrow { transform: rotate(180deg); }
+.collapse-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; }
+.collapse-body.open { max-height: 2000px; padding: 16px 0; }
+
+/* Thought bubble */
+.thought-bubble {
+  background: linear-gradient(135deg, #fef9e7, #fdebd0);
+  border-left: 4px solid var(--orange);
+  padding: 16px 20px; border-radius: 0 8px 8px 0;
+  margin: 16px 0; position: relative;
+  font-style: italic;
+}
+.thought-bubble::before { content: "💭"; position: absolute; left: -14px; top: -14px; font-size: 20px; }
+
+/* Quote */
+.quote {
+  background: #faf7f0; border-left: 4px solid var(--accent);
+  padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0;
+  font-size: 15px; color: var(--text-light);
+}
+.quote strong { color: var(--accent); }
+
+/* Click reveal */
+.click-reveal {
+  display: inline-block; padding: 8px 18px; background: var(--accent);
+  color: #fff; border-radius: 20px; cursor: pointer; font-size: 14px;
+  transition: var(--transition); border: none;
+  margin: 8px 0;
+}
+.click-reveal:hover { background: var(--accent-soft); transform: scale(1.03); }
+.click-reveal.revealed { background: #aaa; cursor: default; }
+.reveal-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, margin 0.5s ease; }
+.reveal-content.show { max-height: 800px; margin-top: 12px; }
+
+/* Quiz */
+.quiz-option {
+  display: block; width: 100%; text-align: left; padding: 12px 16px;
+  margin: 8px 0; border: 2px solid var(--border); border-radius: 8px;
+  background: #fff; cursor: pointer; font-size: 15px; transition: var(--transition);
+}
+.quiz-option:hover { border-color: var(--accent); background: #fef9f9; }
+.quiz-option.correct { border-color: var(--green); background: #e8f8ef; }
+.quiz-option.wrong { border-color: var(--accent-soft); background: #fef0f0; }
+.quiz-feedback { margin-top: 8px; font-weight: 600; display: none; }
+.quiz-feedback.show { display: block; }
+
+/* Scenario cards */
+.scenario {
+  background: #f8f4ff; border: 1px solid #e0d4f0; border-radius: 10px;
+  padding: 18px 20px; margin: 16px 0;
+}
+.scenario .tag { 
+  display: inline-block; background: var(--purple); color: #fff;
+  padding: 2px 10px; border-radius: 10px; font-size: 12px; margin-bottom: 8px;
+}
+
+/* Highlight box */
+.highlight-box {
+  background: var(--highlight); border: 1px solid #e6d89c;
+  padding: 16px 20px; border-radius: 8px; margin: 16px 0;
+  font-weight: 500;
+}
+
+/* Tabbed content */
+.tab-container { margin: 16px 0; }
+.tab-buttons { display: flex; gap: 2px; border-bottom: 2px solid var(--border); }
+.tab-btn {
+  padding: 10px 18px; border: none; background: transparent;
+  cursor: pointer; font-size: 14px; color: var(--text-light);
+  border-bottom: 2px solid transparent; margin-bottom: -2px;
+  transition: var(--transition);
+}
+.tab-btn:hover { color: var(--accent); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+.tab-panel { display: none; padding: 16px 0; }
+.tab-panel.active { display: block; }
+
+/* Drag interaction */
+.drag-container {
+  display: flex; gap: 16px; margin: 16px 0; flex-wrap: wrap;
+}
+.drag-source, .drag-target {
+  flex: 1; min-width: 200px; min-height: 120px;
+  border: 2px dashed var(--border); border-radius: 10px;
+  padding: 12px; background: #fafaf7;
+}
+.drag-target { border-color: var(--accent); background: #fef9f9; }
+.drag-source h4, .drag-target h4 { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+.drag-item {
+  padding: 8px 14px; background: #fff; border: 1px solid var(--border);
+  border-radius: 6px; margin: 6px 0; cursor: grab; font-size: 14px;
+  transition: var(--transition); user-select: none;
+}
+.drag-item:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.drag-item.dragging { opacity: 0.5; }
+.drag-item.placed { background: #e8f8ef; border-color: var(--green); cursor: default; }
+.drag-target .drag-item { background: #e8f8ef; border-color: var(--green); }
+
+/* Step indicator */
+.steps { display: flex; gap: 8px; margin: 16px 0; flex-wrap: wrap; }
+.step {
+  flex: 1; min-width: 120px; padding: 14px 12px; border-radius: 8px;
+  background: #fff; border: 1px solid var(--border); text-align: center;
+  font-size: 14px; transition: var(--transition);
+}
+.step .step-num {
+  display: block; width: 28px; height: 28px; line-height: 28px;
+  border-radius: 50%; background: var(--accent); color: #fff;
+  margin: 0 auto 8px; font-weight: 700; font-size: 13px;
+}
+.step.active { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(192,57,43,0.1); }
+
+/* Pulse animation for highlights */
+@keyframes gentlePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(192,57,43,0.2); }
+  50% { box-shadow: 0 0 0 8px rgba(192,57,43,0); }
+}
+.pulse { animation: gentlePulse 2s ease-in-out infinite; }
+
+/* Progress bar */
+.progress-bar {
+  height: 4px; background: var(--border); border-radius: 2px;
+  margin: 8px 0 24px; overflow: hidden;
+}
+.progress-fill {
+  height: 100%; background: var(--accent); border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .container { padding: 16px 12px 40px; }
+  .card { padding: 20px 16px; }
+  .drag-container { flex-direction: column; }
+  .top-nav { padding: 8px 12px; }
+  .top-nav .nav-tab { font-size: 12px; padding: 4px 10px; }
+}
+
+/* Special emphasis */
+.em-red { color: var(--accent); font-weight: 600; }
+.em-bold { font-weight: 700; }
+.text-muted { color: var(--muted); font-size: 14px; }
+
+/* Checklist */
+.checklist { list-style: none; padding: 0; }
+.checklist li {
+  padding: 8px 0 8px 28px; position: relative; cursor: pointer;
+  transition: var(--transition);
+}
+.checklist li::before {
+  content: ""; position: absolute; left: 0; top: 12px;
+  width: 18px; height: 18px; border: 2px solid var(--border);
+  border-radius: 4px; transition: var(--transition);
+}
+.checklist li.checked { color: var(--muted); text-decoration: line-through; }
+.checklist li.checked::before { background: var(--green); border-color: var(--green); }
+.checklist li.checked::after {
+  content: "✓"; position: absolute; left: 3px; top: 9px;
+  color: #fff; font-size: 12px; font-weight: 700;
+}
+</style>
+</head>
+<body>
+
+<!-- Top Navigation -->
+<nav class="top-nav">
+  <span class="logo">📖 《被讨厌的勇气》</span>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="switchSection('s1')">① 目的论</button>
+    <button class="nav-tab" onclick="switchSection('s2')">② 课题分离</button>
+    <button class="nav-tab" onclick="switchSection('s3')">③ 共同体感觉</button>
+    <button class="nav-tab" onclick="switchSection('s4')">④ 活在当下</button>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- ==================== SECTION 1: 目的论 ==================== -->
+<div id="s1" class="section active">
+
+  <!-- 知识考点模块 -->
+  <div class="card">
+    <span class="module-label module-k">📚 知识考点板块</span>
+    <h2>第一问：你的过去，真的决定了你的现在吗？</h2>
+
+    <p>阿德勒心理学有个很"反常识"的观点，叫<span class="em-red">目的论</span>。</p>
+    <p>我们通常习惯的思维方式是<strong>原因论</strong>——"因为过去发生了什么，所以我现在才这样。"</p>
+
+    <div class="tab-container">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this, 'tab1-1')">原因论（弗洛伊德）</button>
+        <button class="tab-btn" onclick="switchTab(this, 'tab1-2')">目的论（阿德勒）</button>
+      </div>
+      <div id="tab1-1" class="tab-panel active">
+        <div class="quote">
+          <strong>原因论的逻辑：</strong>"因为我小时候被欺负过，所以我不敢社交。"<br>
+          过去 → 现在（过去是因，现在是果）
+        </div>
+        <p class="text-muted">这种解释听起来很合理。但它有一个问题：它让你变成了<strong>过去的囚徒</strong>。你什么都没做，已经被判了"终身监禁"。</p>
+      </div>
+      <div id="tab1-2" class="tab-panel">
+        <div class="quote">
+          <strong>目的论的逻辑：</strong>"我之所以搬出'小时候被欺负'这个理由，是因为<em>我现在不想去社交</em>，我需要一个让自己心安理得的借口。"<br>
+          现在 ← 过去（你的"现在"选择了一个"过去"来服务自己）
+        </div>
+        <p class="text-muted">这听起来有点残酷，但阿德勒的意思是：<strong>你不是过去的受害者，你是自己人生的编剧。</strong>你讲什么故事，取决于你现在想达到什么目的。</p>
+      </div>
+    </div>
+
+    <div class="highlight-box pulse">
+      ⚡ <strong>考点速记：</strong>阿德勒的"目的论"认为，人的行为不是由过去的原因决定的，而是由当下的<strong>目的</strong>驱动的。我们不是"因为过去而无法改变"，而是"为了不改变，才搬出过去当理由"。
+    </div>
+  </div>
+
+  <!-- 心理认知拓展模块 -->
+  <div class="card">
+    <span class="module-label module-p">🧠 心理认知拓展板块</span>
+    <h2>你给自己找过哪些"过去的借口"？</h2>
+
+    <div class="thought-bubble">
+      想想看：你有没有说过类似的话？<br>
+      "我从小数学就不好" → 所以现在不学也合理<br>
+      "我爸妈不太管我" → 所以我成绩差也正常<br>
+      "我性格内向" → 所以我不发言是应该的
+    </div>
+
+    <p>阿德勒管这叫<span class="em-red">"人生谎言"</span>——不是说你故意骗人，而是你<strong>无意识地给自己找了一个不用改变的理由</strong>。</p>
+
+    <p>为什么我们会这样？因为<strong>改变是痛苦的</strong>。保持现状虽然难受，但至少是熟悉的难受。而改变意味着面对不确定——你可能会失败，可能会被嘲笑，可能会发现自己其实没那么厉害。</p>
+
+    <div class="scenario">
+      <span class="tag">🎬 校园场景</span>
+      <p><strong>小明</strong>想参加学校的演讲比赛，但他告诉自己："我从小口才就不好，去了也是丢人。"</p>
+      <p>请用目的论分析：小明是真的"口才不好所以不能参加"，还是另有目的？</p>
+      <button class="click-reveal" onclick="revealAnswer(this, 'scenario1')">点击看分析</button>
+      <div class="reveal-content" id="scenario1">
+        <p>小明的<strong>真正目的</strong>可能是：<strong>避免失败带来的挫败感</strong>。如果不去参加，他就可以永远保留一个可能性——"我只是没去，去了说不定也能拿名次"。但一旦去了并且搞砸了，这个幻想就破灭了。</p>
+        <p>"口才不好"只是一个方便的挡箭牌。阿德勒会说：<strong>你不是因为口才不好而不参加，你是为了不面对失败，所以把"口才不好"当成理由。</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 课堂互动练习模块 -->
+  <div class="card">
+    <span class="module-label module-i">🎯 课堂互动练习板块</span>
+    <h2>随堂练习：揪出你的"人生谎言"</h2>
+
+    <p>请把下面你认为<strong>属于"用过去当借口"</strong>的选项，拖到右边的框里：</p>
+
+    <div class="drag-container">
+      <div class="drag-source" id="dragSource1">
+        <h4>📋 待判断</h4>
+        <div class="drag-item" draggable="true" data-correct="true" ondragstart="dragStart(event)" id="d1">我从小体育就差，跑不动</div>
+        <div class="drag-item" draggable="true" data-correct="true" ondragstart="dragStart(event)" id="d2">我天生不是学英语的料</div>
+        <div class="drag-item" draggable="true" data-correct="false" ondragstart="dragStart(event)" id="d3">我昨天脚崴了，今天不能跑</div>
+        <div class="drag-item" draggable="true" data-correct="true" ondragstart="dragStart(event)" id="d4">我爸妈不关心我学习，所以我成绩差</div>
+        <div class="drag-item" draggable="true" data-correct="false" ondragstart="dragStart(event)" id="d5">我发烧39度，今天请假</div>
+      </div>
+      <div class="drag-target" id="dragTarget1" ondragover="dragOver(event)" ondrop="dropItem(event, 'dragTarget1')">
+        <h4>🎯 "用过去当借口"（人生谎言）</h4>
+      </div>
+    </div>
+    <button class="click-reveal" onclick="revealAnswer(this, 'dragResult1')" style="margin-top:8px;">查看解析</button>
+    <div class="reveal-content" id="dragResult1">
+      <p>✅ <strong>属于"人生谎言"的：</strong>"我从小体育就差"、"我不是学英语的料"、"我爸妈不关心我"——这些都用<strong>过去</strong>或<strong>先天条件</strong>来否定<strong>现在改变的可能性</strong>。</p>
+      <p>❌ <strong>不属于的：</strong>"脚崴了"和"发烧"是<strong>当下的客观事实</strong>，不是借口。区别在于：前者是"我选择不改变"，后者是"我暂时无法改变"。</p>
+    </div>
+  </div>
+
+  <!-- 课后思考任务模块 -->
+  <div class="card">
+    <span class="module-label module-t">✍️ 课后思考任务板块</span>
+    <h2>课后作业：自我对话练习</h2>
+    <p>找一个安静的时间，拿一张纸，回答下面三个问题：</p>
+    <ol style="padding-left:20px; line-height:2.2;">
+      <li>最近有没有一件事，你一直想做但没去做？你告诉自己"为什么不能做"的理由是什么？</li>
+      <li>如果把这个理由反过来想——是不是你<strong>先不想做</strong>，然后才找了这个理由？</li>
+      <li>如果没有任何借口，你<strong>真正害怕</strong>的是什么？写下来，面对它。</li>
+    </ol>
+    <p class="text-muted" style="margin-top:12px;">💡 提示：不用给任何人看，这是你和自己的对话。诚实就好。</p>
+  </div>
+
+</div>
+
+<!-- ==================== SECTION 2: 课题分离 ==================== -->
+<div id="s2" class="section">
+
+  <div class="card">
+    <span class="module-label module-k">📚 知识考点板块</span>
+    <h2>第二问：别人的看法，到底关你什么事？</h2>
+
+    <p>这是阿德勒心理学里<strong>最实用</strong>的一个概念：<span class="em-red">课题分离</span>。</p>
+
+    <div class="highlight-box pulse">
+      ⚡ <strong>考点速记：</strong>课题分离 = 一件事的后果最终由谁承担，这件事就是谁的课题。不要干涉别人的课题，也不要让别人干涉你的课题。
+    </div>
+
+    <p>阿德勒说，<strong>一切人际关系的烦恼，都来自于干涉别人的课题，或者让别人干涉了你的课题。</strong></p>
+
+    <div class="quote">
+      <strong>经典例子：</strong>你努力学习，这是你的课题。你爸妈是否满意你的成绩，这是他们的课题。你可以为你的成绩负责，但你不必为他们的情绪负责。
+    </div>
+
+    <p>再比如：你选择了一个"冷门"的兴趣爱好，同学觉得你"很奇怪"。你喜不喜欢，是你的课题；他们怎么看你，是他们的课题。你把他们的课题接过来，就是给自己找不痛快。</p>
+
+    <div class="collapse-header" onclick="toggleCollapse(this)">
+      <span>🔍 怎么判断"这是谁的课题"？</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="collapse-body">
+      <p>阿德勒给了个特别简单的判断标准：</p>
+      <p style="font-size:18px; text-align:center; padding:16px; font-weight:700; color:var(--accent);">
+        "这件事的最终后果，谁来承担？"
+      </p>
+      <p>你的学习成绩——最终你去考试、你去升学、你去面对人生——你承担，所以是你的课题。爸妈可能会失望，但失望是他们的情绪，他们承担，所以是他们的课题。</p>
+      <p>这不是冷漠，而是<strong>边界</strong>。就像一个国家的边境线，不是用来隔绝，而是用来保护。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="module-label module-p">🧠 心理认知拓展板块</span>
+    <h2>校园里的"课题混乱"现场</h2>
+
+    <div class="scenario">
+      <span class="tag">🎬 场景一</span>
+      <p><strong>小美</strong>在班会上提了一个不同的意见，结果有两个同学私下说她"爱出风头"。小美很难过，晚上翻来覆去睡不着，后悔自己不该说话。</p>
+      <p style="margin-top:8px;"><strong>课题分离分析：</strong></p>
+      <ul style="padding-left:20px; line-height:2;">
+        <li>小美在班会上发表意见 → <strong>小美的课题</strong>（她有表达的权利）</li>
+        <li>同学怎么评价她的发言 → <strong>同学的课题</strong>（他们怎么想是他们的自由）</li>
+        <li>小美为同学的看法而失眠 → <strong>她在替别人承担别人的课题</strong></li>
+      </ul>
+    </div>
+
+    <div class="scenario">
+      <span class="tag">🎬 场景二</span>
+      <p><strong>小刚</strong>的好朋友沉迷游戏，成绩下滑。小刚很着急，天天劝他别玩了，朋友反而嫌他烦，两人关系变僵。</p>
+      <p style="margin-top:8px;"><strong>课题分离分析：</strong></p>
+      <ul style="padding-left:20px; line-height:2;">
+        <li>朋友的成绩和未来 → <strong>朋友的课题</strong></li>
+        <li>小刚关心朋友 → <strong>小刚的课题</strong>（他可以表达关心）</li>
+        <li>朋友接不接受建议 → <strong>朋友的课题</strong>（小刚替不了）</li>
+      </ul>
+      <p>阿德勒会说：你可以把马牵到河边，但你不能强迫它喝水。你已经做了你能做的，剩下的，是对方的事。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="module-label module-i">🎯 课堂互动练习板块</span>
+    <h2>随堂测验：课题分离判断力</h2>
+
+    <div id="quiz2">
+      <p><strong>题目1：</strong>你穿了一件自己喜欢的衣服，但有个同学说"好丑"。以下哪个是课题分离的正确做法？</p>
+      <button class="quiz-option" onclick="quizSelect(this, 'wrong', 'q2-1')">A. 再也不穿这件衣服了，省得被人说</button>
+      <button class="quiz-option" onclick="quizSelect(this, 'wrong', 'q2-1')">B. 跟那个同学吵一架，让他收回那句话</button>
+      <button class="quiz-option" onclick="quizSelect(this, 'correct', 'q2-1')">C. 我穿什么是我的事，他觉得丑是他的事，我继续穿</button>
+      <button class="quiz-option" onclick="quizSelect(this, 'wrong', 'q2-1')">D. 表面上不在意，但心里偷偷难受，以后穿衣服都先问别人</button>
+      <div class="quiz-feedback" id="q2-1">
+        <p style="color:var(--green);">✅ 正确答案：C。你喜欢是你的事，他评价是他的事。课题分离的核心就是：不把自己的价值感建立在别人的评价上。</p>
+      </div>
+
+      <p style="margin-top:20px;"><strong>题目2：</strong>你的好朋友考试作弊被发现了，他让你帮忙向老师求情。课题分离怎么看？</p>
+      <button class="quiz-option" onclick="quizSelect(this, 'wrong', 'q2-2')">A. 帮他求情，朋友就该两肋插刀</button>
+      <button class="quiz-option" onclick="quizSelect(this, 'correct', 'q2-2')">B. 作弊是他的选择，后果也该他承担，我不能替他兜底</button>
+      <button class="quiz-option" onclick="quizSelect(this, 'wrong', 'q2-2')">C. 假装没这回事，不关我事</button>
+      <button class="quiz-option" onclick="quizSelect(this, 'wrong', 'q2-2')">D. 跟他一起去找老师，说他不是故意的</button>
+      <div class="quiz-feedback" id="q2-2">
+        <p style="color:var(--green);">✅ 正确答案：B。他的行为是他的课题，后果由他承担。你可以表达关心和支持，但替他承担责任不是"义气"，而是越界。真正的朋友不是帮他逃避，而是陪他面对。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="module-label module-t">✍️ 课后思考任务板块</span>
+    <h2>课后作业：课题分离日记</h2>
+    <p>请你连续三天，每天记录一件让你<strong>情绪波动</strong>的事，然后用课题分离的框架分析：</p>
+    <table style="width:100%; border-collapse:collapse; margin:12px 0; font-size:14px;">
+      <tr style="background:#faf7f0;">
+        <th style="padding:10px; border:1px solid var(--border); text-align:left;">发生了什么事</th>
+        <th style="padding:10px; border:1px solid var(--border); text-align:left;">我的情绪</th>
+        <th style="padding:10px; border:1px solid var(--border); text-align:left;">这是我的课题吗？</th>
+        <th style="padding:10px; border:1px solid var(--border); text-align:left;">这是别人的课题吗？</th>
+      </tr>
+      <tr>
+        <td style="padding:10px; border:1px solid var(--border);">例：同学说我性格怪</td>
+        <td style="padding:10px; border:1px solid var(--border);">难过、自我怀疑</td>
+        <td style="padding:10px; border:1px solid var(--border);">我的性格是我自己的事</td>
+        <td style="padding:10px; border:1px solid var(--border);">他们的评价是他们的</td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+
+<!-- ==================== SECTION 3: 共同体感觉 ==================== -->
+<div id="s3" class="section">
+
+  <div class="card">
+    <span class="module-label module-k">📚 知识考点板块</span>
+    <h2>第三问：不需要被所有人喜欢，那我的价值从哪来？</h2>
+
+    <p>如果你接受了课题分离，你可能会想：<em>"我不管别人怎么看我，那我岂不是成了一个孤立的、冷漠的人？"</em></p>
+    <p>阿德勒的答案恰恰相反。他说，课题分离是<strong>起点</strong>，不是终点。终点是——<span class="em-red">共同体感觉</span>。</p>
+
+    <div class="highlight-box pulse">
+      ⚡ <strong>考点速记：</strong>共同体感觉 = 把对自己的执着（self-interest）转换成对他人的关心（social-interest），在共同体中找到自己的位置和价值。它不是"讨好别人"，而是"我对别人有用"。
+    </div>
+
+    <p>阿德勒认为，幸福感的核心来源不是"被别人认可"，而是<strong>"我感觉自己对他人、对集体有贡献"</strong>。</p>
+
+    <div class="steps">
+      <div class="step active">
+        <span class="step-num">1</span>
+        <strong>自我接纳</strong>
+        <br><span class="text-muted">接受真实的自己，包括缺点</span>
+      </div>
+      <div class="step">
+        <span class="step-num">2</span>
+        <strong>他者信赖</strong>
+        <br><span class="text-muted">无条件地信任他人</span>
+      </div>
+      <div class="step">
+        <span class="step-num">3</span>
+        <strong>他者贡献</strong>
+        <br><span class="text-muted">对他人/集体有价值</span>
+      </div>
+    </div>
+    <p class="text-muted">这三步是递进的：先接纳自己，才敢信任别人；信任了别人，才愿意为别人付出；付出了，才能感受到自己真正的价值。</p>
+  </div>
+
+  <div class="card">
+    <span class="module-label module-p">🧠 心理认知拓展板块</span>
+    <h2>为什么"被人需要"比"被人喜欢"更让你踏实？</h2>
+
+    <p>你有没有发现：当你帮同学讲了一道题，对方说"谢谢你，我终于懂了"的时候，那种感觉，比你在朋友圈收到50个赞还真实？</p>
+
+    <p>因为<strong>认可</strong>来自外部，随时可能被收回；而<strong>贡献感</strong>来自内部，是你自己确认的。</p>
+
+    <div class="scenario">
+      <span class="tag">🎬 班级场景</span>
+      <p><strong>小杰</strong>成绩一般，不是班干部，也不是"风云人物"。但他每次值日都特别认真，把黑板擦得干干净净，讲台整理得整整齐齐。有人问他为什么这么用心，他说："大家上课看着舒服，我觉得挺好的。"</p>
+      <p>小杰找到了什么？<strong>共同体感觉。</strong>他不需要被所有人注意到，但他知道自己在班级这个共同体里是有价值的——他的贡献是真实的，不需要别人盖章认证。</p>
+    </div>
+
+    <div class="thought-bubble">
+      阿德勒说："人只有在感觉自己有价值的时候，才能获得勇气。"<br>
+      这个"价值"，不是考了多少分、排了多少名，而是<strong>你为别人做了什么</strong>。
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="module-label module-i">🎯 课堂互动练习板块</span>
+    <h2>互动：你的"贡献地图"</h2>
+    <p>请在下面列出你所属的<strong>三个共同体</strong>，以及你在每个共同体里做过的<strong>一件有贡献的事</strong>（无论多小）：</p>
+
+    <div class="tab-container">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this, 'comm1')">家庭</button>
+        <button class="tab-btn" onclick="switchTab(this, 'comm2')">班级</button>
+        <button class="tab-btn" onclick="switchTab(this, 'comm3')">朋友圈</button>
+      </div>
+      <div id="comm1" class="tab-panel active">
+        <p>在家庭这个共同体里，我做过什么贡献？</p>
+        <textarea style="width:100%; height:80px; border:1px solid var(--border); border-radius:8px; padding:12px; font-size:14px; resize:vertical;" placeholder="比如：帮妈妈洗碗、陪弟弟做作业、不乱发脾气让家里气氛好一点……"></textarea>
+      </div>
+      <div id="comm2" class="tab-panel">
+        <p>在班级这个共同体里，我做过什么贡献？</p>
+        <textarea style="width:100%; height:80px; border:1px solid var(--border); border-radius:8px; padding:12px; font-size:14px; resize:vertical;" placeholder="比如：帮同学讲题、值日认真、运动会为班级加油……"></textarea>
+      </div>
+      <div id="comm3" class="tab-panel">
+        <p>在朋友圈这个共同体里，我做过什么贡献？</p>
+        <textarea style="width:100%; height:80px; border:1px solid var(--border); border-radius:8px; padding:12px; font-size:14px; resize:vertical;" placeholder="比如：朋友难过时听ta倾诉、记住朋友的生日、分享好听的歌……"></textarea>
+      </div>
+    </div>
+
+    <p class="text-muted" style="margin-top:12px;">💡 写完之后你会发现：你比自己以为的，更有价值。</p>
+  </div>
+
+  <div class="card">
+    <span class="module-label module-t">✍️ 课后思考任务板块</span>
+    <h2>课后作业：贡献日记</h2>
+    <p>接下来一周，每天睡前记录一件"我今天为别人做了什么事"。不用很大，哪怕是：</p>
+    <ul class="checklist">
+      <li onclick="this.classList.toggle('checked')">帮同桌捡起掉在地上的笔</li>
+      <li onclick="this.classList.toggle('checked')">对食堂阿姨说了一声谢谢</li>
+      <li onclick="this.classList.toggle('checked')">在群里分享了一个好用的学习资料</li>
+      <li onclick="this.classList.toggle('checked')">忍住没跟爸妈顶嘴，让晚饭气氛好一点</li>
+      <li onclick="this.classList.toggle('checked')">朋友吐槽时认真听完了，没打断</li>
+    </ul>
+    <p style="margin-top:12px;">一周后回看，数一数你做了多少件。你会发现，你的存在本身，就是有价值的。</p>
+  </div>
+
+</div>
+
+<!-- ==================== SECTION 4: 活在当下 ==================== -->
+<div id="s4" class="section">
+
+  <div class="card">
+    <span class="module-label module-k">📚 知识考点板块</span>
+    <h2>第四问：活在当下，到底怎么活？</h2>
+
+    <p>阿德勒心理学的最后一个核心概念：<span class="em-red">此时此刻</span>。</p>
+
+    <div class="highlight-box pulse">
+      ⚡ <strong>考点速记：</strong>人生不是一条通往某个终点的"线"，而是无数个"点"的连续——每个"此时此刻"都是完整的。不要活在"如果……就好了"的假设里，也不要把人生当成"等到……我就幸福了"的延迟满足陷阱。
+    </div>
+
+    <p>阿德勒有个很妙的比喻：</p>
+
+    <div class="quote">
+      <strong>人生就像登山。</strong>大多数人以为，登顶才是目的，路上的每一步都是手段。但阿德勒说：<strong>你迈出的每一步，本身就是登山。</strong>你站在半山腰看到的风景，和你站在山顶看到的，都是真实的、完整的体验。
+    </div>
+
+    <div class="collapse-header" onclick="toggleCollapse(this)">
+      <span>🔍 "潜在性人生" vs "现实性人生"</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="collapse-body">
+      <p><strong>潜在性人生：</strong>"等我考上大学就好了" → "等我找到工作就好了" → "等我升职就好了"……永远在等一个"就好了"的时刻，但那个时刻永远不会来。</p>
+      <p><strong>现实性人生：</strong>我现在在做什么，这就是我的全部人生。不是"为了将来"，而是"现在这一刻本身就是有意义的"。</p>
+      <p>阿德勒不是说不要规划未来，而是说：<strong>不要把现在当成未来的"预演"。</strong>你现在活着，就该好好活。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="module-label module-p">🧠 心理认知拓展板块</span>
+    <h2>中学生最深的"延迟满足"陷阱</h2>
+
+    <p>你听过这些话吗？</p>
+    <ul style="padding-left:20px; line-height:2.2;">
+      <li>"初中熬过去就好了"</li>
+      <li>"高中熬过去就好了"</li>
+      <li>"考上大学就好了"</li>
+      <li>"找到工作就好了"</li>
+    </ul>
+
+    <p>这些话可能是善意的，但它在传递一个危险的信号：<strong>你现在的生活不重要，它只是通往未来的工具。</strong></p>
+
+    <div class="thought-bubble">
+      阿德勒不会说"别学习，去玩吧"。他会说：<strong>学习的时候，就全情投入地学；玩的时候，就全情投入地玩。不要一边学习一边想着玩，一边玩一边愧疚没学习。</strong>这才是"活在当下"的真正含义。
+    </div>
+
+    <div class="scenario">
+      <span class="tag">🎬 真实困境</span>
+      <p>很多同学会陷入一种状态：周一到周五盼周末，周末又觉得过得很快什么都没做，周日晚上开始焦虑，周一又开始新一轮循环。整个学期都在"熬"，然后发现一年就这么过去了。</p>
+      <p><strong>阿德勒的解法：</strong>把注意力从"这周还有几天结束"转移到"今天我能好好做点什么"。哪怕只是认真听了一节课、读懂了一篇文章、和朋友聊了一次有意义的天——这一天就是完整的，不是"工具"。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="module-label module-i">🎯 课堂互动练习板块</span>
+    <h2>随堂练习：你的"人生时钟"</h2>
+    <p>想象你的人生是一个时钟。你现在几岁？把年龄标在时钟上。</p>
+    <p>然后问自己：</p>
+    <div style="text-align:center; margin:20px 0;">
+      <svg width="200" height="200" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="90" fill="none" stroke="#e0d8c8" stroke-width="3"/>
+        <circle cx="100" cy="100" r="4" fill="#c0392b"/>
+        <line x1="100" y1="100" x2="100" y2="25" stroke="#2c2c2c" stroke-width="3" stroke-linecap="round" transform="rotate(30,100,100)"/>
+        <line x1="100" y1="100" x2="100" y2="35" stroke="#c0392b" stroke-width="2" stroke-linecap="round" transform="rotate(180,100,100)"/>
+        <text x="100" y="18" text-anchor="middle" font-size="12" fill="#5a5a5a">12</text>
+        <text x="182" y="104" text-anchor="middle" font-size="12" fill="#5a5a5a">3</text>
+        <text x="100" y="194" text-anchor="middle" font-size="12" fill="#5a5a5a">6</text>
+        <text x="18" y="104" text-anchor="middle" font-size="12" fill="#5a5a5a">9</text>
+        <text x="100" y="115" text-anchor="middle" font-size="11" fill="#c0392b">现在</text>
+      </svg>
+    </div>
+    <p class="text-muted">时针的位置不重要，重要的是——<strong>你现在能做什么？</strong></p>
+
+    <button class="click-reveal" onclick="revealAnswer(this, 'nowWhat')">点击展开：阿德勒的"此时此刻"行动指南</button>
+    <div class="reveal-content" id="nowWhat">
+      <ol style="padding-left:20px; line-height:2.2;">
+        <li><strong>停止"如果……就好了"的思维。</strong>如果你总是想"如果我不社恐就好了"，那你永远在等待一个不存在的"完美自己"。</li>
+        <li><strong>把注意力放在"下一步"而不是"最终结果"。</strong>不要想"我要考全班第一"，而是想"今天我要弄懂这一个知识点"。</li>
+        <li><strong>跳舞，不要赶路。</strong>阿德勒说，人生不是一条轨道，而是一个舞池。你在跳舞的时候，不是为了跳到某个位置，而是享受每一个舞步。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="module-label module-t">✍️ 课后思考任务板块</span>
+    <h2>课后作业：一天"此时此刻"实验</h2>
+    <p>选一天，做一个小实验：</p>
+    <ol style="padding-left:20px; line-height:2.2;">
+      <li>这一天里，每次你发现自己在想"等会儿/明天/下周/以后就好了"，就在心里叫停。</li>
+      <li>然后问自己：<strong>"我现在在做什么？这件事本身，有没有值得我投入的地方？"</strong></li>
+      <li>晚上睡前，记录三个"今天让我觉得充实"的瞬间。</li>
+    </ol>
+    <p class="text-muted">你会发现，不需要等到"以后"，你已经在生活了。</p>
+  </div>
+
+</div>
+
+<!-- ==================== 全局进度条 ==================== -->
+<div class="card" style="text-align:center;">
+  <p style="font-weight:600; margin-bottom:8px;">📊 本节课完成进度</p>
+  <div class="progress-bar">
+    <div class="progress-fill" id="globalProgress" style="width:0%;"></div>
+  </div>
+  <p class="text-muted" id="progressText">已学习 0/4 个核心概念</p>
+</div>
+
+</div><!-- container -->
+
+<script>
+// ============ Section switching ============
+function switchSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  updateProgress();
+}
+
+// ============ Tab switching ============
+function switchTab(btn, panelId) {
+  const container = btn.parentElement.parentElement;
+  container.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const panels = container.querySelectorAll('.tab-panel');
+  panels.forEach(p => p.classList.remove('active'));
+  document.getElementById(panelId).classList.add('active');
+}
+
+// ============ Collapse ============
+function toggleCollapse(header) {
+  header.classList.toggle('open');
+  header.nextElementSibling.classList.toggle('open');
+}
+
+// ============ Click reveal ============
+function revealAnswer(btn, contentId) {
+  const content = document.getElementById(contentId);
+  if (content.classList.contains('show')) {
+    content.classList.remove('show');
+    btn.textContent = '点击看分析';
+    btn.classList.remove('revealed');
+  } else {
+    content.classList.add('show');
+    btn.textContent = '收起';
+    btn.classList.add('revealed');
+  }
+}
+
+// ============ Quiz ============
+function quizSelect(btn, type, feedbackId) {
+  const siblings = btn.parentElement.querySelectorAll('.quiz-option');
+  siblings.forEach(s => { s.classList.remove('correct', 'wrong'); s.disabled = true; });
+  btn.classList.add(type);
+  const feedback = document.getElementById(feedbackId);
+  feedback.classList.add('show');
+}
+
+// ============ Drag and Drop ============
+function dragStart(e) {
+  e.dataTransfer.setData('text/plain', e.target.id);
+  e.target.classList.add('dragging');
+}
+function dragOver(e) {
+  e.preventDefault();
+}
+function dropItem(e, targetId) {
+  e.preventDefault();
+  const id = e.dataTransfer.getData('text/plain');
+  const item = document.getElementById(id);
+  if (!item) return;
+  const target = document.getElementById(targetId);
+  if (target && item.parentElement.id !== target.id) {
+    item.classList.add('placed');
+    item.setAttribute('draggable', 'false');
+    target.appendChild(item);
+  }
+}
+
+// ============ Progress tracking ============
+function updateProgress() {
+  const visited = JSON.parse(localStorage.getItem('adler_visited') || '{"s1":false,"s2":false,"s3":false,"s4":false}');
+  document.querySelectorAll('.section').forEach(s => {
+    if (s.classList.contains('active')) visited[s.id] = true;
+  });
+  localStorage.setItem('adler_visited', JSON.stringify(visited));
+  const count = Object.values(visited).filter(v => v).length;
+  const pct = Math.round((count / 4) * 100);
+  document.getElementById('globalProgress').style.width = pct + '%';
+  document.getElementById('progressText').textContent = '已学习 ' + count + '/4 个核心概念';
+}
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+  updateProgress();
+  // Restore visited state for progress bar
+  const visited = JSON.parse(localStorage.getItem('adler_visited') || '{"s1":true,"s2":false,"s3":false,"s4":false}');
+  const count = Object.values(visited).filter(v => v).length;
+  document.getElementById('globalProgress').style.width = Math.round((count/4)*100) + '%';
+  document.getElementById('progressText').textContent = '已学习 ' + count + '/4 个核心概念';
+});
+</script>
+
+</body>
+</html>
