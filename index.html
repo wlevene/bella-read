@@ -7,20 +7,21 @@
   <style>
     /* ===== CSS Variables ===== */
     :root {
-      --bg: #faf6f0;
-      --card: #fffef9;
-      --border: #e8dcc8;
-      --text: #3d3226;
-      --text-light: #7a6e5d;
-      --accent: #c0392b;
-      --radius-lg: 24px;
-      --radius-md: 16px;
-      --radius-sm: 8px;
-      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
-      --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.06);
-      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", sans-serif;
+      /* 书香气配色：素雅纸白、徽墨、朱砂 */
+      --bg: #Fdfdfb;          /* 极浅的宣纸白，大量留白的底色 */
+      --card: #FFFFFF;        /* 纯白卡片，制造微弱的层次 */
+      --border: #F0ebe1;      /* 极浅的茶色边框 */
+      --text: #2b2b2b;        /* 徽墨黑，不刺眼 */
+      --text-light: #8c8c8c;  /* 烟墨灰 */
+      --accent: #8b3a3a;      /* 沉稳的暗朱砂红 */
+      --radius-lg: 2px;       /* 几乎直角，保留纸张的边缘感 */
+      --radius-md: 2px;
+      --radius-sm: 0px;
+      --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 20px 40px rgba(0, 0, 0, 0.04);
+      --font-sans: "PingFang SC", "Hiragino Sans GB", -apple-system, BlinkMacSystemFont, sans-serif;
       --font-serif: "STSong", "Songti SC", "Noto Serif CJK SC", "SimSun", serif;
-      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,20 +29,22 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: var(--font-sans);
-      line-height: 1.6;
+      font-family: var(--font-serif); /* 全局主基调改为衬线体，凸显书香 */
+      line-height: 1.8;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      background-image: radial-gradient(#e6e2d8 1px, transparent 1px);
+      background-size: 40px 40px; /* 微妙的网格，增加纸张肌理感 */
     }
 
     /* ===== Layout ===== */
     .container {
-      max-width: 1000px;
+      max-width: 900px; /* 进一步收缩宽度，增加左右留白 */
       margin: 0 auto;
-      padding: 80px 24px;
+      padding: 120px 24px; /* 增加上下留白 */
       flex: 1;
       width: 100%;
     }
@@ -49,131 +52,214 @@
     /* ===== Hero Section ===== */
     .hero {
       text-align: center;
-      margin-bottom: 80px;
-      animation: fadeUp 0.8s ease-out forwards;
+      margin-bottom: 100px;
+      animation: fadeUp 1s ease-out forwards;
+      position: relative;
+    }
+
+    /* 装饰性印章效果 */
+    .hero::after {
+      content: '阅';
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-serif);
+      font-size: 120px;
+      color: rgba(139, 58, 58, 0.03);
+      z-index: -1;
+      user-select: none;
     }
 
     .hero h1 {
       font-family: var(--font-serif);
-      font-size: 40px;
-      font-weight: 700;
-      color: #2c1810;
-      margin-bottom: 16px;
-      letter-spacing: 2px;
+      font-size: 32px;
+      font-weight: 400; /* 去掉粗体，回归文雅 */
+      color: var(--text);
+      margin-bottom: 24px;
+      letter-spacing: 4px;
     }
 
     .hero p {
-      font-size: 16px;
+      font-family: var(--font-sans);
+      font-size: 14px;
       color: var(--text-light);
-      max-width: 480px;
+      max-width: 400px;
       margin: 0 auto;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
+      line-height: 2;
+    }
+
+    /* ===== Section Tabs ===== */
+    .section-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 32px; /* 拉大间距 */
+      margin-bottom: 60px;
+      animation: fadeUp 1s ease-out forwards;
+      animation-delay: 0.2s;
+      opacity: 0;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-light);
+      padding: 8px 0;
+      font-size: 16px;
+      font-weight: 400;
+      cursor: pointer;
+      font-family: var(--font-serif);
+      letter-spacing: 2px;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -17px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--text);
+    }
+
+    .tab-btn.active {
+      color: var(--text);
+    }
+
+    .tab-btn.active::after {
+      width: 100%; /* 选中时底部红线展开 */
+    }
+
+    /* ===== Tab Content ===== */
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: grid;
     }
 
     /* ===== Bookshelf Grid ===== */
     .bookshelf {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 32px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 60px 40px; /* 大量留白 */
     }
 
     /* ===== Book Card ===== */
     .book-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 24px;
+      background: transparent; /* 去掉卡片底色，融入背景 */
+      border: none;
       text-decoration: none;
       color: inherit;
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      box-shadow: var(--shadow-sm);
+      gap: 24px;
       transition: var(--transition);
       opacity: 0;
       transform: translateY(20px);
-      animation: fadeUp 0.8s ease-out forwards;
-      animation-delay: 0.2s;
+      animation: fadeUp 1s ease-out forwards;
+      animation-delay: 0.4s;
     }
 
     .book-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-md);
-      border-color: rgba(192, 57, 43, 0.2);
+      transform: translateY(-4px);
     }
 
-    /* Book Cover Mockup */
+    /* Book Cover Mockup (更像实体纸质书) */
     .book-cover {
       width: 100%;
-      aspect-ratio: 4/3;
-      background: linear-gradient(135deg, #2c1810, #4a2c17);
-      border-radius: var(--radius-md);
+      aspect-ratio: 3/4; /* 传统书籍比例 */
+      background: #f4f0e6;
+      border: 1px solid #e6e2d8;
+      border-radius: 2px 6px 6px 2px; /* 模拟书脊和书页边缘 */
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      box-shadow: 12px 12px 30px rgba(0,0,0,0.03), -1px 0 2px rgba(0,0,0,0.02);
+      transition: var(--transition);
     }
 
-    .book-cover::after {
+    .book-card:hover .book-cover {
+      box-shadow: 16px 20px 40px rgba(0,0,0,0.06), -1px 0 2px rgba(0,0,0,0.02);
+    }
+
+    /* 书脊阴影 */
+    .book-cover::before {
       content: '';
       position: absolute;
-      left: 16px; top: 0; bottom: 0;
-      width: 4px;
-      background: rgba(212,168,83,0.2);
-      box-shadow: 2px 0 4px rgba(0,0,0,0.2);
+      left: 0; top: 0; bottom: 0;
+      width: 12px;
+      background: linear-gradient(to right, rgba(255,255,255,0.4), rgba(0,0,0,0.05), transparent);
+      z-index: 2;
     }
 
     .book-cover-title {
       font-family: var(--font-serif);
-      color: #d4a853;
-      font-size: 24px;
-      font-weight: 700;
+      color: var(--text);
+      font-size: 22px;
+      font-weight: 400;
       text-align: center;
-      padding: 20px;
-      line-height: 1.4;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      padding: 30px 20px;
+      line-height: 1.5;
+      writing-mode: vertical-rl; /* 竖排文字，东方韵味 */
+      letter-spacing: 4px;
+      z-index: 1;
     }
 
     /* Book Info */
     .book-info {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 12px;
+      padding: 0 8px;
     }
 
     .book-meta {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 13px;
+      font-size: 12px;
+      font-family: var(--font-sans);
       color: var(--text-light);
-      font-weight: 500;
     }
 
     .book-tag {
-      background: rgba(192, 57, 43, 0.08);
       color: var(--accent);
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
+      border: 1px solid rgba(139, 58, 58, 0.2);
+      padding: 2px 8px;
+      border-radius: 2px;
+      font-size: 11px;
+      letter-spacing: 1px;
     }
 
     .book-title {
-      font-size: 20px;
-      font-weight: 600;
-      color: #2c1810;
-      line-height: 1.4;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.5;
     }
 
     .book-desc {
-      font-size: 14px;
+      font-family: var(--font-sans);
+      font-size: 13px;
       color: var(--text-light);
-      line-height: 1.6;
+      line-height: 1.8;
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
@@ -181,11 +267,12 @@
     /* ===== Footer ===== */
     footer {
       text-align: center;
-      padding: 40px 24px;
-      font-size: 13px;
-      color: var(--text-light);
-      border-top: 1px solid var(--border);
+      padding: 60px 24px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: #b3b3b3;
       margin-top: auto;
+      letter-spacing: 2px;
     }
 
     /* ===== Animations ===== */
@@ -209,11 +296,18 @@
       <p>在克制中探寻广阔，于归朴处安放心智。<br>这是我的私人数字书架。</p>
     </header>
 
-    <main class="bookshelf">
+    <!-- ===== Section Tabs ===== -->
+    <div class="section-tabs">
+      <button class="tab-btn active" onclick="switchTab('books')">📚 读书笔记</button>
+      <button class="tab-btn" onclick="switchTab('english')">🔤 英文学习</button>
+    </div>
+
+    <!-- ===== Bookshelf Grid (读书笔记) ===== -->
+    <main class="bookshelf tab-content active" id="tab-books">
       <!-- Book 1 -->
       <a href="./books/guns-germs-steel.html" class="book-card">
-        <div class="book-cover">
-          <div class="book-cover-title">枪炮、病菌<br>与钢铁</div>
+        <div class="book-cover" style="background-color: #2c1810;">
+          <div class="book-cover-title" style="color: #d4a853;">枪炮、病菌<br>与钢铁</div>
         </div>
         <div class="book-info">
           <div class="book-meta">
@@ -224,8 +318,24 @@
           <p class="book-desc">为什么是欧洲人征服了美洲，而不是反过来？跟着我，像一个侦探一样，找到真相。</p>
         </div>
       </a>
-      
-      <!-- 未来可以在这里追加更多的书籍卡片 -->
+    </main>
+
+    <!-- ===== English Learning Grid (英文学习) ===== -->
+    <main class="bookshelf tab-content" id="tab-english">
+      <!-- English Note 1 -->
+      <a href="./english/english-learning-guide.html" class="book-card">
+        <div class="book-cover" style="background-color: #fdfdfb;">
+          <div class="book-cover-title" style="color: #2b2b2b;">英语<br>学习方法</div>
+        </div>
+        <div class="book-info">
+          <div class="book-meta">
+            <span>学习笔记</span>
+            <span class="book-tag" style="border-color: rgba(43,43,43,0.2); color: #2b2b2b;">方法论</span>
+          </div>
+          <h3 class="book-title">英语学习系统构建</h3>
+          <p class="book-desc">摆脱传统死记硬背的误区，探讨如何高效习得语言，在真实的语境中建立英语母语者的思维方式。</p>
+        </div>
+      </a>
     </main>
   </div>
 
@@ -233,5 +343,21 @@
     &copy; 2026 Bella Read. 保持思考，保持留白。
   </footer>
 
+  <script>
+    function switchTab(tabId) {
+      // 1. 切换按钮状态
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      // 找到点击的按钮（根据参数简单判断，这里用一种直接的方式）
+      event.currentTarget.classList.add('active');
+
+      // 2. 切换内容区状态
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      document.getElementById('tab-' + tabId).classList.add('active');
+    }
+  </script>
 </body>
 </html>
