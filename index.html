@@ -4,24 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bella's Reading Space | 归朴阅读</title>
+  <meta name="description" content="Bella 的私人数字书架，在书香与留白之间，整理读书笔记与英语学习方法。">
   <style>
-    /* ===== CSS Variables ===== */
     :root {
-      --bg: #Fdfdfb;          /* 极浅的宣纸白 */
-      --card: #FFFFFF;
-      --border: #F0ebe1;      /* 极浅的茶色边框 */
-      --text: #2b2b2b;        /* 徽墨黑 */
-      --text-light: #8c8c8c;  /* 烟墨灰 */
-      --accent: #8b3a3a;      /* 暗朱砂红 */
-      --radius-sm: 2px;
-      --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.02);
-      --shadow-md: 0 20px 40px rgba(0, 0, 0, 0.04);
+      --bg: #fdfdfb;
+      --card: rgba(255, 255, 255, 0.68);
+      --border: #f0ebe1;
+      --border-strong: rgba(139, 58, 58, 0.18);
+      --text: #2b2b2b;
+      --text-light: #8c8c8c;
+      --accent: #8b3a3a;
+      --accent-soft: rgba(139, 58, 58, 0.08);
+      --shadow-sm: 0 12px 30px rgba(53, 42, 33, 0.04);
+      --shadow-md: 0 20px 45px rgba(53, 42, 33, 0.06);
       --font-sans: "PingFang SC", "Hiragino Sans GB", -apple-system, BlinkMacSystemFont, sans-serif;
       --font-serif: "STSong", "Songti SC", "Noto Serif CJK SC", "SimSun", serif;
       --transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       background: var(--bg);
@@ -30,143 +39,287 @@
       line-height: 1.8;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* 真实的纸张纤维肌理 */
     body::before {
-      content: '';
+      content: "";
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
+      inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E");
       opacity: 0.04;
       pointer-events: none;
       z-index: 0;
     }
 
-    /* ===== Layout ===== */
+    a,
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid rgba(139, 58, 58, 0.35);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 24px;
+      top: -48px;
+      background: var(--text);
+      color: #fff;
+      padding: 10px 14px;
+      text-decoration: none;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      letter-spacing: 1px;
+      z-index: 10;
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
     .container {
-      max-width: 1100px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 100px 32px 80px;
+      padding: 96px 32px 120px;
       flex: 1;
       width: 100%;
       position: relative;
       z-index: 1;
     }
 
-    /* ===== Hero Section ===== */
     .hero {
-      margin-bottom: 120px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.75fr) minmax(260px, 0.95fr);
+      gap: 56px;
+      margin-bottom: 112px;
+      align-items: end;
       animation: fadeUp 1s ease-out forwards;
       position: relative;
       padding-left: 4px;
     }
 
-    .hero-eyebrow {
+    .hero-main {
+      max-width: 700px;
+    }
+
+    .hero-eyebrow,
+    .archive-label,
+    .featured-label,
+    .hero-note-label,
+    .section-kicker,
+    .panel-label,
+    .outline-label {
       font-family: var(--font-sans);
       font-size: 12px;
       letter-spacing: 3px;
       color: var(--text-light);
-      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+
+    .hero-eyebrow,
+    .archive-label,
+    .hero-note-label,
+    .section-kicker {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .hero-eyebrow::before {
-      content: '';
+    .hero-eyebrow::before,
+    .archive-label::before,
+    .hero-note-label::before,
+    .section-kicker::before {
+      content: "";
       display: inline-block;
       width: 24px;
       height: 1px;
-      background: var(--text-light);
+      background: currentColor;
     }
 
     .hero h1 {
-      font-family: var(--font-serif);
-      font-size: 48px;
+      font-size: 54px;
       font-weight: 400;
       color: var(--text);
-      margin-bottom: 32px;
-      letter-spacing: 6px;
-      line-height: 1.2;
+      margin: 26px 0 30px;
+      letter-spacing: 7px;
+      line-height: 1.18;
+      text-wrap: balance;
     }
 
-    .hero p {
+    .hero-intro {
       font-family: var(--font-sans);
       font-size: 15px;
       color: var(--text-light);
-      max-width: 480px;
-      letter-spacing: 1px;
+      max-width: 490px;
+      letter-spacing: 0.8px;
       line-height: 2;
       padding-left: 36px;
     }
 
-    /* ===== Section Tabs (Asymmetric Layout) ===== */
-    /* 顶层容器：仅作为分类切换的容器，不参与 grid 排版 */
+    .hero-note {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.52), rgba(248, 244, 237, 0.84));
+      border: 1px solid rgba(139, 58, 58, 0.1);
+      box-shadow: var(--shadow-sm);
+      padding: 28px 26px;
+      position: relative;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-note::after {
+      content: "";
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      width: 44px;
+      height: 44px;
+      border-top: 1px solid rgba(139, 58, 58, 0.12);
+      border-right: 1px solid rgba(139, 58, 58, 0.12);
+      opacity: 0.8;
+    }
+
+    .hero-note-copy {
+      font-size: 16px;
+      line-height: 1.95;
+      margin: 18px 0 24px;
+      color: var(--text);
+    }
+
+    .hero-glance {
+      display: grid;
+      gap: 14px;
+    }
+
+    .hero-glance-item {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 12px;
+      align-items: baseline;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-light);
+      border-top: 1px solid rgba(43, 43, 43, 0.06);
+      padding-top: 14px;
+    }
+
+    .hero-glance-item strong {
+      color: var(--text);
+      font-weight: 500;
+      letter-spacing: 0.4px;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: auto auto 1fr;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 34px;
+    }
+
+    .section-note {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-light);
+      justify-self: end;
+      text-align: right;
+      max-width: 320px;
+      line-height: 1.9;
+    }
+
+    .section-tabs {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px;
+      border: 1px solid rgba(43, 43, 43, 0.08);
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(10px);
+    }
+
+    .tab-button,
+    .floating-nav-button {
+      border: none;
+      background: transparent;
+      color: var(--text-light);
+      font-family: var(--font-serif);
+      font-size: 18px;
+      letter-spacing: 3px;
+      padding: 12px 18px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .tab-button.active,
+    .floating-nav-button.active {
+      color: var(--text);
+      background: linear-gradient(180deg, rgba(139, 58, 58, 0.08), rgba(139, 58, 58, 0.03));
+      box-shadow: inset 0 0 0 1px rgba(139, 58, 58, 0.12);
+    }
+
     .bookshelf {
       position: relative;
       border-top: 1px solid var(--border);
-      padding-top: 60px;
+      padding-top: 56px;
     }
 
-    /* ===== Featured Section: 精选大卡（保持 2.4:1 不对称） ===== */
+    .tab-content {
+      display: none;
+      animation: fadeUp 0.7s ease-out forwards;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
     .featured {
       display: grid;
       grid-template-columns: 2.4fr 1fr;
       gap: 0;
-      margin-bottom: 80px;
+      margin-bottom: 88px;
       position: relative;
     }
 
     .featured-slot {
       display: flex;
       flex-direction: column;
-      gap: 48px;
+      gap: 30px;
     }
 
-    .featured-slot.left { padding: 0 40px 0 0; }
+    .featured-slot.left {
+      padding: 0 42px 0 0;
+    }
+
     .featured-slot.right {
-      padding: 20px 0 0 40px;  /* 错落：第一本下沉 20px */
+      padding: 28px 0 0 42px;
     }
 
-    /* ===== Archive Section: 归档网格（3 列 1.4:1:1） ===== */
-    .archive-wrap {
-      padding-top: 60px;
-      border-top: 1px dashed var(--border);
-    }
-
-    .archive-label {
-      font-family: var(--font-serif);
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--text-light);
-      letter-spacing: 4px;
-      margin-bottom: 36px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .archive-label::before {
-      content: '';
-      display: inline-block;
-      width: 24px;
-      height: 1px;
-      background: var(--text-light);
-    }
-
-    .archive {
+    .featured-note {
+      max-width: 270px;
       display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      gap: 40px 32px;
+      gap: 10px;
     }
 
-    /* ===== Book Card ===== */
+    .featured-note p {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.9;
+    }
+
+    .featured-label {
+      color: var(--accent);
+      letter-spacing: 2px;
+    }
+
     .book-card {
       background: transparent;
       border: none;
@@ -181,22 +334,19 @@
       opacity: 0;
     }
 
-    .book-column.left .book-card,
     .featured-slot.left .book-card {
-      animation-delay: 0.2s;
+      animation-delay: 0.18s;
     }
 
-    .book-column.right .book-card,
     .featured-slot.right .book-card,
-    .archive .book-card {
-      animation-delay: 0.4s;
+    .archive .archive-panel {
+      animation-delay: 0.32s;
     }
 
-    /* 墨水晕染效果：Hover 时缓缓洇开一抹暗朱砂 */
     .book-card::after {
-      content: '';
+      content: "";
       position: absolute;
-      bottom: -20px;
+      bottom: -18px;
       left: 0;
       width: 0;
       height: 1px;
@@ -210,13 +360,12 @@
 
     .book-card:hover .book-cover {
       transform: translateY(-4px);
-      box-shadow: 16px 20px 40px rgba(0,0,0,0.06), -1px 0 2px rgba(0,0,0,0.02);
+      box-shadow: 16px 22px 42px rgba(53, 42, 33, 0.07), -1px 0 2px rgba(53, 42, 33, 0.02);
     }
 
-    /* Book Cover - 模拟民国线装书 */
     .book-cover {
       width: 100%;
-      aspect-ratio: 3/4;
+      aspect-ratio: 3 / 4;
       background: #f4f0e6;
       border: 1px solid #e6e2d8;
       border-radius: 2px 6px 6px 2px;
@@ -225,23 +374,47 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      box-shadow: 12px 12px 30px rgba(0,0,0,0.03), -1px 0 2px rgba(0,0,0,0.02);
+      box-shadow: 12px 12px 30px rgba(53, 42, 33, 0.04), -1px 0 2px rgba(53, 42, 33, 0.02);
       transition: var(--transition);
     }
 
-    /* 书脊阴影 */
     .book-cover::before {
-      content: '';
+      content: "";
       position: absolute;
-      left: 0; top: 0; bottom: 0;
+      left: 0;
+      top: 0;
+      bottom: 0;
       width: 12px;
-      background: linear-gradient(to right, rgba(255,255,255,0.4), rgba(0,0,0,0.05), transparent);
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.42), rgba(0, 0, 0, 0.06), transparent);
       z-index: 2;
+    }
+
+    .cover-guns {
+      background: #2c1810;
+    }
+
+    .cover-courage {
+      background: #1a1a1a;
+    }
+
+    .cover-english {
+      background: #f7f3ea;
+    }
+
+    .title-guns {
+      color: #d4a853;
+    }
+
+    .title-courage {
+      color: #8b3a3a;
+    }
+
+    .title-english {
+      color: #2b2b2b;
     }
 
     .book-cover-title {
       font-family: var(--font-serif);
-      color: var(--text);
       font-size: 24px;
       font-weight: 400;
       text-align: center;
@@ -252,17 +425,6 @@
       z-index: 1;
     }
 
-    .book-cover-en {
-      font-family: var(--font-sans);
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 2px;
-      margin-top: 8px;
-      color: var(--text-light);
-      writing-mode: horizontal-tb; /* 英文恢复横排 */
-    }
-
-    /* Book Info */
     .book-info {
       display: flex;
       flex-direction: column;
@@ -273,6 +435,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
       font-size: 12px;
       font-family: var(--font-sans);
       color: var(--text-light);
@@ -282,66 +445,229 @@
       color: var(--accent);
       border: 1px solid rgba(139, 58, 58, 0.2);
       padding: 2px 8px;
-      border-radius: 2px;
       font-size: 11px;
       letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .book-tag-neutral {
+      border-color: rgba(43, 43, 43, 0.16);
+      color: var(--text);
     }
 
     .book-title {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 400;
       color: var(--text);
       line-height: 1.5;
+      text-wrap: balance;
     }
 
     .book-desc {
       font-family: var(--font-sans);
       font-size: 13px;
       color: var(--text-light);
-      line-height: 1.8;
+      line-height: 1.85;
       display: -webkit-box;
+        line-clamp: 3;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
 
-    /* ===== Section Heading (Tabs) ===== */
-    .section-heading {
-      display: flex;
-      align-items: baseline;
-      gap: 32px;
-      margin-bottom: 40px;
+    .archive-wrap {
+      padding-top: 56px;
+      border-top: 1px dashed var(--border);
     }
 
-    .section-heading h2 {
-      font-family: var(--font-serif);
+    .archive-header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+
+    .archive-copy {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 1.9;
+      color: var(--text-light);
+      justify-self: end;
+      text-align: right;
+      max-width: 340px;
+    }
+
+    .archive {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 32px;
+    }
+
+    .archive-panel,
+    .learning-outline {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(248, 244, 237, 0.74));
+      border: 1px solid rgba(43, 43, 43, 0.08);
+      box-shadow: var(--shadow-sm);
+      padding: 24px 22px;
+      min-height: 100%;
+    }
+
+    .archive-panel {
+      display: grid;
+      gap: 18px;
+      animation: fadeUp 1s ease-out forwards;
+      opacity: 0;
+    }
+
+    .panel-title,
+    .outline-title {
       font-size: 20px;
       font-weight: 400;
+      line-height: 1.4;
       color: var(--text);
-      letter-spacing: 4px;
-      cursor: pointer;
-      transition: color 0.3s ease;
-      position: relative;
     }
 
-    .section-heading h2.inactive {
+    .panel-copy,
+    .outline-copy {
+      font-family: var(--font-sans);
+      font-size: 13px;
       color: var(--text-light);
+      line-height: 1.9;
     }
 
-    .section-heading h2.active::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: var(--accent);
+    .panel-list,
+    .outline-list {
+      list-style: none;
+      display: grid;
+      gap: 14px;
     }
 
-    /* ===== Footer ===== */
+    .panel-list li,
+    .outline-list li {
+      border-top: 1px solid rgba(43, 43, 43, 0.07);
+      padding-top: 14px;
+    }
+
+    .panel-link {
+      display: grid;
+      gap: 6px;
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    .panel-link:hover {
+      transform: translateX(4px);
+    }
+
+    .panel-link strong,
+    .outline-list strong {
+      font-weight: 400;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .panel-link span,
+    .outline-list span,
+    .panel-note {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    .panel-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 8px;
+    }
+
+    .panel-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border: 1px solid rgba(43, 43, 43, 0.1);
+      background: rgba(255, 255, 255, 0.5);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: var(--text-light);
+      letter-spacing: 0.4px;
+    }
+
+    .outline-list {
+      counter-reset: step;
+    }
+
+    .outline-list li {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .outline-list li::before {
+      counter-increment: step;
+      content: "0" counter(step);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(139, 58, 58, 0.18);
+      color: var(--accent);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .floating-nav {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(43, 43, 43, 0.08);
+      box-shadow: 0 18px 40px rgba(53, 42, 33, 0.08);
+      backdrop-filter: blur(14px);
+      z-index: 4;
+    }
+
+    .floating-nav a,
+    .floating-nav button {
+      text-decoration: none;
+    }
+
+    .floating-nav-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 92px;
+      padding: 12px 16px;
+      color: var(--text-light);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      letter-spacing: 2px;
+      transition: var(--transition);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    .floating-nav-link:hover,
+    .floating-nav-button:hover,
+    .tab-button:hover {
+      color: var(--text);
+    }
+
     footer {
       text-align: center;
-      padding: 60px 24px;
+      padding: 60px 24px 96px;
       font-family: var(--font-sans);
       font-size: 12px;
       color: #b3b3b3;
@@ -350,74 +676,170 @@
       border-top: 1px solid var(--border);
       position: relative;
       z-index: 1;
+      display: grid;
+      gap: 8px;
     }
 
-    /* ===== Animations ===== */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    /* ===== Responsive ===== */
     @media (max-width: 1024px) {
-      .featured { grid-template-columns: 1fr; gap: 48px; }
-      .featured-slot.left, .featured-slot.right { padding: 0; }
-      .archive { grid-template-columns: 1.4fr 1fr; }
+      .hero,
+      .section-heading,
+      .archive-header,
+      .featured,
+      .archive {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        gap: 36px;
+      }
+
+      .section-note,
+      .archive-copy {
+        justify-self: start;
+        text-align: left;
+        max-width: none;
+      }
+
+      .featured-slot.left,
+      .featured-slot.right {
+        padding: 0;
+      }
+
+      .featured-slot.right {
+        padding-top: 12px;
+      }
     }
 
-    @media (max-width: 600px) {
-      .container { padding: 60px 24px 60px; }
-      .hero h1 { font-size: 32px; letter-spacing: 4px; }
-      .hero p { padding-left: 0; }
-      .archive { grid-template-columns: 1fr; gap: 40px; }
+    @media (max-width: 720px) {
+      .container {
+        padding: 64px 20px 120px;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+        letter-spacing: 4px;
+      }
+
+      .hero-intro {
+        padding-left: 0;
+      }
+
+      .section-tabs {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .tab-button,
+      .floating-nav-button {
+        flex: 1;
+        font-size: 16px;
+        letter-spacing: 2px;
+        padding: 12px 10px;
+      }
+
+      .book-meta {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .floating-nav {
+        width: calc(100% - 24px);
+        justify-content: space-between;
+        bottom: 12px;
+      }
+
+      .floating-nav-link {
+        min-width: 0;
+        padding: 12px 10px;
+      }
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">跳到正文</a>
 
   <div class="container">
-    <header class="hero">
-      <div class="hero-eyebrow">Bella's Reading Space</div>
-      <h1>在克制中探寻广阔<br>于归朴处安放心智</h1>
-      <p>这里是我的私人数字书架。<br>每本书都像一扇窗，通向一段被记录的思考。</p>
+    <header class="hero" id="top">
+      <div class="hero-main">
+        <div class="hero-eyebrow">Bella's Reading Space</div>
+        <h1>在克制中探寻广阔<br>于归朴处安放心智</h1>
+        <p class="hero-intro">这里不是一个被堆满的资源站，而是一张被慢慢整理过的书桌。每一本被放上来的书，都对应一次真实的思考与回看。</p>
+      </div>
+
+      <aside class="hero-note" aria-label="首页摘要">
+        <div class="hero-note-label">本期案语</div>
+        <p class="hero-note-copy">读书不只是收集结论，而是给自己保留一块安静的位置，让复杂世界有地方被看清。</p>
+        <div class="hero-glance">
+          <div class="hero-glance-item">
+            <span>主卷</span>
+            <strong>文明、心理与成长</strong>
+          </div>
+          <div class="hero-glance-item">
+            <span>副卷</span>
+            <strong>英语方法与长期习得</strong>
+          </div>
+          <div class="hero-glance-item">
+            <span>节奏</span>
+            <strong>少而准，慢一点，但会反复回看</strong>
+          </div>
+        </div>
+      </aside>
     </header>
 
-    <!-- 主分类标题：读书笔记 / 英文学习 -->
-    <div class="section-heading">
-      <h2 id="tab-books" class="active" onclick="switchTab('books')">读书笔记</h2>
-      <h2 id="tab-english" class="inactive" onclick="switchTab('english')">英文学习</h2>
-    </div>
+    <section class="section-heading" aria-label="栏目导航">
+      <div class="section-kicker">卷册切换</div>
+      <div class="section-tabs" role="tablist" aria-label="内容分类">
+        <button id="tab-books" class="tab-button active" data-tab-control="books" type="button" aria-selected="true" onclick="switchTab('books')">读书笔记</button>
+        <button id="tab-english" class="tab-button inactive" data-tab-control="english" type="button" aria-selected="false" onclick="switchTab('english')">英文学习</button>
+      </div>
+      <p class="section-note">首页按主卷与副卷展开，先读厚重的主题，再回到方法与日常训练。</p>
+    </section>
 
-    <!-- 非对称 Bookshelf：精选 + 归档 -->
-    <main class="bookshelf">
-
-      <!-- ===== 读书笔记 ===== -->
+    <main class="bookshelf" id="main-content">
       <div class="tab-content active" id="content-books">
-
-        <!-- 精选区：2 本主推书（保持 2.4:1 不对称） -->
-        <section class="featured">
+        <section class="featured" aria-labelledby="books-featured">
           <div class="featured-slot left">
-            <!-- Book 1: 主书，封面占据左侧大空间 -->
+            <div class="featured-note">
+              <span class="featured-label" id="books-featured">本期主读</span>
+              <p>从文明的起跑线出发，追问资源、地理与命运如何改写人类历史的分布。</p>
+            </div>
+
             <a href="./books/guns-germs-steel.html" class="book-card">
-              <div class="book-cover" style="background-color: #2c1810;">
-                <div class="book-cover-title" style="color: #d4a853;">枪炮、病菌<br>与钢铁</div>
+              <div class="book-cover cover-guns">
+                <div class="book-cover-title title-guns">枪炮、病菌<br>与钢铁</div>
               </div>
               <div class="book-info">
                 <div class="book-meta">
                   <span>贾雷德·戴蒙德</span>
                   <span class="book-tag">探案笔记</span>
                 </div>
-                <h3 class="book-title">谁"偷"走了人类历史的公平？</h3>
-                <p class="book-desc">为什么是欧洲人征服了美洲，而不是反过来？跟着我，像一个侦探一样，找到真相。</p>
+                <h3 class="book-title">谁“偷”走了人类历史的公平？</h3>
+                <p class="book-desc">为什么是欧洲人征服了美洲，而不是反过来？这篇笔记把宏大历史拆成一个个线索，像侦探一样去还原答案。</p>
               </div>
             </a>
           </div>
 
           <div class="featured-slot right">
-            <!-- Book 2: 哲思录，错落 20px 堆叠 -->
+            <div class="featured-note">
+              <span class="featured-label">旁卷札记</span>
+              <p>当外部世界谈论结构，我们也要回到自己身上，练习自由、边界和课题分离。</p>
+            </div>
+
             <a href="./books/被讨厌的勇气_课堂讲义.html" class="book-card">
-              <div class="book-cover" style="background-color: #1a1a1a;">
-                <div class="book-cover-title" style="color: #8b3a3a;">被讨厌<br>的勇气</div>
+              <div class="book-cover cover-courage">
+                <div class="book-cover-title title-courage">被讨厌<br>的勇气</div>
               </div>
               <div class="book-info">
                 <div class="book-meta">
@@ -425,70 +847,192 @@
                   <span class="book-tag">哲思录</span>
                 </div>
                 <h3 class="book-title">被讨厌的勇气，是自由的开始</h3>
-                <p class="book-desc">阿德勒心理学入门，破解人际关系的烦恼——自由，就是有被别人讨厌的勇气。</p>
+                <p class="book-desc">从阿德勒心理学入门，重新理解人际关系里的烦恼。真正的轻松，不是被所有人喜欢，而是知道哪些课题不属于自己。</p>
               </div>
             </a>
           </div>
         </section>
 
-        <!-- 归档区：3 列 1.4:1:1 网格，承接未来更多书 -->
-        <section class="archive-wrap">
-          <h3 class="archive-label">所有读书笔记</h3>
+        <section class="archive-wrap" aria-labelledby="books-archive">
+          <div class="archive-header">
+            <h2 class="archive-label" id="books-archive">案上目录</h2>
+            <p class="archive-copy">首页不把内容铺得很满，而是先把路径摆清楚。你可以从最近更新进入，也可以按主题慢慢展开。</p>
+          </div>
+
           <div class="archive">
-            <!-- 归档书项将在这里按列填充 -->
+            <article class="archive-panel">
+              <span class="panel-label">Recent Notes</span>
+              <h3 class="panel-title">最近整理</h3>
+              <ul class="panel-list">
+                <li>
+                  <a class="panel-link" href="./books/guns-germs-steel.html">
+                    <strong>《枪炮、病菌与钢铁》</strong>
+                    <span>从地理与资源差异切入，读文明发展的不平衡。</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="panel-link" href="./books/被讨厌的勇气_课堂讲义.html">
+                    <strong>《被讨厌的勇气》</strong>
+                    <span>聚焦关系焦虑、自由与阿德勒心理学。</span>
+                  </a>
+                </li>
+              </ul>
+            </article>
+
+            <article class="archive-panel">
+              <span class="panel-label">Reading Paths</span>
+              <h3 class="panel-title">阅读路径</h3>
+              <div class="panel-tags" aria-label="主题标签">
+                <span class="panel-tag">文明起跑线</span>
+                <span class="panel-tag">结构与命运</span>
+                <span class="panel-tag">关系与边界</span>
+                <span class="panel-tag">心智成长</span>
+                <span class="panel-tag">长期主义</span>
+              </div>
+              <p class="panel-copy">我更想把书摆成路径，而不是摆成数量。每条路径只放少量内容，但彼此之间能互相照亮。</p>
+            </article>
+
+            <article class="archive-panel">
+              <span class="panel-label">Shelf Note</span>
+              <h3 class="panel-title">书架说明</h3>
+              <p class="panel-copy">这里会长期保持克制更新。只有那些值得反复回看的书，才会真正留在首页上。</p>
+              <ul class="panel-list">
+                <li><span class="panel-note">一篇笔记只讲一个核心问题，不追求面面俱到。</span></li>
+                <li><span class="panel-note">内容会持续重写，而不是一次写完就结束。</span></li>
+                <li><span class="panel-note">首页更像目录，不是信息流。</span></li>
+              </ul>
+            </article>
           </div>
         </section>
       </div>
 
-      <!-- ===== 英文学习 ===== -->
       <div class="tab-content" id="content-english">
-        <section class="featured">
+        <section class="featured" aria-labelledby="english-featured">
           <div class="featured-slot left">
+            <div class="featured-note">
+              <span class="featured-label" id="english-featured">方法主卷</span>
+              <p>英语学习不靠堆任务，而是先建立一套能长期执行、能反复回收的输入输出系统。</p>
+            </div>
+
             <a href="./english/english-learning-guide.html" class="book-card">
-              <div class="book-cover" style="background-color: #fdfdfb;">
-                <div class="book-cover-title" style="color: #2b2b2b;">英语<br>学习方法</div>
+              <div class="book-cover cover-english">
+                <div class="book-cover-title title-english">英语<br>学习方法</div>
               </div>
               <div class="book-info">
                 <div class="book-meta">
                   <span>学习笔记</span>
-                  <span class="book-tag" style="border-color: rgba(43,43,43,0.2); color: #2b2b2b;">方法论</span>
+                  <span class="book-tag book-tag-neutral">方法论</span>
                 </div>
                 <h3 class="book-title">英语学习系统构建</h3>
-                <p class="book-desc">摆脱传统死记硬背的误区，探讨如何高效习得语言。</p>
+                <p class="book-desc">摆脱传统死记硬背的误区，把输入、理解、复述和复盘串成一条连续的训练链路。</p>
               </div>
             </a>
           </div>
+
           <div class="featured-slot right">
-            <!-- 预留未来英文归档位 -->
+            <aside class="learning-outline" aria-label="学习路径">
+              <span class="outline-label">Learning Outline</span>
+              <h3 class="outline-title">我现在更看重这三步</h3>
+              <ol class="outline-list">
+                <li>
+                  <div>
+                    <strong>先选对输入</strong>
+                    <span>材料不求多，只求略高于当前水平，能反复听和回读。</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>再做精细理解</strong>
+                    <span>把句子拆开，理解语义结构，而不是孤立背单词。</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>最后逼自己输出</strong>
+                    <span>复述、改写、跟读和短写作，才是真正把语言装进身体。</span>
+                  </div>
+                </li>
+              </ol>
+              <p class="outline-copy">英文学习区会比读书区更轻、更实用，重点是把方法摆清楚，而不是持续增加素材。</p>
+            </aside>
+          </div>
+        </section>
+
+        <section class="archive-wrap" aria-labelledby="english-archive">
+          <div class="archive-header">
+            <h2 class="archive-label" id="english-archive">学习节奏</h2>
+            <p class="archive-copy">先把方法做稳，再决定往哪里扩展。英语区会一直保持“少内容、强可执行”的节奏。</p>
+          </div>
+
+          <div class="archive">
+            <article class="archive-panel">
+              <span class="panel-label">Start Here</span>
+              <h3 class="panel-title">从这里进入</h3>
+              <ul class="panel-list">
+                <li>
+                  <a class="panel-link" href="./english/english-learning-guide.html">
+                    <strong>英语学习方法</strong>
+                    <span>先搭系统，再谈刷材料、背单词和考试。</span>
+                  </a>
+                </li>
+              </ul>
+            </article>
+
+            <article class="archive-panel">
+              <span class="panel-label">Practice Rhythm</span>
+              <h3 class="panel-title">练习节律</h3>
+              <ul class="panel-list">
+                <li><span class="panel-note">输入材料尽量固定，降低切换成本。</span></li>
+                <li><span class="panel-note">每天只做少量精听和复述，但持续不断。</span></li>
+                <li><span class="panel-note">每周至少有一次完整复盘，把问题重新归类。</span></li>
+              </ul>
+            </article>
+
+            <article class="archive-panel">
+              <span class="panel-label">Working Note</span>
+              <h3 class="panel-title">这一卷的目标</h3>
+              <p class="panel-copy">不是把英语“学完”，而是逐步拥有独立处理英文材料的能力。方法一旦成形，速度自然会上来。</p>
+            </article>
           </div>
         </section>
       </div>
     </main>
   </div>
 
+  <nav class="floating-nav" aria-label="快捷导航">
+    <a class="floating-nav-link" href="#top">回到页首</a>
+    <button class="floating-nav-button active" data-tab-control="books" type="button" onclick="switchTab('books', true)">读书笔记</button>
+    <button class="floating-nav-button inactive" data-tab-control="english" type="button" onclick="switchTab('english', true)">英文学习</button>
+  </nav>
+
   <footer>
-    &copy; 2026 Bella Read. 保持思考，保持留白。
+    <p>&copy; 2026 Bella Read. 保持思考，保持留白。</p>
+    <p>静读，慢记，常回看。</p>
   </footer>
 
   <script>
-    function switchTab(tabId) {
-      // 切换标题状态
-      document.querySelectorAll('.section-heading h2').forEach(h => {
-        h.classList.remove('active');
-        h.classList.add('inactive');
-      });
-      document.getElementById('tab-' + tabId).classList.remove('inactive');
-      document.getElementById('tab-' + tabId).classList.add('active');
+    function switchTab(tabId, shouldScroll) {
+      document.querySelectorAll("[data-tab-control]").forEach(control => {
+        const isActive = control.dataset.tabControl === tabId;
+        control.classList.toggle("active", isActive);
+        control.classList.toggle("inactive", !isActive);
 
-      // 切换内容区
-      document.querySelectorAll('.tab-content').forEach(content => {
-        content.classList.remove('active');
-        content.style.display = 'none';
+        if (control.tagName === "BUTTON") {
+          control.setAttribute("aria-selected", isActive ? "true" : "false");
+        }
       });
-      const target = document.getElementById('content-' + tabId);
-      target.classList.add('active');
-      target.style.display = 'block';
+
+      document.querySelectorAll(".tab-content").forEach(content => {
+        const isTarget = content.id === "content-" + tabId;
+        content.classList.toggle("active", isTarget);
+      });
+
+      if (shouldScroll) {
+        document.getElementById("main-content").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
+
+    switchTab("books");
   </script>
 </body>
 </html>
