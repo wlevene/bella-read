@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bella's Reading Space | 归朴阅读</title>
+  <style>
+    /* ===== CSS Variables ===== */
+    :root {
+      --bg: #faf6f0;
+      --card: #fffef9;
+      --border: #e8dcc8;
+      --text: #3d3226;
+      --text-light: #7a6e5d;
+      --accent: #c0392b;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
+      --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.06);
+      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", sans-serif;
+      --font-serif: "STSong", "Songti SC", "Noto Serif CJK SC", "SimSun", serif;
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== Layout ===== */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      flex: 1;
+      width: 100%;
+    }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      text-align: center;
+      margin-bottom: 80px;
+      animation: fadeUp 0.8s ease-out forwards;
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: 40px;
+      font-weight: 700;
+      color: #2c1810;
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: var(--text-light);
+      max-width: 480px;
+      margin: 0 auto;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== Bookshelf Grid ===== */
+    .bookshelf {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 32px;
+    }
+
+    /* ===== Book Card ===== */
+    .book-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s ease-out forwards;
+      animation-delay: 0.2s;
+    }
+
+    .book-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(192, 57, 43, 0.2);
+    }
+
+    /* Book Cover Mockup */
+    .book-cover {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #2c1810, #4a2c17);
+      border-radius: var(--radius-md);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .book-cover::after {
+      content: '';
+      position: absolute;
+      left: 16px; top: 0; bottom: 0;
+      width: 4px;
+      background: rgba(212,168,83,0.2);
+      box-shadow: 2px 0 4px rgba(0,0,0,0.2);
+    }
+
+    .book-cover-title {
+      font-family: var(--font-serif);
+      color: #d4a853;
+      font-size: 24px;
+      font-weight: 700;
+      text-align: center;
+      padding: 20px;
+      line-height: 1.4;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    /* Book Info */
+    .book-info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .book-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    .book-tag {
+      background: rgba(192, 57, 43, 0.08);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .book-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #2c1810;
+      line-height: 1.4;
+    }
+
+    .book-desc {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 13px;
+      color: var(--text-light);
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
+
+    /* ===== Animations ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 40px 20px; }
+      .hero h1 { font-size: 32px; }
+      .bookshelf { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header class="hero">
+      <h1>Bella's Reading Space</h1>
+      <p>在克制中探寻广阔，于归朴处安放心智。<br>这是我的私人数字书架。</p>
+    </header>
+
+    <main class="bookshelf">
+      <!-- Book 1 -->
+      <a href="./books/guns-germs-steel.html" class="book-card">
+        <div class="book-cover">
+          <div class="book-cover-title">枪炮、病菌<br>与钢铁</div>
+        </div>
+        <div class="book-info">
+          <div class="book-meta">
+            <span>贾雷德·戴蒙德</span>
+            <span class="book-tag">探案笔记</span>
+          </div>
+          <h3 class="book-title">谁"偷"走了人类历史的公平？</h3>
+          <p class="book-desc">为什么是欧洲人征服了美洲，而不是反过来？跟着我，像一个侦探一样，找到真相。</p>
+        </div>
+      </a>
+      
+      <!-- 未来可以在这里追加更多的书籍卡片 -->
+    </main>
+  </div>
+
+  <footer>
+    &copy; 2026 Bella Read. 保持思考，保持留白。
+  </footer>
+
+</body>
+</html>
