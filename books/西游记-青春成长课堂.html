@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>西游记 - 你的青春就是一部西游记</title>
+<style>
+:root {
+  --bg: #fdf6ec;
+  --card: #fffef9;
+  --accent: #e8734a;
+  --accent2: #d4a853;
+  --text: #3d3226;
+  --text-light: #6b5e4e;
+  --red: #c0392b;
+  --gold: #b8860b;
+  --green: #5a8a6a;
+  --blue: #4a7c8a;
+  --purple: #7b5ea7;
+  --pink: #d4787c;
+  --border: #e8dcc8;
+  --shadow: 0 4px 20px rgba(0,0,0,0.06);
+  --radius: 16px;
+  --font: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 顶部英雄区 */
+.hero {
+  background: linear-gradient(135deg, #fef5e7 0%, #fde8d0 40%, #fce4c8 100%);
+  padding: 60px 24px 50px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(232,115,74,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: -40px;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(212,168,83,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero .icon-row {
+  font-size: 48px;
+  margin-bottom: 16px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.hero h1 {
+  font-size: 2.6em;
+  font-weight: 900;
+  color: var(--red);
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.hero .subtitle {
+  font-size: 1.3em;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.hero .tagline {
+  font-size: 1.05em;
+  color: var(--text-light);
+  max-width: 520px;
+  margin: 0 auto;
+  font-style: italic;
+}
+
+/* 导航 */
+.nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 20px 16px;
+  background: #fffef9;
+  border-bottom: 2px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-btn {
+  padding: 10px 18px;
+  border: 2px solid var(--border);
+  background: white;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.9em;
+  color: var(--text-light);
+  transition: all 0.25s;
+  font-family: var(--font);
+  font-weight: 500;
+}
+
+.nav-btn:hover, .nav-btn.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(232,115,74,0.2);
+}
+
+/* 容器 */
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+
+/* 模块 */
+.module {
+  display: none;
+  animation: fadeSlideIn 0.5s ease;
+}
+
+.module.active { display: block; }
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 卡片 */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 28px 30px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 2px dashed var(--border);
+}
+
+.card-header .emoji {
+  font-size: 2em;
+  line-height: 1;
+}
+
+.card-header h3 {
+  font-size: 1.35em;
+  color: var(--text);
+  font-weight: 800;
+}
+
+/* 标签 */
+.tag {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 12px;
+  font-size: 0.78em;
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+.tag-knowledge { background: #e8f4e8; color: #3a7a3a; }
+.tag-mind { background: #f0e6f6; color: #6b3fa0; }
+.tag-interact { background: #fdf0d5; color: #a07030; }
+.tag-think { background: #e0f0f5; color: #306888; }
+
+/* 时间线 */
+.timeline { position: relative; padding-left: 32px; }
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 14px; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent2), var(--green));
+  border-radius: 2px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 28px;
+  padding: 18px 22px;
+  background: #fffef9;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  transition: all 0.3s;
+}
+
+.timeline-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -26px; top: 24px;
+  width: 14px; height: 14px;
+  background: var(--accent);
+  border-radius: 50%;
+  border: 3px solid var(--bg);
+}
+
+.timeline-item:nth-child(2)::before { background: var(--accent2); }
+.timeline-item:nth-child(3)::before { background: var(--green); }
+.timeline-item:nth-child(4)::before { background: var(--purple); }
+.timeline-item:nth-child(5)::before { background: var(--blue); }
+
+.timeline-item .stage {
+  font-weight: 800;
+  font-size: 1.1em;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+/* 展开/折叠 */
+.accordion { margin: 16px 0; }
+
+.accordion-trigger {
+  width: 100%;
+  padding: 14px 20px;
+  background: #faf6ed;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--text);
+  font-family: var(--font);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.25s;
+}
+
+.accordion-trigger:hover {
+  background: #fef5e7;
+  border-color: var(--accent2);
+}
+
+.accordion-trigger .arrow {
+  transition: transform 0.3s;
+  font-size: 0.8em;
+  color: var(--accent);
+}
+
+.accordion.open .accordion-trigger .arrow {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0 20px;
+  background: #fffef9;
+  border-radius: 0 0 12px 12px;
+  border: 0 solid var(--border);
+  border-top: none;
+}
+
+.accordion.open .accordion-content {
+  max-height: 800px;
+  padding: 18px 20px;
+  border-width: 0 2px 2px 2px;
+}
+
+/* 思考题 */
+.think-box {
+  background: linear-gradient(135deg, #fef9f0, #fdf3e0);
+  border: 2px solid var(--accent2);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin: 16px 0;
+  position: relative;
+}
+
+.think-box::before {
+  content: '💡';
+  position: absolute;
+  top: -14px; left: 20px;
+  font-size: 1.5em;
+}
+
+.think-box .question {
+  font-weight: 700;
+  font-size: 1.05em;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.think-box .reveal-btn {
+  display: inline-block;
+  padding: 6px 16px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  font-size: 0.85em;
+  font-weight: 600;
+  font-family: var(--font);
+  transition: all 0.2s;
+}
+
+.think-box .reveal-btn:hover {
+  background: #d4653a;
+  transform: scale(1.03);
+}
+
+.think-box .answer {
+  display: none;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border);
+  color: var(--text-light);
+  font-size: 0.95em;
+  animation: fadeSlideIn 0.4s ease;
+}
+
+.think-box .answer.show { display: block; }
+
+/* 测验 */
+.quiz { margin: 16px 0; }
+
+.quiz-question {
+  font-weight: 700;
+  margin-bottom: 12px;
+  font-size: 1.05em;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.quiz-option {
+  padding: 12px 18px;
+  background: #faf6ed;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.95em;
+}
+
+.quiz-option:hover {
+  border-color: var(--accent2);
+  background: #fef5e7;
+}
+
+.quiz-option.correct {
+  background: #e8f4e8;
+  border-color: #5a8a6a;
+  color: #2d5a2d;
+  font-weight: 700;
+}
+
+.quiz-option.wrong {
+  background: #fde8e8;
+  border-color: #c0392b;
+  color: #8b2020;
+}
+
+.quiz-feedback {
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  display: none;
+}
+
+.quiz-feedback.show { display: block; }
+
+.quiz-feedback.correct { background: #e8f4e8; color: #2d5a2d; }
+.quiz-feedback.wrong { background: #fde8e8; color: #8b2020; }
+
+/* 卡片网格 */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 1.8em; }
+  .card { padding: 20px 18px; }
+  .nav-btn { padding: 8px 12px; font-size: 0.8em; }
+}
+
+/* 对比表 */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 0.92em;
+}
+
+.compare-table th {
+  background: var(--accent);
+  color: white;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 700;
+}
+
+.compare-table th:first-child { border-radius: 12px 0 0 0; }
+.compare-table th:last-child { border-radius: 0 12px 0 0; }
+
+.compare-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  background: #fffef9;
+}
+
+.compare-table tr:last-child td:first-child { border-radius: 0 0 0 12px; }
+.compare-table tr:last-child td:last-child { border-radius: 0 0 12px 0; }
+
+/* 高亮块 */
+.highlight {
+  background: linear-gradient(135deg, #fff8e7, #fef0d0);
+  border-left: 4px solid var(--accent2);
+  padding: 16px 18px;
+  border-radius: 0 12px 12px 0;
+  margin: 14px 0;
+  font-weight: 500;
+}
+
+/* 心理卡片 */
+.mind-card {
+  background: linear-gradient(135deg, #f8f4ff, #f0e8fa);
+  border: 2px solid #d4c4e8;
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin: 16px 0;
+}
+
+.mind-card .mind-title {
+  font-weight: 800;
+  font-size: 1.1em;
+  color: var(--purple);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 圣旨样式 */
+.scroll-quote {
+  background: linear-gradient(135deg, #fefaf0, #fdf3dc);
+  border: 2px solid #d4a853;
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin: 18px 0;
+  text-align: center;
+  font-style: italic;
+  font-size: 1.05em;
+  color: #8b6914;
+  position: relative;
+}
+
+.scroll-quote::before, .scroll-quote::after {
+  content: '"';
+  font-size: 3em;
+  color: #d4a853;
+  opacity: 0.3;
+  font-style: normal;
+  position: absolute;
+  line-height: 1;
+}
+
+.scroll-quote::before { top: 8px; left: 14px; }
+.scroll-quote::after { bottom: -8px; right: 14px; }
+
+/* 课后任务 */
+.task-card {
+  background: #fffef9;
+  border: 2px dashed var(--accent);
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin: 14px 0;
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.task-card:hover {
+  border-style: solid;
+  box-shadow: 0 4px 16px rgba(232,115,74,0.1);
+}
+
+.task-card .task-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 0.9em;
+  margin-right: 10px;
+}
+
+.task-card h4 {
+  display: inline;
+  font-size: 1.05em;
+  color: var(--text);
+}
+
+.task-card p {
+  margin-top: 8px;
+  color: var(--text-light);
+  font-size: 0.93em;
+}
+
+/* 拖拽区 */
+.drag-zone {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+  min-height: 60px;
+  padding: 14px;
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  background: #fafaf5;
+  transition: background 0.3s;
+}
+
+.drag-zone.drag-over {
+  background: #fef5e7;
+  border-color: var(--accent2);
+}
+
+.drag-item {
+  padding: 8px 16px;
+  background: white;
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  cursor: grab;
+  font-weight: 600;
+  font-size: 0.9em;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.drag-item:active { cursor: grabbing; }
+
+.drag-item:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.drag-item.matched {
+  background: #e8f4e8;
+  border-color: #5a8a6a;
+  cursor: default;
+}
+
+.drop-target {
+  padding: 12px;
+  margin: 8px 0;
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  background: #fafaf5;
+  text-align: center;
+  font-size: 0.9em;
+  color: var(--text-light);
+  transition: all 0.3s;
+  min-height: 50px;
+}
+
+.drop-target.filled {
+  background: #e8f4e8;
+  border-color: #5a8a6a;
+  border-style: solid;
+  font-weight: 700;
+  color: #2d5a2d;
+}
+
+/* 脉冲动画 */
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(232,115,74,0.3); }
+  50% { box-shadow: 0 0 0 12px rgba(232,115,74,0); }
+}
+
+.pulse { animation: pulse 2s infinite; }
+
+/* 气球提示 */
+.tooltip {
+  position: relative;
+  cursor: help;
+  border-bottom: 2px dotted var(--accent);
+  font-weight: 600;
+}
+
+.tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #3d3226;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.8em;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+  font-weight: 400;
+  border: none;
+}
+
+.tooltip:hover::after { opacity: 1; }
+
+/* 印章 */
+.stamp {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 2px solid var(--red);
+  color: var(--red);
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: 0.85em;
+  transform: rotate(-3deg);
+  letter-spacing: 1px;
+}
+
+/* 页脚 */
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-light);
+  font-size: 0.9em;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- 顶部 -->
+<div class="hero">
+  <div class="icon-row">🐵👑☁️🏔️</div>
+  <h1>《西游记》</h1>
+  <div class="subtitle">你的青春，就是一部西游记</div>
+  <p class="tagline">孙悟空从"中二少年"到"斗战胜佛"的成长史，写的其实是我们每个人长大必经的路。</p>
+</div>
+
+<!-- 导航 -->
+<div class="nav">
+  <button class="nav-btn active" onclick="switchModule('knowledge')">📖 知识考点</button>
+  <button class="nav-btn" onclick="switchModule('mind')">🧠 心理认知</button>
+  <button class="nav-btn" onclick="switchModule('interact')">🎮 互动练习</button>
+  <button class="nav-btn" onclick="switchModule('think')">✍️ 课后思考</button>
+</div>
+
+<div class="container">
+
+<!-- ==================== 模块一：知识考点 ==================== -->
+<div id="module-knowledge" class="module active">
+
+  <div class="card">
+    <div class="card-header">
+      <span class="emoji">📚</span>
+      <h3>必知必会 · 知识速览</h3>
+    </div>
+
+    <div class="accordion" id="acc-basic">
+      <button class="accordion-trigger" onclick="toggleAccordion('acc-basic')">
+        <span>📋 基本信息卡</span>
+        <span class="arrow">▼</span>
+      </button>
+      <div class="accordion-content">
+        <table class="compare-table">
+          <tr><td style="font-weight:700;width:30%">书名</td><td>《西游记》</td></tr>
+          <tr><td style="font-weight:700">作者</td><td>吴承恩（明代）</td></tr>
+          <tr><td style="font-weight:700">成书年代</td><td>明代嘉靖年间（约16世纪）</td></tr>
+          <tr><td style="font-weight:700">体裁</td><td>长篇神魔小说 / 章回体</td></tr>
+          <tr><td style="font-weight:700">回数</td><td>100回</td></tr>
+          <tr><td style="font-weight:700">地位</td><td>中国古典四大名著之一</td></tr>
+          <tr><td style="font-weight:700">核心人物</td><td>唐僧、孙悟空、猪八戒、沙僧、白龙马</td></tr>
+          <tr><td style="font-weight:700">故事主线</td><td>唐僧师徒四人西天取经，历经九九八十一难</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="accordion" id="acc-structure">
+      <button class="accordion-trigger" onclick="toggleAccordion('acc-structure')">
+        <span>🏗️ 全书结构三部曲</span>
+        <span class="arrow">▼</span>
+      </button>
+      <div class="accordion-content">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="stage">第一部：孙悟空大闹天宫（第1-7回）</div>
+            <p>从石猴出世 → 拜师学艺 → 龙宫夺宝 → 大闹天宫 → 被压五行山。这是孙悟空最"狂"的时期——天不怕地不怕，觉得自己无所不能。</p>
+          </div>
+          <div class="timeline-item">
+            <div class="stage">第二部：取经缘由（第8-12回）</div>
+            <p>交代唐僧的身世，如来说法、观音寻找取经人。这是故事"为什么出发"的铺垫。</p>
+          </div>
+          <div class="timeline-item">
+            <div class="stage">第三部：西天取经（第13-100回）</div>
+            <p>唐僧收三徒一马，踏上取经路。九九八十一难，每一难都是一次考验。最终取得真经，五圣成真。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion" id="acc-characters">
+      <button class="accordion-trigger" onclick="toggleAccordion('acc-characters')">
+        <span>👥 师徒四人形象分析</span>
+        <span class="arrow">▼</span>
+      </button>
+      <div class="accordion-content">
+        <table class="compare-table">
+          <thead>
+            <tr><th>人物</th><th>性格特点</th><th>象征意义</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:700">🐵 孙悟空</td>
+              <td>勇敢、机智、叛逆、急躁、忠诚</td>
+              <td>人的"心"——心猿意马，需要修炼才能安定</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700">🙏 唐僧</td>
+              <td>慈悲、坚定、迂腐、软弱、有时是非不分</td>
+              <td>人的"信念"——目标明确但容易被表象迷惑</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700">🐷 猪八戒</td>
+              <td>贪吃、好色、懒惰、但关键时刻也靠得住</td>
+              <td>人的"欲望"——每个人都有八戒的一面</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700">🧔 沙僧</td>
+              <td>老实、勤恳、沉默、任劳任怨</td>
+              <td>人的"行动力"——不声不响但不可或缺</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="accordion" id="acc-themes">
+      <button class="accordion-trigger" onclick="toggleAccordion('acc-themes')">
+        <span>🎯 核心主题与艺术手法</span>
+        <span class="arrow">▼</span>
+      </button>
+      <div class="accordion-content">
+        <p><strong>主题思想：</strong></p>
+        <ul style="padding-left:20px;margin:8px 0 16px;">
+          <li>对封建统治秩序的讽刺与批判（天宫、地府、龙宫都是人间官场的投影）</li>
+          <li>追求理想、百折不挠的精神（取经路上的坚持）</li>
+          <li>人性修炼与自我超越（从"闹"到"静"的成长）</li>
+        </ul>
+        <p><strong>艺术特色：</strong></p>
+        <ul style="padding-left:20px;margin:8px 0;">
+          <li>浪漫主义与现实主义结合——天马行空的想象 + 对社会现实的影射</li>
+          <li>人物形象立体丰满——好人也有缺点，妖怪也有苦衷</li>
+          <li>幽默讽刺的语言风格——用荒诞写真实</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 经典情节卡片 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="emoji">🎬</span>
+      <h3>经典情节速记</h3>
+    </div>
+    <div class="grid-2">
+      <div class="highlight">
+        <strong>大闹天宫</strong><br>
+        <span style="font-size:0.9em;color:var(--text-light)">孙悟空不满弼马温封号，自封齐天大圣，偷蟠桃、盗仙丹、大闹瑶池，最终被如来压在五行山下。</span>
+      </div>
+      <div class="highlight">
+        <strong>三打白骨精</strong><br>
+        <span style="font-size:0.9em;color:var(--text-light)">白骨精三次变化欺骗唐僧，悟空三次识破并打死，却被唐僧误会赶走——最痛的一次"冤枉"。</span>
+      </div>
+      <div class="highlight">
+        <strong>真假美猴王</strong><br>
+        <span style="font-size:0.9em;color:var(--text-light)">六耳猕猴假扮悟空，连观音都分不清。最终如来识破——"二心"之争，其实是悟空与自己的心魔较量。</span>
+      </div>
+      <div class="highlight">
+        <strong>三调芭蕉扇</strong><br>
+        <span style="font-size:0.9em;color:var(--text-light)">火焰山挡路，悟空三次借扇，斗智斗勇，最终在众神帮助下成功灭火——团队协作的经典案例。</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==================== 模块二：心理认知 ==================== -->
+<div id="module-mind" class="module">
+
+  <div class="card">
+    <div class="card-header">
+      <span class="emoji">🧠</span>
+      <h3>孙悟空的五个成长阶段，就是你的青春期地图</h3>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="stage">🐵 阶段一：石猴出世——"我是谁？"</div>
+        <p>孙悟空从石头里蹦出来，第一件事就是找自己的位置。他在花果山当猴王，看起来很威风，但心里一直有个问题：<strong>"我到底是谁？我跟别人有什么不一样？"</strong></p>
+        <div class="mind-card">
+          <div class="mind-title">🧠 你的共鸣</div>
+          <p>初中的你，是不是也在问同样的问题？别人都在卷成绩、卷特长，你有时候觉得自己什么都不是，有时候又觉得自己很特别。<strong>这种"身份困惑"不是你的问题，是每个人长大必经的第一关。</strong></p>
+          <p style="margin-top:8px;font-size:0.9em;color:var(--purple);">孙悟空的选择是：不等别人给他答案，他主动出海求仙问道。你也可以——试着去探索，而不是等着别人定义你。</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="stage">⚡ 阶段二：大闹天宫——"我要证明自己！"</div>
+        <p>学了一身本事回来，孙悟空以为天下无敌了。他要让所有人看到他的厉害——抢金箍棒、改生死簿、大闹天宫。<strong>他用的方式是"对抗"——你们不认可我？那我就打到你认可。</strong></p>
+        <div class="mind-card">
+          <div class="mind-title">🧠 你的共鸣</div>
+          <p>这个阶段像不像青春期的你？顶撞父母、跟老师对着干、在朋友圈发一些"我很酷"的内容……其实心里想的是：<strong>"你们看看我，我不是小孩了。"</strong></p>
+          <p style="margin-top:8px;font-size:0.9em;color:var(--purple);">但孙悟空付出了代价——被压五百年。对抗不是唯一的证明方式，有时候"让别人看见"不等于"让别人服气"。</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="stage">⛰️ 阶段三：五行山下——"我好像没那么厉害……"</div>
+        <p>五百年压在山下，动不了，谁都救不了他。这是孙悟空人生中最黑暗的时期——<strong>从"天上地下唯我独尊"到"什么都不是"，落差巨大。</strong></p>
+        <div class="mind-card">
+          <div class="mind-title">🧠 你的共鸣</div>
+          <p>你有没有过这种时刻？拼尽全力考了一次试，结果还是没考好；费尽心思交朋友，还是被冷落。<strong>那种"我明明很努力了为什么还是不行"的挫败感，就是你的"五行山"。</strong></p>
+          <p style="margin-top:8px;font-size:0.9em;color:var(--purple);">但注意——五行山不是终点。它压住了孙悟空，也让他第一次真正冷静下来思考。有时候，低谷是让你停下来重新认识自己的机会。</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="stage">🛤️ 阶段四：取经路上——"我好像需要别人了"</div>
+        <p>戴上紧箍咒，加入取经团队。一开始悟空很不服：凭什么听那个啰嗦的唐僧的？凭什么带着拖后腿的猪八戒？<strong>但走了一路，他慢慢发现——有些事一个人真的搞不定。</strong></p>
+        <div class="mind-card">
+          <div class="mind-title">🧠 你的共鸣</div>
+          <p>这个阶段像你开始学会"合作"——做小组作业不再一个人死扛，开始跟爸妈好好说话而不是直接摔门，发现朋友不是拿来炫耀的而是真的可以一起扛事的。<strong>长大的一个标志是：不再觉得"靠别人"等于"弱"。</strong></p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="stage">🏆 阶段五：斗战胜佛——"我找到了自己的位置"</div>
+        <p>取经成功，悟空被封为斗战胜佛。他没有再闹，没有要更大的官，他坦然接受了。<strong>不是因为他"怂了"，而是他终于不需要靠"闹"来证明自己了。</strong></p>
+        <div class="mind-card">
+          <div class="mind-title">🧠 你的共鸣</div>
+          <p>真正成熟的人，不是没有脾气，而是知道自己要什么、不要什么，不需要通过别人的认可来确认自己的价值。<strong>你现在可能还做不到，但没关系——孙悟空走了十万八千里才走到这一步。</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 紧箍咒的隐喻 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="emoji">💍</span>
+      <h3>紧箍咒的隐喻：那些你讨厌的"规矩"，可能是在保护你</h3>
+    </div>
+    <div class="scroll-quote">
+      悟空最恨的就是紧箍咒。但整部书里，紧箍咒真正念过几次？其实很少。大多数时候，紧箍咒只是一个"存在"——它在那里，悟空就知道有些事情不能做。
+    </div>
+    <div class="mind-card">
+      <div class="mind-title">🧠 换个角度看</div>
+      <p>你爸妈让你"别玩手机了先写作业"、老师让你"上课别说话"——这些就是你的"紧箍咒"。你烦得要死，但你想过没有：<strong>如果没有这些"规矩"，你真的能管住自己吗？</strong></p>
+      <p style="margin-top:8px;font-size:0.9em;color:var(--purple);">孙悟空最后成佛的时候，紧箍咒自动消失了。为什么？<strong>因为他不需要了——他已经把"规矩"内化成了自己的判断力。</strong>真正的自由，不是没有规矩，而是不需要别人给你念规矩。</p>
+    </div>
+  </div>
+
+  <!-- 三打白骨精的启示 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="emoji">🦴</span>
+      <h3>三打白骨精：当"做对的事"被所有人误解</h3>
+    </div>
+    <p>这是全书最让人憋屈的一段。孙悟空明明看穿了妖怪，每次出手都是对的，但唐僧不信他，八戒添油加醋，最后他被念紧箍咒、被赶走。</p>
+    <div class="mind-card">
+      <div class="mind-title">🧠 你的共鸣</div>
+      <p>你有没有经历过：明明是别人的错，最后却是你被骂？明明你的想法是对的，但没人听你的？</p>
+      <p style="margin-top:8px;">孙悟空的选择是：<strong>被赶走了，但唐僧一遇到危险，他二话不说就回来救。不是因为他"贱"，而是他知道什么才是真正重要的——保护师父、完成取经。</strong></p>
+      <p style="margin-top:8px;font-size:0.9em;color:var(--purple);">这告诉我们：有时候你做了对的事，但当下得不到理解，这很正常。不要因为被误解就放弃做对的事，也不要因为被误解就觉得自己错了。时间会证明一切。</p>
+    </div>
+  </div>
+
+  <!-- 真假美猴王 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="emoji">🪞</span>
+      <h3>真假美猴王：你最大的敌人，是你心里的另一个自己</h3>
+    </div>
+    <p>六耳猕猴跟悟空一模一样，谁都分不清。如来最后说了一句很关键的话——这不是外来的妖怪，<strong>这是悟空的"二心"。</strong>就是说，六耳猕猴其实是悟空自己心里的另一面。</p>
+    <div class="mind-card">
+      <div class="mind-title">🧠 你的共鸣</div>
+      <p>你有没有过这种体验：脑子里有两个声音——一个说"我要好好学"，另一个说"算了玩会儿游戏吧"；一个说"我要对爸妈好一点"，另一个说"他们好烦不想理他们"。<strong>这就是你的"二心"。</strong></p>
+      <p style="margin-top:8px;font-size:0.9em;color:var(--purple);">悟空最后是怎么赢的？不是靠打，是靠如来点破——<strong>你得先认出那个"捣乱的自己"，然后才能战胜它。</strong>下次你纠结的时候，不妨试试："哦，那个想偷懒的我又来了"——光是认出它，你就已经赢了一半。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==================== 模块三：互动练习 ==================== -->
+<div id="module-interact" class="module">
+
+  <div class="card">
+    <div class="card-header">
+      <span class="emoji">🤔</span>
+      <h3>随堂思考</h3>
+    </div>
+
+    <div class="think-box">
+      <div class="question">🤔 思考一：如果孙悟空没有大闹天宫，而是老老实实当弼马温，他的人生会怎样？</div>
+      <button class="reveal-btn" onclick="revealAnswer(this)">点击查看思考方向</button>
+      <div class="answer">
+        <p><strong>没有标准答案，但可以这样想：</strong></p>
+        <p>如果他不闹，可能一辈子就是天宫里一个不起眼的小官。但"闹"的代价是被压五百年。所以问题不是"闹不闹"，而是<strong>"有没有比大闹天宫更好的方式让别人看到你的价值？"</strong></p>
+        <p>在现实生活中，你当然不能真去"大闹天宫"，但你可以：做出一个让人眼前一亮的作品、在合适的场合表达自己的想法、用实力而不是脾气证明自己。</p>
+      </div>
+    </div>
+
+    <div class="think-box">
+      <div class="question">🤔 思考二：唐僧那么"弱"，凭什么当师父？</div>
+      <button class="reveal-btn" onclick="revealAnswer(this)">点击查看思考方向</button>
+      <div class="answer">
+        <p><strong>这是一个经典问题，试试这个角度：</strong></p>
+        <p>唐僧确实没有法力，但他有一样东西是三个徒弟都没有的——<strong>方向。</strong>只有他知道为什么要去西天、取经的意义是什么。徒弟们能力再强，没有方向也只是到处乱窜。</p>
+        <p>就像你们班，成绩最好的同学不一定是班长。领导力不一定是"能力最强"，而是"知道往哪儿走，并且能带着大家一起走"。</p>
+      </div>
+    </div>
+
+    <div class="think-box">
+      <div class="question">🤔 思考三：猪八戒那么懒、那么贪，为什么团队里不能没有他？</div>
+      <button class="reveal-btn" onclick="revealAnswer(this)">点击查看思考方向</button>
+      <div class="answer">
+        <p><strong>因为八戒是团队里唯一"接地气"的人。</strong></p>
+        <p>悟空太理想化，唐僧太圣洁，沙僧太沉默——如果没有八戒这个"普通人"，一路上该多闷啊。他贪吃、好色、想偷懒，但他也真实、幽默、关键时刻不怂。</p>
+        <p>在一个团队里，<strong>你不必是"完美的人"，你只需要是"真实的人"。</strong>一个全是"圣人"的团队，反而走不远。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 小测验 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="emoji">📝</span>
+      <h3>课堂小测验</h3>
+    </div>
+
+    <div class="quiz" id="quiz1">
+      <div class="quiz-question">1. 《西游记》中，"真假美猴王"一节的六耳猕猴，如来说破它其实是悟空的什么？</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="checkQuiz(this, 'wrong', 'quiz1')">A. 孪生兄弟</div>
+        <div class="quiz-option" onclick="checkQuiz(this, 'correct', 'quiz1')">B. 二心（心魔）</div>
+        <div class="quiz-option" onclick="checkQuiz(this, 'wrong', 'quiz1')">C. 前世冤家</div>
+        <div class="quiz-option" onclick="checkQuiz(this, 'wrong', 'quiz1')">D. 孙悟空的分身术</div>
+      </div>
+      <div class="quiz-feedback" id="quiz1-feedback"></div>
+    </div>
+
+    <div class="quiz" id="quiz2" style="margin-top:20px;">
+      <div class="quiz-question">2. 孙悟空被压在哪座山下五百年？</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="checkQuiz(this, 'wrong', 'quiz2')">A. 五指山</div>
+        <div class="quiz-option" onclick="checkQuiz(this, 'correct', 'quiz2')">B. 五行山</div>
+        <div class="quiz-option" onclick="checkQuiz(this, 'wrong', 'quiz2')">C. 昆仑山</div>
+        <div class="quiz-option" onclick="checkQuiz(this, 'wrong', 'quiz2')">D. 花果山</div>
+      </div>
+      <div class="quiz-feedback" id="quiz2-feedback"></div>
+    </div>
+
+    <div class="quiz" id="quiz3" style="margin-top:20px;">
+      <div class="quiz-question">3. 取经成功后，孙悟空被封为什么？</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="checkQuiz(this, 'wrong', 'quiz3')">A. 齐天大圣</div>
+        <div class="quiz-option" onclick="checkQuiz(this, 'wrong', 'quiz3')">B. 弼马温</div>
+        <div class="quiz-option" onclick="checkQuiz(this, 'correct', 'quiz3')">C. 斗战胜佛</div>
+        <div class="quiz-option" onclick="checkQuiz(this, 'wrong', 'quiz3')">D. 净坛使者</div>
+      </div>
+      <div class="quiz-feedback" id="quiz3-feedback"></div>
+    </div>
+  </div>
+
+  <!-- 角色匹配拖拽 -->
+  <div class="card">
+    <div class="card-header">
+      <span class="emoji">🎯</span>
+      <h3>角色匹配 · 把人物和他们的"青春隐喻"连起来</h3>
+    </div>
+    <p style="margin-bottom:12px;color:var(--text-light);">把下面的标签拖到对应人物下方——</p>
+    <div class="drag-zone" id="drag-source">
+      <div class="drag-item" draggable="true" data-key="mind" id="drag-mind">🧠 人的"心"——需要修炼</div>
+      <div class="drag-item" draggable="true" data-key="belief" id="drag-belief">🙏 人的"信念"——方向</div>
+      <div class="drag-item" draggable="true" data-key="desire" id="drag-desire">🍖 人的"欲望"——真实</div>
+      <div class="drag-item" draggable="true" data-key="action" id="drag-action">💪 人的"行动力"——踏实</div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <div style="font-weight:700;margin-bottom:4px;">🐵 孙悟空</div>
+        <div class="drop-target" data-answer="mind" id="drop-swk"></div>
+      </div>
+      <div>
+        <div style="font-weight:700;margin-bottom:4px;">🙏 唐僧</div>
+        <div class="drop-target" data-answer="belief" id="drop-ts"></div>
+      </div>
+      <div>
+        <div style="font-weight:700;margin-bottom:4px;">🐷 猪八戒</div>
+        <div class="drop-target" data-answer="desire" id="drop-zbj"></div>
+      </div>
+      <div>
+        <div style="font-weight:700;margin-bottom:4px;">🧔 沙僧</div>
+        <div class="drop-target" data-answer="action" id="drop-ss"></div>
+      </div>
+    </div>
+    <div id="match-result" style="margin-top:12px;font-weight:700;text-align:center;"></div>
+  </div>
+
+</div>
+
+<!-- ==================== 模块四：课后思考 ==================== -->
+<div id="module-think" class="module">
+
+  <div class="card">
+    <div class="card-header">
+      <span class="emoji">✍️</span>
+      <h3>课后思考任务（选做，但建议你都试试）</h3>
+    </div>
+
+    <div class="task-card">
+      <span class="task-num">1</span>
+      <h4>写一封信：给"大闹天宫时期的自己"</h4>
+      <p>如果现在的你，可以给一年前（或几年前）那个特别叛逆、冲动、不服管教的自己写一封信，你会说什么？是骂他一顿，还是理解他？试着写300字。</p>
+    </div>
+
+    <div class="task-card">
+      <span class="task-num">2</span>
+      <h4>画出你的"取经团队"</h4>
+      <p>在你的生活里，谁是"唐僧"（给你方向的人）？谁是"孙悟空"（保护你、帮你出头的人）？谁是"八戒"（让你放松、陪你吐槽的人）？谁是"沙僧"（默默支持你的人）？画一张关系图，写上他们的名字。</p>
+    </div>
+
+    <div class="task-card">
+      <span class="task-num">3</span>
+      <h4>找到你的"紧箍咒"</h4>
+      <p>想一想：你生活中最烦的"规矩"是什么？试着写下来，然后换个角度想——这个规矩有没有在某个方面保护了你？如果有一天你完全不需要它了，那会是什么样子？</p>
+    </div>
+
+    <div class="task-card">
+      <span class="task-num">4</span>
+      <h4>阅读挑战：重读"三打白骨精"</h4>
+      <p>回去翻翻原著第27回，注意这个细节：悟空被赶走时，他是怎么跟唐僧告别的？他说了什么？你从这个告别里，读出了什么？</p>
+    </div>
+
+    <div class="task-card">
+      <span class="task-num">5</span>
+      <h4>终极思考：你的"真经"是什么？</h4>
+      <p>唐僧走了十万八千里去取经，但你有没有想过——经书本身真的那么重要吗？还是说，<strong>走这一路的过程，才是真正的"经"？</strong>如果把你现在的学习、生活比作"取经路"，你想要的"真经"到底是什么？</p>
+    </div>
+  </div>
+
+  <div class="card" style="text-align:center;">
+    <div class="scroll-quote">
+      <p style="font-size:1.1em;">"敢问路在何方？路在脚下。"</p>
+      <p style="font-size:0.9em;margin-top:8px;">—— 你不需要现在就变成斗战胜佛。<br>你只需要像孙悟空一样，一步一步往前走。</p>
+    </div>
+    <div class="stamp">下课！</div>
+  </div>
+
+</div>
+
+</div><!-- container end -->
+
+<div class="footer">
+  <p>📖 《西游记》青春成长课堂 · 给每一个正在长大的你</p>
+  <p style="font-size:0.8em;margin-top:4px;">所有心理认知拓展内容均基于原著文本推导，旨在启发思考，非心理学专业诊疗建议。</p>
+</div>
+
+<script>
+// 模块切换
+function switchModule(name) {
+  document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
+  document.getElementById('module-' + name).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  // 滚动到顶部
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// 手风琴
+function toggleAccordion(id) {
+  const acc = document.getElementById(id);
+  acc.classList.toggle('open');
+}
+
+// 思考题答案
+function revealAnswer(btn) {
+  const answer = btn.nextElementSibling;
+  answer.classList.toggle('show');
+  btn.textContent = answer.classList.contains('show') ? '收起答案' : '点击查看思考方向';
+}
+
+// 测验
+function checkQuiz(option, result, quizId) {
+  const quiz = document.getElementById(quizId);
+  const options = quiz.querySelectorAll('.quiz-option');
+  const feedback = document.getElementById(quizId + '-feedback');
+
+  // 如果已经答过，不允许再选
+  if (quiz.dataset.answered === 'true') return;
+
+  options.forEach(o => {
+    o.classList.remove('correct', 'wrong');
+    o.style.pointerEvents = 'none';
+  });
+
+  if (result === 'correct') {
+    option.classList.add('correct');
+    feedback.className = 'quiz-feedback correct show';
+    feedback.textContent = '✅ 正确！太棒了！';
+  } else {
+    option.classList.add('wrong');
+    feedback.className = 'quiz-feedback wrong show';
+    feedback.textContent = '❌ 再想想？';
+    // 高亮正确答案
+    options.forEach(o => {
+      if (o.textContent.includes('B.') && quizId === 'quiz1') o.classList.add('correct');
+      if (o.textContent.includes('B.') && quizId === 'quiz2') o.classList.add('correct');
+      if (o.textContent.includes('C.') && quizId === 'quiz3') o.classList.add('correct');
+    });
+  }
+
+  quiz.dataset.answered = 'true';
+}
+
+// 拖拽匹配
+let dragData = null;
+
+document.querySelectorAll('.drag-item').forEach(item => {
+  item.addEventListener('dragstart', function(e) {
+    dragData = this.dataset.key;
+    this.style.opacity = '0.5';
+  });
+  item.addEventListener('dragend', function(e) {
+    this.style.opacity = '1';
+    dragData = null;
+    document.querySelectorAll('.drag-zone').forEach(z => z.classList.remove('drag-over'));
+  });
+});
+
+document.querySelectorAll('.drop-target').forEach(target => {
+  target.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    this.classList.add('drag-over');
+  });
+  target.addEventListener('dragleave', function(e) {
+    this.classList.remove('drag-over');
+  });
+  target.addEventListener('drop', function(e) {
+    e.preventDefault();
+    this.classList.remove('drag-over');
+
+    if (!dragData) return;
+
+    if (this.dataset.answer === dragData) {
+      this.textContent = document.getElementById('drag-' + dragData).textContent;
+      this.classList.add('filled');
+      document.getElementById('drag-' + dragData).classList.add('matched');
+      document.getElementById('drag-' + dragData).setAttribute('draggable', 'false');
+      checkAllMatched();
+    } else {
+      this.style.borderColor = '#c0392b';
+      setTimeout(() => { this.style.borderColor = ''; }, 500);
+    }
+  });
+});
+
+function checkAllMatched() {
+  const allMatched = document.querySelectorAll('.drag-item.matched').length === 4;
+  if (allMatched) {
+    document.getElementById('match-result').textContent = '🎉 全部匹配正确！你已经理解了师徒四人的象征意义！';
+    document.getElementById('match-result').style.color = '#5a8a6a';
+  }
+}
+</script>
+
+</body>
+</html>

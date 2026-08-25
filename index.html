@@ -5,20 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bella's Reading Space | 归朴阅读</title>
   <meta name="description" content="Bella 的私人数字书架，在书香与留白之间，整理读书笔记与英语学习方法。">
-  <style>
-    :root {
-      --bg: #fdfdfb;
-      --card: rgba(255, 255, 255, 0.68);
-      --border: #f0ebe1;
-      --border-strong: rgba(139, 58, 58, 0.18);
-      --text: #2b2b2b;
-      --text-light: #8c8c8c;
-      --accent: #8b3a3a;
-      --accent-soft: rgba(139, 58, 58, 0.08);
-      --shadow-sm: 0 12px 30px rgba(53, 42, 33, 0.04);
-      --shadow-md: 0 20px 45px rgba(53, 42, 33, 0.06);
-      --font-sans: "PingFang SC", "Hiragino Sans GB", -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-serif: "STSong", "Songti SC", "Noto Serif CJK SC", "SimSun", serif;
+    <style>
+      @font-face {
+        font-family: "Smiley Sans";
+        src: url("./assets/fonts/得意黑/SmileySans-Oblique.woff2") format("woff2"),
+             url("./assets/fonts/得意黑/SmileySans-Oblique.woff") format("woff"),
+             url("./assets/fonts/得意黑/SmileySans-Oblique.ttf") format("truetype");
+        font-display: swap;
+      }
+
+      :root {
+      --bg: #fff7fb;
+      --card: rgba(255, 255, 255, 0.84);
+      --border: rgba(229, 198, 214, 0.72);
+      --border-strong: rgba(219, 151, 181, 0.28);
+      --text: #493842;
+      --text-light: #8f7b86;
+      --accent: #d48aa8;
+      --accent-soft: rgba(212, 138, 168, 0.12);
+      --shadow-sm: 0 16px 36px rgba(180, 129, 152, 0.10);
+      --shadow-md: 0 24px 56px rgba(180, 129, 152, 0.14);
+        --font-sans: "Smiley Sans", "PingFang SC", "Hiragino Sans GB", -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-serif: "Smiley Sans", "STSong", "Songti SC", "Noto Serif CJK SC", "SimSun", serif;
       --transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
@@ -33,7 +41,11 @@
     }
 
     body {
-      background: var(--bg);
+      background:
+        radial-gradient(circle at top left, rgba(255, 219, 234, 0.65), transparent 26%),
+        radial-gradient(circle at 82% 14%, rgba(255, 237, 205, 0.72), transparent 20%),
+        radial-gradient(circle at 18% 78%, rgba(233, 244, 228, 0.75), transparent 20%),
+        var(--bg);
       color: var(--text);
       font-family: var(--font-serif);
       line-height: 1.8;
@@ -51,7 +63,20 @@
       position: fixed;
       inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E");
-      opacity: 0.04;
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 22px 22px, rgba(255, 255, 255, 0.55) 0 3px, transparent 3.2px),
+        radial-gradient(circle at 78px 62px, rgba(212, 138, 168, 0.10) 0 2px, transparent 2.2px);
+      background-size: 120px 120px;
+      opacity: 0.55;
       pointer-events: none;
       z-index: 0;
     }
@@ -87,9 +112,9 @@
     }
 
     .container {
-      max-width: 1120px;
+      max-width: 1140px;
       margin: 0 auto;
-      padding: 96px 32px 120px;
+      padding: 88px 32px 128px;
       flex: 1;
       width: 100%;
       position: relative;
@@ -100,15 +125,46 @@
       display: grid;
       grid-template-columns: minmax(0, 1.75fr) minmax(260px, 0.95fr);
       gap: 56px;
-      margin-bottom: 112px;
+      margin-bottom: 104px;
       align-items: end;
       animation: fadeUp 1s ease-out forwards;
       position: relative;
-      padding-left: 4px;
+      padding: 48px 48px 42px;
+      border: 1px solid rgba(229, 198, 214, 0.85);
+      border-radius: 36px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 245, 249, 0.92));
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
     }
 
     .hero-main {
       max-width: 700px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 220px;
+      height: 220px;
+      right: -48px;
+      top: -56px;
+      background: radial-gradient(circle, rgba(255, 227, 238, 0.95) 0%, rgba(255, 227, 238, 0.1) 70%);
+    }
+
+    .hero::after {
+      width: 180px;
+      height: 180px;
+      left: -48px;
+      bottom: -72px;
+      background: radial-gradient(circle, rgba(236, 244, 221, 0.9) 0%, rgba(236, 244, 221, 0.05) 72%);
     }
 
     .hero-eyebrow,
@@ -146,12 +202,12 @@
     }
 
     .hero h1 {
-      font-size: 54px;
+      font-size: 50px;
       font-weight: 400;
       color: var(--text);
-      margin: 26px 0 30px;
-      letter-spacing: 7px;
-      line-height: 1.18;
+      margin: 22px 0 24px;
+      letter-spacing: 3px;
+      line-height: 1.22;
       text-wrap: balance;
     }
 
@@ -159,31 +215,63 @@
       font-family: var(--font-sans);
       font-size: 15px;
       color: var(--text-light);
-      max-width: 490px;
-      letter-spacing: 0.8px;
-      line-height: 2;
-      padding-left: 36px;
+      max-width: 520px;
+      letter-spacing: 0.2px;
+      line-height: 1.95;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(229, 198, 214, 0.9);
+      box-shadow: 0 8px 18px rgba(180, 129, 152, 0.08);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    .hero-badge::before {
+      content: "✦";
+      color: var(--accent);
+      font-size: 11px;
     }
 
     .hero-note {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.52), rgba(248, 244, 237, 0.84));
-      border: 1px solid rgba(139, 58, 58, 0.1);
+      background: linear-gradient(180deg, rgba(255, 252, 253, 0.95), rgba(255, 242, 247, 0.92));
+      border: 1px solid rgba(219, 151, 181, 0.18);
       box-shadow: var(--shadow-sm);
-      padding: 28px 26px;
+      padding: 28px 26px 24px;
       position: relative;
       backdrop-filter: blur(10px);
+      border-radius: 28px;
+      z-index: 1;
     }
 
     .hero-note::after {
       content: "";
       position: absolute;
-      right: 18px;
+      right: 20px;
       top: 18px;
-      width: 44px;
-      height: 44px;
-      border-top: 1px solid rgba(139, 58, 58, 0.12);
-      border-right: 1px solid rgba(139, 58, 58, 0.12);
-      opacity: 0.8;
+      width: 48px;
+      height: 48px;
+      background:
+        radial-gradient(circle at 50% 0, rgba(212, 138, 168, 0.85) 0 7px, transparent 7.2px),
+        radial-gradient(circle at 0 50%, rgba(212, 138, 168, 0.85) 0 7px, transparent 7.2px),
+        radial-gradient(circle at 100% 50%, rgba(212, 138, 168, 0.85) 0 7px, transparent 7.2px),
+        radial-gradient(circle at 50% 100%, rgba(212, 138, 168, 0.85) 0 7px, transparent 7.2px),
+        radial-gradient(circle at 50% 50%, rgba(255, 234, 115, 0.95) 0 6px, transparent 6.2px);
+      opacity: 0.7;
     }
 
     .hero-note-copy {
@@ -206,7 +294,7 @@
       font-family: var(--font-sans);
       font-size: 13px;
       color: var(--text-light);
-      border-top: 1px solid rgba(43, 43, 43, 0.06);
+      border-top: 1px dashed rgba(212, 138, 168, 0.28);
       padding-top: 14px;
     }
 
@@ -222,6 +310,7 @@
       align-items: center;
       gap: 24px;
       margin-bottom: 34px;
+      padding: 0 8px;
     }
 
     .section-note {
@@ -239,8 +328,9 @@
       align-items: center;
       gap: 12px;
       padding: 8px;
-      border: 1px solid rgba(43, 43, 43, 0.08);
-      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(229, 198, 214, 0.95);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.82);
       box-shadow: var(--shadow-sm);
       backdrop-filter: blur(10px);
     }
@@ -250,10 +340,12 @@
       border: none;
       background: transparent;
       color: var(--text-light);
-      font-family: var(--font-serif);
-      font-size: 18px;
-      letter-spacing: 3px;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 1px;
       padding: 12px 18px;
+      border-radius: 999px;
       cursor: pointer;
       transition: var(--transition);
     }
@@ -261,8 +353,8 @@
     .tab-button.active,
     .floating-nav-button.active {
       color: var(--text);
-      background: linear-gradient(180deg, rgba(139, 58, 58, 0.08), rgba(139, 58, 58, 0.03));
-      box-shadow: inset 0 0 0 1px rgba(139, 58, 58, 0.12);
+      background: linear-gradient(180deg, rgba(255, 233, 241, 0.98), rgba(255, 246, 250, 0.92));
+      box-shadow: inset 0 0 0 1px rgba(212, 138, 168, 0.22);
     }
 
     .bookshelf {
@@ -280,33 +372,33 @@
       display: block;
     }
 
-    .featured {
-      display: grid;
-      grid-template-columns: 2.4fr 1fr;
-      gap: 0;
-      margin-bottom: 88px;
-      position: relative;
-    }
+      .featured {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 320px));
+        justify-content: center;
+        gap: 24px;
+        margin-bottom: 88px;
+        position: relative;
+        align-items: start;
+      }
 
-    .featured-slot {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
+      .featured-slot {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
 
-    .featured-slot.left {
-      padding: 0 42px 0 0;
-    }
+      .featured-slot.left,
+      .featured-slot.right {
+        padding: 0;
+      }
 
-    .featured-slot.right {
-      padding: 28px 0 0 42px;
-    }
-
-    .featured-note {
-      max-width: 270px;
-      display: grid;
-      gap: 10px;
-    }
+      .featured-note {
+        max-width: none;
+        display: grid;
+        gap: 10px;
+        padding: 0 6px;
+      }
 
     .featured-note p {
       font-family: var(--font-sans);
@@ -317,21 +409,24 @@
 
     .featured-label {
       color: var(--accent);
-      letter-spacing: 2px;
+      letter-spacing: 1px;
     }
 
-    .book-card {
-      background: transparent;
-      border: none;
+      .book-card {
+        background: rgba(255, 255, 255, 0.78);
+        border: 1px solid rgba(229, 198, 214, 0.68);
+      border-radius: 30px;
       text-decoration: none;
       color: inherit;
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 20px;
+        padding: 16px;
       transition: var(--transition);
       position: relative;
       animation: fadeUp 1s ease-out forwards;
       opacity: 0;
+        box-shadow: 0 12px 28px rgba(180, 129, 152, 0.08);
     }
 
     .featured-slot.left .book-card {
@@ -346,36 +441,52 @@
     .book-card::after {
       content: "";
       position: absolute;
-      bottom: -18px;
-      left: 0;
+      bottom: -10px;
+      left: 18px;
       width: 0;
-      height: 1px;
+      height: 4px;
+      border-radius: 999px;
       background: var(--accent);
       transition: width 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     .book-card:hover::after {
-      width: 100%;
+      width: calc(100% - 36px);
+    }
+
+    .book-card:hover {
+      transform: translateY(-4px) rotate(-0.3deg);
     }
 
     .book-card:hover .book-cover {
       transform: translateY(-4px);
-      box-shadow: 16px 22px 42px rgba(53, 42, 33, 0.07), -1px 0 2px rgba(53, 42, 33, 0.02);
+      box-shadow: 16px 22px 42px rgba(180, 129, 152, 0.16), -1px 0 2px rgba(53, 42, 33, 0.02);
     }
 
-    .book-cover {
+      .book-cover {
       width: 100%;
       aspect-ratio: 3 / 4;
-      background: #f4f0e6;
-      border: 1px solid #e6e2d8;
-      border-radius: 2px 6px 6px 2px;
+        background: #fffdfd;
+        border: 1px solid rgba(229, 198, 214, 0.62);
+      border-radius: 24px;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      box-shadow: 12px 12px 30px rgba(53, 42, 33, 0.04), -1px 0 2px rgba(53, 42, 33, 0.02);
+      box-shadow: 12px 12px 30px rgba(180, 129, 152, 0.10), -1px 0 2px rgba(53, 42, 33, 0.02);
       transition: var(--transition);
+    }
+
+    .book-cover-image {
+      width: calc(100% - 20px);
+      height: calc(100% - 20px);
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      margin: 10px;
+      border-radius: 18px;
+      box-shadow: 0 8px 20px rgba(180, 129, 152, 0.08);
     }
 
     .book-cover::before {
@@ -384,33 +495,17 @@
       left: 0;
       top: 0;
       bottom: 0;
-      width: 12px;
-      background: linear-gradient(to right, rgba(255, 255, 255, 0.42), rgba(0, 0, 0, 0.06), transparent);
+      width: 14px;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.7), rgba(212, 138, 168, 0.14), transparent);
       z-index: 2;
     }
 
-    .cover-guns {
-      background: #2c1810;
-    }
-
-    .cover-courage {
-      background: #1a1a1a;
-    }
-
-    .cover-english {
-      background: #f7f3ea;
-    }
-
-    .title-guns {
-      color: #d4a853;
-    }
-
-    .title-courage {
-      color: #8b3a3a;
+      .cover-english {
+        background: #fff8fb;
     }
 
     .title-english {
-      color: #2b2b2b;
+      color: #5a4550;
     }
 
     .book-cover-title {
@@ -443,15 +538,17 @@
 
     .book-tag {
       color: var(--accent);
-      border: 1px solid rgba(139, 58, 58, 0.2);
-      padding: 2px 8px;
+      border: 1px solid rgba(212, 138, 168, 0.24);
+      background: rgba(255, 243, 247, 0.9);
+      padding: 4px 10px;
+      border-radius: 999px;
       font-size: 11px;
       letter-spacing: 1px;
       white-space: nowrap;
     }
 
     .book-tag-neutral {
-      border-color: rgba(43, 43, 43, 0.16);
+      border-color: rgba(90, 69, 80, 0.14);
       color: var(--text);
     }
 
@@ -469,7 +566,7 @@
       color: var(--text-light);
       line-height: 1.85;
       display: -webkit-box;
-        line-clamp: 3;
+      line-clamp: 3;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
@@ -477,7 +574,7 @@
 
     .archive-wrap {
       padding-top: 56px;
-      border-top: 1px dashed var(--border);
+      border-top: 1px dashed rgba(212, 138, 168, 0.34);
     }
 
     .archive-header {
@@ -498,19 +595,21 @@
       max-width: 340px;
     }
 
-    .archive {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      gap: 32px;
-    }
+      .archive {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 238px));
+        justify-content: center;
+        gap: 24px;
+      }
 
-    .archive-panel,
-    .learning-outline {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(248, 244, 237, 0.74));
-      border: 1px solid rgba(43, 43, 43, 0.08);
-      box-shadow: var(--shadow-sm);
+      .archive-panel,
+      .learning-outline {
+        background: rgba(255, 255, 255, 0.78);
+        border: 1px solid rgba(229, 198, 214, 0.66);
+        box-shadow: 0 12px 28px rgba(180, 129, 152, 0.08);
       padding: 24px 22px;
       min-height: 100%;
+      border-radius: 28px;
     }
 
     .archive-panel {
@@ -545,7 +644,7 @@
 
     .panel-list li,
     .outline-list li {
-      border-top: 1px solid rgba(43, 43, 43, 0.07);
+      border-top: 1px dashed rgba(212, 138, 168, 0.24);
       padding-top: 14px;
     }
 
@@ -588,8 +687,9 @@
       display: inline-flex;
       align-items: center;
       padding: 4px 10px;
-      border: 1px solid rgba(43, 43, 43, 0.1);
-      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(229, 198, 214, 0.92);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.76);
       font-family: var(--font-sans);
       font-size: 12px;
       color: var(--text-light);
@@ -615,7 +715,9 @@
       justify-content: center;
       width: 36px;
       height: 36px;
-      border: 1px solid rgba(139, 58, 58, 0.18);
+      border: 1px solid rgba(212, 138, 168, 0.2);
+      border-radius: 14px;
+      background: rgba(255, 246, 250, 0.9);
       color: var(--accent);
       font-family: var(--font-sans);
       font-size: 11px;
@@ -631,9 +733,10 @@
       align-items: center;
       gap: 8px;
       padding: 10px;
-      background: rgba(255, 255, 255, 0.72);
-      border: 1px solid rgba(43, 43, 43, 0.08);
-      box-shadow: 0 18px 40px rgba(53, 42, 33, 0.08);
+      background: rgba(255, 251, 253, 0.84);
+      border: 1px solid rgba(229, 198, 214, 0.92);
+      border-radius: 999px;
+      box-shadow: 0 18px 40px rgba(180, 129, 152, 0.18);
       backdrop-filter: blur(14px);
       z-index: 4;
     }
@@ -652,10 +755,11 @@
       color: var(--text-light);
       font-family: var(--font-sans);
       font-size: 12px;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       transition: var(--transition);
       background: transparent;
       border: none;
+      border-radius: 999px;
       cursor: pointer;
     }
 
@@ -670,9 +774,9 @@
       padding: 60px 24px 96px;
       font-family: var(--font-sans);
       font-size: 12px;
-      color: #b3b3b3;
+      color: #a996a1;
       margin-top: auto;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       border-top: 1px solid var(--border);
       position: relative;
       z-index: 1;
@@ -693,17 +797,20 @@
     }
 
     @media (max-width: 1024px) {
-      .hero,
-      .section-heading,
-      .archive-header,
-      .featured,
-      .archive {
+        .hero,
+        .section-heading,
+        .archive-header {
         grid-template-columns: 1fr;
       }
 
       .hero {
         gap: 36px;
       }
+
+          .archive {
+            grid-template-columns: repeat(2, minmax(0, 238px));
+            justify-content: center;
+        }
 
       .section-note,
       .archive-copy {
@@ -712,14 +819,10 @@
         max-width: none;
       }
 
-      .featured-slot.left,
-      .featured-slot.right {
-        padding: 0;
-      }
-
-      .featured-slot.right {
-        padding-top: 12px;
-      }
+          .featured {
+            grid-template-columns: minmax(0, 320px);
+            justify-content: center;
+        }
     }
 
     @media (max-width: 720px) {
@@ -727,9 +830,13 @@
         padding: 64px 20px 120px;
       }
 
+        .hero {
+          padding: 34px 24px 30px;
+        }
+
       .hero h1 {
         font-size: 34px;
-        letter-spacing: 4px;
+          letter-spacing: 2px;
       }
 
       .hero-intro {
@@ -744,8 +851,8 @@
       .tab-button,
       .floating-nav-button {
         flex: 1;
-        font-size: 16px;
-        letter-spacing: 2px;
+          font-size: 15px;
+          letter-spacing: 1px;
         padding: 12px 10px;
       }
 
@@ -753,6 +860,10 @@
         align-items: flex-start;
         flex-direction: column;
       }
+
+        .archive {
+          grid-template-columns: 1fr;
+        }
 
       .floating-nav {
         width: calc(100% - 24px);
@@ -774,37 +885,42 @@
     <header class="hero" id="top">
       <div class="hero-main">
         <div class="hero-eyebrow">Bella's Reading Space</div>
-        <h1>在克制中探寻广阔<br>于归朴处安放心智</h1>
-        <p class="hero-intro">这里不是一个被堆满的资源站，而是一张被慢慢整理过的书桌。每一本被放上来的书，都对应一次真实的思考与回看。</p>
+          <h1>把喜欢的故事、想法和书签<br>慢慢收进一个温柔角落</h1>
+          <p class="hero-intro">这里更像我的小小读书空间。书、笔记、贴纸感的收藏、还有偶尔会反复回看的段落，都被安静地放在这里。</p>
+          <div class="hero-badges" aria-label="空间气质">
+            <span class="hero-badge">女孩感读书角</span>
+            <span class="hero-badge">绘本式留白</span>
+            <span class="hero-badge">软软的收藏感</span>
+          </div>
       </div>
 
       <aside class="hero-note" aria-label="首页摘要">
-        <div class="hero-note-label">本期案语</div>
-        <p class="hero-note-copy">读书不只是收集结论，而是给自己保留一块安静的位置，让复杂世界有地方被看清。</p>
+          <div class="hero-note-label">今日小角落</div>
+          <p class="hero-note-copy">我想要的不是很厉害的书架，而是一眼看过去，会让人觉得柔软、安静，愿意坐下来翻一会儿书的地方。</p>
         <div class="hero-glance">
           <div class="hero-glance-item">
-            <span>主卷</span>
-            <strong>文明、心理与成长</strong>
+              <span>书卷</span>
+              <strong>文明、心理与成长</strong>
           </div>
           <div class="hero-glance-item">
-            <span>副卷</span>
-            <strong>英语方法与长期习得</strong>
+              <span>小册</span>
+              <strong>英语方法与长期习得</strong>
           </div>
           <div class="hero-glance-item">
-            <span>节奏</span>
-            <strong>少而准，慢一点，但会反复回看</strong>
+              <span>氛围</span>
+              <strong>像绘本角、像收藏夹，也像放松的小窝</strong>
           </div>
         </div>
       </aside>
     </header>
 
     <section class="section-heading" aria-label="栏目导航">
-      <div class="section-kicker">卷册切换</div>
+        <div class="section-kicker">小书架切换</div>
       <div class="section-tabs" role="tablist" aria-label="内容分类">
         <button id="tab-books" class="tab-button active" data-tab-control="books" type="button" aria-selected="true" onclick="switchTab('books')">读书笔记</button>
         <button id="tab-english" class="tab-button inactive" data-tab-control="english" type="button" aria-selected="false" onclick="switchTab('english')">英文学习</button>
       </div>
-      <p class="section-note">首页按主卷与副卷展开，先读厚重的主题，再回到方法与日常训练。</p>
+        <p class="section-note">左边放喜欢反复回看的书，右边留给英语学习和轻一点的方法小卡。</p>
     </section>
 
     <main class="bookshelf" id="main-content">
@@ -812,13 +928,13 @@
         <section class="featured" aria-labelledby="books-featured">
           <div class="featured-slot left">
             <div class="featured-note">
-              <span class="featured-label" id="books-featured">本期主读</span>
-              <p>从文明的起跑线出发，追问资源、地理与命运如何改写人类历史的分布。</p>
+                <span class="featured-label" id="books-featured">本周在读</span>
+                <p>有些书虽然讲的是宏大的世界，但放在这个小角落里，也可以像一页页被认真折起来的绘本。</p>
             </div>
 
             <a href="./books/guns-germs-steel.html" class="book-card">
               <div class="book-cover cover-guns">
-                <div class="book-cover-title title-guns">枪炮、病菌<br>与钢铁</div>
+                <img class="book-cover-image" src="./assets/covers/guns-germs-steel.jpg" alt="《枪炮、病菌与钢铁》封面">
               </div>
               <div class="book-info">
                 <div class="book-meta">
@@ -833,13 +949,13 @@
 
           <div class="featured-slot right">
             <div class="featured-note">
-              <span class="featured-label">旁卷札记</span>
-              <p>当外部世界谈论结构，我们也要回到自己身上，练习自由、边界和课题分离。</p>
+                <span class="featured-label">心情旁页</span>
+                <p>有些书更像小小的安慰和提醒，会放在顺手就能翻到的地方，像书页间夹着的一张便签。</p>
             </div>
 
             <a href="./books/被讨厌的勇气_课堂讲义.html" class="book-card">
               <div class="book-cover cover-courage">
-                <div class="book-cover-title title-courage">被讨厌<br>的勇气</div>
+                <img class="book-cover-image" src="./assets/covers/the-courage-to-be-disliked.jpg" alt="《被讨厌的勇气》封面">
               </div>
               <div class="book-info">
                 <div class="book-meta">
@@ -855,8 +971,8 @@
 
         <section class="archive-wrap" aria-labelledby="books-archive">
           <div class="archive-header">
-            <h2 class="archive-label" id="books-archive">案上目录</h2>
-            <p class="archive-copy">首页不把内容铺得很满，而是先把路径摆清楚。你可以从最近更新进入，也可以按主题慢慢展开。</p>
+            <h2 class="archive-label" id="books-archive">小书架目录</h2>
+            <p class="archive-copy">这里像一个慢慢填满的书篮。不会一下子摆很多，只会把真正喜欢的、想留下来的，一本一本放进去。</p>
           </div>
 
           <div class="archive">
@@ -910,8 +1026,8 @@
         <section class="featured" aria-labelledby="english-featured">
           <div class="featured-slot left">
             <div class="featured-note">
-              <span class="featured-label" id="english-featured">方法主卷</span>
-              <p>英语学习不靠堆任务，而是先建立一套能长期执行、能反复回收的输入输出系统。</p>
+                <span class="featured-label" id="english-featured">学习小册</span>
+                <p>英语这部分我想做得更像手边的小练习册，不硬、不压迫，翻开就能开始一点点练。</p>
             </div>
 
             <a href="./english/english-learning-guide.html" class="book-card">
@@ -931,8 +1047,8 @@
 
           <div class="featured-slot right">
             <aside class="learning-outline" aria-label="学习路径">
-              <span class="outline-label">Learning Outline</span>
-              <h3 class="outline-title">我现在更看重这三步</h3>
+                <span class="outline-label">Little Routine</span>
+                <h3 class="outline-title">现在常用的三步小练习</h3>
               <ol class="outline-list">
                 <li>
                   <div>
@@ -953,15 +1069,15 @@
                   </div>
                 </li>
               </ol>
-              <p class="outline-copy">英文学习区会比读书区更轻、更实用，重点是把方法摆清楚，而不是持续增加素材。</p>
+                <p class="outline-copy">我希望这一栏像贴在桌边的小卡片，轻一点、软一点，但每天都真的能用得上。</p>
             </aside>
           </div>
         </section>
 
         <section class="archive-wrap" aria-labelledby="english-archive">
           <div class="archive-header">
-            <h2 class="archive-label" id="english-archive">学习节奏</h2>
-            <p class="archive-copy">先把方法做稳，再决定往哪里扩展。英语区会一直保持“少内容、强可执行”的节奏。</p>
+            <h2 class="archive-label" id="english-archive">练习节奏</h2>
+            <p class="archive-copy">英语区不想做得很硬核，更想像一本可以常常翻开的陪伴型小手册。</p>
           </div>
 
           <div class="archive">
