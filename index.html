@@ -7,21 +7,18 @@
   <style>
     /* ===== CSS Variables ===== */
     :root {
-      /* 书香气配色：素雅纸白、徽墨、朱砂 */
-      --bg: #Fdfdfb;          /* 极浅的宣纸白，大量留白的底色 */
-      --card: #FFFFFF;        /* 纯白卡片，制造微弱的层次 */
+      --bg: #Fdfdfb;          /* 极浅的宣纸白 */
+      --card: #FFFFFF;
       --border: #F0ebe1;      /* 极浅的茶色边框 */
-      --text: #2b2b2b;        /* 徽墨黑，不刺眼 */
+      --text: #2b2b2b;        /* 徽墨黑 */
       --text-light: #8c8c8c;  /* 烟墨灰 */
-      --accent: #8b3a3a;      /* 沉稳的暗朱砂红 */
-      --radius-lg: 2px;       /* 几乎直角，保留纸张的边缘感 */
-      --radius-md: 2px;
-      --radius-sm: 0px;
+      --accent: #8b3a3a;      /* 暗朱砂红 */
+      --radius-sm: 2px;
       --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.02);
       --shadow-md: 0 20px 40px rgba(0, 0, 0, 0.04);
       --font-sans: "PingFang SC", "Hiragino Sans GB", -apple-system, BlinkMacSystemFont, sans-serif;
       --font-serif: "STSong", "Songti SC", "Noto Serif CJK SC", "SimSun", serif;
-      --transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      --transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,137 +26,126 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: var(--font-serif); /* 全局主基调改为衬线体，凸显书香 */
+      font-family: var(--font-serif);
       line-height: 1.8;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background-image: radial-gradient(#e6e2d8 1px, transparent 1px);
-      background-size: 40px 40px; /* 微妙的网格，增加纸张肌理感 */
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* 真实的纸张纤维肌理 */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 0;
     }
 
     /* ===== Layout ===== */
     .container {
-      max-width: 900px; /* 进一步收缩宽度，增加左右留白 */
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 120px 24px; /* 增加上下留白 */
+      padding: 100px 32px 80px;
       flex: 1;
       width: 100%;
+      position: relative;
+      z-index: 1;
     }
 
     /* ===== Hero Section ===== */
     .hero {
-      text-align: center;
-      margin-bottom: 100px;
+      margin-bottom: 120px;
       animation: fadeUp 1s ease-out forwards;
       position: relative;
+      padding-left: 4px;
     }
 
-    /* 装饰性印章效果 */
-    .hero::after {
-      content: '阅';
-      position: absolute;
-      top: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: var(--font-serif);
-      font-size: 120px;
-      color: rgba(139, 58, 58, 0.03);
-      z-index: -1;
-      user-select: none;
+    .hero-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: var(--text-light);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--text-light);
     }
 
     .hero h1 {
       font-family: var(--font-serif);
-      font-size: 32px;
-      font-weight: 400; /* 去掉粗体，回归文雅 */
+      font-size: 48px;
+      font-weight: 400;
       color: var(--text);
-      margin-bottom: 24px;
-      letter-spacing: 4px;
+      margin-bottom: 32px;
+      letter-spacing: 6px;
+      line-height: 1.2;
     }
 
     .hero p {
       font-family: var(--font-sans);
-      font-size: 14px;
+      font-size: 15px;
       color: var(--text-light);
-      max-width: 400px;
-      margin: 0 auto;
+      max-width: 480px;
       letter-spacing: 1px;
       line-height: 2;
+      padding-left: 36px;
     }
 
-    /* ===== Section Tabs ===== */
-    .section-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 32px; /* 拉大间距 */
-      margin-bottom: 60px;
-      animation: fadeUp 1s ease-out forwards;
-      animation-delay: 0.2s;
-      opacity: 0;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 16px;
-    }
-
-    .tab-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-light);
-      padding: 8px 0;
-      font-size: 16px;
-      font-weight: 400;
-      cursor: pointer;
-      font-family: var(--font-serif);
-      letter-spacing: 2px;
-      transition: var(--transition);
-      position: relative;
-    }
-
-    .tab-btn::after {
-      content: '';
-      position: absolute;
-      bottom: -17px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 1px;
-      background: var(--accent);
-      transition: width 0.3s ease;
-    }
-
-    .tab-btn:hover {
-      color: var(--text);
-    }
-
-    .tab-btn.active {
-      color: var(--text);
-    }
-
-    .tab-btn.active::after {
-      width: 100%; /* 选中时底部红线展开 */
-    }
-
-    /* ===== Tab Content ===== */
-    .tab-content {
-      display: none;
-    }
-    
-    .tab-content.active {
-      display: grid;
-    }
-
-    /* ===== Bookshelf Grid ===== */
+    /* ===== Section Tabs (Asymmetric Layout) ===== */
     .bookshelf {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 60px 40px; /* 大量留白 */
+      grid-template-columns: 2.4fr 1fr;
+      gap: 0;
+      position: relative;
+      border-top: 1px solid var(--border);
+      padding-top: 60px;
+    }
+
+    /* 贯穿两本书的极细分割线，制造“一页笔记”的趣味 */
+    .bookshelf::after {
+      content: '';
+      position: absolute;
+      top: 60px;
+      bottom: 0;
+      left: 71.5%;  /* 落在 2.4/(2.4+1) ≈ 70.5% 附近，制造黄金分割错落 */
+      width: 1px;
+      background: var(--border);
+    }
+
+    .book-column {
+      padding: 0 40px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .book-column.right {
+      padding: 0 0 0 40px;
+    }
+
+    /* 错落：第一本下沉 20px */
+    .book-column.left {
+      padding-top: 20px;
     }
 
     /* ===== Book Card ===== */
     .book-card {
-      background: transparent; /* 去掉卡片底色，融入背景 */
+      background: transparent;
       border: none;
       text-decoration: none;
       color: inherit;
@@ -167,23 +153,47 @@
       flex-direction: column;
       gap: 24px;
       transition: var(--transition);
-      opacity: 0;
-      transform: translateY(20px);
+      position: relative;
       animation: fadeUp 1s ease-out forwards;
+      opacity: 0;
+    }
+
+    .book-column.left .book-card {
+      animation-delay: 0.2s;
+    }
+
+    .book-column.right .book-card {
       animation-delay: 0.4s;
     }
 
-    .book-card:hover {
-      transform: translateY(-4px);
+    /* 墨水晕染效果：Hover 时缓缓洇开一抹暗朱砂 */
+    .book-card::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
-    /* Book Cover Mockup (更像实体纸质书) */
+    .book-card:hover::after {
+      width: 100%;
+    }
+
+    .book-card:hover .book-cover {
+      transform: translateY(-4px);
+      box-shadow: 16px 20px 40px rgba(0,0,0,0.06), -1px 0 2px rgba(0,0,0,0.02);
+    }
+
+    /* Book Cover - 模拟民国线装书 */
     .book-cover {
       width: 100%;
-      aspect-ratio: 3/4; /* 传统书籍比例 */
+      aspect-ratio: 3/4;
       background: #f4f0e6;
       border: 1px solid #e6e2d8;
-      border-radius: 2px 6px 6px 2px; /* 模拟书脊和书页边缘 */
+      border-radius: 2px 6px 6px 2px;
       position: relative;
       display: flex;
       align-items: center;
@@ -191,10 +201,6 @@
       overflow: hidden;
       box-shadow: 12px 12px 30px rgba(0,0,0,0.03), -1px 0 2px rgba(0,0,0,0.02);
       transition: var(--transition);
-    }
-
-    .book-card:hover .book-cover {
-      box-shadow: 16px 20px 40px rgba(0,0,0,0.06), -1px 0 2px rgba(0,0,0,0.02);
     }
 
     /* 书脊阴影 */
@@ -210,14 +216,24 @@
     .book-cover-title {
       font-family: var(--font-serif);
       color: var(--text);
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 400;
       text-align: center;
       padding: 30px 20px;
       line-height: 1.5;
-      writing-mode: vertical-rl; /* 竖排文字，东方韵味 */
-      letter-spacing: 4px;
+      writing-mode: vertical-rl;
+      letter-spacing: 6px;
       z-index: 1;
+    }
+
+    .book-cover-en {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      margin-top: 8px;
+      color: var(--text-light);
+      writing-mode: horizontal-tb; /* 英文恢复横排 */
     }
 
     /* Book Info */
@@ -225,7 +241,6 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      padding: 0 8px;
     }
 
     .book-meta {
@@ -264,6 +279,39 @@
       overflow: hidden;
     }
 
+    /* ===== Section Heading (Tabs) ===== */
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    .section-heading h2 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: 4px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .section-heading h2.inactive {
+      color: var(--text-light);
+    }
+
+    .section-heading h2.active::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--accent);
+    }
+
     /* ===== Footer ===== */
     footer {
       text-align: center;
@@ -273,6 +321,9 @@
       color: #b3b3b3;
       margin-top: auto;
       letter-spacing: 2px;
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
     }
 
     /* ===== Animations ===== */
@@ -281,10 +332,22 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 600px) {
-      .container { padding: 40px 20px; }
-      .hero h1 { font-size: 32px; }
-      .bookshelf { grid-template-columns: 1fr; }
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .container { padding: 60px 24px 60px; }
+      .hero h1 { font-size: 32px; letter-spacing: 4px; }
+      .hero p { padding-left: 0; }
+      .bookshelf {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+      .bookshelf::after { display: none; }
+      .book-column, .book-column.right {
+        padding: 0;
+      }
+      .book-column.left {
+        padding-top: 0;
+      }
     }
   </style>
 </head>
@@ -292,50 +355,52 @@
 
   <div class="container">
     <header class="hero">
-      <h1>Bella's Reading Space</h1>
-      <p>在克制中探寻广阔，于归朴处安放心智。<br>这是我的私人数字书架。</p>
+      <div class="hero-eyebrow">Bella's Reading Space</div>
+      <h1>在克制中探寻广阔<br>于归朴处安放心智</h1>
+      <p>这里是我的私人数字书架。<br>每本书都像一扇窗，通向一段被记录的思考。</p>
     </header>
 
-    <!-- ===== Section Tabs ===== -->
-    <div class="section-tabs">
-      <button class="tab-btn active" onclick="switchTab('books')">📚 读书笔记</button>
-      <button class="tab-btn" onclick="switchTab('english')">🔤 英文学习</button>
+    <!-- 主分类标题：读书笔记 / 英文学习 -->
+    <div class="section-heading">
+      <h2 id="tab-books" class="active" onclick="switchTab('books')">读书笔记</h2>
+      <h2 id="tab-english" class="inactive" onclick="switchTab('english')">英文学习</h2>
     </div>
 
-    <!-- ===== Bookshelf Grid (读书笔记) ===== -->
-    <main class="bookshelf tab-content active" id="tab-books">
-      <!-- Book 1 -->
-      <a href="./books/guns-germs-steel.html" class="book-card">
-        <div class="book-cover" style="background-color: #2c1810;">
-          <div class="book-cover-title" style="color: #d4a853;">枪炮、病菌<br>与钢铁</div>
-        </div>
-        <div class="book-info">
-          <div class="book-meta">
-            <span>贾雷德·戴蒙德</span>
-            <span class="book-tag">探案笔记</span>
+    <!-- 非对称 Bookshelf：左大右小 (2.4:1) -->
+    <main class="bookshelf">
+      <div class="book-column left tab-content active" id="content-books">
+        <!-- Book 1: 主书，封面占据左侧大空间 -->
+        <a href="./books/guns-germs-steel.html" class="book-card">
+          <div class="book-cover" style="background-color: #2c1810;">
+            <div class="book-cover-title" style="color: #d4a853;">枪炮、病菌<br>与钢铁</div>
           </div>
-          <h3 class="book-title">谁"偷"走了人类历史的公平？</h3>
-          <p class="book-desc">为什么是欧洲人征服了美洲，而不是反过来？跟着我，像一个侦探一样，找到真相。</p>
-        </div>
-      </a>
-    </main>
+          <div class="book-info">
+            <div class="book-meta">
+              <span>贾雷德·戴蒙德</span>
+              <span class="book-tag">探案笔记</span>
+            </div>
+            <h3 class="book-title">谁"偷"走了人类历史的公平？</h3>
+            <p class="book-desc">为什么是欧洲人征服了美洲，而不是反过来？跟着我，像一个侦探一样，找到真相。</p>
+          </div>
+        </a>
+      </div>
 
-    <!-- ===== English Learning Grid (英文学习) ===== -->
-    <main class="bookshelf tab-content" id="tab-english">
-      <!-- English Note 1 -->
-      <a href="./english/english-learning-guide.html" class="book-card">
-        <div class="book-cover" style="background-color: #fdfdfb;">
-          <div class="book-cover-title" style="color: #2b2b2b;">英语<br>学习方法</div>
-        </div>
-        <div class="book-info">
-          <div class="book-meta">
-            <span>学习笔记</span>
-            <span class="book-tag" style="border-color: rgba(43,43,43,0.2); color: #2b2b2b;">方法论</span>
+      <div class="book-column right tab-content" id="content-english">
+        <!-- English Note 1: 副书，右侧小空间 -->
+        <a href="./english/english-learning-guide.html" class="book-card">
+          <div class="book-cover" style="background-color: #fdfdfb;">
+            <div class="book-cover-title" style="color: #2b2b2b;">英语<br>学习方法</div>
           </div>
-          <h3 class="book-title">英语学习系统构建</h3>
-          <p class="book-desc">摆脱传统死记硬背的误区，探讨如何高效习得语言，在真实的语境中建立英语母语者的思维方式。</p>
-        </div>
-      </a>
+          <div class="book-info">
+            <div class="book-meta">
+              <span>学习笔记</span>
+              <span class="book-tag" style="border-color: rgba(43,43,43,0.2); color: #2b2b2b;">方法论</span>
+            </div>
+            <h3 class="book-title">英语学习系统构建</h3>
+            <p class="book-desc">摆脱传统死记硬背的误区，探讨如何高效习得语言。</p>
+          </div>
+        </a>
+      </div>
     </main>
   </div>
 
@@ -345,18 +410,22 @@
 
   <script>
     function switchTab(tabId) {
-      // 1. 切换按钮状态
-      document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('active');
+      // 切换标题状态
+      document.querySelectorAll('.section-heading h2').forEach(h => {
+        h.classList.remove('active');
+        h.classList.add('inactive');
       });
-      // 找到点击的按钮（根据参数简单判断，这里用一种直接的方式）
-      event.currentTarget.classList.add('active');
+      document.getElementById('tab-' + tabId).classList.remove('inactive');
+      document.getElementById('tab-' + tabId).classList.add('active');
 
-      // 2. 切换内容区状态
+      // 切换内容区
       document.querySelectorAll('.tab-content').forEach(content => {
         content.classList.remove('active');
+        content.style.display = 'none';
       });
-      document.getElementById('tab-' + tabId).classList.add('active');
+      const target = document.getElementById('content-' + tabId);
+      target.classList.add('active');
+      target.style.display = 'flex';
     }
   </script>
 </body>
