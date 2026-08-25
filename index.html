@@ -413,20 +413,20 @@
     }
 
       .book-card {
-        background: rgba(255, 255, 255, 0.78);
-        border: 1px solid rgba(229, 198, 214, 0.68);
-      border-radius: 30px;
+        background: transparent;
+        border: none;
+        border-radius: 0;
       text-decoration: none;
       color: inherit;
       display: flex;
       flex-direction: column;
       gap: 20px;
-        padding: 16px;
+        padding: 0;
       transition: var(--transition);
       position: relative;
       animation: fadeUp 1s ease-out forwards;
       opacity: 0;
-        box-shadow: 0 12px 28px rgba(180, 129, 152, 0.08);
+        box-shadow: none;
     }
 
     .featured-slot.left .book-card {
@@ -439,42 +439,34 @@
     }
 
     .book-card::after {
-      content: "";
-      position: absolute;
-      bottom: -10px;
-      left: 18px;
-      width: 0;
-      height: 4px;
-      border-radius: 999px;
-      background: var(--accent);
-      transition: width 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        content: none;
     }
 
     .book-card:hover::after {
-      width: calc(100% - 36px);
+        width: 0;
     }
 
     .book-card:hover {
-      transform: translateY(-4px) rotate(-0.3deg);
+        transform: none;
     }
 
     .book-card:hover .book-cover {
-      transform: translateY(-4px);
-      box-shadow: 16px 22px 42px rgba(180, 129, 152, 0.16), -1px 0 2px rgba(53, 42, 33, 0.02);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(180, 129, 152, 0.10);
     }
 
       .book-cover {
       width: 100%;
       aspect-ratio: 3 / 4;
         background: #fffdfd;
-        border: 1px solid rgba(229, 198, 214, 0.62);
-      border-radius: 24px;
+        border: 1px solid rgba(229, 198, 214, 0.42);
+        border-radius: 20px;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      box-shadow: 12px 12px 30px rgba(180, 129, 152, 0.10), -1px 0 2px rgba(53, 42, 33, 0.02);
+        box-shadow: 0 8px 20px rgba(180, 129, 152, 0.06);
       transition: var(--transition);
     }
 
@@ -485,8 +477,8 @@
       object-position: center;
       display: block;
       margin: 10px;
-      border-radius: 18px;
-      box-shadow: 0 8px 20px rgba(180, 129, 152, 0.08);
+        border-radius: 12px;
+        box-shadow: none;
     }
 
     .book-cover::before {
@@ -504,9 +496,17 @@
         background: #fff8fb;
     }
 
+      .cover-journey {
+        background: linear-gradient(180deg, #fff8ef 0%, #fff3e1 100%);
+      }
+
     .title-english {
       color: #5a4550;
     }
+
+      .title-journey {
+        color: #b45a3c;
+      }
 
     .book-cover-title {
       font-family: var(--font-serif);
@@ -519,6 +519,19 @@
       letter-spacing: 6px;
       z-index: 1;
     }
+
+      .book-cover-note {
+        position: absolute;
+        bottom: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: var(--font-sans);
+        font-size: 12px;
+        letter-spacing: 1px;
+        color: rgba(106, 78, 56, 0.72);
+        z-index: 1;
+        white-space: nowrap;
+      }
 
     .book-info {
       display: flex;
@@ -539,7 +552,7 @@
     .book-tag {
       color: var(--accent);
       border: 1px solid rgba(212, 138, 168, 0.24);
-      background: rgba(255, 243, 247, 0.9);
+        background: transparent;
       padding: 4px 10px;
       border-radius: 999px;
       font-size: 11px;
@@ -604,12 +617,12 @@
 
       .archive-panel,
       .learning-outline {
-        background: rgba(255, 255, 255, 0.78);
-        border: 1px solid rgba(229, 198, 214, 0.66);
-        box-shadow: 0 12px 28px rgba(180, 129, 152, 0.08);
-      padding: 24px 22px;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
       min-height: 100%;
-      border-radius: 28px;
+        border-radius: 0;
     }
 
     .archive-panel {
@@ -966,6 +979,21 @@
                 <p class="book-desc">从阿德勒心理学入门，重新理解人际关系里的烦恼。真正的轻松，不是被所有人喜欢，而是知道哪些课题不属于自己。</p>
               </div>
             </a>
+
+              <a href="./books/西游记-青春成长课堂.html" class="book-card">
+                <div class="book-cover cover-journey">
+                  <div class="book-cover-title title-journey">西游记</div>
+                  <div class="book-cover-note">你的青春，就是一部西游记</div>
+                </div>
+                <div class="book-info">
+                  <div class="book-meta">
+                    <span>吴承恩</span>
+                    <span class="book-tag">经典课</span>
+                  </div>
+                  <h3 class="book-title">你的青春，就是一部西游记</h3>
+                  <p class="book-desc">它不只是打怪取经的故事，也是在讲一个人怎么面对诱惑、误解、冲动和成长路上的弯路。</p>
+                </div>
+              </a>
           </div>
         </section>
 
@@ -992,6 +1020,12 @@
                     <span>聚焦关系焦虑、自由与阿德勒心理学。</span>
                   </a>
                 </li>
+                  <li>
+                    <a class="panel-link" href="./books/西游记-青春成长课堂.html">
+                      <strong>《西游记》</strong>
+                      <span>把取经路读成青春成长课，重看欲望、边界和自我修炼。</span>
+                    </a>
+                  </li>
               </ul>
             </article>
 
@@ -1004,6 +1038,7 @@
                 <span class="panel-tag">关系与边界</span>
                 <span class="panel-tag">心智成长</span>
                 <span class="panel-tag">长期主义</span>
+                  <span class="panel-tag">成长试炼</span>
               </div>
               <p class="panel-copy">我更想把书摆成路径，而不是摆成数量。每条路径只放少量内容，但彼此之间能互相照亮。</p>
             </article>
