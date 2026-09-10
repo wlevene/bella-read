@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bella's Reading Space | 治愈手账阅读屋</title>
-  <meta name="description" content="Bella 的治愈系卡通手账书架，记录精读笔记、思维模型与英语习得方法。">
+  <meta name="description" content="Bella 的治愈系卡通手账书架，记录精读笔记、思维模型、经济启蒙与英语习得方法。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
@@ -46,6 +46,8 @@
       --color-sky-soft: #EDF3FF;
       --color-lavender: #9C79FF;
       --color-lavender-soft: #F3EEFF;
+      --color-gold: #E67E22;
+      --color-gold-soft: #FDF2E9;
 
       /* 漫画线稿与立体阴影 */
       --border-cartoon: 2.5px solid var(--border-line);
@@ -104,6 +106,8 @@
       --color-sky-soft: #202D45;
       --color-lavender: #B599FF;
       --color-lavender-soft: #31274F;
+      --color-gold: #FFA834;
+      --color-gold-soft: #3B2E20;
       --washi-opacity: 0.65;
     }
 
@@ -135,7 +139,6 @@
       transition: background-color 0.4s ease, color 0.4s ease;
     }
 
-    /* 顶部彩旗飘带 */
     .top-bunting {
       position: absolute;
       top: 0;
@@ -171,7 +174,6 @@
       background: none;
     }
 
-    /* 跳到正文 */
     .skip-link {
       position: absolute;
       top: -60px;
@@ -199,9 +201,7 @@
       z-index: 1;
     }
 
-    /* ==========================================================================
-       顶部控制栏（主题切换 + 音效开关）
-       ========================================================================== */
+    /* 顶部控制栏 */
     .top-utility-bar {
       display: flex;
       justify-content: flex-end;
@@ -259,9 +259,7 @@
       box-shadow: 3px 4px 0 var(--card-shadow-color);
     }
 
-    /* ==========================================================================
-       HERO 区块（治愈相框 + 灵感抽签卡 + 介绍）
-       ========================================================================== */
+    /* HERO 区块 */
     .hero-wrapper {
       position: relative;
       margin-bottom: 36px;
@@ -300,7 +298,6 @@
       transition: background-color 0.4s ease;
     }
 
-    /* 和纸胶带 */
     .washi-tape {
       position: absolute;
       width: 110px;
@@ -406,7 +403,6 @@
       line-height: 1.8;
     }
 
-    /* 灵感抽签卡片（Interactive Fortune Cookie） */
     .fortune-cookie-box {
       background: var(--color-butter-soft);
       border: 2px solid var(--ink-dark);
@@ -492,7 +488,6 @@
       box-shadow: 3px 4px 0 var(--card-shadow-color);
     }
 
-    /* 右侧插画相框 */
     .hero-art-box {
       position: relative;
       display: flex;
@@ -556,9 +551,7 @@
       50% { transform: scale(1.3); opacity: 0.7; }
     }
 
-    /* ==========================================================================
-       手账数据看板（Stats Ribbon）
-       ========================================================================== */
+    /* 手账数据看板 */
     .stats-ribbon {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -607,9 +600,7 @@
       color: var(--ink-subtle);
     }
 
-    /* ==========================================================================
-       控制面板（分类切换 + 批量即时检索 + 快捷标签）
-       ========================================================================== */
+    /* 控制面板 */
     .control-panel {
       background: var(--bg-card);
       border: var(--border-cartoon);
@@ -762,9 +753,7 @@
       transform: translateY(-2px);
     }
 
-    /* ==========================================================================
-       卡片网格系统（3D 悬浮透视 + 手账贴纸 + 金句彩带）
-       ========================================================================== */
+    /* 卡片网格系统 */
     .bookshelf-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -793,7 +782,6 @@
       box-shadow: var(--shadow-cartoon-hover);
     }
 
-    /* 胶带装饰 */
     .book-item-card::before {
       content: "";
       position: absolute;
@@ -807,7 +795,6 @@
       z-index: 10;
     }
 
-    /* 封面展示台 */
     .book-cover-stage {
       position: relative;
       background: linear-gradient(135deg, var(--bg-warm) 0%, rgba(255, 238, 225, 0.7) 100%);
@@ -832,7 +819,6 @@
       z-index: 5;
     }
 
-    /* 3D 书本展示 */
     .book-3d-wrap {
       width: 180px;
       height: 245px;
@@ -867,7 +853,6 @@
       pointer-events: none;
     }
 
-    /* 卡片内容区 */
     .book-body {
       padding: 22px 22px 18px;
       display: flex;
@@ -916,6 +901,14 @@
       background: var(--color-sky-soft);
       color: var(--color-sky);
     }
+    .badge-gold {
+      background: var(--color-gold-soft);
+      color: var(--color-gold);
+    }
+    .badge-purple {
+      background: var(--color-lavender-soft);
+      color: var(--color-lavender);
+    }
 
     .book-title-text {
       font-family: var(--font-display);
@@ -927,7 +920,6 @@
       letter-spacing: 0.8px;
     }
 
-    /* 金句彩条 Ribbon */
     .book-quote-tape {
       background: var(--bg-warm);
       border-left: 3.5px solid var(--color-strawberry);
@@ -954,7 +946,6 @@
       flex: 1;
     }
 
-    /* 评价星级 */
     .card-ratings-row {
       display: flex;
       align-items: center;
@@ -1004,7 +995,6 @@
       transform: translateX(2px);
     }
 
-    /* 空结果状态 */
     .empty-search-box {
       display: none;
       grid-column: 1 / -1;
@@ -1044,9 +1034,7 @@
       color: #352621;
     }
 
-    /* ==========================================================================
-       手账看板与便签区域
-       ========================================================================== */
+    /* 手账看板与便签区域 */
     .bulletin-header {
       display: flex;
       align-items: center;
@@ -1245,9 +1233,7 @@
       line-height: 1.6;
     }
 
-    /* ==========================================================================
-       右下角互动吉祥物小猫咪（"芝麻糊" Calico Cat Companion）
-       ========================================================================== */
+    /* 右下角互动吉祥物小猫咪 */
     .mascot-corner {
       position: fixed;
       right: 28px;
@@ -1310,9 +1296,7 @@
       border-radius: 50%;
     }
 
-    /* ==========================================================================
-       底部糖果胶囊悬浮导航条
-       ========================================================================== */
+    /* 悬浮导航条 */
     .floating-dock {
       position: fixed;
       bottom: 24px;
@@ -1363,7 +1347,7 @@
       transform: rotate(10deg) scale(1.05);
     }
 
-    /* 全屏点击微粒子动效容器 */
+    /* 粒子 */
     .sparkle-particle {
       position: fixed;
       pointer-events: none;
@@ -1406,7 +1390,6 @@
       margin-top: 10px;
     }
 
-    /* 响应式调整 */
     @media (max-width: 900px) {
       .hero-card {
         grid-template-columns: 1fr;
@@ -1490,9 +1473,7 @@
       </button>
     </div>
 
-    <!-- ==========================================================================
-         HERO 欢迎区
-         ========================================================================== -->
+    <!-- HERO 欢迎区 -->
     <header class="hero-wrapper" id="top">
       <span class="floating-deco deco-star-1" aria-hidden="true">✨</span>
       <span class="floating-deco deco-star-2" aria-hidden="true">⭐️</span>
@@ -1515,23 +1496,23 @@
           </h1>
 
           <div class="hero-desc-bubble">
-            <p>这里是我的私人手账书架。把大世界拆成温柔的小课题，不管是宏大的历史探秘、深层的心理自由，还是打磨已久的英语习得习惯，都被认认真真地收纳在这儿。</p>
+            <p>这里是我的私人手账书架。把大世界拆成温柔的小课题：从文明探秘、经济学常识、独立思辨到心理自由，每一页都被认认真真地收纳在这儿。</p>
           </div>
 
-          <!-- 交互式灵感抽签卡片（点击抽取） -->
+          <!-- 交互式灵感抽签卡片 -->
           <div class="fortune-cookie-box" onclick="drawDailyFortune()" title="点击抽取一张今日专属灵感便签！">
             <div class="fortune-icon">🥠</div>
             <div class="fortune-text-area">
               <div class="fortune-label">✨ 今日灵感签 · 点击翻开</div>
               <div class="fortune-quote" id="fortune-quote-display">
-                “所谓的自由，就是被人讨厌的勇气。” ——《被讨厌的勇气》
+                “经济增长的根本原因只有一个：生产力的提升，而不是消费的刺激。” ——《小岛经济学》
               </div>
             </div>
             <span class="fortune-refresh-badge">🎲 换一签</span>
           </div>
 
           <div class="hero-badges-list">
-            <span class="hero-tag">📖 3 本深度精读书卷</span>
+            <span class="hero-tag">📖 5 本深度精读书卷</span>
             <span class="hero-tag">✏️ 1 套实战英语体系</span>
             <span class="hero-tag">🍵 随手可翻便签板</span>
           </div>
@@ -1549,29 +1530,27 @@
       </div>
     </header>
 
-    <!-- ==========================================================================
-         手账数据小看板（Stats Ribbon）
-         ========================================================================== -->
+    <!-- 手账数据小看板 -->
     <section class="stats-ribbon" aria-label="手账统计看板">
       <div class="stat-badge-card">
         <div class="stat-icon-circle" style="background: var(--color-strawberry-soft); color: var(--color-strawberry);">📚</div>
         <div class="stat-meta">
-          <span class="stat-num">4 卷典藏</span>
-          <span class="stat-text">精读长文梳理</span>
+          <span class="stat-num">6 卷典藏</span>
+          <span class="stat-text">精选长文与笔记</span>
         </div>
       </div>
       <div class="stat-badge-card">
         <div class="stat-icon-circle" style="background: var(--color-butter-soft); color: #8A6400;">💡</div>
         <div class="stat-meta">
-          <span class="stat-num">28 个模型</span>
+          <span class="stat-num">38 个模型</span>
           <span class="stat-text">认知与思维工具</span>
         </div>
       </div>
       <div class="stat-badge-card">
         <div class="stat-icon-circle" style="background: var(--color-matcha-soft); color: var(--color-matcha);">⏳</div>
         <div class="stat-meta">
-          <span class="stat-num">120+ 分钟</span>
-          <span class="stat-text">沉浸阅读时长</span>
+          <span class="stat-num">160+ 分钟</span>
+          <span class="stat-text">深度沉浸时长</span>
         </div>
       </div>
       <div class="stat-badge-card">
@@ -1583,15 +1562,13 @@
       </div>
     </section>
 
-    <!-- ==========================================================================
-         控制面板：栏目切换 + 批量即时检索 + 分类筛选
-         ========================================================================== -->
+    <!-- 控制面板：栏目切换 + 批量即时检索 + 优化分类筛选 -->
     <section class="control-panel" aria-label="书架批量管理与检索">
       <div class="control-top-row">
         <div class="tab-pills" role="tablist">
           <button id="tab-btn-books" class="tab-btn active" type="button" role="tab" aria-selected="true" onclick="switchCategory('books')">
             <span>📚 读书笔记</span>
-            <span class="tab-badge" id="count-books">3</span>
+            <span class="tab-badge" id="count-books">5</span>
           </button>
           <button id="tab-btn-english" class="tab-btn" type="button" role="tab" aria-selected="false" onclick="switchCategory('english')">
             <span>✏️ 英文学习</span>
@@ -1613,19 +1590,19 @@
         </div>
       </div>
 
+      <!-- 优化后的精选快捷标签栏 -->
       <div class="filter-tags-row">
         <span class="filter-label">🏷️ 快捷筛选：</span>
         <button class="filter-chip active" data-filter="all" onclick="setFilter('all')">全部</button>
         <button class="filter-chip" data-filter="history" onclick="setFilter('history')">文明历史</button>
-        <button class="filter-chip" data-filter="psychology" onclick="setFilter('psychology')">心理与关系</button>
-        <button class="filter-chip" data-filter="growth" onclick="setFilter('growth')">成长经典</button>
+        <button class="filter-chip" data-filter="economics" onclick="setFilter('economics')">经济财富</button>
+        <button class="filter-chip" data-filter="philosophy" onclick="setFilter('philosophy')">哲学心智</button>
+        <button class="filter-chip" data-filter="growth" onclick="setFilter('growth')">经典成长</button>
         <button class="filter-chip" data-filter="english" onclick="setFilter('english')">英语系统</button>
       </div>
     </section>
 
-    <!-- ==========================================================================
-         主要书架卡片列表
-         ========================================================================== -->
+    <!-- 主要书架卡片列表（6部经典作品） -->
     <main id="main-content">
       <div class="bookshelf-grid" id="cards-container">
         
@@ -1667,15 +1644,91 @@
           </div>
         </article>
 
-        <!-- 书本卡片 2：被讨厌的勇气 -->
+        <!-- 书本卡片 2：小岛经济学（新增） -->
         <article
           class="book-item-card"
           data-category="books"
-          data-filter="psychology"
-          data-title="被讨厌的勇气 是自由的开始 岸见一郎 古贺史健 哲思录 阿德勒心理学 人际关系 课题分离"
+          data-filter="economics"
+          data-title="小岛经济学 鱼美元和经济的故事 彼得希夫 安德鲁希夫 经济启蒙 财富 生产力 储蓄 投资 借贷 通货膨胀 货币 资本 渔网 初中生推荐"
+        >
+          <div class="book-cover-stage">
+            <div class="bookmark-ribbon" style="background: var(--color-gold);" aria-hidden="true"></div>
+            <div class="book-3d-wrap">
+              <img class="book-cover-img" src="./assets/covers/how-an-economy-grows.jpg" alt="《小岛经济学》可爱卡通绘本封面">
+            </div>
+          </div>
+          <div class="book-body">
+            <div class="book-meta-line">
+              <span class="book-author-chip">👤 彼得·希夫 · 安德鲁·希夫</span>
+              <span class="book-category-badge badge-gold">🐟 经济启蒙</span>
+            </div>
+            <h2 class="book-title-text">小岛、渔网与财富的底层真相</h2>
+            
+            <div class="book-quote-tape" style="border-left-color: var(--color-gold);">
+              “经济增长的源动力是生产力提升，而不是盲目的消费刺激。”
+            </div>
+
+            <p class="book-desc-text">用三个人在荒岛上徒手抓鱼的幽默寓言，讲透资本工具积累、银行借贷利息、纸币兑换券与通胀泡沫，初中生也能秒懂的经济学第一课。</p>
+            
+            <div class="card-ratings-row">
+              <span>💰 财商指数：★★★★★</span>
+              <span>🌊 寓言通识</span>
+            </div>
+
+            <div class="book-footer-action">
+              <span class="reading-time-pill">⏱️ ~14 分钟阅读</span>
+              <a href="./books/how-an-economy-grows.html" class="read-arrow-btn">翻开讲义 ➜</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 书本卡片 3：苏菲的世界（新增） -->
+        <article
+          class="book-item-card"
+          data-category="books"
+          data-filter="philosophy"
+          data-title="苏菲的世界 乔斯坦贾德 哲学启蒙 独立思考 批判思维 苏格拉底 柏拉图 笛卡尔 我思故我在 好奇心 初中生推荐"
         >
           <div class="book-cover-stage">
             <div class="bookmark-ribbon" style="background: var(--color-lavender);" aria-hidden="true"></div>
+            <div class="book-3d-wrap">
+              <img class="book-cover-img" src="./assets/covers/sophies-world.svg" alt="《苏菲的世界》专属卡通绘本封面">
+            </div>
+          </div>
+          <div class="book-body">
+            <div class="book-meta-line">
+              <span class="book-author-chip">👤 [挪威] 乔斯坦·贾德</span>
+              <span class="book-category-badge badge-purple">🌌 哲学漫游</span>
+            </div>
+            <h2 class="book-title-text">你是谁？一封信开启的智慧冒险</h2>
+            
+            <div class="book-quote-tape" style="border-left-color: var(--color-lavender);">
+              “保持对世界的惊奇感，永远不要把周遭的一切视为理所当然。”
+            </div>
+
+            <p class="book-desc-text">14岁女孩苏菲收到神秘信件，跟随导师跨越古希腊至现代两千五百年思想银河。在初中自我意识萌芽期，学会破除洞穴投影，养成独立思考人格。</p>
+            
+            <div class="card-ratings-row">
+              <span>🧭 思辨深度：★★★★★</span>
+              <span>✨ 独立人格</span>
+            </div>
+
+            <div class="book-footer-action">
+              <span class="reading-time-pill">⏱️ ~16 分钟阅读</span>
+              <a href="./books/sophies-world.html" class="read-arrow-btn">翻开漫游 ➜</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 书本卡片 4：被讨厌的勇气 -->
+        <article
+          class="book-item-card"
+          data-category="books"
+          data-filter="philosophy"
+          data-title="被讨厌的勇气 是自由的开始 岸见一郎 古贺史健 哲思录 阿德勒心理学 人际关系 课题分离"
+        >
+          <div class="book-cover-stage">
+            <div class="bookmark-ribbon" style="background: var(--color-strawberry);" aria-hidden="true"></div>
             <div class="book-3d-wrap">
               <img class="book-cover-img" src="./assets/covers/the-courage-to-be-disliked.jpg" alt="《被讨厌的勇气》精读封面">
             </div>
@@ -1687,7 +1740,7 @@
             </div>
             <h2 class="book-title-text">被讨厌的勇气，是自由的开始</h2>
             
-            <div class="book-quote-tape" style="border-left-color: var(--color-lavender);">
+            <div class="book-quote-tape" style="border-left-color: var(--color-strawberry);">
               “课题分离，不是冷漠疏离，而是对彼此人生最大的尊重与温柔。”
             </div>
 
@@ -1705,7 +1758,7 @@
           </div>
         </article>
 
-        <!-- 书本卡片 3：西游记-青春成长课堂 -->
+        <!-- 书本卡片 5：西游记-青春成长课堂 -->
         <article
           class="book-item-card"
           data-category="books"
@@ -1743,7 +1796,7 @@
           </div>
         </article>
 
-        <!-- 英语卡片 4：英语学习方法 -->
+        <!-- 英语卡片 6：英语学习方法 -->
         <article
           class="book-item-card"
           data-category="english"
@@ -1784,16 +1837,14 @@
         <div class="empty-search-box" id="empty-state">
           <div class="empty-cat-art" aria-hidden="true">🐱📦</div>
           <h3 class="empty-title">哎呀，小书架上还没有找到这个关键词~</h3>
-          <p class="empty-sub">试试搜索“戴蒙德”、“心理”、“西游”或“英语”，或者点击下方按钮恢复全部展示。</p>
+          <p class="empty-sub">试试搜索“小岛”、“经济”、“苏菲”、“哲学”、“西游”或“英语”，或者点击下方按钮恢复全部展示。</p>
           <button class="empty-reset-btn" type="button" onclick="clearSearch()">✨ 显示所有笔记</button>
         </div>
 
       </div>
     </main>
 
-    <!-- ==========================================================================
-         手账布告栏
-         ========================================================================== -->
+    <!-- 手账布告栏 -->
     <section class="bulletin-section" aria-label="手账便签与阅读路径">
       <div class="bulletin-header">
         <div class="bulletin-title-group">
@@ -1812,6 +1863,18 @@
           <h3 class="sticky-title">🌱 最近整理的笔记</h3>
           <ul class="sticky-item-list">
             <li class="sticky-item">
+              <a class="sticky-link" href="./books/how-an-economy-grows.html">
+                <strong>《小岛经济学》</strong>
+                <span>用渔网和海岛看懂资本、储蓄、借贷与通胀真相。</span>
+              </a>
+            </li>
+            <li class="sticky-item">
+              <a class="sticky-link" href="./books/sophies-world.html">
+                <strong>《苏菲的世界》</strong>
+                <span>一封信开启两千五百年西方哲学思辨与自我觉醒。</span>
+              </a>
+            </li>
+            <li class="sticky-item">
               <a class="sticky-link" href="./books/guns-germs-steel.html">
                 <strong>《枪炮、病菌与钢铁》</strong>
                 <span>从地理与资源差异切入，读文明发展的不平衡。</span>
@@ -1823,12 +1886,6 @@
                 <span>聚焦人际关系焦虑、自由边界与阿德勒心理学。</span>
               </a>
             </li>
-            <li class="sticky-item">
-              <a class="sticky-link" href="./books/西游记-青春成长课堂.html">
-                <strong>《西游记》成长课</strong>
-                <span>把取经路读成青春期成长课，重看欲望、边界和自我修炼。</span>
-              </a>
-            </li>
           </ul>
         </article>
 
@@ -1838,12 +1895,12 @@
           <h3 class="sticky-title">🗺️ 阅读探险路径</h3>
           <p style="font-size: 13px; color: var(--ink-subtle); margin-bottom: 14px;">点击任意主题标签，即刻联想相关书卷：</p>
           <div class="tag-pool">
+            <button class="tag-pool-item" onclick="quickFilterKeyword('小岛')">🐟 生产力与资本</button>
+            <button class="tag-pool-item" onclick="quickFilterKeyword('哲学')">🌌 批判与觉醒</button>
             <button class="tag-pool-item" onclick="quickFilterKeyword('文明')">🌍 文明起跑线</button>
-            <button class="tag-pool-item" onclick="quickFilterKeyword('结构')">🧩 结构与命运</button>
             <button class="tag-pool-item" onclick="quickFilterKeyword('关系')">🤝 关系与边界</button>
             <button class="tag-pool-item" onclick="quickFilterKeyword('阿德勒')">🧘 心智成长</button>
-            <button class="tag-pool-item" onclick="quickFilterKeyword('长期')">⏳ 长期主义</button>
-            <button class="tag-pool-item" onclick="quickFilterKeyword('修行')">⛰️ 成长试炼</button>
+            <button class="tag-pool-item" onclick="quickFilterKeyword('修行')">⛰️ 青春试炼</button>
           </div>
           <p style="font-size: 12.5px; color: var(--ink-muted); line-height: 1.6; margin-top: auto;">
             💡 “我更想把书摆成路径，而不是追求堆积数量。每条路径只放少量经典，但彼此之间能互相照亮。”
@@ -1882,12 +1939,10 @@
     </section>
   </div>
 
-  <!-- ==========================================================================
-       右下角互动吉祥物小猫咪（"芝麻糊" Calico Cat Companion）
-       ========================================================================== -->
+  <!-- 右下角互动吉祥物小猫咪 -->
   <aside class="mascot-corner" aria-label="伴读书僮小猫咪">
     <div class="mascot-bubble" id="mascot-speech">
-      🐱 喵~ 欢迎光临 Bella 的阅读小窝！今天读完一章了吗？
+      🐱 喵~ 欢迎光临 Bella 的阅读小窝！今天想读《小岛经济学》还是《苏菲的世界》呢？
     </div>
     <button class="mascot-avatar-btn" type="button" onclick="interactMascot()" title="戳戳小猫咪！">
       <span>🐱</span>
@@ -1895,9 +1950,7 @@
     </button>
   </aside>
 
-  <!-- ==========================================================================
-       底部糖果胶囊悬浮导航条
-       ========================================================================== -->
+  <!-- 底部糖果胶囊悬浮导航条 -->
   <nav class="floating-dock" aria-label="快捷导航浮动栏">
     <a class="dock-btn" href="#top" onclick="playBubbleSound()">
       <span>☁️ 回到顶部</span>
@@ -1913,9 +1966,7 @@
     </button>
   </nav>
 
-  <!-- ==========================================================================
-       页脚
-       ========================================================================== -->
+  <!-- 页脚 -->
   <footer>
     <p>© 2026 Bella Read. 保持思考，保持留白，保持童心。</p>
     <p>静读，慢记，常回看。在温暖的角落里与自己对话。</p>
@@ -1924,28 +1975,26 @@
     </div>
   </footer>
 
-  <!-- ==========================================================================
-       页面交互逻辑（主题切换、音效合成、3D倾斜、粒子闪烁、抽签）
-       ========================================================================== -->
+  <!-- 交互逻辑 -->
   <script>
-    // 状态管理
     let currentCategory = 'all';
     let currentFilter = 'all';
     let searchQuery = '';
     let isSoundEnabled = false;
     let audioCtx = null;
 
-    // 灵感签库
+    // 扩充后的灵感签库
     const fortuneList = [
+      { quote: "“经济增长的根本原因只有一个：生产力的提升，而不是消费的刺激。”", source: "《小岛经济学》" },
+      { quote: "“哲学唯一的条件，就是保持对世界的好奇心，不要把一切视为理所当然。”", source: "《苏菲的世界》" },
       { quote: "“所谓的自由，就是被人讨厌的勇气。”", source: "《被讨厌的勇气》" },
       { quote: "“文明的起跑线不是由于智力，而是环境与生态的馈赠。”", source: "《枪炮、病菌与钢铁》" },
       { quote: "“心生，种种魔生；心灭，种种魔灭。第一难是降伏心猿。”", source: "《西游记》" },
       { quote: "“语言不是机械灌进去的，而是在大量有意义的理解中生长出来的。”", source: "《英语学习指南》" },
-      { quote: "“不为了满足别人的期待而活，只对自己的人生课题全权负责。”", source: "阿德勒心理学" },
+      { quote: "“我可以怀疑一切，但我无法怀疑‘我正在怀疑’这件事情本身。”", source: "笛卡尔 · 《苏菲的世界》" },
       { quote: "“每一页被认真读过的文字，都会悄悄化作你抵御焦虑的骨骼。”", source: "Bella's Note" }
     ];
 
-    // 小猫咪互动金句库
     const catQuotes = [
       "🐱 喵~ 累了吗？先喝一口热奶茶，闭目养神 30 秒吧！",
       "✨ 今天的你，已经在悄悄变得更有力量了哦！",
@@ -1955,7 +2004,6 @@
     ];
     let catQuoteIndex = 0;
 
-    // 抽取灵感签
     function drawDailyFortune() {
       playBubbleSound(650);
       burstParticles(window.innerWidth / 2, window.innerHeight * 0.35);
@@ -1969,7 +2017,6 @@
       }, 150);
     }
 
-    // 互动小猫咪
     function interactMascot() {
       playBubbleSound(800);
       burstParticles(window.innerWidth - 60, window.innerHeight - 60);
@@ -1983,7 +2030,6 @@
       }, 4500);
     }
 
-    // 主题切换（Day / Sunset / Night）
     function setAppTheme(themeName) {
       playBubbleSound(550);
       document.documentElement.setAttribute('data-theme', themeName);
@@ -1993,13 +2039,11 @@
       localStorage.setItem('bella_read_theme', themeName);
     }
 
-    // 初始化已存主题
     const savedTheme = localStorage.getItem('bella_read_theme');
     if (savedTheme) {
       setAppTheme(savedTheme);
     }
 
-    // 纯原生 Web Audio API 合成治愈气泡水滴音效
     function playBubbleSound(freq = 480) {
       if (!isSoundEnabled) return;
       try {
@@ -2022,12 +2066,9 @@
         gain.connect(audioCtx.destination);
         osc.start();
         osc.stop(audioCtx.currentTime + 0.12);
-      } catch (e) {
-        // audio context ignored
-      }
+      } catch (e) {}
     }
 
-    // 开关音效
     function toggleSoundEffect() {
       isSoundEnabled = !isSoundEnabled;
       const text = document.getElementById('sound-text');
@@ -2042,9 +2083,7 @@
       }
     }
 
-    // 全局点击微粒子飞溅效果
     document.addEventListener('click', (e) => {
-      // 避免干扰输入框
       if (e.target.tagName === 'INPUT') return;
       burstParticles(e.clientX, e.clientY);
     });
@@ -2067,24 +2106,25 @@
       }
     }
 
-    // 3D 鼠标悬停倾斜微交互（Mouse Perspective Tilt）
-    document.querySelectorAll('.book-item-card').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -5;
-        const rotateY = ((x - centerX) / centerX) * 5;
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+    // 绑定 3D 鼠标倾斜
+    function bindCardTilts() {
+      document.querySelectorAll('.book-item-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * -5;
+          const rotateY = ((x - centerX) / centerX) * 5;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+        });
       });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-      });
-    });
+    }
 
-    // 切换大栏目
     function switchCategory(cat, shouldScroll) {
       playBubbleSound(500);
       currentCategory = cat;
@@ -2104,7 +2144,6 @@
       }
     }
 
-    // 快捷分类筛选
     function setFilter(filterVal) {
       playBubbleSound(520);
       currentFilter = filterVal;
@@ -2114,7 +2153,6 @@
       applyFilters();
     }
 
-    // 搜索输入过滤
     function handleSearch(val) {
       searchQuery = val.trim().toLowerCase();
       const clearBtn = document.getElementById('search-clear-btn');
@@ -2173,6 +2211,8 @@
       playBubbleSound(720);
       burstParticles(window.innerWidth / 2, window.innerHeight - 50);
       const links = [
+        "./books/how-an-economy-grows.html",
+        "./books/sophies-world.html",
         "./books/guns-germs-steel.html",
         "./books/被讨厌的勇气_课堂讲义.html",
         "./books/西游记-青春成长课堂.html",
@@ -2184,7 +2224,8 @@
       }, 250);
     }
 
-    // 初始化展示读书笔记
+    // 初始化
+    bindCardTilts();
     switchCategory('books');
   </script>
 </body>

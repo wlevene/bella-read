@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>《小岛经济学》深度精读讲义 | 鱼、美元与财富的真相</title>
+  <meta name="description" content="用一张渔网和一座小岛，看懂储蓄、投资、货币、分工与通胀的底层逻辑。初中生也能轻松掌握的经济学思维大课。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: "Smiley Sans";
+      src: url("../assets/fonts/得意黑/SmileySans-Oblique.woff2") format("woff2"),
+           url("../assets/fonts/得意黑/SmileySans-Oblique.woff") format("woff"),
+           url("../assets/fonts/得意黑/SmileySans-Oblique.ttf") format("truetype");
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #FAF6F0;
+      --card-bg: #FFFFFF;
+      --ink: #342621;
+      --ink-subtle: #6D5C56;
+      --ink-muted: #9E8C85;
+      --accent: #E67E22;
+      --accent-soft: #FDF2E9;
+      --blue: #2980B9;
+      --blue-soft: #EAF2F8;
+      --green: #27AE60;
+      --green-soft: #E8F8F5;
+      --purple: #8E44AD;
+      --purple-soft: #F4ECF7;
+      --gold: #D35400;
+      --border: 2px solid #342621;
+      --shadow: 4px 4px 0px #342621;
+      --shadow-sm: 2px 2px 0px #342621;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --radius-pill: 999px;
+      --font-display: "Smiley Sans", "Nunito", -apple-system, sans-serif;
+      --font-body: "Nunito", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+      --transition: 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      line-height: 1.8;
+      font-size: 16px;
+      padding-bottom: 90px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 顶部导航与标签栏 */
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250, 246, 240, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--ink);
+      padding: 10px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-weight: 800; font-size: 13.5px;
+      background: #FFF; border: var(--border);
+      box-shadow: 2px 2px 0 var(--ink);
+      padding: 6px 14px; border-radius: var(--radius-pill);
+      text-decoration: none; color: var(--ink);
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .back-btn:hover { transform: translateY(-2px); box-shadow: 3px 3px 0 var(--ink); }
+
+    .nav-tabs {
+      display: flex; gap: 6px; flex-wrap: wrap;
+    }
+    .nav-tab-btn {
+      padding: 6px 14px; border-radius: var(--radius-pill);
+      font-size: 13px; font-weight: 800; color: var(--ink-subtle);
+      background: transparent; border: 1.8px solid transparent;
+      cursor: pointer; transition: var(--transition);
+      white-space: nowrap;
+    }
+    .nav-tab-btn:hover { background: #FFF; border-color: var(--ink); }
+    .nav-tab-btn.active {
+      background: var(--accent); color: #FFF;
+      border-color: var(--ink); box-shadow: 2px 2px 0 var(--ink);
+      transform: translateY(-2px);
+    }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 28px 20px; }
+
+    /* 顶部展板 */
+    .hero-box {
+      background: #FFF;
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 32px;
+      margin-bottom: 32px;
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 28px;
+      align-items: center;
+      position: relative;
+    }
+    .book-thumb {
+      width: 160px; height: 215px;
+      border: var(--border); border-radius: 12px;
+      object-fit: cover; box-shadow: 4px 4px 0 var(--ink);
+    }
+    .hero-info h1 {
+      font-family: var(--font-display);
+      font-size: 32px; line-height: 1.3;
+      margin-bottom: 8px; color: var(--ink);
+    }
+    .hero-quote-bar {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 10px 14px; border-radius: 4px 8px 8px 4px;
+      font-size: 14px; font-weight: 700; color: #9C5103;
+      margin: 12px 0 16px;
+    }
+    .hero-meta-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+    .hero-badge {
+      font-size: 12px; font-weight: 800;
+      background: var(--bg); border: 1.5px solid var(--ink);
+      padding: 4px 10px; border-radius: var(--radius-pill);
+    }
+
+    /* 页面分段切换 */
+    .tab-section { display: none; }
+    .tab-section.active { display: block; animation: fadeIn 0.35s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* 内容卡片 */
+    .card {
+      background: #FFF;
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 30px 28px;
+      margin-bottom: 26px;
+    }
+    .card h2 {
+      font-family: var(--font-display);
+      font-size: 24px; color: var(--ink);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .card h3 {
+      font-size: 18px; font-weight: 800;
+      color: var(--accent); margin: 22px 0 10px;
+    }
+    .card h4 {
+      font-size: 16px; font-weight: 800;
+      color: var(--blue); margin: 16px 0 6px;
+    }
+    .card p {
+      color: var(--ink-subtle);
+      margin-bottom: 14px;
+      font-size: 15.5px;
+    }
+
+    /* 角色人物卡 */
+    .character-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px; margin: 18px 0;
+    }
+    .char-card {
+      background: var(--bg); border: 1.8px solid var(--ink);
+      border-radius: var(--radius-sm); padding: 16px;
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+    .char-card strong { display: block; font-size: 16px; color: var(--ink); margin-bottom: 4px; }
+    .char-card span { font-size: 12.5px; color: var(--ink-subtle); line-height: 1.5; display: block; }
+
+    /* 概念高亮框 */
+    .concept-box {
+      background: var(--blue-soft);
+      border: 2px dashed var(--blue);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      font-size: 15px;
+    }
+    .concept-box strong { color: var(--blue); }
+
+    .warning-box {
+      background: #FDEDEC;
+      border: 2px dashed #C0392B;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      font-size: 15px;
+    }
+    .warning-box strong { color: #C0392B; }
+
+    .quote-box {
+      background: var(--purple-soft);
+      border-left: 4px solid var(--purple);
+      padding: 14px 18px;
+      border-radius: 4px 10px 10px 4px;
+      font-size: 14.5px;
+      color: var(--ink);
+      margin: 16px 0;
+      font-weight: 600;
+    }
+
+    /* 对比表格 */
+    .compare-table {
+      width: 100%; border-collapse: collapse; margin: 18px 0;
+      border: 2px solid var(--ink); border-radius: 10px; overflow: hidden;
+    }
+    .compare-table th, .compare-table td {
+      border: 1px solid rgba(52, 38, 33, 0.2); padding: 12px 14px;
+      font-size: 14px; text-align: left;
+    }
+    .compare-table th { background: var(--accent-soft); color: var(--ink); font-weight: 800; }
+    .compare-table tr:nth-child(even) { background: #FAF7F2; }
+
+    /* 互动问答测试 */
+    .quiz-box {
+      background: #FFFDF9; border: 2px solid var(--ink);
+      border-radius: 14px; padding: 22px; margin: 20px 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .quiz-question { font-weight: 800; font-size: 16px; margin-bottom: 12px; color: var(--ink); }
+    .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+    .quiz-opt {
+      padding: 10px 16px; border: 1.8px solid var(--ink);
+      border-radius: 8px; background: #FFF; cursor: pointer;
+      font-size: 14px; font-weight: 700; color: var(--ink);
+      text-align: left; transition: var(--transition);
+    }
+    .quiz-opt:hover { background: var(--accent-soft); }
+    .quiz-opt.correct { background: var(--green-soft); border-color: var(--green); color: var(--green); }
+    .quiz-opt.wrong { background: #FDEDEC; border-color: #E74C3C; color: #E74C3C; }
+    .quiz-feedback { margin-top: 10px; font-size: 13.5px; font-weight: 700; display: none; }
+    .quiz-feedback.show { display: block; }
+
+    /* 折叠面板 */
+    .accordion-header {
+      background: var(--bg); border: 1.8px solid var(--ink);
+      border-radius: 8px; padding: 12px 16px; cursor: pointer;
+      font-weight: 800; font-size: 15px; display: flex;
+      justify-content: space-between; align-items: center;
+      margin-top: 10px; transition: var(--transition);
+    }
+    .accordion-header:hover { background: var(--accent-soft); }
+    .accordion-body {
+      max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease;
+      background: #FFF; border: 1.8px solid var(--ink); border-top: none;
+      border-radius: 0 0 8px 8px; padding: 0 16px; font-size: 14.5px;
+    }
+    .accordion-body.open { max-height: 600px; padding: 14px 16px; margin-bottom: 10px; }
+
+    @media (max-width: 768px) {
+      .hero-box { grid-template-columns: 1fr; text-align: center; }
+      .book-thumb { margin: 0 auto; }
+      .hero-meta-badges { justify-content: center; }
+      .nav-tabs { width: 100%; overflow-x: auto; padding-bottom: 4px; }
+      .card { padding: 22px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 顶部导航与模块切换 -->
+  <nav class="top-nav" aria-label="讲义章节切换">
+    <a href="../index.html" class="back-btn">⬅️ 返回书架</a>
+    <div class="nav-tabs" role="tablist">
+      <button class="nav-tab-btn active" onclick="showSection('mod0')">导读·小岛密码</button>
+      <button class="nav-tab-btn" onclick="showSection('mod1')">01·渔网与资本</button>
+      <button class="nav-tab-btn" onclick="showSection('mod2')">02·储蓄与借贷</button>
+      <button class="nav-tab-btn" onclick="showSection('mod3')">03·分工与贸易</button>
+      <button class="nav-tab-btn" onclick="showSection('mod4')">04·纸币与通胀</button>
+      <button class="nav-tab-btn" onclick="showSection('mod5')">通关·思维工坊</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- 顶部书籍信息展板 -->
+    <header class="hero-box">
+      <img src="../assets/covers/how-an-economy-grows.jpg" alt="小岛经济学精装封面" class="book-thumb">
+      <div class="hero-info">
+        <h1>《小岛经济学：鱼、美元和经济的故事》</h1>
+        <p style="font-size: 14px; color: var(--ink-subtle); font-weight: 700;">[美] 彼得·希夫 & 安德鲁·希夫 著 · 青少年财商与通识启蒙</p>
+        <div class="hero-quote-bar">
+          “经济增长的根本动力只有一个：生产力的提升，而不是盲目的消费刺激。”
+        </div>
+        <div class="hero-meta-badges">
+          <span class="hero-badge">💡 资本与工具起源</span>
+          <span class="hero-badge">🏦 借贷与风险定价</span>
+          <span class="hero-badge">📈 货币与通胀本质</span>
+          <span class="hero-badge">🎯 中学经典必读</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- 模块 0：导读 -->
+    <section class="tab-section active" id="sec-mod0">
+      <article class="card">
+        <h2>🏝️ 导读：为什么初中生要读一点经济学？</h2>
+        <p>很多同学以为“经济学”就是炒股、算账、或者大人的复杂数学模型。但其实，经济学的本质非常纯粹：**它是在研究人类如何通过协作、工具与分工，把原本有限匮乏的资源，变成能让我们活得更丰盛的财富。**</p>
+        
+        <div class="quote-box">
+          “如果你不懂经济学，你就会把‘纸币’当成财富，把‘借债消费’当成富裕，最终在通货膨胀的浪潮中沦为被动承担代价的人。”
+        </div>
+
+        <h3>核心人物档案卡</h3>
+        <p>全书所有的宏大理论，都由一座小岛上的三位原住民拉开帷幕：</p>
+        <div class="character-grid">
+          <div class="char-card">
+            <strong>艾伯（Able）· 创新者</strong>
+            <span>敢于忍饥挨饿一天，发明了小岛历史上第一张渔网。是资本主义企业家精神的代表。</span>
+          </div>
+          <div class="char-card">
+            <strong>贝克（Baker）· 跟随者</strong>
+            <span>勤奋务实，向艾伯借鱼作为口粮，成功织出第二张渔网，开启了小岛商业借贷。</span>
+          </div>
+          <div class="char-card">
+            <strong>查理（Charlie）· 享乐者</strong>
+            <span>保守且好逸恶劳，总希望天上掉馅饼，代表了借贷消费而无生产力的潜在坏账者。</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- 模块 1：第一幕 渔网与资本 -->
+    <section class="tab-section" id="sec-mod1">
+      <article class="card">
+        <h2>🎣 第一幕：第一张渔网 —— 资本与生产力的真正起源</h2>
+        <p>最初的小岛上，三个人每天徒手抓鱼：<strong>每天抓 1 条，吃 1 条，没有任何结余</strong>。没有储蓄，一旦生病受风寒无法抓鱼，就会面临饿死的危险。</p>
+
+        <h3>关键转折：推迟消费与承担风险</h3>
+        <p>艾伯开始思考：如果能造出一个工具，是不是就能一次抓更多鱼？但他面临一个巨大的风险：</p>
+        <ul style="padding-left: 20px; margin-bottom: 14px; color: var(--ink-subtle);">
+          <li>制作渔网需要整整一天时间。</li>
+          <li>如果这一天他不抓鱼，他就必须<strong>自愿挨饿整整一天</strong>。</li>
+          <li>如果编出来的网根本捞不到鱼，那他白白挨饿，甚至会虚弱生病。</li>
+        </ul>
+
+        <div class="concept-box">
+          <strong>💡 什么是经济学意义上的“资本（Capital）”？</strong><br>
+          资本绝不仅仅是银行卡里的数字，而是**“能够显著提升生产效率的工具、设备与技术”**！艾伯忍饿编织的这张渔网，就是小岛历史上的第一笔真正的资本积累。
+        </div>
+
+        <p>有了渔网后，艾伯每天能抓 <strong>2 条鱼</strong>！这意味着什么？他只需要抓一天鱼，就能获得两天的口粮！他腾出了一半的时间，可以去建造遮风挡雨的木屋、做衣服、甚至研发更高级的工具。</p>
+
+        <div class="quiz-box">
+          <div class="quiz-question">🧠 课堂思辨：根据《小岛经济学》，以下哪一项属于真正的“资本积累”？</div>
+          <div class="quiz-options">
+            <button class="quiz-opt" onclick="checkQuiz(this, false, '印刷纸币并没有增加任何能够捕鱼或盖房的工具，只是稀释了物价。')">A. 管理者给每人多印发 100 张兑换券</button>
+            <button class="quiz-opt" onclick="checkQuiz(this, true, '正确！农具提高了土地产出效率，这是实打实的资本！')">B. 农夫省下口粮购买了一台高效率拖拉机</button>
+            <button class="quiz-opt" onclick="checkQuiz(this, false, '借钱大吃大喝属于无生产力的单纯消费，并未创造未来价值。')">C. 借钱买了一套豪华礼服去参加宴会</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+      </article>
+    </section>
+
+    <!-- 模块 2：第二幕 借贷与银行 -->
+    <section class="tab-section" id="sec-mod2">
+      <article class="card">
+        <h2>🏦 第二幕：储蓄、借贷与银行 —— 让闲置资本流动起来</h2>
+        <p>艾伯手里有了多余的鱼（储蓄）。贝克和查理眼红了，也想要渔网，但他们不想挨饿。于是，金融体系开始发芽。</p>
+
+        <h3>借贷的三种可能去向与风险定价</h3>
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>借贷类型</th>
+              <th>借款人动机</th>
+              <th>最终结果</th>
+              <th>对小岛的影响</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>商业贷款（生产性）</strong></td>
+              <td>贝克借 2 条鱼当口粮去织网</td>
+              <td>捕鱼效率翻倍，归还 2 条本金 + 1 条利息</td>
+              <td>🟢 双赢，全岛总财富增加</td>
+            </tr>
+            <tr>
+              <td><strong>消费贷款（非生产性）</strong></td>
+              <td>查理借 2 条鱼举办烤鱼派对</td>
+              <td>鱼吃完了，没有产生任何新工具，无力偿还</td>
+              <td>🔴 坏账，储蓄被挥霍浪费</td>
+            </tr>
+            <tr>
+              <td><strong>高风险创新贷款</strong></td>
+              <td>达菲借鱼去勘探外岛铜矿</td>
+              <td>成功则带来新金属，失败则血本无归</td>
+              <td>🟡 风险与超额收益并存</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="concept-box">
+          <strong>💡 利率是如何自发形成的？</strong><br>
+          当小岛丰收、金库里存鱼堆积如山时，借贷供给充足，利率就会自发走低，鼓励大家借鱼投资；当遇到风暴、存鱼见底时，利率就会飙升，提醒大家克制借贷、优先储蓄。**利率是市场的体温计，人为强行压低利率只会引发发烧与误判。**
+        </div>
+      </article>
+    </section>
+
+    <!-- 模块 3：第三幕 分工与贸易 -->
+    <section class="tab-section" id="sec-mod3">
+      <article class="card">
+        <h2>🌴 第三幕：分工、专业化与跨岛贸易 —— 繁荣的秘密</h2>
+        <p>当大家捕鱼都不成问题后，小岛迎来了“社会大分工”：</p>
+        <ul style="padding-left: 20px; margin-bottom: 14px; color: var(--ink-subtle);">
+          <li>擅长抓鱼的人专职捕鱼，发明了巨大的“水下巨兽捕鱼器”。</li>
+          <li>动手能力强的人专职做独木舟、制造冲浪板。</li>
+          <li>有厨艺的人开办了烤鱼餐馆，有医疗天分的人培育草药。</li>
+        </ul>
+
+        <div class="quote-box">
+          “每个人做自己最擅长的事，然后通过市场自由交换。这使得所有人付出的劳动更少，享受到的物资反而更多！”
+        </div>
+
+        <h3>国际贸易：与外岛的互通有无</h3>
+        <p>邻近的“中鱼岛”盛产椰子，但附近海域鱼少；我们的小岛鱼多，但缺椰子。通过自由贸易，我们用吃不完的鱼干换来香甜的椰汁。贸易从来不是零和博弈的你死我活，而是互利共赢的价值倍增。</p>
+      </article>
+    </section>
+
+    <!-- 模块 4：第四幕 纸币与通胀 -->
+    <section class="tab-section" id="sec-mod4">
+      <article class="card">
+        <h2>💸 第四幕：兑换券、政治私心与通货膨胀泡沫</h2>
+        <p>天天背着几十斤生鱼上街买东西既沉重又容易变质，于是小岛金库发行了<strong>“存鱼兑换券”（纸币的雏形）</strong>：凭券随时能在金库领出一条真鱼。</p>
+
+        <div class="warning-box">
+          <strong>⚠️ 灾难是如何一步步降临的？</strong><br>
+          后来的小岛管委会为了修建豪华办公楼、讨好选民发放免费福利，发现自己手里的鱼不够用了。于是他们想出了一个“绝妙”的办法：<strong>在没有存入新鱼的情况下，开动印刷机多印了 1000 张兑换券！</strong>
+        </div>
+
+        <h3>通货膨胀的底层真相公式：</h3>
+        <p>最初：全岛 100 条真鱼流通 100 张券 ➔ <strong>1 张券 = 1 条鱼</strong>（物价平稳）<br>
+        后来：依然只有 100 条真鱼，却印了 200 张券 ➔ <strong>2 张券才能换 1 条鱼</strong>（物价翻倍！）</p>
+
+        <p>官员们把物价上涨怪罪为“渔夫贪婪”，但真相只有一个：**是管理者人为超发货币，稀释了每个普通人手里的储蓄购买力！通胀本质上是一种隐形的隐蔽税收。**</p>
+      </article>
+    </section>
+
+    <!-- 模块 5：实战与通关思维工坊 -->
+    <section class="tab-section" id="sec-mod5">
+      <article class="card">
+        <h2>🛠️ 少年思维工坊：写在手账上的 4 个硬核经济学模型</h2>
+        
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>模型 1：生产 vs 消费 —— 财富的真正源泉</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>消费只是享受财富的过程，本身并不创造财富。要想生活水平提高，唯一的途径是提高生产能力。学习新技能、打磨底层认知，就是在为你的人生编织更高效的“渔网”。</p>
+        </div>
+
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>模型 2：机会成本（Opportunity Cost）</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>当你选择用周末 2 小时刷短视频，你失去的不只是时间，还有这 2 小时用来读透一本好书、掌握一个算法模型的潜在复利收益。任何选择背后都有隐形代价。</p>
+        </div>
+
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>模型 3：自愿交换与看不见的手</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>在自由市场中，你想赚到更多的鱼，就必须先为别人提供别人真心需要的优质产品或服务。利他与创造价值，才是商业世界最大的利己。</p>
+        </div>
+
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>模型 4：警惕免费的午餐与债务幻觉</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>天下没有凭空出现的繁荣。如果一个提议听起来“既能少干活、又能多发钱”，那它背后一定隐藏着通胀税或转嫁给未来的债务陷阱。</p>
+        </div>
+
+        <h3 style="margin-top: 30px;">🎯 少年财商实战检阅（2 题过关测试）</h3>
+        
+        <div class="quiz-box">
+          <div class="quiz-question">1. 初中生小明拿到了 1000 元压岁钱，以下哪种做法最符合“艾伯投资渔网”的逻辑？</div>
+          <div class="quiz-options">
+            <button class="quiz-opt" onclick="checkQuiz(this, false, '这属于即时消费，玩具会折旧，并没有增强未来的生产能力。')">A. 立即买下最新款限量版游戏手办</button>
+            <button class="quiz-opt" onclick="checkQuiz(this, true, '棒极了！投资于能持续提升自身技能与视野的工具，是复利最高的资本积累！')">B. 购买优质编程/英文研读课程与工具书，打磨硬核技能</button>
+            <button class="quiz-opt" onclick="checkQuiz(this, false, '请客只能带来短暂的虚荣，无法持续带来生产力增长。')">C. 请全班同学喝奶茶以换取好人缘</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-box">
+          <div class="quiz-question">2. 当超市里的牛奶和面包价格普遍上涨时，最根本的原因通常是：</div>
+          <div class="quiz-options">
+            <button class="quiz-opt" onclick="checkQuiz(this, false, '个别农夫贪婪无法左右整个社会的普遍物价，竞争会让价格回归均衡。')">A. 所有的奶农和面包师傅突然联合起来心变黑了</button>
+            <button class="quiz-opt" onclick="checkQuiz(this, true, '正确！流通中的货币增长速度远超商品产出增长，使得钱贬值了。')">B. 货币供应量的扩张速度超过了商品实际生产力的增长</button>
+            <button class="quiz-opt" onclick="checkQuiz(this, false, '牛和麦子并没有突然减少，通常是货币端发生了扩张。')">C. 母牛突然集体罢工不产奶了</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <script>
+    function showSection(modId) {
+      document.querySelectorAll('.tab-section').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.nav-tab-btn').forEach(btn => btn.classList.remove('active'));
+
+      const target = document.getElementById('sec-' + modId);
+      if (target) target.classList.add('active');
+
+      const activeBtn = Array.from(document.querySelectorAll('.nav-tab-btn')).find(b => b.getAttribute('onclick').includes(modId));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function checkQuiz(btn, isCorrect, explanation) {
+      const container = btn.closest('.quiz-box');
+      const options = container.querySelectorAll('.quiz-opt');
+      const feedback = container.querySelector('.quiz-feedback');
+
+      options.forEach(opt => {
+        opt.disabled = true;
+        opt.style.cursor = 'default';
+      });
+
+      if (isCorrect) {
+        btn.classList.add('correct');
+        feedback.innerHTML = '🎉 ' + explanation;
+        feedback.style.color = 'var(--green)';
+      } else {
+        btn.classList.add('wrong');
+        feedback.innerHTML = '❌ ' + explanation;
+        feedback.style.color = '#C0392B';
+      }
+      feedback.classList.add('show');
+    }
+
+    function toggleAccordion(header) {
+      const body = header.nextElementSibling;
+      const isOpen = body.classList.contains('open');
+      body.classList.toggle('open', !isOpen);
+      header.querySelector('span:last-child').innerText = isOpen ? '▼' : '▲';
+    }
+  </script>
+</body>
+</html>

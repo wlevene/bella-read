@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>《苏菲的世界》深度精读讲义 | 一封信开启的西方哲学思辨奇旅</title>
+  <meta name="description" content="在成长关键期读懂苏格拉底、柏拉图、亚里士多德、笛卡尔与康德。献给青少年的批判性思维与独立人格觉醒之书。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: "Smiley Sans";
+      src: url("../assets/fonts/得意黑/SmileySans-Oblique.woff2") format("woff2"),
+           url("../assets/fonts/得意黑/SmileySans-Oblique.woff") format("woff"),
+           url("../assets/fonts/得意黑/SmileySans-Oblique.ttf") format("truetype");
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #F8F5FB;
+      --card-bg: #FFFFFF;
+      --ink: #2E223D;
+      --ink-subtle: #68577D;
+      --ink-muted: #9A89B0;
+      --accent: #8E44AD;
+      --accent-soft: #F4ECF7;
+      --blue: #2980B9;
+      --blue-soft: #EAF2F8;
+      --gold: #D35400;
+      --gold-soft: #FEF9E7;
+      --green: #27AE60;
+      --green-soft: #E8F8F5;
+      --pink: #E84393;
+      --pink-soft: #FDEDF4;
+      --border: 2px solid #2E223D;
+      --shadow: 4px 4px 0px #2E223D;
+      --shadow-sm: 2px 2px 0px #2E223D;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --radius-pill: 999px;
+      --font-display: "Smiley Sans", "Nunito", -apple-system, sans-serif;
+      --font-body: "Nunito", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+      --transition: 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      line-height: 1.8;
+      font-size: 16px;
+      padding-bottom: 90px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 顶部导航与标签栏 */
+    .top-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(248, 245, 251, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--ink);
+      padding: 10px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-weight: 800; font-size: 13.5px;
+      background: #FFF; border: var(--border);
+      box-shadow: 2px 2px 0 var(--ink);
+      padding: 6px 14px; border-radius: var(--radius-pill);
+      text-decoration: none; color: var(--ink);
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .back-btn:hover { transform: translateY(-2px); box-shadow: 3px 3px 0 var(--ink); }
+
+    .nav-tabs {
+      display: flex; gap: 6px; flex-wrap: wrap;
+    }
+    .nav-tab-btn {
+      padding: 6px 14px; border-radius: var(--radius-pill);
+      font-size: 13px; font-weight: 800; color: var(--ink-subtle);
+      background: transparent; border: 1.8px solid transparent;
+      cursor: pointer; transition: var(--transition);
+      white-space: nowrap;
+    }
+    .nav-tab-btn:hover { background: #FFF; border-color: var(--ink); }
+    .nav-tab-btn.active {
+      background: var(--accent); color: #FFF;
+      border-color: var(--ink); box-shadow: 2px 2px 0 var(--ink);
+      transform: translateY(-2px);
+    }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 28px 20px; }
+
+    /* 顶部展板 */
+    .hero-box {
+      background: #FFF;
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 32px;
+      margin-bottom: 32px;
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 28px;
+      align-items: center;
+      position: relative;
+    }
+    .book-thumb {
+      width: 160px; height: 215px;
+      border: var(--border); border-radius: 12px;
+      object-fit: cover; box-shadow: 4px 4px 0 var(--ink);
+      background: #FFF;
+    }
+    .hero-info h1 {
+      font-family: var(--font-display);
+      font-size: 32px; line-height: 1.3;
+      margin-bottom: 8px; color: var(--ink);
+    }
+    .hero-quote-bar {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 10px 14px; border-radius: 4px 8px 8px 4px;
+      font-size: 14px; font-weight: 700; color: var(--accent);
+      margin: 12px 0 16px;
+    }
+    .hero-meta-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+    .hero-badge {
+      font-size: 12px; font-weight: 800;
+      background: var(--bg); border: 1.5px solid var(--ink);
+      padding: 4px 10px; border-radius: var(--radius-pill);
+    }
+
+    /* 页面分段切换 */
+    .tab-section { display: none; }
+    .tab-section.active { display: block; animation: fadeIn 0.35s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* 内容卡片 */
+    .card {
+      background: #FFF;
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 30px 28px;
+      margin-bottom: 26px;
+    }
+    .card h2 {
+      font-family: var(--font-display);
+      font-size: 24px; color: var(--ink);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .card h3 {
+      font-size: 18px; font-weight: 800;
+      color: var(--accent); margin: 22px 0 10px;
+    }
+    .card h4 {
+      font-size: 16px; font-weight: 800;
+      color: var(--blue); margin: 16px 0 6px;
+    }
+    .card p {
+      color: var(--ink-subtle);
+      margin-bottom: 14px;
+      font-size: 15.5px;
+    }
+
+    /* 哲学家名言与高亮框 */
+    .quote-box {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: 4px 10px 10px 4px;
+      font-size: 14.5px;
+      color: var(--ink);
+      margin: 16px 0;
+      font-weight: 600;
+    }
+    .concept-box {
+      background: var(--gold-soft);
+      border: 2px dashed #E67E22;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      font-size: 15px;
+    }
+    .concept-box strong { color: #D35400; }
+
+    /* 哲学家思想卡片网格 */
+    .philosopher-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px; margin: 20px 0;
+    }
+    .philo-card {
+      background: var(--bg); border: 1.8px solid var(--ink);
+      border-radius: var(--radius-sm); padding: 16px;
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+    .philo-card strong { display: block; font-size: 16px; color: var(--accent); margin-bottom: 4px; }
+    .philo-card span { font-size: 12.5px; color: var(--ink-subtle); line-height: 1.5; display: block; }
+
+    /* 互动问答测试 */
+    .quiz-box {
+      background: #FFFDFE; border: 2px solid var(--ink);
+      border-radius: 14px; padding: 22px; margin: 20px 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .quiz-question { font-weight: 800; font-size: 16px; margin-bottom: 12px; color: var(--ink); }
+    .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+    .quiz-opt {
+      padding: 10px 16px; border: 1.8px solid var(--ink);
+      border-radius: 8px; background: #FFF; cursor: pointer;
+      font-size: 14px; font-weight: 700; color: var(--ink);
+      text-align: left; transition: var(--transition);
+    }
+    .quiz-opt:hover { background: var(--accent-soft); }
+    .quiz-opt.correct { background: var(--green-soft); border-color: var(--green); color: var(--green); }
+    .quiz-opt.wrong { background: #FDEDEC; border-color: #E74C3C; color: #E74C3C; }
+    .quiz-feedback { margin-top: 10px; font-size: 13.5px; font-weight: 700; display: none; }
+    .quiz-feedback.show { display: block; }
+
+    /* 折叠面板 */
+    .accordion-header {
+      background: var(--bg); border: 1.8px solid var(--ink);
+      border-radius: 8px; padding: 12px 16px; cursor: pointer;
+      font-weight: 800; font-size: 15px; display: flex;
+      justify-content: space-between; align-items: center;
+      margin-top: 10px; transition: var(--transition);
+    }
+    .accordion-header:hover { background: var(--accent-soft); }
+    .accordion-body {
+      max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease;
+      background: #FFF; border: 1.8px solid var(--ink); border-top: none;
+      border-radius: 0 0 8px 8px; padding: 0 16px; font-size: 14.5px;
+    }
+    .accordion-body.open { max-height: 600px; padding: 14px 16px; margin-bottom: 10px; }
+
+    @media (max-width: 768px) {
+      .hero-box { grid-template-columns: 1fr; text-align: center; }
+      .book-thumb { margin: 0 auto; }
+      .hero-meta-badges { justify-content: center; }
+      .nav-tabs { width: 100%; overflow-x: auto; padding-bottom: 4px; }
+      .card { padding: 22px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 顶部导航与模块切换 -->
+  <nav class="top-nav" aria-label="讲义章节切换">
+    <a href="../index.html" class="back-btn">⬅️ 返回书架</a>
+    <div class="nav-tabs" role="tablist">
+      <button class="nav-tab-btn active" onclick="showSection('mod0')">导读·神秘信件</button>
+      <button class="nav-tab-btn" onclick="showSection('mod1')">01·自然派与原子</button>
+      <button class="nav-tab-btn" onclick="showSection('mod2')">02·雅典三巨头</button>
+      <button class="nav-tab-btn" onclick="showSection('mod3')">03·理性与经验</button>
+      <button class="nav-tab-btn" onclick="showSection('mod4')">04·存在与觉醒</button>
+      <button class="nav-tab-btn" onclick="showSection('mod5')">通关·思辨工坊</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- 顶部书籍信息展板 -->
+    <header class="hero-box">
+      <img src="../assets/covers/sophies-world.svg" alt="苏菲的世界专属绘本封面" class="book-thumb">
+      <div class="hero-info">
+        <h1>《苏菲的世界》（Sophie's World）</h1>
+        <p style="font-size: 14px; color: var(--ink-subtle); font-weight: 700;">[挪威] 乔斯坦·贾德 著 · 西方哲学史探险小说</p>
+        <div class="hero-quote-bar">
+          “哲学唯一的条件，就是保持对世界的好奇心，永远不要把周遭的一切视为理所当然。”
+        </div>
+        <div class="hero-meta-badges">
+          <span class="hero-badge">🌌 批判性独立思考</span>
+          <span class="hero-badge">🏛️ 柏拉图洞穴寓言</span>
+          <span class="hero-badge">💭 笛卡尔怀疑论</span>
+          <span class="hero-badge">🎯 中学生思维奠基</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- 模块 0：导读 -->
+    <section class="tab-section active" id="sec-mod0">
+      <article class="card">
+        <h2>✉️ 导读：魔术师的大白兔与信箱里的秘密</h2>
+        <p>14 岁的挪威少女苏菲，原本过着平凡无奇的初中日常。直到某天下学，她在自家的信箱里翻出了一封没有邮票的白色信封，里面只有薄薄的一张纸条，上面写着三个直击灵魂的字：</p>
+        
+        <div class="quote-box" style="text-align: center; font-size: 18px; color: var(--accent);">
+          “你 是 谁 ？”
+        </div>
+
+        <p>紧接着第二封信问：<strong>“世界从何而来？”</strong></p>
+
+        <h3>魔术师礼帽与大白兔的绝妙隐喻</h3>
+        <p>哲学导师艾伯特告诉苏菲：整个宇宙就像一位魔术师从虚无的礼帽中拽出的一只<strong>巨大的白兔</strong>。我们所有的生命都生活在这只白兔的皮毛上。</p>
+        
+        <div class="concept-box">
+          <strong>🐰 普通人 vs 哲学家：</strong><br>
+          绝大部分成年人生活得太久了，习惯了周遭的琐碎，逐渐钻进了白兔皮毛的最深处，舒服地睡起大觉，对世界不再感到惊奇。<br>
+          <strong>而哲学家，就是那些紧紧抓住白兔皮毛最顶端、探着头拼命想要看清魔术师是谁的孩子！</strong>
+        </div>
+      </article>
+    </section>
+
+    <!-- 模块 1：自然派与原子论 -->
+    <section class="tab-section" id="sec-mod1">
+      <article class="card">
+        <h2>🌊 01. 自然派哲学：世界由什么构成？</h2>
+        <p>在神话时代，古人把打雷归咎于托尔发怒，把冬天归咎于冥王抢走春神。直到公元前 6 世纪，古希腊的一群哲学家站了出来，他们拒绝用神话编故事，而是**试图从大自然本身寻找一切变化的源头**。</p>
+
+        <div class="philosopher-grid">
+          <div class="philo-card">
+            <strong>泰勒斯（Thales）· 水是本原</strong>
+            <span>观察到水能结冰、化气、滋养万物生命，是人类历史上第一个试图用自然现象解释自然的人。</span>
+          </div>
+          <div class="philo-card">
+            <strong>赫拉克利特 · 万物皆流</strong>
+            <span>“人不能两次踏进同一条河流。”世界永远处于恒常的变化与矛盾转化之中。</span>
+          </div>
+          <div class="philo-card">
+            <strong>德谟克利特 · 不可分割的原子</strong>
+            <span>天才地提出：万物都是由微小的、不可分割的“原子”（Atom）拼接而成的，就像宇宙中永不磨损的乐高积木！</span>
+          </div>
+        </div>
+
+        <div class="concept-box">
+          <strong>💡 乐高积木的现代启示：</strong><br>
+          德谟克利特不用显微镜，仅凭纯粹的理性思考就推导出了原子的存在：为什么一块橡皮泥捏成小狗后打碎，还能重新捏成小猫？因为最底层的基本单元本身并没有改变！
+        </div>
+      </article>
+    </section>
+
+    <!-- 模块 2：雅典三巨头 -->
+    <section class="tab-section" id="sec-mod2">
+      <article class="card">
+        <h2>🏛️ 02. 雅典三巨头：苏格拉底、柏拉图与亚里士多德</h2>
+        
+        <h3>1. 苏格拉底（Socrates）：“认识你自己”</h3>
+        <p>苏格拉底把自己比作一只<strong>雅典城邦的“牛虻”</strong>——专门叮咬那些自命不凡、自以为懂一切的达官显贵。他从不直接传授所谓的标准答案，而是像他母亲（产婆）一样，通过连续的发问引导对方自己生出真理（产婆术）。</p>
+        <div class="quote-box">
+          “我唯一知道的，就是我一无所知。” —— 苏格拉底
+        </div>
+
+        <h3>2. 柏拉图（Plato）：洞穴寓言（Cave Allegory）</h3>
+        <p>一群囚徒从小被锁在漆黑的洞穴里，只能看着石壁上跳动的投影。他们把影子当成整个世界。直到有一个人挣脱锁链走出洞穴，看到了灿烂的太阳与真实的星空。</p>
+        <div class="concept-box">
+          <strong>💡 破除认知洞穴：</strong><br>
+          社交媒体上的潮流八卦、别人的偏见评判，往往只是洞壁上的虚妄投影。真正的学习与思考，就是艰难爬出洞穴、直视真理阳光的历练。
+        </div>
+
+        <h3>3. 亚里士多德（Aristotle）：百科全书与黄金中庸</h3>
+        <p>亚里士多德热爱观察自然，建立了生物分类学与逻辑学。他提出了**“黄金中庸之道”**：勇敢不是鲁莽（过头），也不是怯懦（不足），而是介于两者之间的恰到好处。</p>
+      </article>
+    </section>
+
+    <!-- 模块 3：理性与经验的碰撞 -->
+    <section class="tab-section" id="sec-mod3">
+      <article class="card">
+        <h2>🧭 03. 理性派 vs 经验派：我们如何确信知识？</h2>
+
+        <h3>笛卡尔（Descartes）：普遍怀疑与“我思故我在”</h3>
+        <p>笛卡尔做了一个极致的思维实验：如果眼睛会看花、耳朵会听错、甚至整个世界都可能是一个恶魔制造的虚拟梦境，那到底有没有任何事物是绝对无可置疑的？</p>
+        <div class="concept-box">
+          <strong>💡 “Cogito, ergo sum”（我思故我在）：</strong><br>
+          “我可以怀疑眼前的一切，但我绝对无法怀疑‘我正在怀疑’这件事情本身！” 只要你在思考，你的存在就坚如磐石。
+        </div>
+
+        <h3>洛克（Locke）与休谟（Hume）：心灵是一块白板</h3>
+        <p>经验派认为，婴儿出生时头脑就像一块纯净的**白板（Tabula Rasa）**。所有的知识都来自于我们后天的感知与生活经验。</p>
+
+        <h3>康德（Kant）：理性的调和者与绝对命令</h3>
+        <p>康德指出：我们看待世界，就像戴着一副先天的“有色眼镜”（时间与空间感知框架）。同时，康德提出了震撼的道德法则：</p>
+        <div class="quote-box">
+          “你要永远把人当做目的本身，而决不要仅仅当做达成某个目的的工具手段。”
+        </div>
+      </article>
+    </section>
+
+    <!-- 模块 4：现代思潮与存在主义 -->
+    <section class="tab-section" id="sec-mod4">
+      <article class="card">
+        <h2>🌌 04. 存在主义与小说的高潮解谜</h2>
+        <p>随着剧情推进，苏菲惊骇地发现：自己竟然只是挪威联合国观察员少校为女儿**席德（Hilde）**写的一本哲学小说里的虚构角色！</p>
+
+        <h3>萨特（Sartre）的存在主义：存在先于本质</h3>
+        <div class="concept-box">
+          <strong>💡 一把剪刀 vs 一个活生生的人：</strong><br>
+          剪刀在被制造前，它的本质（用来剪东西）就已经被预设好了。<br>
+          <strong>但人不同！人首先存在在这个世界上，你未来成为什么样的人、赋予生命什么意义，完全取决于你当下的自主选择与勇敢行动！</strong>
+        </div>
+
+        <p>即便苏菲发现自己身处虚构的故事中，她也没有自暴自弃，而是和哲学导师联手策划了一场“逃离作者设定、奔向真实世界”的精神冒险！</p>
+      </article>
+    </section>
+
+    <!-- 模块 5：思辨工坊 -->
+    <section class="tab-section" id="sec-mod5">
+      <article class="card">
+        <h2>🛠️ 少年思辨工坊：写在手账上的 4 个批判性思维锦囊</h2>
+        
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>锦囊 1：苏格拉底式追问（Socratic Questioning）</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>当听到一个看似不容置疑的断言时，先问自己三个问题：① 这个结论的前提是什么？② 有没有相反的事实案例？③ 如果大家都这样做，长期后果会怎样？</p>
+        </div>
+
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>锦囊 2：跳出白兔毛的温床</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>永远对习以为常的事物保留一份惊奇。为什么学校要这样排课？为什么人们要这样打招呼？多问几个“为什么”，你的大脑就不会过早老化。</p>
+        </div>
+
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>锦囊 3：康德的道德律令</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>在做选择时问自己：“如果我的这个行为变成全人类共同遵守的法则，世界会变得更好还是更糟？”</p>
+        </div>
+
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>锦囊 4：拒绝被贴标签（存在先于本质）</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>不要让别人给你的评分、星座、性格标签定义你的上限。唯有你每一次面对选择时的具体行动，在真正雕刻你的人生。</p>
+        </div>
+
+        <h3 style="margin-top: 30px;">🎯 少年哲学思辨检阅（2 题过关测试）</h3>
+
+        <div class="quiz-box">
+          <div class="quiz-question">1. 柏拉图的“洞穴寓言”核心想告诉我们什么？</div>
+          <div class="quiz-options">
+            <button class="quiz-opt" onclick="checkQuiz(this, false, '柏拉图不是在讲原始人的生活，而是在讲人类认识真理的哲学过程。')">A. 原始人生活在洞穴里非常辛苦，应该多盖砖房</button>
+            <button class="quiz-opt" onclick="checkQuiz(this, true, '完全正确！我们未经审视接受的偏见与流行风潮往往只是虚幻投影，真正的真理需要独立勇敢地去探求。')">B. 我们日常看到的往往只是偏见与投影，需通过理性和独立思考走出洞穴直面真理</button>
+            <button class="quiz-opt" onclick="checkQuiz(this, false, '这只是寓言里的细节，并非哲学主旨。')">C. 阳光太刺眼容易刺伤眼睛，所以最好永远待在洞里不出来</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-box">
+          <div class="quiz-question">2. 笛卡尔说“我思故我在”，他得出这句结论的出发点是：</div>
+          <div class="quiz-options">
+            <button class="quiz-opt" onclick="checkQuiz(this, true, '太棒了！只要我在怀疑与思考，我的思考主体就是确凿无疑的！')">A. 即使能怀疑一切感官与梦境，但我无法怀疑“我正在怀疑”本身</button>
+            <button class="quiz-opt" onclick="checkQuiz(this, false, '这过于简单粗暴，笛卡尔是通过严谨的普遍怀疑逻辑推导出来的。')">B. 只要我每天不停地做数学题，我就可以长生不老</button>
+            <button class="quiz-opt" onclick="checkQuiz(this, false, '笛卡尔并不是自恋，而是寻找哲学的阿基米德支点。')">C. 证明自己比周围所有人都聪明</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <script>
+    function showSection(modId) {
+      document.querySelectorAll('.tab-section').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.nav-tab-btn').forEach(btn => btn.classList.remove('active'));
+
+      const target = document.getElementById('sec-' + modId);
+      if (target) target.classList.add('active');
+
+      const activeBtn = Array.from(document.querySelectorAll('.nav-tab-btn')).find(b => b.getAttribute('onclick').includes(modId));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function checkQuiz(btn, isCorrect, explanation) {
+      const container = btn.closest('.quiz-box');
+      const options = container.querySelectorAll('.quiz-opt');
+      const feedback = container.querySelector('.quiz-feedback');
+
+      options.forEach(opt => {
+        opt.disabled = true;
+        opt.style.cursor = 'default';
+      });
+
+      if (isCorrect) {
+        btn.classList.add('correct');
+        feedback.innerHTML = '🎉 ' + explanation;
+        feedback.style.color = 'var(--green)';
+      } else {
+        btn.classList.add('wrong');
+        feedback.innerHTML = '❌ ' + explanation;
+        feedback.style.color = '#C0392B';
+      }
+      feedback.classList.add('show');
+    }
+
+    function toggleAccordion(header) {
+      const body = header.nextElementSibling;
+      const isOpen = body.classList.contains('open');
+      body.classList.toggle('open', !isOpen);
+      header.querySelector('span:last-child').innerText = isOpen ? '▼' : '▲';
+    }
+  </script>
+</body>
+</html>
