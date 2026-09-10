@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="day">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,37 +18,41 @@
       font-display: swap;
     }
 
+    /* ==========================================================================
+       三套卡通主题色调体系：日间奶油 / 暮色暖茶 / 梦幻星夜
+       ========================================================================== */
     :root {
-      /* 卡通调色盘：奶油基底 + 温暖摩卡边框 + 糖果点缀 */
+      /* 晴日奶油色系 (Day) */
       --bg-cream: #FDFBF7;
-      --bg-warm: #FFF6EB;
-      --card-bg: #FFFFFF;
-      --ink-dark: #372823;
-      --ink-subtle: #7A6963;
-      --ink-muted: #A89891;
+      --bg-warm: #FFF5E8;
+      --bg-card: #FFFFFF;
+      --ink-dark: #352621;
+      --ink-subtle: #76635D;
+      --ink-muted: #A3928B;
+      --border-line: #352621;
+      --card-shadow-color: #352621;
+      --washi-opacity: 0.85;
 
-      /* 萌系主题色 */
-      --color-strawberry: #FF6B8B;
+      /* 糖果可爱点缀色 */
+      --color-strawberry: #FF6584;
       --color-strawberry-soft: #FFEAF0;
       --color-peach: #FFA07A;
-      --color-peach-soft: #FFF2EC;
-      --color-butter: #FFD152;
-      --color-butter-soft: #FFF8E1;
-      --color-matcha: #4EBA87;
-      --color-matcha-soft: #EAF8F1;
+      --color-peach-soft: #FFF1EB;
+      --color-butter: #FFCE47;
+      --color-butter-soft: #FFF7DD;
+      --color-matcha: #43B581;
+      --color-matcha-soft: #E7F7EF;
       --color-sky: #5B93FF;
       --color-sky-soft: #EDF3FF;
-      --color-lavender: #9D7BFF;
-      --color-lavender-soft: #F4EFFF;
+      --color-lavender: #9C79FF;
+      --color-lavender-soft: #F3EEFF;
 
-      /* 卡通漫画线条与立体阴影 */
-      --border-cartoon: 2.5px solid var(--ink-dark);
-      --border-light: 2px solid rgba(55, 40, 35, 0.14);
-      --shadow-cartoon: 4px 5px 0px var(--ink-dark);
-      --shadow-cartoon-sm: 2px 3px 0px var(--ink-dark);
-      --shadow-cartoon-lg: 6px 8px 0px var(--ink-dark);
-      --shadow-cartoon-hover: 6px 9px 0px var(--ink-dark);
-      --shadow-soft: 0 14px 32px rgba(118, 86, 73, 0.08);
+      /* 漫画线稿与立体阴影 */
+      --border-cartoon: 2.5px solid var(--border-line);
+      --shadow-cartoon: 4px 5px 0px var(--card-shadow-color);
+      --shadow-cartoon-sm: 2.5px 3px 0px var(--card-shadow-color);
+      --shadow-cartoon-lg: 6px 8px 0px var(--card-shadow-color);
+      --shadow-cartoon-hover: 7px 10px 0px var(--card-shadow-color);
 
       /* 字体与圆角 */
       --font-display: "Smiley Sans", "Nunito", "Quicksand", "PingFang SC", sans-serif;
@@ -61,6 +65,46 @@
       /* 弹性动效 */
       --bounce-timing: cubic-bezier(0.34, 1.56, 0.64, 1);
       --transition-smooth: all 0.28s var(--bounce-timing);
+    }
+
+    /* 暮色暖茶色系 (Sunset) */
+    [data-theme="sunset"] {
+      --bg-cream: #FFF1E6;
+      --bg-warm: #FFE4D6;
+      --bg-card: #FFFAF5;
+      --ink-dark: #3D231E;
+      --ink-subtle: #7F5850;
+      --ink-muted: #A87E76;
+      --border-line: #3D231E;
+      --card-shadow-color: #3D231E;
+      --color-strawberry: #FF5A79;
+      --color-butter: #FFB347;
+      --color-matcha: #4CAE78;
+    }
+
+    /* 梦幻星空夜读色系 (Night) */
+    [data-theme="night"] {
+      --bg-cream: #1C1829;
+      --bg-warm: #262038;
+      --bg-card: #27213C;
+      --ink-dark: #F6F3FF;
+      --ink-subtle: #C3BAE2;
+      --ink-muted: #8E84B2;
+      --border-line: #F6F3FF;
+      --card-shadow-color: #9D7BFF;
+      --color-strawberry: #FF7096;
+      --color-strawberry-soft: #3B2435;
+      --color-peach: #FF9E80;
+      --color-peach-soft: #38252C;
+      --color-butter: #FFD45A;
+      --color-butter-soft: #383125;
+      --color-matcha: #52D197;
+      --color-matcha-soft: #1E382E;
+      --color-sky: #70A5FF;
+      --color-sky-soft: #202D45;
+      --color-lavender: #B599FF;
+      --color-lavender-soft: #31274F;
+      --washi-opacity: 0.65;
     }
 
     * {
@@ -76,9 +120,9 @@
     body {
       background-color: var(--bg-cream);
       background-image:
-        radial-gradient(circle at 15px 15px, rgba(160, 130, 115, 0.09) 2.5px, transparent 0),
-        radial-gradient(circle at 75px 75px, rgba(255, 175, 195, 0.12) 3px, transparent 0),
-        linear-gradient(180deg, #FFFDF9 0%, #FFF8F0 100%);
+        radial-gradient(circle at 18px 18px, rgba(160, 130, 115, 0.08) 2.5px, transparent 0),
+        radial-gradient(circle at 78px 78px, rgba(255, 175, 195, 0.12) 3px, transparent 0),
+        linear-gradient(180deg, var(--bg-cream) 0%, var(--bg-warm) 100%);
       background-size: 60px 60px, 120px 120px, 100% 100%;
       color: var(--ink-dark);
       font-family: var(--font-body);
@@ -88,9 +132,10 @@
       flex-direction: column;
       overflow-x: hidden;
       position: relative;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
 
-    /* 顶部彩旗飘带装饰 */
+    /* 顶部彩旗飘带 */
     .top-bunting {
       position: absolute;
       top: 0;
@@ -110,7 +155,7 @@
         var(--color-lavender) 80px,
         var(--color-lavender) 100px
       );
-      opacity: 0.85;
+      opacity: 0.88;
       z-index: 10;
     }
 
@@ -132,23 +177,22 @@
       top: -60px;
       left: 20px;
       background: var(--ink-dark);
-      color: #fff;
+      color: var(--bg-cream);
       padding: 10px 18px;
       border-radius: var(--radius-pill);
       font-size: 13px;
       z-index: 100;
       transition: top 0.2s ease;
-      font-weight: 700;
+      font-weight: 800;
     }
     .skip-link:focus {
       top: 24px;
     }
 
-    /* 主容器 */
     .container {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 48px 24px 120px;
+      padding: 40px 24px 130px;
       flex: 1;
       width: 100%;
       position: relative;
@@ -156,24 +200,82 @@
     }
 
     /* ==========================================================================
-       HERO 区块（温馨卡通画框 + 介绍）
+       顶部控制栏（主题切换 + 音效开关）
+       ========================================================================== */
+    .top-utility-bar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .theme-switch-group {
+      background: var(--bg-card);
+      border: var(--border-cartoon);
+      box-shadow: var(--shadow-cartoon-sm);
+      border-radius: var(--radius-pill);
+      padding: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .theme-pill-btn {
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--ink-subtle);
+      transition: var(--transition-smooth);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .theme-pill-btn.active {
+      background: var(--color-butter);
+      color: #352621;
+      box-shadow: 1.5px 1.5px 0 var(--ink-dark);
+      transform: scale(1.04);
+    }
+
+    .sound-toggle-btn {
+      background: var(--bg-card);
+      border: var(--border-cartoon);
+      box-shadow: var(--shadow-cartoon-sm);
+      border-radius: var(--radius-pill);
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--ink-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition-smooth);
+    }
+    .sound-toggle-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 3px 4px 0 var(--card-shadow-color);
+    }
+
+    /* ==========================================================================
+       HERO 区块（治愈相框 + 灵感抽签卡 + 介绍）
        ========================================================================== */
     .hero-wrapper {
       position: relative;
-      margin-bottom: 56px;
-      padding-top: 16px;
+      margin-bottom: 36px;
     }
 
-    /* 漂浮装饰气球/星星 */
     .floating-deco {
       position: absolute;
       pointer-events: none;
       z-index: 2;
       animation: floatSlow 4s ease-in-out infinite alternate;
     }
-    .deco-star-1 { top: 0px; left: 6%; font-size: 28px; }
-    .deco-star-2 { top: 20px; right: 8%; font-size: 32px; animation-delay: -1.8s; }
-    .deco-cloud { bottom: -18px; left: 12%; font-size: 34px; animation: floatHoriz 6s ease-in-out infinite alternate; }
+    .deco-star-1 { top: -8px; left: 4%; font-size: 28px; }
+    .deco-star-2 { top: 12px; right: 6%; font-size: 30px; animation-delay: -1.8s; }
+    .deco-cloud { bottom: -18px; left: 10%; font-size: 32px; animation: floatHoriz 6s ease-in-out infinite alternate; }
 
     @keyframes floatSlow {
       0% { transform: translateY(0px) rotate(-4deg); }
@@ -181,30 +283,31 @@
     }
     @keyframes floatHoriz {
       0% { transform: translateX(0px) scale(1); }
-      100% { transform: translateX(12px) scale(1.05); }
+      100% { transform: translateX(14px) scale(1.06); }
     }
 
     .hero-card {
-      background: #FFFFFF;
+      background: var(--bg-card);
       border: var(--border-cartoon);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-cartoon-lg);
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-columns: 1.18fr 0.82fr;
       gap: 36px;
-      padding: 44px;
+      padding: 42px;
       position: relative;
       overflow: hidden;
+      transition: background-color 0.4s ease;
     }
 
-    /* 可爱和纸胶带装饰 */
+    /* 和纸胶带 */
     .washi-tape {
       position: absolute;
       width: 110px;
-      height: 28px;
-      background: rgba(255, 209, 82, 0.85);
-      border: 1.5px dashed rgba(55, 40, 35, 0.3);
-      top: -12px;
+      height: 26px;
+      background: rgba(255, 206, 71, var(--washi-opacity));
+      border: 1.5px dashed rgba(53, 38, 33, 0.3);
+      top: -11px;
       left: 50%;
       transform: translateX(-50%) rotate(-1.5deg);
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
@@ -213,13 +316,13 @@
     .washi-tape.tape-left {
       left: 36px;
       transform: rotate(-5deg);
-      background: rgba(255, 160, 122, 0.85);
+      background: rgba(255, 160, 122, var(--washi-opacity));
     }
     .washi-tape.tape-right {
       left: auto;
       right: 36px;
       transform: rotate(4deg);
-      background: rgba(157, 123, 255, 0.7);
+      background: rgba(156, 121, 255, var(--washi-opacity));
     }
 
     .hero-content {
@@ -263,7 +366,7 @@
 
     .hero-title {
       font-family: var(--font-display);
-      font-size: 42px;
+      font-size: 40px;
       line-height: 1.25;
       font-weight: 400;
       color: var(--ink-dark);
@@ -288,31 +391,92 @@
       border-radius: 6px;
       z-index: -1;
       transform: rotate(-1deg);
+      opacity: 0.9;
     }
 
     .hero-desc-bubble {
       background: var(--bg-warm);
-      border: 2px dashed rgba(55, 40, 35, 0.25);
+      border: 2px dashed rgba(53, 38, 33, 0.25);
       border-radius: var(--radius-md);
       padding: 16px 20px;
-      font-size: 15px;
+      font-size: 14.5px;
       color: var(--ink-subtle);
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       position: relative;
       line-height: 1.8;
+    }
+
+    /* 灵感抽签卡片（Interactive Fortune Cookie） */
+    .fortune-cookie-box {
+      background: var(--color-butter-soft);
+      border: 2px solid var(--ink-dark);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-cartoon-sm);
+      padding: 14px 18px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+    .fortune-cookie-box:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: var(--shadow-cartoon);
+      background: #FFF4D0;
+    }
+    .fortune-icon {
+      font-size: 28px;
+      animation: wiggle 2s infinite ease-in-out;
+    }
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-12deg); }
+      75% { transform: rotate(12deg); }
+    }
+    .fortune-text-area {
+      flex: 1;
+    }
+    .fortune-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: #8C6600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+    .fortune-quote {
+      font-family: var(--font-display);
+      font-size: 14.5px;
+      color: #352621;
+      line-height: 1.5;
+    }
+    .fortune-refresh-badge {
+      font-size: 11px;
+      font-weight: 800;
+      color: #352621;
+      background: #FFF;
+      border: 1.5px solid #352621;
+      border-radius: var(--radius-pill);
+      padding: 4px 10px;
+      white-space: nowrap;
     }
 
     .hero-badges-list {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 24px;
     }
 
     .hero-tag {
-      background: #FFF;
+      background: var(--bg-card);
       border: 2px solid var(--ink-dark);
-      box-shadow: 2px 2px 0 var(--ink-dark);
+      box-shadow: 2px 2px 0 var(--card-shadow-color);
       padding: 6px 12px;
       border-radius: var(--radius-pill);
       font-size: 12px;
@@ -325,7 +489,7 @@
     }
     .hero-tag:hover {
       transform: translateY(-2px);
-      box-shadow: 3px 4px 0 var(--ink-dark);
+      box-shadow: 3px 4px 0 var(--card-shadow-color);
     }
 
     /* 右侧插画相框 */
@@ -339,7 +503,7 @@
 
     .hero-frame {
       width: 100%;
-      background: #FFF;
+      background: var(--bg-card);
       border: var(--border-cartoon);
       box-shadow: var(--shadow-cartoon);
       border-radius: var(--radius-lg);
@@ -355,10 +519,10 @@
 
     .hero-banner-img {
       width: 100%;
-      height: 280px;
+      height: 290px;
       object-fit: cover;
       border-radius: calc(var(--radius-lg) - 6px);
-      border: 2px solid rgba(55, 40, 35, 0.15);
+      border: 2px solid rgba(53, 38, 33, 0.15);
       display: block;
     }
 
@@ -366,7 +530,7 @@
       position: absolute;
       bottom: -12px;
       right: 18px;
-      background: #FFF;
+      background: var(--bg-card);
       border: var(--border-cartoon);
       box-shadow: var(--shadow-cartoon-sm);
       border-radius: var(--radius-pill);
@@ -384,7 +548,7 @@
       height: 10px;
       background: var(--color-matcha);
       border-radius: 50%;
-      box-shadow: 0 0 0 3px rgba(78, 186, 135, 0.25);
+      box-shadow: 0 0 0 3px rgba(67, 181, 129, 0.25);
       animation: pulseDot 2s infinite;
     }
     @keyframes pulseDot {
@@ -393,15 +557,66 @@
     }
 
     /* ==========================================================================
-       分类切换、批量搜索与即时筛选栏 (Batch & Filter Control Bar)
+       手账数据看板（Stats Ribbon）
+       ========================================================================== */
+    .stats-ribbon {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .stat-badge-card {
+      background: var(--bg-card);
+      border: var(--border-cartoon);
+      box-shadow: var(--shadow-cartoon-sm);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: var(--transition-smooth);
+    }
+    .stat-badge-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-cartoon);
+    }
+    .stat-icon-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      border: 2px solid var(--ink-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .stat-meta {
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink-dark);
+      line-height: 1.2;
+    }
+    .stat-text {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-subtle);
+    }
+
+    /* ==========================================================================
+       控制面板（分类切换 + 批量即时检索 + 快捷标签）
        ========================================================================== */
     .control-panel {
-      background: #FFFFFF;
+      background: var(--bg-card);
       border: var(--border-cartoon);
       box-shadow: var(--shadow-cartoon);
       border-radius: var(--radius-lg);
       padding: 22px 28px;
-      margin-bottom: 40px;
+      margin-bottom: 38px;
       display: flex;
       flex-direction: column;
       gap: 18px;
@@ -416,7 +631,6 @@
       flex-wrap: wrap;
     }
 
-    /* 糖果色大栏目切换按钮 */
     .tab-pills {
       display: inline-flex;
       background: var(--bg-warm);
@@ -440,7 +654,7 @@
     }
     .tab-btn.active {
       background: var(--color-butter);
-      color: var(--ink-dark);
+      color: #352621;
       border: 2px solid var(--ink-dark);
       box-shadow: 2px 2px 0 var(--ink-dark);
       transform: translateY(-2px);
@@ -452,13 +666,13 @@
     .tab-badge {
       font-size: 12px;
       background: #FFF;
+      color: #352621;
       border: 1.5px solid var(--ink-dark);
       border-radius: var(--radius-pill);
       padding: 2px 8px;
       line-height: 1;
     }
 
-    /* 批量搜索输入框 */
     .search-box {
       flex: 1;
       min-width: 260px;
@@ -478,8 +692,8 @@
       transition: var(--transition-smooth);
     }
     .search-input:focus {
-      background: #FFF;
-      box-shadow: 3px 3px 0 var(--ink-dark);
+      background: var(--bg-card);
+      box-shadow: 3px 3px 0 var(--card-shadow-color);
       transform: translateY(-1px);
     }
     .search-icon {
@@ -496,7 +710,7 @@
       right: 14px;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(55, 40, 35, 0.1);
+      background: rgba(53, 38, 33, 0.12);
       border-radius: 50%;
       width: 22px;
       height: 22px;
@@ -506,16 +720,16 @@
       font-size: 11px;
       font-weight: 800;
       cursor: pointer;
+      color: var(--ink-dark);
     }
 
-    /* 快捷分类标签筛选 */
     .filter-tags-row {
       display: flex;
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
       padding-top: 6px;
-      border-top: 1.5px dashed rgba(55, 40, 35, 0.16);
+      border-top: 1.5px dashed rgba(53, 38, 33, 0.18);
     }
     .filter-label {
       font-size: 13px;
@@ -527,7 +741,7 @@
       margin-right: 4px;
     }
     .filter-chip {
-      background: #FFF;
+      background: var(--bg-card);
       border: 1.8px solid var(--ink-dark);
       border-radius: var(--radius-pill);
       padding: 5px 14px;
@@ -544,23 +758,23 @@
     .filter-chip.active {
       background: var(--color-strawberry);
       color: #FFF;
-      box-shadow: 2px 3px 0 var(--ink-dark);
+      box-shadow: 2px 3px 0 var(--card-shadow-color);
       transform: translateY(-2px);
     }
 
     /* ==========================================================================
-       卡片网格系统（批量展示友好的 3D 卡通手账书本卡片）
+       卡片网格系统（3D 悬浮透视 + 手账贴纸 + 金句彩带）
        ========================================================================== */
     .bookshelf-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 32px;
       margin-bottom: 64px;
+      perspective: 1200px;
     }
 
-    /* 单张卡通书本卡片 */
     .book-item-card {
-      background: #FFFFFF;
+      background: var(--bg-card);
       border: var(--border-cartoon);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-cartoon);
@@ -568,17 +782,18 @@
       flex-direction: column;
       position: relative;
       overflow: hidden;
-      transition: var(--transition-smooth);
+      transition: transform 0.22s ease-out, box-shadow 0.22s ease-out;
       text-decoration: none;
       color: inherit;
       cursor: pointer;
+      transform-style: preserve-3d;
     }
     .book-item-card:hover {
-      transform: translateY(-8px) scale(1.015);
+      transform: translateY(-8px) scale(1.02);
       box-shadow: var(--shadow-cartoon-hover);
     }
 
-    /* 卡片顶部的和纸胶带装饰 */
+    /* 胶带装饰 */
     .book-item-card::before {
       content: "";
       position: absolute;
@@ -586,16 +801,16 @@
       right: 28px;
       width: 70px;
       height: 20px;
-      background: rgba(255, 107, 139, 0.4);
-      border: 1px dashed rgba(55, 40, 35, 0.25);
+      background: rgba(255, 101, 132, 0.45);
+      border: 1px dashed rgba(53, 38, 33, 0.25);
       transform: rotate(3deg);
       z-index: 10;
     }
 
-    /* 封面展示区（含可爱 3D 书脊与书签飘带） */
+    /* 封面展示台 */
     .book-cover-stage {
       position: relative;
-      background: linear-gradient(135deg, #FFF9F3 0%, #FFEFE6 100%);
+      background: linear-gradient(135deg, var(--bg-warm) 0%, rgba(255, 238, 225, 0.7) 100%);
       padding: 24px;
       display: flex;
       justify-content: center;
@@ -604,7 +819,6 @@
       overflow: hidden;
     }
 
-    /* 漂浮装饰书签 */
     .bookmark-ribbon {
       position: absolute;
       top: 0;
@@ -618,21 +832,21 @@
       z-index: 5;
     }
 
-    /* 书本封面立体展示 */
+    /* 3D 书本展示 */
     .book-3d-wrap {
       width: 180px;
       height: 245px;
       position: relative;
       border-radius: 12px;
       border: 2.5px solid var(--ink-dark);
-      box-shadow: 4px 6px 0px rgba(55, 40, 35, 0.85);
+      box-shadow: 4px 6px 0px rgba(53, 38, 33, 0.85);
       overflow: hidden;
       background: #FFF;
       transition: var(--transition-smooth);
     }
     .book-item-card:hover .book-3d-wrap {
-      transform: scale(1.05) rotate(-1deg);
-      box-shadow: 6px 9px 0px var(--ink-dark);
+      transform: scale(1.05) rotate(-1.5deg);
+      box-shadow: 6px 9px 0px var(--card-shadow-color);
     }
 
     .book-cover-img {
@@ -642,25 +856,24 @@
       display: block;
     }
 
-    /* 模拟书脊高光 */
     .book-3d-wrap::after {
       content: "";
       position: absolute;
       top: 0;
       left: 0;
-      width: 16px;
+      width: 18px;
       height: 100%;
-      background: linear-gradient(90deg, rgba(255,255,255,0.45) 0%, rgba(0,0,0,0.1) 80%, transparent 100%);
+      background: linear-gradient(90deg, rgba(255,255,255,0.45) 0%, rgba(0,0,0,0.12) 80%, transparent 100%);
       pointer-events: none;
     }
 
     /* 卡片内容区 */
     .book-body {
-      padding: 24px 22px 20px;
+      padding: 22px 22px 18px;
       display: flex;
       flex-direction: column;
       flex: 1;
-      background: #FFF;
+      background: var(--bg-card);
     }
 
     .book-meta-line {
@@ -668,7 +881,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .book-author-chip {
@@ -687,7 +900,7 @@
       border-radius: var(--radius-pill);
       border: 1.5px solid var(--ink-dark);
       background: var(--color-butter-soft);
-      color: #9E7400;
+      color: #8A6400;
       box-shadow: 1.5px 2px 0 var(--ink-dark);
       letter-spacing: 0.5px;
     }
@@ -714,11 +927,25 @@
       letter-spacing: 0.8px;
     }
 
+    /* 金句彩条 Ribbon */
+    .book-quote-tape {
+      background: var(--bg-warm);
+      border-left: 3.5px solid var(--color-strawberry);
+      padding: 8px 12px;
+      border-radius: 4px 10px 10px 4px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-dark);
+      margin-bottom: 14px;
+      line-height: 1.5;
+      position: relative;
+    }
+
     .book-desc-text {
       font-size: 13.5px;
       color: var(--ink-subtle);
       line-height: 1.75;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       display: -webkit-box;
       line-clamp: 3;
       -webkit-line-clamp: 3;
@@ -727,12 +954,23 @@
       flex: 1;
     }
 
+    /* 评价星级 */
+    .card-ratings-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--ink-muted);
+      margin-bottom: 14px;
+    }
+
     .book-footer-action {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding-top: 14px;
-      border-top: 1.5px dashed rgba(55, 40, 35, 0.16);
+      border-top: 1.5px dashed rgba(53, 38, 33, 0.18);
       margin-top: auto;
     }
 
@@ -751,7 +989,7 @@
       gap: 6px;
       font-size: 13px;
       font-weight: 800;
-      color: var(--ink-dark);
+      color: #352621;
       background: var(--color-butter);
       border: 1.8px solid var(--ink-dark);
       box-shadow: 2px 2px 0 var(--ink-dark);
@@ -770,7 +1008,7 @@
     .empty-search-box {
       display: none;
       grid-column: 1 / -1;
-      background: #FFFFFF;
+      background: var(--bg-card);
       border: var(--border-cartoon);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-cartoon);
@@ -803,11 +1041,11 @@
       border-radius: var(--radius-pill);
       padding: 10px 20px;
       font-weight: 800;
-      color: var(--ink-dark);
+      color: #352621;
     }
 
     /* ==========================================================================
-       手账看板与便签区域（Bullet Journal Archive & Outline）
+       手账看板与便签区域
        ========================================================================== */
     .bulletin-header {
       display: flex;
@@ -832,7 +1070,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 2px 2px 0 var(--ink-dark);
+      box-shadow: 2px 2px 0 var(--card-shadow-color);
     }
     .bulletin-heading {
       font-family: var(--font-display);
@@ -854,9 +1092,8 @@
       margin-bottom: 60px;
     }
 
-    /* 便签卡片 */
     .sticky-note-card {
-      background: #FFFFFF;
+      background: var(--bg-card);
       border: var(--border-cartoon);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-cartoon);
@@ -899,8 +1136,8 @@
       left: 18px;
       width: 65px;
       height: 18px;
-      background: rgba(255, 209, 82, 0.6);
-      border: 1px dashed rgba(55, 40, 35, 0.3);
+      background: rgba(255, 206, 71, 0.65);
+      border: 1px dashed rgba(53, 38, 33, 0.3);
       transform: rotate(-3deg);
     }
 
@@ -914,7 +1151,6 @@
       gap: 8px;
     }
 
-    /* 便签内项目列表 */
     .sticky-item-list {
       list-style: none;
       display: flex;
@@ -922,7 +1158,7 @@
       gap: 14px;
     }
     .sticky-item {
-      border-top: 1.5px dashed rgba(55, 40, 35, 0.16);
+      border-top: 1.5px dashed rgba(53, 38, 33, 0.18);
       padding-top: 12px;
     }
     .sticky-link {
@@ -945,7 +1181,6 @@
       display: block;
     }
 
-    /* 主题胶囊标签池 */
     .tag-pool {
       display: flex;
       flex-wrap: wrap;
@@ -965,10 +1200,10 @@
     }
     .tag-pool-item:hover {
       background: var(--color-butter);
+      color: #352621;
       transform: translateY(-2px);
     }
 
-    /* 学习计划三步法步数清单 */
     .routine-step-list {
       list-style: none;
       display: flex;
@@ -996,7 +1231,7 @@
       font-family: var(--font-display);
       font-size: 16px;
       font-weight: 700;
-      color: var(--ink-dark);
+      color: #352621;
     }
     .step-text-title {
       font-size: 15px;
@@ -1011,15 +1246,79 @@
     }
 
     /* ==========================================================================
-       底部糖果胶囊悬浮导航条 (Floating Capsule Dock)
+       右下角互动吉祥物小猫咪（"芝麻糊" Calico Cat Companion）
+       ========================================================================== */
+    .mascot-corner {
+      position: fixed;
+      right: 28px;
+      bottom: 24px;
+      z-index: 98;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .mascot-bubble {
+      background: var(--bg-card);
+      border: 2px solid var(--ink-dark);
+      box-shadow: var(--shadow-cartoon-sm);
+      border-radius: 16px 16px 4px 16px;
+      padding: 10px 16px;
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--ink-dark);
+      max-width: 220px;
+      margin-bottom: 8px;
+      opacity: 0;
+      transform: translateY(10px) scale(0.9);
+      transition: var(--transition-smooth);
+      pointer-events: none;
+    }
+    .mascot-bubble.show {
+      opacity: 1;
+      transform: translateY(0px) scale(1);
+    }
+
+    .mascot-avatar-btn {
+      width: 58px;
+      height: 58px;
+      background: var(--color-butter);
+      border: 2.5px solid var(--ink-dark);
+      box-shadow: var(--shadow-cartoon-sm);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+    .mascot-avatar-btn:hover {
+      transform: scale(1.1) rotate(6deg);
+      box-shadow: var(--shadow-cartoon);
+      background: #FFC526;
+    }
+    .mascot-badge-online {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      width: 14px;
+      height: 14px;
+      background: var(--color-matcha);
+      border: 2px solid var(--ink-dark);
+      border-radius: 50%;
+    }
+
+    /* ==========================================================================
+       底部糖果胶囊悬浮导航条
        ========================================================================== */
     .floating-dock {
       position: fixed;
       bottom: 24px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(12px);
+      background: var(--bg-card);
       border: 2.5px solid var(--ink-dark);
       box-shadow: var(--shadow-cartoon-lg);
       border-radius: var(--radius-pill);
@@ -1057,22 +1356,35 @@
       background: var(--color-butter);
       border: 1.5px solid var(--ink-dark);
       box-shadow: 1.5px 2px 0 var(--ink-dark);
-      color: var(--ink-dark);
+      color: #352621;
     }
     .dock-dice-btn:hover {
-      background: #FFC425;
+      background: #FFC526;
       transform: rotate(10deg) scale(1.05);
+    }
+
+    /* 全屏点击微粒子动效容器 */
+    .sparkle-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      font-size: 18px;
+      animation: sparkleFly 0.8s cubic-bezier(0.12, 0.8, 0.32, 1) forwards;
+    }
+    @keyframes sparkleFly {
+      0% { transform: translate(0, 0) scale(1.2); opacity: 1; }
+      100% { transform: translate(var(--tx), var(--ty)) scale(0.3) rotate(45deg); opacity: 0; }
     }
 
     /* 页脚 */
     footer {
       text-align: center;
-      padding: 48px 20px 100px;
+      padding: 48px 20px 110px;
       font-size: 13px;
       color: var(--ink-muted);
-      border-top: 2px dashed rgba(55, 40, 35, 0.16);
+      border-top: 2px dashed rgba(53, 38, 33, 0.18);
       margin-top: auto;
-      background: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.08);
       position: relative;
       z-index: 1;
     }
@@ -1083,9 +1395,9 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: #FFF;
+      background: var(--bg-card);
       border: 1.5px solid var(--ink-dark);
-      box-shadow: 2px 2px 0 var(--ink-dark);
+      box-shadow: 2px 2px 0 var(--card-shadow-color);
       border-radius: var(--radius-pill);
       padding: 4px 14px;
       font-size: 11px;
@@ -1103,6 +1415,9 @@
       .hero-title {
         font-size: 32px;
       }
+      .stats-ribbon {
+        grid-template-columns: repeat(2, 1fr);
+      }
       .bulletin-note {
         text-align: left;
       }
@@ -1117,16 +1432,19 @@
 
     @media (max-width: 600px) {
       .container {
-        padding: 32px 16px 100px;
+        padding: 24px 16px 110px;
+      }
+      .stats-ribbon {
+        grid-template-columns: 1fr;
       }
       .bookshelf-grid {
         grid-template-columns: 1fr;
       }
       .hero-title {
-        font-size: 27px;
+        font-size: 26px;
       }
       .floating-dock {
-        width: 92%;
+        width: 94%;
         justify-content: space-around;
         padding: 6px 8px;
         bottom: 12px;
@@ -1139,18 +1457,41 @@
         padding: 8px 14px;
         font-size: 13.5px;
       }
+      .mascot-corner {
+        right: 14px;
+        bottom: 74px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- 顶部彩色三角旗花边 -->
   <div class="top-bunting" aria-hidden="true"></div>
 
   <a class="skip-link" href="#main-content">跳到正文</a>
 
   <div class="container">
+    <!-- 顶部状态栏：主题切换器 + 治愈音效开关 -->
+    <div class="top-utility-bar">
+      <div class="theme-switch-group" aria-label="主题色调切换">
+        <button class="theme-pill-btn active" id="btn-theme-day" onclick="setAppTheme('day')" title="日间奶油温润风">
+          <span>☀️ 晴日</span>
+        </button>
+        <button class="theme-pill-btn" id="btn-theme-sunset" onclick="setAppTheme('sunset')" title="黄昏暖茶暖杏风">
+          <span>🌅 暮色</span>
+        </button>
+        <button class="theme-pill-btn" id="btn-theme-night" onclick="setAppTheme('night')" title="梦幻童话星夜风">
+          <span>🌙 星夜</span>
+        </button>
+      </div>
+
+      <button class="sound-toggle-btn" id="sound-btn" onclick="toggleSoundEffect()" title="开关卡通治愈音效">
+        <span id="sound-icon">🔔</span>
+        <span id="sound-text">治愈音效: 关</span>
+      </button>
+    </div>
+
     <!-- ==========================================================================
-         HERO 欢迎区：Bella 的手账卡通阅读屋
+         HERO 欢迎区
          ========================================================================== -->
     <header class="hero-wrapper" id="top">
       <span class="floating-deco deco-star-1" aria-hidden="true">✨</span>
@@ -1177,6 +1518,18 @@
             <p>这里是我的私人手账书架。把大世界拆成温柔的小课题，不管是宏大的历史探秘、深层的心理自由，还是打磨已久的英语习得习惯，都被认认真真地收纳在这儿。</p>
           </div>
 
+          <!-- 交互式灵感抽签卡片（点击抽取） -->
+          <div class="fortune-cookie-box" onclick="drawDailyFortune()" title="点击抽取一张今日专属灵感便签！">
+            <div class="fortune-icon">🥠</div>
+            <div class="fortune-text-area">
+              <div class="fortune-label">✨ 今日灵感签 · 点击翻开</div>
+              <div class="fortune-quote" id="fortune-quote-display">
+                “所谓的自由，就是被人讨厌的勇气。” ——《被讨厌的勇气》
+              </div>
+            </div>
+            <span class="fortune-refresh-badge">🎲 换一签</span>
+          </div>
+
           <div class="hero-badges-list">
             <span class="hero-tag">📖 3 本深度精读书卷</span>
             <span class="hero-tag">✏️ 1 套实战英语体系</span>
@@ -1197,11 +1550,44 @@
     </header>
 
     <!-- ==========================================================================
+         手账数据小看板（Stats Ribbon）
+         ========================================================================== -->
+    <section class="stats-ribbon" aria-label="手账统计看板">
+      <div class="stat-badge-card">
+        <div class="stat-icon-circle" style="background: var(--color-strawberry-soft); color: var(--color-strawberry);">📚</div>
+        <div class="stat-meta">
+          <span class="stat-num">4 卷典藏</span>
+          <span class="stat-text">精读长文梳理</span>
+        </div>
+      </div>
+      <div class="stat-badge-card">
+        <div class="stat-icon-circle" style="background: var(--color-butter-soft); color: #8A6400;">💡</div>
+        <div class="stat-meta">
+          <span class="stat-num">28 个模型</span>
+          <span class="stat-text">认知与思维工具</span>
+        </div>
+      </div>
+      <div class="stat-badge-card">
+        <div class="stat-icon-circle" style="background: var(--color-matcha-soft); color: var(--color-matcha);">⏳</div>
+        <div class="stat-meta">
+          <span class="stat-num">120+ 分钟</span>
+          <span class="stat-text">沉浸阅读时长</span>
+        </div>
+      </div>
+      <div class="stat-badge-card">
+        <div class="stat-icon-circle" style="background: var(--color-lavender-soft); color: var(--color-lavender);">🍵</div>
+        <div class="stat-meta">
+          <span class="stat-num">100% 治愈</span>
+          <span class="stat-text">静心阅读角落</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
          控制面板：栏目切换 + 批量即时检索 + 分类筛选
          ========================================================================== -->
     <section class="control-panel" aria-label="书架批量管理与检索">
       <div class="control-top-row">
-        <!-- 栏目双标签切换 -->
         <div class="tab-pills" role="tablist">
           <button id="tab-btn-books" class="tab-btn active" type="button" role="tab" aria-selected="true" onclick="switchCategory('books')">
             <span>📚 读书笔记</span>
@@ -1213,7 +1599,6 @@
           </button>
         </div>
 
-        <!-- 批量搜索过滤框 -->
         <div class="search-box">
           <span class="search-icon" aria-hidden="true">🔍</span>
           <input
@@ -1228,7 +1613,6 @@
         </div>
       </div>
 
-      <!-- 分类快捷标签 -->
       <div class="filter-tags-row">
         <span class="filter-label">🏷️ 快捷筛选：</span>
         <button class="filter-chip active" data-filter="all" onclick="setFilter('all')">全部</button>
@@ -1240,7 +1624,7 @@
     </section>
 
     <!-- ==========================================================================
-         主要书架卡片列表（支持批量动态扩展与实时过滤）
+         主要书架卡片列表
          ========================================================================== -->
     <main id="main-content">
       <div class="bookshelf-grid" id="cards-container">
@@ -1264,7 +1648,18 @@
               <span class="book-category-badge">🔎 探案笔记</span>
             </div>
             <h2 class="book-title-text">谁“偷”走了人类历史的公平？</h2>
+            
+            <div class="book-quote-tape">
+              “文明的起跑线差异不是智力，而是地理与生态赋予的先天禀赋。”
+            </div>
+
             <p class="book-desc-text">为什么是欧洲人征服了美洲，而不是反过来？这篇笔记把宏大历史拆成一个个线索，像侦探破案一样层层还原地理与生态对文明起跑线的决定性力量。</p>
+            
+            <div class="card-ratings-row">
+              <span>🧠 思考深度：★★★★★</span>
+              <span>🏷️ 历史大视野</span>
+            </div>
+
             <div class="book-footer-action">
               <span class="reading-time-pill">⏱️ ~15 分钟阅读</span>
               <a href="./books/guns-germs-steel.html" class="read-arrow-btn">翻开笔记 ➜</a>
@@ -1291,7 +1686,18 @@
               <span class="book-category-badge badge-pink">💭 哲思录</span>
             </div>
             <h2 class="book-title-text">被讨厌的勇气，是自由的开始</h2>
+            
+            <div class="book-quote-tape" style="border-left-color: var(--color-lavender);">
+              “课题分离，不是冷漠疏离，而是对彼此人生最大的尊重与温柔。”
+            </div>
+
             <p class="book-desc-text">从阿德勒心理学入门，重新拆解人际关系里的所有内耗与焦虑。真正的轻松，不是被所有人喜欢，而是清楚知道哪些课题不属于自己，坚定活在当下。</p>
+            
+            <div class="card-ratings-row">
+              <span>💖 治愈指数：★★★★★</span>
+              <span>🧘 心理成长</span>
+            </div>
+
             <div class="book-footer-action">
               <span class="reading-time-pill">⏱️ ~12 分钟阅读</span>
               <a href="./books/被讨厌的勇气_课堂讲义.html" class="read-arrow-btn">翻开笔记 ➜</a>
@@ -1318,7 +1724,18 @@
               <span class="book-category-badge badge-green">🐒 经典课</span>
             </div>
             <h2 class="book-title-text">你的青春，就是一部西游记</h2>
+            
+            <div class="book-quote-tape" style="border-left-color: var(--color-matcha);">
+              “心生，种种魔生；心灭，种种魔灭。降伏心猿才是成长的真经。”
+            </div>
+
             <p class="book-desc-text">它不仅是打怪取经的神话故事，更是一部青春期成长教科书：在欲望与规则中碰壁、在误解与委屈中修炼、最终在九九八十一难后找回属于自己的真经。</p>
+            
+            <div class="card-ratings-row">
+              <span>⛰️ 试炼指数：★★★★☆</span>
+              <span>⭐ 人生寓言</span>
+            </div>
+
             <div class="book-footer-action">
               <span class="reading-time-pill">⏱️ ~18 分钟阅读</span>
               <a href="./books/西游记-青春成长课堂.html" class="read-arrow-btn">翻开笔记 ➜</a>
@@ -1345,7 +1762,18 @@
               <span class="book-category-badge badge-blue">💡 方法论</span>
             </div>
             <h2 class="book-title-text">英语学习系统构建：从盲目到自由</h2>
+            
+            <div class="book-quote-tape" style="border-left-color: var(--color-sky);">
+              “放弃孤立死记单词，用‘输入-理解-复述-复盘’构建神经闭环。”
+            </div>
+
             <p class="book-desc-text">彻底告别死记硬背与机械刷题的误区！把输入、理解、复述和复盘串成一条连续稳固的训练链路，让语言像母语一样真正装进身体。</p>
+            
+            <div class="card-ratings-row">
+              <span>⚡ 实用指数：★★★★★</span>
+              <span>🎯 高效习得</span>
+            </div>
+
             <div class="book-footer-action">
               <span class="reading-time-pill">⏱️ ~10 分钟阅读</span>
               <a href="./english/english-learning-guide.html" class="read-arrow-btn">翻开手册 ➜</a>
@@ -1353,7 +1781,6 @@
           </div>
         </article>
 
-        <!-- 搜索无结果时显示的可爱卡通猫猫空状态 -->
         <div class="empty-search-box" id="empty-state">
           <div class="empty-cat-art" aria-hidden="true">🐱📦</div>
           <h3 class="empty-title">哎呀，小书架上还没有找到这个关键词~</h3>
@@ -1365,7 +1792,7 @@
     </main>
 
     <!-- ==========================================================================
-         手账布告栏：手绘便签纸、阅读路径与三步法
+         手账布告栏
          ========================================================================== -->
     <section class="bulletin-section" aria-label="手账便签与阅读路径">
       <div class="bulletin-header">
@@ -1379,7 +1806,6 @@
       </div>
 
       <div class="bulletin-board">
-        <!-- 便签 1：最近整理与翻阅 -->
         <article class="sticky-note-card">
           <div class="sticky-pin" aria-hidden="true"></div>
           <div class="note-tape-corner" aria-hidden="true"></div>
@@ -1406,10 +1832,9 @@
           </ul>
         </article>
 
-        <!-- 便签 2：阅读探索路径 -->
         <article class="sticky-note-card">
           <div class="sticky-pin" style="background: var(--color-butter);" aria-hidden="true"></div>
-          <div class="note-tape-corner" style="background: rgba(157, 123, 255, 0.4);" aria-hidden="true"></div>
+          <div class="note-tape-corner" style="background: rgba(156, 121, 255, 0.45);" aria-hidden="true"></div>
           <h3 class="sticky-title">🗺️ 阅读探险路径</h3>
           <p style="font-size: 13px; color: var(--ink-subtle); margin-bottom: 14px;">点击任意主题标签，即刻联想相关书卷：</p>
           <div class="tag-pool">
@@ -1425,10 +1850,9 @@
           </p>
         </article>
 
-        <!-- 便签 3：日常英语小节律 -->
         <article class="sticky-note-card">
           <div class="sticky-pin" style="background: var(--color-matcha);" aria-hidden="true"></div>
-          <div class="note-tape-corner" style="background: rgba(78, 186, 135, 0.4);" aria-hidden="true"></div>
+          <div class="note-tape-corner" style="background: rgba(67, 181, 129, 0.45);" aria-hidden="true"></div>
           <h3 class="sticky-title">☕ 每天的三步小练习</h3>
           <ol class="routine-step-list">
             <li class="routine-step-item">
@@ -1459,10 +1883,23 @@
   </div>
 
   <!-- ==========================================================================
+       右下角互动吉祥物小猫咪（"芝麻糊" Calico Cat Companion）
+       ========================================================================== -->
+  <aside class="mascot-corner" aria-label="伴读书僮小猫咪">
+    <div class="mascot-bubble" id="mascot-speech">
+      🐱 喵~ 欢迎光临 Bella 的阅读小窝！今天读完一章了吗？
+    </div>
+    <button class="mascot-avatar-btn" type="button" onclick="interactMascot()" title="戳戳小猫咪！">
+      <span>🐱</span>
+      <span class="mascot-badge-online"></span>
+    </button>
+  </aside>
+
+  <!-- ==========================================================================
        底部糖果胶囊悬浮导航条
        ========================================================================== -->
   <nav class="floating-dock" aria-label="快捷导航浮动栏">
-    <a class="dock-btn" href="#top">
+    <a class="dock-btn" href="#top" onclick="playBubbleSound()">
       <span>☁️ 回到顶部</span>
     </a>
     <button class="dock-btn active" id="dock-btn-books" type="button" onclick="switchCategory('books', true)">
@@ -1488,25 +1925,175 @@
   </footer>
 
   <!-- ==========================================================================
-       页面交互逻辑（分类切换、即时筛选、批量搜索、随机手气）
+       页面交互逻辑（主题切换、音效合成、3D倾斜、粒子闪烁、抽签）
        ========================================================================== -->
   <script>
-    // 当前状态
-    let currentCategory = 'all'; // 'books' | 'english' | 'all'
+    // 状态管理
+    let currentCategory = 'all';
     let currentFilter = 'all';
     let searchQuery = '';
+    let isSoundEnabled = false;
+    let audioCtx = null;
 
-    // 切换大栏目（读书笔记 / 英文学习）
+    // 灵感签库
+    const fortuneList = [
+      { quote: "“所谓的自由，就是被人讨厌的勇气。”", source: "《被讨厌的勇气》" },
+      { quote: "“文明的起跑线不是由于智力，而是环境与生态的馈赠。”", source: "《枪炮、病菌与钢铁》" },
+      { quote: "“心生，种种魔生；心灭，种种魔灭。第一难是降伏心猿。”", source: "《西游记》" },
+      { quote: "“语言不是机械灌进去的，而是在大量有意义的理解中生长出来的。”", source: "《英语学习指南》" },
+      { quote: "“不为了满足别人的期待而活，只对自己的人生课题全权负责。”", source: "阿德勒心理学" },
+      { quote: "“每一页被认真读过的文字，都会悄悄化作你抵御焦虑的骨骼。”", source: "Bella's Note" }
+    ];
+
+    // 小猫咪互动金句库
+    const catQuotes = [
+      "🐱 喵~ 累了吗？先喝一口热奶茶，闭目养神 30 秒吧！",
+      "✨ 今天的你，已经在悄悄变得更有力量了哦！",
+      "📖 读书不求快，能有一句话真正启发你，今天就值得了。",
+      "🐾 喵呜！点下底部的【🎲 随手翻】，让命运替你翻开新篇章吧！",
+      "☕ 无论外界多喧嚣，这里永远是你的小小避风港。"
+    ];
+    let catQuoteIndex = 0;
+
+    // 抽取灵感签
+    function drawDailyFortune() {
+      playBubbleSound(650);
+      burstParticles(window.innerWidth / 2, window.innerHeight * 0.35);
+      const randomIndex = Math.floor(Math.random() * fortuneList.length);
+      const item = fortuneList[randomIndex];
+      const display = document.getElementById('fortune-quote-display');
+      display.style.opacity = '0';
+      setTimeout(() => {
+        display.innerHTML = `${item.quote} ——${item.source}`;
+        display.style.opacity = '1';
+      }, 150);
+    }
+
+    // 互动小猫咪
+    function interactMascot() {
+      playBubbleSound(800);
+      burstParticles(window.innerWidth - 60, window.innerHeight - 60);
+      const bubble = document.getElementById('mascot-speech');
+      bubble.innerText = catQuotes[catQuoteIndex % catQuotes.length];
+      catQuoteIndex++;
+      bubble.classList.add('show');
+      clearTimeout(window.mascotTimer);
+      window.mascotTimer = setTimeout(() => {
+        bubble.classList.remove('show');
+      }, 4500);
+    }
+
+    // 主题切换（Day / Sunset / Night）
+    function setAppTheme(themeName) {
+      playBubbleSound(550);
+      document.documentElement.setAttribute('data-theme', themeName);
+      document.querySelectorAll('.theme-pill-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.id === `btn-theme-${themeName}`);
+      });
+      localStorage.setItem('bella_read_theme', themeName);
+    }
+
+    // 初始化已存主题
+    const savedTheme = localStorage.getItem('bella_read_theme');
+    if (savedTheme) {
+      setAppTheme(savedTheme);
+    }
+
+    // 纯原生 Web Audio API 合成治愈气泡水滴音效
+    function playBubbleSound(freq = 480) {
+      if (!isSoundEnabled) return;
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(freq * 1.8, audioCtx.currentTime + 0.08);
+        
+        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.12);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.12);
+      } catch (e) {
+        // audio context ignored
+      }
+    }
+
+    // 开关音效
+    function toggleSoundEffect() {
+      isSoundEnabled = !isSoundEnabled;
+      const text = document.getElementById('sound-text');
+      const icon = document.getElementById('sound-icon');
+      if (isSoundEnabled) {
+        text.innerText = '治愈音效: 开';
+        icon.innerText = '🔔';
+        playBubbleSound(600);
+      } else {
+        text.innerText = '治愈音效: 关';
+        icon.innerText = '🔕';
+      }
+    }
+
+    // 全局点击微粒子飞溅效果
+    document.addEventListener('click', (e) => {
+      // 避免干扰输入框
+      if (e.target.tagName === 'INPUT') return;
+      burstParticles(e.clientX, e.clientY);
+    });
+
+    function burstParticles(x, y) {
+      const symbols = ['✨', '⭐', '🌸', '💖', '🎀', '🍀', '🍰'];
+      const count = 4;
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement('span');
+        p.className = 'sparkle-particle';
+        p.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+        p.style.left = `${x}px`;
+        p.style.top = `${y}px`;
+        const tx = (Math.random() - 0.5) * 70;
+        const ty = -30 - Math.random() * 50;
+        p.style.setProperty('--tx', `${tx}px`);
+        p.style.setProperty('--ty', `${ty}px`);
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 800);
+      }
+    }
+
+    // 3D 鼠标悬停倾斜微交互（Mouse Perspective Tilt）
+    document.querySelectorAll('.book-item-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -5;
+        const rotateY = ((x - centerX) / centerX) * 5;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+
+    // 切换大栏目
     function switchCategory(cat, shouldScroll) {
+      playBubbleSound(500);
       currentCategory = cat;
 
-      // 更新顶部切换按钮
       document.getElementById('tab-btn-books').classList.toggle('active', cat === 'books');
       document.getElementById('tab-btn-english').classList.toggle('active', cat === 'english');
       document.getElementById('tab-btn-books').setAttribute('aria-selected', cat === 'books');
       document.getElementById('tab-btn-english').setAttribute('aria-selected', cat === 'english');
 
-      // 更新底部悬浮按钮
       document.getElementById('dock-btn-books').classList.toggle('active', cat === 'books');
       document.getElementById('dock-btn-english').classList.toggle('active', cat === 'english');
 
@@ -1517,8 +2104,9 @@
       }
     }
 
-    // 快捷标签筛选
+    // 快捷分类筛选
     function setFilter(filterVal) {
+      playBubbleSound(520);
       currentFilter = filterVal;
       document.querySelectorAll('.filter-chip').forEach(chip => {
         chip.classList.toggle('active', chip.dataset.filter === filterVal);
@@ -1534,8 +2122,8 @@
       applyFilters();
     }
 
-    // 清空搜索
     function clearSearch() {
+      playBubbleSound(420);
       const input = document.getElementById('book-search-input');
       input.value = '';
       searchQuery = '';
@@ -1548,15 +2136,14 @@
       applyFilters();
     }
 
-    // 标签池快捷检索
     function quickFilterKeyword(keyword) {
+      playBubbleSound(580);
       const input = document.getElementById('book-search-input');
       input.value = keyword;
       handleSearch(keyword);
       document.getElementById('cards-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // 核心过滤计算
     function applyFilters() {
       const cards = document.querySelectorAll('.book-item-card');
       const emptyBox = document.getElementById('empty-state');
@@ -1582,8 +2169,9 @@
       emptyBox.style.display = visibleCount === 0 ? 'block' : 'none';
     }
 
-    // 随手翻彩蛋：随机打开一本书
     function randomBookJump() {
+      playBubbleSound(720);
+      burstParticles(window.innerWidth / 2, window.innerHeight - 50);
       const links = [
         "./books/guns-germs-steel.html",
         "./books/被讨厌的勇气_课堂讲义.html",
@@ -1591,13 +2179,12 @@
         "./english/english-learning-guide.html"
       ];
       const randomIndex = Math.floor(Math.random() * links.length);
-      const target = links[randomIndex];
-      
-      // 轻微震动提示并跳转
-      window.location.href = target;
+      setTimeout(() => {
+        window.location.href = links[randomIndex];
+      }, 250);
     }
 
-    // 初始化默认展示读书笔记分类
+    // 初始化展示读书笔记
     switchCategory('books');
   </script>
 </body>
