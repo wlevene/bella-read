@@ -1,1379 +1,1156 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="day">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>探案笔记：谁"偷"走了人类历史的公平？</title>
-<style>
-/* ===== CSS Variables ===== */
-:root {
-  --bg: #faf6f0;
-  --card: #fffef9;
-  --card-border: #e8dcc8;
-  --text: #3d3226;
-  --text-light: #7a6e5d;
-  --accent: #c0392b;
-  --accent-light: #fdf0ed;
-  --gold: #b8860b;
-  --gold-light: #fef9e7;
-  --green: #4a7c59;
-  --green-light: #f0f7f1;
-  --blue: #2c6e91;
-  --blue-light: #eef6fb;
-  --purple: #6b3fa0;
-  --purple-light: #f5f0fa;
-  --shadow: 0 2px 8px rgba(0,0,0,0.06);
-  --shadow-lg: 0 6px 24px rgba(0,0,0,0.10);
-  --radius: 14px;
-  --radius-sm: 8px;
-  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  --font-title: "STSong", "Songti SC", "Noto Serif CJK SC", "SimSun", serif;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>《枪炮、病菌与钢铁》深度精读 | 谁“偷”走了人类历史的公平？</title>
+  <meta name="description" content="为什么是欧洲人征服了美洲，而不是反过来？跟随贾雷德·戴蒙德像侦探一样，从农作物、可驯化动物、大陆走向到病菌免疫，层层还原地理生态对文明命运的决定性力量。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    @font-face {
+      font-family: "Smiley Sans";
+      src: url("../assets/fonts/得意黑/SmileySans-Oblique.woff2") format("woff2"),
+           url("../assets/fonts/得意黑/SmileySans-Oblique.woff") format("woff"),
+           url("../assets/fonts/得意黑/SmileySans-Oblique.ttf") format("truetype");
+      font-display: swap;
+    }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+    /* ==========================================================================
+       三套卡通手账主题系统
+       ========================================================================== */
+    :root {
+      /* 晴日奶油 (Day) */
+      --bg-cream: #FDFBF7;
+      --bg-warm: #FFF5E8;
+      --bg-card: #FFFFFF;
+      --ink-dark: #352621;
+      --ink-subtle: #76635D;
+      --ink-muted: #A3928B;
+      --border-line: #352621;
+      --card-shadow-color: #352621;
+      --washi-opacity: 0.85;
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font);
-  line-height: 1.8;
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
+      /* 点缀色 */
+      --color-strawberry: #FF6584;
+      --color-strawberry-soft: #FFEAF0;
+      --color-peach: #FFA07A;
+      --color-peach-soft: #FFF1EB;
+      --color-butter: #FFCE47;
+      --color-butter-soft: #FFF7DD;
+      --color-matcha: #43B581;
+      --color-matcha-soft: #E7F7EF;
+      --color-sky: #5B93FF;
+      --color-sky-soft: #EDF3FF;
+      --color-lavender: #9C79FF;
+      --color-lavender-soft: #F3EEFF;
+      --color-gold: #E67E22;
+      --color-gold-soft: #FDF2E9;
 
-/* ===== NAVIGATION ===== */
-.nav-bar {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  background: rgba(250,246,240,0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--card-border);
-  padding: 12px 24px;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.nav-title {
-  font-weight: 700;
-  font-size: 15px;
-  color: var(--accent);
-}
-.progress-wrap {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.progress-bar {
-  width: 120px;
-  height: 6px;
-  background: #e8dcc8;
-  border-radius: 3px;
-  overflow: hidden;
-}
-.progress-fill {
-  height: 100%;
-  background: var(--accent);
-  border-radius: 3px;
-  transition: width 0.5s ease;
-  width: 0%;
-}
-.progress-text {
-  font-size: 12px;
-  color: var(--text-light);
-  font-weight: 600;
-}
+      /* 漫画线稿与立体阴影 */
+      --border-cartoon: 2.5px solid var(--border-line);
+      --shadow-cartoon: 4px 5px 0px var(--card-shadow-color);
+      --shadow-cartoon-sm: 2.5px 3px 0px var(--card-shadow-color);
+      --shadow-cartoon-lg: 6px 8px 0px var(--card-shadow-color);
+      --shadow-cartoon-hover: 7px 10px 0px var(--card-shadow-color);
 
-/* ===== CONTAINER ===== */
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 80px 24px 120px;
-}
+      /* 字体与圆角 */
+      --font-display: "Smiley Sans", "Nunito", "PingFang SC", sans-serif;
+      --font-body: "Nunito", "Smiley Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
+      --radius-pill: 999px;
 
-/* ===== HERO ===== */
-.hero {
-  text-align: center;
-  padding: 60px 0 20px;
-  position: relative;
-}
-.hero .badge {
-  display: inline-block;
-  background: var(--accent-light);
-  color: var(--accent);
-  font-size: 13px;
-  font-weight: 700;
-  padding: 6px 16px;
-  border-radius: 20px;
-  margin-bottom: 16px;
-  letter-spacing: 1px;
-}
-.hero h1 {
-  font-family: var(--font-title);
-  font-size: 36px;
-  font-weight: 900;
-  line-height: 1.3;
-  margin-bottom: 12px;
-  color: #2c1810;
-}
-.hero h1 .highlight {
-  color: var(--accent);
-  position: relative;
-}
-.hero .subtitle {
-  font-size: 17px;
-  color: var(--text-light);
-  max-width: 520px;
-  margin: 0 auto 24px;
-}
-.hero .book-cover {
-  width: 160px;
-  height: 220px;
-  background: linear-gradient(135deg, #2c1810, #4a2c17);
-  border-radius: 8px;
-  margin: 0 auto 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #d4a853;
-  font-family: var(--font-title);
-  font-size: 16px;
-  font-weight: 700;
-  text-align: center;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-  position: relative;
-  line-height: 1.5;
-  padding: 20px;
-}
-.book-cover::after {
-  content: '';
-  position: absolute;
-  left: 8px; top: 4px; bottom: 4px;
-  width: 3px;
-  background: rgba(212,168,83,0.3);
-  border-radius: 2px;
-}
+      --bounce-timing: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --transition-smooth: all 0.28s var(--bounce-timing);
+    }
 
-/* ===== CHAPTER CARD ===== */
-.chapter {
-  background: var(--card);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius);
-  padding: 0;
-  margin-bottom: 28px;
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.chapter:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-}
-.chapter-header {
-  padding: 28px 32px;
-  cursor: pointer;
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  user-select: none;
-  position: relative;
-}
-.chapter-num {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  font-weight: 800;
-  flex-shrink: 0;
-  color: #fff;
-}
-.c1 .chapter-num { background: var(--accent); }
-.c2 .chapter-num { background: var(--green); }
-.c3 .chapter-num { background: var(--gold); }
-.c4 .chapter-num { background: var(--blue); }
-.c5 .chapter-num { background: var(--purple); }
+    [data-theme="sunset"] {
+      --bg-cream: #FFF1E6;
+      --bg-warm: #FFE4D6;
+      --bg-card: #FFFAF5;
+      --ink-dark: #3D231E;
+      --ink-subtle: #7F5850;
+      --ink-muted: #A87E76;
+      --border-line: #3D231E;
+      --card-shadow-color: #3D231E;
+      --color-strawberry: #FF5A79;
+      --color-butter: #FFB347;
+      --color-matcha: #4CAE78;
+    }
 
-.chapter-info { flex: 1; }
-.chapter-info .ch-label {
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 2px;
-}
-.c1 .ch-label { color: var(--accent); }
-.c2 .ch-label { color: var(--green); }
-.c3 .ch-label { color: var(--gold); }
-.c4 .ch-label { color: var(--blue); }
-.c5 .ch-label { color: var(--purple); }
+    [data-theme="night"] {
+      --bg-cream: #1C1829;
+      --bg-warm: #262038;
+      --bg-card: #27213C;
+      --ink-dark: #F6F3FF;
+      --ink-subtle: #C3BAE2;
+      --ink-muted: #8E84B2;
+      --border-line: #F6F3FF;
+      --card-shadow-color: #9D7BFF;
+      --color-strawberry: #FF7096;
+      --color-strawberry-soft: #3B2435;
+      --color-peach: #FF9E80;
+      --color-peach-soft: #38252C;
+      --color-butter: #FFD45A;
+      --color-butter-soft: #383125;
+      --color-matcha: #52D197;
+      --color-matcha-soft: #1E382E;
+      --color-sky: #70A5FF;
+      --color-sky-soft: #202D45;
+      --color-lavender: #B599FF;
+      --color-lavender-soft: #31274F;
+      --color-gold: #FFA834;
+      --color-gold-soft: #3B2E20;
+      --washi-opacity: 0.65;
+    }
 
-.chapter-info h2 {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-.chapter-info .ch-hint {
-  font-size: 14px;
-  color: var(--text-light);
-}
-.chapter-arrow {
-  font-size: 20px;
-  color: #ccc;
-  transition: transform 0.3s;
-  margin-top: 12px;
-}
-.chapter.open .chapter-arrow {
-  transform: rotate(180deg);
-}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-.chapter-body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease, padding 0.3s;
-}
-.chapter.open .chapter-body {
-  max-height: 6000px;
-}
-.chapter-body-inner {
-  padding: 0 32px 32px;
-}
+    body {
+      background-color: var(--bg-cream);
+      background-image:
+        radial-gradient(circle at 18px 18px, rgba(160, 130, 115, 0.08) 2.5px, transparent 0),
+        radial-gradient(circle at 78px 78px, rgba(255, 175, 195, 0.12) 3px, transparent 0),
+        linear-gradient(180deg, var(--bg-cream) 0%, var(--bg-warm) 100%);
+      background-size: 60px 60px, 120px 120px, 100% 100%;
+      color: var(--ink-dark);
+      font-family: var(--font-body);
+      line-height: 1.8;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
 
-/* ===== CONTENT ELEMENTS ===== */
-.story-box {
-  background: #fef9e7;
-  border-left: 4px solid var(--gold);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  padding: 18px 22px;
-  margin: 20px 0;
-  font-size: 15px;
-}
-.story-box .story-label {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--gold);
-  margin-bottom: 6px;
-}
+    /* 顶部彩旗飘带 */
+    .top-bunting {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 12px;
+      background: repeating-linear-gradient(
+        45deg,
+        var(--color-strawberry) 0, var(--color-strawberry) 20px,
+        var(--color-butter) 20px, var(--color-butter) 40px,
+        var(--color-matcha) 40px, var(--color-matcha) 60px,
+        var(--color-sky) 60px, var(--color-sky) 80px,
+        var(--color-lavender) 80px, var(--color-lavender) 100px
+      );
+      opacity: 0.9;
+      z-index: 101;
+    }
 
-.think-box {
-  background: var(--blue-light);
-  border-left: 4px solid var(--blue);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  padding: 18px 22px;
-  margin: 20px 0;
-  font-size: 15px;
-}
-.think-box .think-label {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--blue);
-  margin-bottom: 6px;
-}
+    /* 顶部手账彩铅阅读进度轨 */
+    .scroll-progress-container {
+      position: fixed;
+      top: 12px; left: 0; width: 100%; height: 6px;
+      background: rgba(53, 38, 33, 0.08);
+      z-index: 100;
+      pointer-events: none;
+    }
+    .scroll-progress-bar {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, var(--color-strawberry), var(--color-butter), var(--color-matcha), var(--color-sky), var(--color-lavender));
+      border-radius: 0 4px 4px 0;
+      position: relative;
+      transition: width 0.08s linear;
+    }
+    .scroll-progress-head {
+      position: absolute; right: -10px; top: -9px;
+      font-size: 16px; line-height: 1;
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+      transform: scaleX(-1);
+    }
 
-.fact-card {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  padding: 14px;
-  background: #fafaf7;
-  border-radius: var(--radius-sm);
-  margin: 12px 0;
-}
-.fact-icon {
-  font-size: 28px;
-  flex-shrink: 0;
-}
+    /* 视差图层 */
+    .parallax-layer {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .layer-fg { z-index: 2; }
+    .prop-item { position: absolute; will-change: transform; user-select: none; }
 
-/* ===== MAP VISUAL ===== */
-.map-container {
-  position: relative;
-  width: 100%;
-  background: #f5f0e8;
-  border-radius: var(--radius-sm);
-  margin: 20px 0;
-  overflow: hidden;
-  aspect-ratio: 2 / 1;
-}
-.map-container svg {
-  width: 100%;
-  height: 100%;
-}
-.map-label {
-  position: absolute;
-  font-size: 11px;
-  font-weight: 700;
-  pointer-events: none;
-}
+    .prop-cloud-1 { top: 10%; left: 3%; font-size: 42px; opacity: 0.45; }
+    .prop-cloud-2 { top: 40%; right: 4%; font-size: 48px; opacity: 0.4; }
+    .prop-cloud-3 { top: 75%; left: 5%; font-size: 40px; opacity: 0.35; }
+    .prop-plane { top: 20%; right: 10%; font-size: 34px; opacity: 0.85; filter: drop-shadow(2px 3px 0 rgba(53,38,33,0.15)); }
+    .prop-coffee { top: 50%; left: 4%; font-size: 36px; opacity: 0.85; filter: drop-shadow(2px 3px 0 rgba(53,38,33,0.15)); }
+    .prop-pencil { top: 68%; right: 6%; font-size: 32px; opacity: 0.8; filter: drop-shadow(2px 3px 0 rgba(53,38,33,0.15)); }
+    .prop-sparkle-1 { top: 16%; left: 20%; font-size: 22px; opacity: 0.9; }
+    .prop-sparkle-2 { top: 46%; right: 22%; font-size: 24px; opacity: 0.85; }
 
-/* ===== DRAG & DROP ===== */
-.drag-zone {
-  display: flex;
-  gap: 16px;
-  margin: 20px 0;
-  flex-wrap: wrap;
-}
-.drop-target {
-  flex: 1;
-  min-width: 200px;
-  min-height: 120px;
-  border: 2px dashed #d4c8b0;
-  border-radius: var(--radius-sm);
-  padding: 16px;
-  transition: background 0.2s, border-color 0.2s;
-}
-.drop-target.hover {
-  background: var(--green-light);
-  border-color: var(--green);
-}
-.drop-target h4 {
-  font-size: 14px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-.drag-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  background: #fff;
-  border: 1px solid #d4c8b0;
-  border-radius: 20px;
-  cursor: grab;
-  font-size: 14px;
-  margin: 4px;
-  transition: all 0.2s;
-  user-select: none;
-}
-.drag-item:hover { transform: scale(1.05); }
-.drag-item:active { cursor: grabbing; }
-.drag-item.correct { background: #d4edda; border-color: #4a7c59; }
-.drag-item.wrong { background: #f8d7da; border-color: #c0392b; }
-.drag-source {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  padding: 16px;
-  background: #fafaf7;
-  border-radius: var(--radius-sm);
-  margin: 16px 0;
-  justify-content: center;
-  min-height: 60px;
-}
+    /* 顶部导航控制条 */
+    .top-nav {
+      position: sticky; top: 12px; z-index: 95;
+      background: rgba(253, 251, 247, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: var(--border-cartoon);
+      padding: 12px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap;
+      transition: background-color 0.4s ease;
+    }
+    [data-theme="sunset"] .top-nav { background: rgba(255, 241, 230, 0.92); }
+    [data-theme="night"] .top-nav { background: rgba(28, 24, 41, 0.92); }
 
-/* ===== CLICK REVEAL ===== */
-.reveal-btn {
-  display: inline-block;
-  padding: 10px 24px;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  margin: 12px 0;
-  transition: background 0.2s;
-}
-.reveal-btn:hover { background: #a93226; }
-.reveal-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-}
-.reveal-content.show {
-  max-height: 2000px;
-}
+    .nav-left-group { display: flex; align-items: center; gap: 12px; }
+    .back-home-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--bg-card); border: var(--border-cartoon);
+      box-shadow: var(--shadow-cartoon-sm);
+      border-radius: var(--radius-pill);
+      padding: 7px 16px; font-size: 13.5px; font-weight: 800;
+      color: var(--ink-dark); text-decoration: none;
+      transition: var(--transition-smooth);
+    }
+    .back-home-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-cartoon);
+      background: var(--color-butter);
+    }
 
-/* ===== TIMELINE ===== */
-.timeline {
-  position: relative;
-  padding: 20px 0;
-}
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 20px;
-  top: 0; bottom: 0;
-  width: 3px;
-  background: #e8dcc8;
-  border-radius: 2px;
-}
-.timeline-item {
-  position: relative;
-  padding-left: 50px;
-  margin-bottom: 20px;
-}
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: 12px;
-  top: 5px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border: 3px solid var(--accent);
-  background: #fff;
-}
-.timeline-item .tl-year {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--accent);
-}
-.timeline-item .tl-content {
-  font-size: 14px;
-  color: var(--text-light);
-  margin-top: 2px;
-}
+    .nav-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .nav-tab-chip {
+      padding: 6px 14px; border-radius: var(--radius-pill);
+      font-size: 12.5px; font-weight: 800; color: var(--ink-subtle);
+      background: transparent; border: 1.8px solid transparent;
+      cursor: pointer; transition: var(--transition-smooth);
+    }
+    .nav-tab-chip:hover { background: var(--bg-card); border-color: var(--ink-dark); color: var(--ink-dark); }
+    .nav-tab-chip.active {
+      background: var(--color-strawberry); color: #FFF;
+      border-color: var(--ink-dark); box-shadow: 2px 2px 0 var(--ink-dark);
+      transform: translateY(-2px);
+    }
 
-/* ===== QUIZ ===== */
-.quiz {
-  margin: 20px 0;
-  padding: 20px;
-  background: #fafaf7;
-  border-radius: var(--radius-sm);
-}
-.quiz h4 {
-  margin-bottom: 12px;
-  font-size: 16px;
-}
-.quiz-option {
-  display: block;
-  padding: 10px 16px;
-  margin: 6px 0;
-  background: #fff;
-  border: 1px solid #e8dcc8;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-size: 14px;
-}
-.quiz-option:hover { border-color: var(--accent); background: #fef9f9; }
-.quiz-option.selected { border-color: var(--accent); background: var(--accent-light); }
-.quiz-option.correct { border-color: var(--green); background: var(--green-light); }
-.quiz-option.wrong { border-color: var(--accent); background: #fdf0ed; }
-.quiz-feedback {
-  margin-top: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.quiz-feedback.show { opacity: 1; }
+    .nav-right-controls { display: flex; align-items: center; gap: 10px; }
+    .theme-switch-group {
+      background: var(--bg-card); border: var(--border-cartoon);
+      box-shadow: var(--shadow-cartoon-sm); border-radius: var(--radius-pill);
+      padding: 3px; display: inline-flex; align-items: center; gap: 4px;
+    }
+    .theme-pill-btn {
+      padding: 5px 10px; border-radius: var(--radius-pill);
+      font-size: 11.5px; font-weight: 800; color: var(--ink-subtle);
+      border: none; background: none; cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+    .theme-pill-btn.active {
+      background: var(--color-butter); color: #352621;
+      box-shadow: 1.5px 1.5px 0 var(--ink-dark);
+      transform: scale(1.04);
+    }
+    .sound-toggle-btn {
+      background: var(--bg-card); border: var(--border-cartoon);
+      box-shadow: var(--shadow-cartoon-sm); border-radius: var(--radius-pill);
+      padding: 7px 12px; font-size: 12px; font-weight: 800;
+      color: var(--ink-dark); display: inline-flex; align-items: center; gap: 6px;
+      border: var(--border-cartoon); cursor: pointer; transition: var(--transition-smooth);
+    }
+    .sound-toggle-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-cartoon); }
 
-/* ===== THINK SECTION ===== */
-.think-section {
-  background: var(--purple-light);
-  border-radius: var(--radius);
-  padding: 28px 32px;
-  margin: 28px 0;
-}
-.think-section h3 {
-  font-size: 18px;
-  color: var(--purple);
-  margin-bottom: 16px;
-}
-.think-level {
-  margin-bottom: 16px;
-  padding: 14px;
-  background: #fff;
-  border-radius: var(--radius-sm);
-}
-.think-level .level-badge {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 10px;
-  border-radius: 12px;
-  margin-bottom: 6px;
-}
-.badge-observe { background: #e8f5e9; color: #2e7d32; }
-.badge-reason { background: #fff3e0; color: #e65100; }
-.badge-transfer { background: #e8eaf6; color: #283593; }
-.think-level p { font-size: 15px; color: var(--text); margin-bottom: 8px; }
-.think-input {
-  width: 100%;
-  padding: 10px 14px;
-  border: 1px solid #d4c8b0;
-  border-radius: 8px;
-  font-size: 14px;
-  font-family: var(--font);
-  resize: vertical;
-  min-height: 60px;
-  background: #fafaf7;
-  transition: border-color 0.2s;
-}
-.think-input:focus {
-  outline: none;
-  border-color: var(--purple);
-  background: #fff;
-}
+    /* 主容器 */
+    .container {
+      max-width: 920px; margin: 0 auto;
+      padding: 40px 20px 120px;
+      position: relative; z-index: 1;
+    }
 
-/* ===== CONCLUSION ===== */
-.conclusion {
-  background: linear-gradient(135deg, #2c1810, #4a2c17);
-  color: #d4c8b0;
-  border-radius: var(--radius);
-  padding: 40px 32px;
-  text-align: center;
-  margin: 28px 0;
-}
-.conclusion h2 {
-  font-family: var(--font-title);
-  color: #d4a853;
-  font-size: 24px;
-  margin-bottom: 16px;
-}
-.conclusion p {
-  font-size: 16px;
-  line-height: 1.8;
-  max-width: 560px;
-  margin: 0 auto;
-}
+    /* HERO 相框展板 */
+    .hero-card {
+      background: var(--bg-card);
+      border: var(--border-cartoon);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-cartoon-lg);
+      padding: 38px; margin-bottom: 36px;
+      display: grid; grid-template-columns: 180px 1fr;
+      gap: 32px; align-items: center;
+      position: relative; overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+    .washi-tape {
+      position: absolute; width: 100px; height: 24px;
+      background: rgba(255, 206, 71, var(--washi-opacity));
+      border: 1.5px dashed rgba(53, 38, 33, 0.3);
+      top: -10px; left: 50%;
+      transform: translateX(-50%) rotate(-1.5deg);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05); z-index: 5;
+    }
+    .washi-tape.tape-left { left: 40px; transform: rotate(-5deg); background: rgba(255, 160, 122, var(--washi-opacity)); }
+    .washi-tape.tape-right { left: auto; right: 40px; transform: rotate(4deg); background: rgba(156, 121, 255, var(--washi-opacity)); }
 
-/* ===== ANIMATIONS ===== */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-.animate-in {
-  animation: fadeInUp 0.6s ease forwards;
-  opacity: 0;
-}
+    .hero-book-wrap {
+      width: 180px; height: 245px;
+      position: relative; border-radius: 14px;
+      border: var(--border-cartoon);
+      box-shadow: 4px 6px 0 var(--card-shadow-color);
+      overflow: hidden; background: #FFF;
+    }
+    .hero-book-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-book-wrap::after {
+      content: ""; position: absolute; top: 0; left: 0; width: 16px; height: 100%;
+      background: linear-gradient(90deg, rgba(255,255,255,0.45) 0%, rgba(0,0,0,0.12) 80%, transparent 100%);
+      pointer-events: none;
+    }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 600px) {
-  .container { padding: 70px 16px 80px; }
-  .chapter-header { padding: 20px; }
-  .chapter-body-inner { padding: 0 20px 24px; }
-  .hero h1 { font-size: 26px; }
-  .drag-zone { flex-direction: column; }
-}
+    .hero-info { display: flex; flex-direction: column; }
+    .hero-badges-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .badge-pill {
+      font-size: 11.5px; font-weight: 800; padding: 4px 12px;
+      border-radius: var(--radius-pill); border: 1.5px solid var(--ink-dark);
+      box-shadow: 1.5px 2px 0 var(--ink-dark);
+    }
+    .badge-pink { background: var(--color-strawberry-soft); color: var(--color-strawberry); }
+    .badge-green { background: var(--color-matcha-soft); color: var(--color-matcha); }
+    .badge-gold { background: var(--color-gold-soft); color: var(--color-gold); }
 
-/* ===== FLOATING BOTTOM NAV & TOC ===== */
-.floating-nav {
-  position: fixed;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(232, 220, 200, 0.5);
-  border-radius: 40px;
-  padding: 6px 8px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
-  z-index: 900;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
+    .hero-title {
+      font-family: var(--font-display); font-size: 34px; line-height: 1.3;
+      margin-bottom: 12px; letter-spacing: 1px; color: var(--ink-dark);
+    }
+    .hero-quote-tape {
+      background: var(--bg-warm);
+      border-left: 4px solid var(--color-strawberry);
+      padding: 10px 16px; border-radius: 4px 12px 12px 4px;
+      font-size: 13.5px; font-weight: 700; color: var(--ink-dark);
+      margin-bottom: 14px; line-height: 1.6;
+    }
+    .hero-desc { font-size: 14px; color: var(--ink-subtle); line-height: 1.7; }
 
-.nav-btn {
-  background: transparent;
-  border: none;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text);
-  padding: 10px 20px;
-  border-radius: 30px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font);
-  transition: all 0.2s ease;
-}
+    /* 手账章节卡片 */
+    .chapter-card {
+      background: var(--bg-card);
+      border: var(--border-cartoon);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-cartoon);
+      margin-bottom: 28px;
+      position: relative; overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+    .chapter-card:hover { box-shadow: var(--shadow-cartoon-hover); }
 
-.nav-btn:hover {
-  background: rgba(232, 220, 200, 0.3);
-}
+    .chapter-header {
+      padding: 24px 28px; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; user-select: none;
+      background: var(--bg-card);
+      border-bottom: 2px dashed rgba(53, 38, 33, 0.15);
+      transition: background 0.2s ease;
+    }
+    .chapter-header:hover { background: var(--bg-warm); }
 
-.nav-divider {
-  width: 1px;
-  height: 18px;
-  background: rgba(232, 220, 200, 0.8);
-  margin: 0 4px;
-}
+    .ch-title-group { display: flex; align-items: center; gap: 16px; }
+    .ch-icon-badge {
+      width: 46px; height: 46px; border-radius: 14px;
+      border: 2px solid var(--ink-dark);
+      box-shadow: 2px 2px 0 var(--ink-dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; background: var(--color-butter-soft);
+      flex-shrink: 0;
+    }
+    .ch-meta { display: flex; flex-direction: column; }
+    .ch-label { font-size: 11.5px; font-weight: 800; text-transform: uppercase; color: var(--color-strawberry); letter-spacing: 1px; }
+    .ch-heading { font-family: var(--font-display); font-size: 22px; color: var(--ink-dark); line-height: 1.3; }
+    .ch-hint { font-size: 12.5px; color: var(--ink-subtle); }
+    .ch-arrow-btn {
+      font-size: 18px; font-weight: 800; color: var(--ink-subtle);
+      transition: transform 0.3s ease;
+    }
+    .chapter-card.open .ch-arrow-btn { transform: rotate(180deg); }
 
-.toc-overlay {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(61, 50, 38, 0.2);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  z-index: 1000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
+    .chapter-body {
+      display: none; padding: 28px 32px 32px;
+      animation: fadeIn 0.3s ease;
+    }
+    .chapter-card.open .chapter-body { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
 
-.toc-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
+    /* 手账风格内容块 */
+    .story-bubble {
+      background: var(--bg-warm);
+      border: 2px solid var(--ink-dark);
+      box-shadow: var(--shadow-cartoon-sm);
+      border-radius: var(--radius-md);
+      padding: 18px 22px; margin-bottom: 20px;
+      position: relative;
+    }
+    .bubble-tag {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 11px; font-weight: 800; background: var(--color-butter);
+      border: 1.5px solid var(--ink-dark); border-radius: var(--radius-pill);
+      padding: 2px 10px; margin-bottom: 8px; color: #352621;
+    }
 
-.toc-modal {
-  background: var(--card);
-  width: 100%;
-  max-width: 600px;
-  border-radius: 28px 28px 0 0;
-  padding: 32px 24px;
-  transform: translateY(100%);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
-  max-height: 85vh;
-  overflow-y: auto;
-  border-top: 1px solid var(--card-border);
-}
+    .think-card {
+      background: var(--color-sky-soft);
+      border: 2px solid var(--ink-dark);
+      border-radius: var(--radius-md);
+      padding: 20px 24px; margin: 20px 0;
+      position: relative;
+    }
+    .think-card .think-tag {
+      background: var(--color-sky); color: #FFF;
+      font-size: 11px; font-weight: 800; padding: 3px 10px;
+      border-radius: var(--radius-pill); display: inline-block; margin-bottom: 8px;
+    }
 
-.toc-overlay.active .toc-modal {
-  transform: translateY(0);
-}
+    .reveal-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--color-butter); border: 2px solid var(--ink-dark);
+      box-shadow: var(--shadow-cartoon-sm); border-radius: var(--radius-pill);
+      padding: 8px 18px; font-size: 13px; font-weight: 800; color: #352621;
+      cursor: pointer; margin: 12px 0 16px; transition: var(--transition-smooth);
+    }
+    .reveal-btn:hover { transform: translateY(-2px); background: #FFC526; }
+    .reveal-content {
+      display: none; background: #FFF; border: 2px dashed var(--ink-dark);
+      border-radius: var(--radius-md); padding: 18px 22px; margin-bottom: 20px;
+    }
+    .reveal-content.show { display: block; animation: fadeIn 0.3s ease; }
 
-.toc-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-  padding: 0 8px;
-}
+    /* 动物驯化拖拽游戏 */
+    .drag-box-wrapper {
+      background: var(--bg-cream); border: 2px solid var(--ink-dark);
+      border-radius: var(--radius-md); padding: 20px; margin: 20px 0;
+    }
+    .drag-source {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px;
+      padding: 12px; background: #FFF; border: 1.8px dashed var(--ink-dark);
+      border-radius: var(--radius-sm);
+    }
+    .drag-item {
+      background: var(--bg-warm); border: 1.8px solid var(--ink-dark);
+      box-shadow: 2px 2px 0 var(--ink-dark); border-radius: var(--radius-pill);
+      padding: 6px 14px; font-size: 13px; font-weight: 800; cursor: grab;
+      user-select: none; transition: transform 0.15s ease;
+    }
+    .drag-item:active { cursor: grabbing; transform: scale(0.95); }
+    .drag-zone { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .drop-target {
+      background: #FFF; border: 2px solid var(--ink-dark);
+      border-radius: var(--radius-sm); padding: 14px; min-height: 120px;
+    }
+    .drop-target.hover { background: var(--color-butter-soft); }
+    .drop-target h4 { font-size: 13px; font-weight: 800; margin-bottom: 10px; }
+    .dropped-items { display: flex; flex-wrap: wrap; gap: 6px; }
 
-.toc-header h3 {
-  font-family: var(--font-title);
-  font-size: 20px;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+    /* 思维训练三层便签 */
+    .think-section {
+      background: var(--bg-warm); border: 2px solid var(--ink-dark);
+      border-radius: var(--radius-md); padding: 22px; margin-top: 24px;
+    }
+    .think-section h3 { font-family: var(--font-display); font-size: 18px; margin-bottom: 14px; }
+    .think-level {
+      background: #FFF; border: 1.5px solid var(--ink-dark);
+      border-radius: var(--radius-sm); padding: 14px; margin-bottom: 12px;
+    }
+    .level-badge {
+      display: inline-block; font-size: 11px; font-weight: 800;
+      padding: 2px 8px; border-radius: 4px; margin-bottom: 6px;
+    }
+    .badge-observe { background: var(--color-matcha-soft); color: var(--color-matcha); }
+    .badge-reason { background: var(--color-sky-soft); color: var(--color-sky); }
+    .badge-transfer { background: var(--color-lavender-soft); color: var(--color-lavender); }
+    .think-input {
+      width: 100%; border: 1.5px solid rgba(53,38,33,0.3); border-radius: 8px;
+      padding: 8px 12px; font-family: inherit; font-size: 13px; margin-top: 6px;
+      outline: none; resize: vertical; min-height: 50px;
+    }
+    .think-input:focus { border-color: var(--color-strawberry); }
 
-.toc-close {
-  background: var(--bg);
-  border: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  font-size: 18px;
-  color: var(--text-light);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
-}
-.toc-close:hover {
-  background: #e8dcc8;
-}
+    /* 结语大卡片 */
+    .conclusion-card {
+      background: var(--ink-dark); color: #FFF;
+      border: var(--border-cartoon); border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-cartoon-lg); padding: 36px 32px;
+      text-align: center; margin: 36px 0; position: relative;
+    }
+    .conclusion-card h2 {
+      font-family: var(--font-display); font-size: 28px;
+      color: var(--color-butter); margin-bottom: 16px;
+    }
+    .conclusion-card p { font-size: 15px; line-height: 1.9; max-width: 640px; margin: 0 auto; }
 
-.toc-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+    /* 右下角吉祥物小猫咪：「花花喵」 */
+    .mascot-corner {
+      position: fixed; right: 28px; bottom: 24px; z-index: 98;
+      display: flex; flex-direction: column; align-items: flex-end;
+    }
+    .mascot-bubble {
+      background: var(--bg-card); border: 2px solid var(--ink-dark);
+      box-shadow: var(--shadow-cartoon-sm); border-radius: 16px 16px 4px 16px;
+      padding: 10px 16px; font-size: 12.5px; font-weight: 800; color: var(--ink-dark);
+      max-width: 220px; margin-bottom: 8px; opacity: 0;
+      transform: translateY(10px) scale(0.9); transition: var(--transition-smooth);
+      pointer-events: none;
+    }
+    .mascot-bubble.show { opacity: 1; transform: translateY(0) scale(1); }
+    .mascot-avatar-btn {
+      width: 62px; height: 62px; background: #FFFFFF;
+      border: 2.5px solid var(--ink-dark); box-shadow: var(--shadow-cartoon);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: var(--transition-smooth); position: relative;
+      padding: 0; overflow: visible;
+    }
+    .mascot-avatar-btn:hover {
+      transform: scale(1.12) rotate(6deg);
+      box-shadow: var(--shadow-cartoon-hover); background: #FFFDF9;
+    }
+    .mascot-avatar-btn.scrolling-fast { animation: fastWag 0.22s infinite alternate; }
+    @keyframes fastWag {
+      0% { transform: scale(1.08) rotate(-10deg); }
+      100% { transform: scale(1.08) rotate(10deg); }
+    }
+    .mascot-cat-svg { width: 52px; height: 52px; display: block; }
+    .mascot-badge-online {
+      position: absolute; top: -2px; right: -2px; width: 15px; height: 15px;
+      background: var(--color-matcha); border: 2px solid var(--ink-dark);
+      border-radius: 50%; box-shadow: 0 0 0 2px rgba(255,255,255,0.9);
+    }
 
-.toc-item {
-  display: flex;
-  align-items: center;
-  padding: 16px;
-  background: var(--bg);
-  border-radius: 18px;
-  text-decoration: none;
-  color: var(--text);
-  font-weight: 600;
-  transition: all 0.2s ease;
-  border: 1px solid transparent;
-}
+    /* 底部悬浮导航 */
+    .floating-dock {
+      position: fixed; bottom: 24px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-card); border: 2.5px solid var(--ink-dark);
+      box-shadow: var(--shadow-cartoon-lg); border-radius: var(--radius-pill);
+      padding: 8px 14px; display: inline-flex; align-items: center; gap: 8px;
+      z-index: 99; transition: var(--transition-smooth);
+    }
+    .dock-btn {
+      padding: 9px 16px; border-radius: var(--radius-pill);
+      font-size: 13px; font-weight: 800; color: var(--ink-dark);
+      background: transparent; border: 1.8px solid transparent;
+      display: inline-flex; align-items: center; gap: 6px;
+      cursor: pointer; text-decoration: none; transition: var(--transition-smooth);
+    }
+    .dock-btn:hover { background: var(--bg-warm); border-color: var(--ink-dark); transform: translateY(-2px); }
+    .dock-dice-btn { background: var(--color-butter); border: 1.8px solid var(--ink-dark); }
 
-.toc-item:hover {
-  background: #fff;
-  border-color: var(--card-border);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.04);
-}
+    /* 页脚 */
+    footer {
+      text-align: center; padding: 48px 20px 110px;
+      font-size: 12.5px; color: var(--ink-subtle);
+      border-top: 2px dashed rgba(53, 38, 33, 0.18);
+    }
+    .footer-stamp {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--bg-card); border: 1.5px solid var(--ink-dark);
+      box-shadow: 2px 2px 0 var(--card-shadow-color); border-radius: var(--radius-pill);
+      padding: 4px 14px; font-size: 11px; font-weight: 800;
+      color: var(--color-strawberry); margin-top: 10px;
+    }
 
-.toc-item .icon {
-  font-size: 20px;
-  margin-right: 12px;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-  border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
+    .sparkle-particle {
+      position: fixed; pointer-events: none; z-index: 9999;
+      font-size: 18px; user-select: none;
+      animation: sparkleFly 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    @keyframes sparkleFly {
+      0% { opacity: 1; transform: translate(0, 0) scale(0.6) rotate(0deg); }
+      100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(1.4) rotate(180deg); }
+    }
 
-@media (max-width: 600px) {
-  .floating-nav { bottom: 24px; }
-  .toc-modal { padding: 24px 20px; border-radius: 24px 24px 0 0; }
-}
-
-/* ===== PRINT HIDE ===== */
-@media print {
-  .nav-bar, .floating-nav, .toc-overlay { display: none; }
-  .chapter-body { max-height: none !important; }
-  .chapter { break-inside: avoid; }
-}
-</style>
+    @media (max-width: 768px) {
+      .hero-card { grid-template-columns: 1fr; padding: 24px; text-align: center; }
+      .hero-book-wrap { margin: 0 auto; }
+      .hero-badges-row { justify-content: center; }
+      .drag-zone { grid-template-columns: 1fr; }
+      .floating-dock { width: 92%; justify-content: space-around; padding: 6px 8px; }
+      .dock-btn { padding: 8px 10px; font-size: 12px; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAVIGATION -->
-<nav class="nav-bar">
-  <span class="nav-title">🔍 历史探案笔记</span>
-  <div class="progress-wrap">
-    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-    <span class="progress-text" id="progressText">0/5</span>
-  </div>
-</nav>
+  <!-- 顶部彩旗飘带 -->
+  <div class="top-bunting" aria-hidden="true"></div>
 
-<div class="container">
-
-<!-- ===== HERO ===== -->
-<div class="hero animate-in">
-  <div class="badge">📖 一本书的探案之旅</div>
-  <h1>谁<span class="highlight">"偷"</span>走了<br>人类历史的公平？</h1>
-  <div class="book-cover">
-    枪炮、病菌<br>与钢铁<br><span style="font-size:12px;opacity:0.7">贾雷德·戴蒙德</span>
-  </div>
-  <p class="subtitle">为什么是欧洲人征服了美洲，而不是反过来？<br>跟着我，像一个侦探一样，找到真相。</p>
-</div>
-
-<!-- ===== 开篇案发现场 ===== -->
-<div class="chapter c1 open" id="ch0">
-  <div class="chapter-header" onclick="toggleChapter(this)">
-    <div class="chapter-num">🔍</div>
-    <div class="chapter-info">
-      <div class="ch-label">案发现场</div>
-      <h2>一个让所有人沉默的问题</h2>
-      <div class="ch-hint">1532年，西班牙，168个人 vs 8万大军</div>
-    </div>
-    <div class="chapter-arrow">▼</div>
-  </div>
-  <div class="chapter-body" style="max-height:6000px">
-    <div class="chapter-body-inner">
-
-    <div class="story-box">
-      <div class="story-label">📜 真实案件</div>
-      <p><strong>1532年11月16日，秘鲁。</strong>西班牙人皮萨罗带着168个士兵，走进了印加帝国的领地。迎面而来的，是印加皇帝阿塔瓦尔帕和他的8万大军。</p>
-      <p>168 对 80,000——这是1比476的悬殊差距。</p>
-      <p>结果呢？<strong>皮萨罗俘虏了皇帝，屠杀了数千印加士兵，而西班牙人几乎毫发无伤。</strong></p>
-    </div>
-
-    <p>这听起来像是一个关于"勇气"的故事？不，这是一个关于<strong>"不公平"</strong>的故事。</p>
-    <p>你有没有想过——</p>
-
-    <div class="think-box">
-      <div class="think-label">🤔 停下来想一想</div>
-      <p>为什么是西班牙人坐着船跨越了大西洋，而不是印加人坐着船来到欧洲？<br>
-      为什么西班牙人有枪、有马、有钢铁盔甲，而印加人只有石斧和木棒？<br>
-      <strong>是西班牙人更聪明吗？</strong></p>
-    </div>
-
-    <button class="reveal-btn" onclick="revealContent(this)">点击揭晓答案</button>
-    <div class="reveal-content">
-      <p><strong>不是。</strong>这本书用一个又一个证据告诉你：不同地区的人，在智力上并没有什么差别。</p>
-      <p>作者贾雷德·戴蒙德提出了一个大胆的假说：<strong>决定历史走向的，不是人种、不是文化，而是——地理和环境。</strong></p>
-      <p>接下来，跟着我一起，像侦探一样搜集五个关键线索，揭开这个谜底。</p>
-    </div>
-
+  <!-- 顶部手账彩铅阅读进度指示条 -->
+  <div class="scroll-progress-container" aria-hidden="true">
+    <div class="scroll-progress-bar" id="scroll-progress">
+      <span class="scroll-progress-head">✏️</span>
     </div>
   </div>
-</div>
 
-<!-- ===== 线索一：农作物 ===== -->
-<div class="chapter c2" id="ch1">
-  <div class="chapter-header" onclick="toggleChapter(this)">
-    <div class="chapter-num">🌾</div>
-    <div class="chapter-info">
-      <div class="ch-label">线索一</div>
-      <h2>谁先吃饱，谁先起跑</h2>
-      <div class="ch-hint">一颗小麦种子，如何改变人类命运？</div>
-    </div>
-    <div class="chapter-arrow">▼</div>
+  <!-- 多景深视差漂浮图层 -->
+  <div class="parallax-layer layer-bg" aria-hidden="true">
+    <span class="prop-item prop-cloud-1" data-parallax-speed="0.08">☁️</span>
+    <span class="prop-item prop-cloud-2" data-parallax-speed="0.12">☁️</span>
+    <span class="prop-item prop-cloud-3" data-parallax-speed="0.07">☁️</span>
   </div>
-  <div class="chapter-body">
-    <div class="chapter-body-inner">
+  <div class="parallax-layer layer-props" aria-hidden="true">
+    <span class="prop-item prop-plane" data-parallax-speed="0.4" title="纸飞机">✈️</span>
+    <span class="prop-item prop-coffee" data-parallax-speed="-0.3" title="热可可">☕</span>
+    <span class="prop-item prop-pencil" data-parallax-speed="0.45" title="彩铅">✏️</span>
+  </div>
+  <div class="parallax-layer layer-fg" aria-hidden="true">
+    <span class="prop-item prop-sparkle-1" data-parallax-speed="1.2">✨</span>
+    <span class="prop-item prop-sparkle-2" data-parallax-speed="1.3">🌸</span>
+  </div>
 
-    <p>想象一下，如果你每天要花十几个小时去打猎、找野果才能吃饱，你还有时间发明文字、研究天文、建造城市吗？</p>
-    <p>所以人类历史的第一个"分水岭"就是——<strong>农业</strong>。谁能先种地、先吃饱，谁就能先发展。</p>
-
-    <div class="story-box">
-      <div class="story-label">🌍 关键事实</div>
-      <p>欧亚大陆（包括中东、中国、欧洲）天然拥有最丰富的可驯化植物：<strong>小麦、大麦、水稻、豌豆、亚麻</strong>……这些植物产量高、营养好、容易种。</p>
-      <p>而美洲大陆呢？主要作物是<strong>玉米</strong>。但野生的玉米穗只有指甲盖那么大，人类花了几千年才把它驯化成今天的样子。而且玉米蛋白质含量低，单靠玉米很难养活密集的人口。</p>
-      <p>非洲和澳洲的很多植物，要么产量太低，要么太难驯化，根本不适合作为主要粮食。</p>
-    </div>
-
-    <div class="fact-card">
-      <span class="fact-icon">🌾</span>
-      <div>
-        <strong>中东的"新月沃地"</strong>——世界上最早出现农业的地方之一，这里有小麦、大麦、豌豆、扁豆等32种适合驯化的野生谷物和豆类。而整个美洲只有11种，非洲撒哈拉以南只有4种。
+  <!-- 顶部导航控制条 -->
+  <header class="top-nav">
+    <div class="nav-left-group">
+      <a href="../index.html" class="back-home-btn" onclick="playBubbleSound()">
+        <span>← 📖 返回书架</span>
+      </a>
+      <div class="nav-tabs">
+        <button class="nav-tab-chip active" onclick="scrollToSection('ch0')">🔍 案发</button>
+        <button class="nav-tab-chip" onclick="scrollToSection('ch1')">🌾 作物</button>
+        <button class="nav-tab-chip" onclick="scrollToSection('ch2')">🐴 动物</button>
+        <button class="nav-tab-chip" onclick="scrollToSection('ch3')">🧭 方向</button>
+        <button class="nav-tab-chip" onclick="scrollToSection('ch4')">🦠 病菌</button>
+        <button class="nav-tab-chip" onclick="scrollToSection('ch5')">⚙️ 技术</button>
       </div>
     </div>
 
-    <button class="reveal-btn" onclick="revealContent(this)">💡 这说明了什么？</button>
-    <div class="reveal-content">
-      <p>欧亚大陆的人并不是"更勤劳"才先发展农业。他们只是<strong>运气好</strong>——脚下的土地恰好长着更容易驯化的植物。</p>
-      <p>农业带来粮食，粮食带来人口，人口带来分工，分工带来技术——这是一个连锁反应，而链条的第一环，就是地理的馈赠。</p>
-    </div>
-
-    <div class="think-section">
-      <h3>🧠 思维训练</h3>
-      <div class="think-level">
-        <span class="level-badge badge-observe">🧐 观察层</span>
-        <p>欧亚大陆和美洲大陆在可驯化的农作物上有什么不同？</p>
-        <textarea class="think-input" placeholder="写下你的观察..."></textarea>
+    <div class="nav-right-controls">
+      <div class="theme-switch-group" aria-label="主题色调切换">
+        <button class="theme-pill-btn active" id="btn-theme-day" onclick="setAppTheme('day')">☀️ 晴日</button>
+        <button class="theme-pill-btn" id="btn-theme-sunset" onclick="setAppTheme('sunset')">🌅 暮色</button>
+        <button class="theme-pill-btn" id="btn-theme-night" onclick="setAppTheme('night')">🌙 星夜</button>
       </div>
-      <div class="think-level">
-        <span class="level-badge badge-reason">🤔 推理层</span>
-        <p>如果美洲大陆也有小麦和大麦，你觉得历史会有什么不同？</p>
-        <textarea class="think-input" placeholder="写下你的推理..."></textarea>
+      <button class="sound-toggle-btn" id="sound-btn" onclick="toggleSoundEffect()" title="开关治愈音效">
+        <span id="sound-icon">🔔</span>
+        <span id="sound-text">音效: 关</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- HERO 相框展板 -->
+    <section class="hero-card" id="top">
+      <div class="washi-tape tape-left"></div>
+      <div class="washi-tape tape-right"></div>
+
+      <div class="hero-book-wrap">
+        <img src="../assets/covers/guns-germs-steel.jpg" alt="《枪炮、病菌与钢铁》精读封面">
       </div>
-      <div class="think-level">
-        <span class="level-badge badge-transfer">💡 迁移层</span>
-        <p>在你的生活中，有没有什么事情看起来是"谁更努力"，但其实可能是"谁的条件更好"？</p>
-        <textarea class="think-input" placeholder="写下你的思考..."></textarea>
+
+      <div class="hero-info">
+        <div class="hero-badges-row">
+          <span class="badge-pill badge-pink">🔎 历史探案精读</span>
+          <span class="badge-pill badge-gold">👤 贾雷德·戴蒙德</span>
+          <span class="badge-pill badge-green">⏱️ 15 分钟长读</span>
+        </div>
+
+        <h1 class="hero-title">谁“偷”走了人类历史的公平？</h1>
+
+        <div class="hero-quote-tape">
+          “文明起跑线的差距不是人种与智力，而是地理与生态赋予的先天禀赋。”
+        </div>
+
+        <p class="hero-desc">
+          为什么是欧洲人征服了美洲，而不是印加人跨过大西洋征服欧洲？跟随作者像侦探破案一样，搜集 5 大关键线索，找到历史底层真正的不公平之源。
+        </p>
       </div>
-    </div>
+    </section>
 
-    </div>
-  </div>
-</div>
-
-<!-- ===== 线索二：动物 ===== -->
-<div class="chapter c3" id="ch2">
-  <div class="chapter-header" onclick="toggleChapter(this)">
-    <div class="chapter-num">🐴</div>
-    <div class="chapter-info">
-      <div class="ch-label">线索二</div>
-      <h2>为什么斑马从来没被骑过？</h2>
-      <div class="ch-hint">能驯化的动物，比你想象的少得多</div>
-    </div>
-    <div class="chapter-arrow">▼</div>
-  </div>
-  <div class="chapter-body">
-    <div class="chapter-body-inner">
-
-    <p>你有没有想过，为什么人类骑了马、骑了骆驼，却从来没骑过斑马？为什么牛可以拉犁，但犀牛不行？</p>
-
-    <div class="story-box">
-      <div class="story-label">🦓 动物界的"面试标准"</div>
-      <p>要成为一个"合格的"驯化动物，必须同时满足好几个条件：</p>
-      <ul style="margin-top:8px;">
-        <li><strong>吃草不吃肉</strong>——养一只老虎吃的肉，够养十个人</li>
-        <li><strong>长得快</strong>——大象要15年才成年，等不起</li>
-        <li><strong>脾气好</strong>——斑马咬人、踢人，打死不让人骑</li>
-        <li><strong>能在圈养下繁殖</strong>——猎豹在笼子里拒绝交配</li>
-        <li><strong>有等级意识</strong>——能接受人类当"领导"</li>
-      </ul>
-    </div>
-
-    <p>能同时满足这些条件的大型哺乳动物，全世界只有<strong>14种</strong>。而其中<strong>13种</strong>的原产地都在欧亚大陆！</p>
-
-    <div class="drag-source" id="animalSource">
-      <span class="drag-item" draggable="true" data-animal="horse" data-correct="yes">🐴 马</span>
-      <span class="drag-item" draggable="true" data-animal="cow" data-correct="yes">🐄 牛</span>
-      <span class="drag-item" draggable="true" data-animal="sheep" data-correct="yes">🐑 绵羊</span>
-      <span class="drag-item" draggable="true" data-animal="zebra" data-correct="no">🦓 斑马</span>
-      <span class="drag-item" draggable="true" data-animal="rhino" data-correct="no">🦏 犀牛</span>
-      <span class="drag-item" draggable="true" data-animal="pig" data-correct="yes">🐷 猪</span>
-      <span class="drag-item" draggable="true" data-animal="lion" data-correct="no">🦁 狮子</span>
-      <span class="drag-item" draggable="true" data-animal="goat" data-correct="yes">🐐 山羊</span>
-    </div>
-
-    <div class="drag-zone">
-      <div class="drop-target" id="dropYes" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'yes')">
-        <h4>✅ 可以驯化</h4>
-        <div class="dropped-items" id="droppedYes"></div>
+    <!-- 线索 0：案发现场 -->
+    <article class="chapter-card open" id="ch0">
+      <div class="chapter-header" onclick="toggleChapterCard(this)">
+        <div class="ch-title-group">
+          <div class="ch-icon-badge">🔍</div>
+          <div class="ch-meta">
+            <span class="ch-label">案发现场</span>
+            <h2 class="ch-heading">一个让所有人沉默的问题</h2>
+            <span class="ch-hint">1532年秘鲁：168个西班牙人 vs 8万印加帝国大军</span>
+          </div>
+        </div>
+        <span class="ch-arrow-btn">▼</span>
       </div>
-      <div class="drop-target" id="dropNo" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'no')">
-        <h4>❌ 不能驯化</h4>
-        <div class="dropped-items" id="droppedNo"></div>
+      <div class="chapter-body">
+        <div class="story-bubble">
+          <span class="bubble-tag">📜 历史案发记录</span>
+          <p><strong>1532年11月16日，秘鲁卡哈马卡。</strong>西班牙人皮萨罗带着 168 个士兵走进印加领地，迎面而来的是印加皇帝阿塔瓦尔帕和 8 万大军（比例悬殊达 1:476）。</p>
+          <p style="margin-top:8px;">结果，皮萨罗活捉了皇帝并击溃大军，西班牙人几乎毫发无伤。这绝非英雄传奇，而是一场赤裸裸的<strong>“起跑线不公平”</strong>。</p>
+        </div>
+
+        <div class="think-card">
+          <span class="think-tag">🤔 停下来想一想</span>
+          <p>为什么西班牙人拥有钢铁盔甲、战马与火枪，而印加人只有木棒与石斧？是因为欧洲人天生更聪明吗？</p>
+        </div>
+
+        <button class="reveal-btn" onclick="toggleReveal(this)">💡 点击揭晓侦探假说</button>
+        <div class="reveal-content">
+          <p><strong>答案是否定的。</strong>人类各族群在先天智力上并无统计差异。作者贾雷德·戴蒙德提出核心命题：<strong>决定历史走向的根本动力不是种族或文化，而是地理与生态环境。</strong></p>
+        </div>
       </div>
-    </div>
-    <div id="dragFeedback" style="text-align:center;font-weight:600;margin-top:8px;"></div>
+    </article>
 
-    <button class="reveal-btn" onclick="revealContent(this)">💡 这说明了什么？</button>
-    <div class="reveal-content">
-      <p>欧亚大陆的人并不是"更聪明"才驯化了马和牛。他们只是<strong>恰好生活在这13种可驯化动物最多的地区</strong>。</p>
-      <p>这些动物不仅提供了肉、奶、皮毛，更关键的是——<strong>马提供了军事上的机动性，牛提供了农业上的劳动力</strong>。有了马，军队可以快速移动；有了牛，土地可以深耕，粮食产量翻倍。</p>
-      <p>而美洲的大型哺乳动物（比如猛犸象、美洲马）在人类到达美洲后不久就灭绝了，美洲原住民根本没得选。</p>
-    </div>
-
-    <div class="think-section">
-      <h3>🧠 思维训练</h3>
-      <div class="think-level">
-        <span class="level-badge badge-observe">🧐 观察层</span>
-        <p>为什么斑马和犀牛不能被驯化？列出至少两个原因。</p>
-        <textarea class="think-input" placeholder="写下你的观察..."></textarea>
+    <!-- 线索 1：农作物 -->
+    <article class="chapter-card" id="ch1">
+      <div class="chapter-header" onclick="toggleChapterCard(this)">
+        <div class="ch-title-group">
+          <div class="ch-icon-badge">🌾</div>
+          <div class="ch-meta">
+            <span class="ch-label">线索一</span>
+            <h2 class="ch-heading">谁先吃饱，谁先起跑</h2>
+            <span class="ch-hint">一颗小麦种子如何拉开文明差距？</span>
+          </div>
+        </div>
+        <span class="ch-arrow-btn">▼</span>
       </div>
-      <div class="think-level">
-        <span class="level-badge badge-reason">🤔 推理层</span>
-        <p>如果美洲原住民也有马，你觉得皮萨罗的168人还能赢吗？为什么？</p>
-        <textarea class="think-input" placeholder="写下你的推理..."></textarea>
+      <div class="chapter-body">
+        <p>如果你每天要花十几个小时去采野果打猎才能吃饱，就根本无法分工出文字学者、铁匠与航海家。人类历史的第一分水岭就是<strong>农业与粮食盈余</strong>。</p>
+        
+        <div class="story-bubble" style="margin-top:16px;">
+          <span class="bubble-tag">🌍 地理禀赋对比</span>
+          <p><strong>欧亚大陆（新月沃地/中国/欧洲）</strong>：天然拥有全球最丰富的高产高蛋白农作物——<strong>小麦、大麦、水稻、豌豆</strong>，易种植且易储存。</p>
+          <p style="margin-top:6px;"><strong>美洲大陆</strong>：野生主粮只有极难驯化的微型野生玉米；非洲与澳洲的可驯化谷物更是极其匮乏。</p>
+        </div>
+
+        <button class="reveal-btn" onclick="toggleReveal(this)">💡 这说明了什么？</button>
+        <div class="reveal-content">
+          <p>欧亚大陆的人并非更勤奋，他们只是<strong>运气好</strong>——脚下的土地天然长着容易驯化的丰产作物。粮食充沛带来人口增长，人口增长催生社会分工与技术发明。</p>
+        </div>
+
+        <div class="think-section">
+          <h3>🧠 思维训练：从观察到迁移</h3>
+          <div class="think-level">
+            <span class="level-badge badge-observe">🧐 观察层</span>
+            <p>欧亚大陆和美洲在天然可驯化植物上有什么悬殊差异？</p>
+            <textarea class="think-input" placeholder="写下你的观察..."></textarea>
+          </div>
+          <div class="think-level">
+            <span class="level-badge badge-transfer">💡 迁移层</span>
+            <p>在生活中，有哪些事情看似是“个人努力差距”，实则是“资源初始条件不同”？</p>
+            <textarea class="think-input" placeholder="写下你的心得..."></textarea>
+          </div>
+        </div>
       </div>
-      <div class="think-level">
-        <span class="level-badge badge-transfer">💡 迁移层</span>
-        <p>你对"选择比努力更重要"这句话现在有什么新的理解？</p>
-        <textarea class="think-input" placeholder="写下你的思考..."></textarea>
+    </article>
+
+    <!-- 线索 2：动物驯化 -->
+    <article class="chapter-card" id="ch2">
+      <div class="chapter-header" onclick="toggleChapterCard(this)">
+        <div class="ch-title-group">
+          <div class="ch-icon-badge">🐴</div>
+          <div class="ch-meta">
+            <span class="ch-label">线索二</span>
+            <h2 class="ch-heading">为什么斑马从来没有被骑过？</h2>
+            <span class="ch-hint">安娜·卡列尼娜原则：能驯化的动物凤毛麟角</span>
+          </div>
+        </div>
+        <span class="ch-arrow-btn">▼</span>
       </div>
+      <div class="chapter-body">
+        <p>适合驯化的大型哺乳动物必须同时满足：<strong>吃草、生长快、能在圈养下繁殖、脾气温和且有社群等级服从性</strong>。全世界仅有的 14 种大型驯化动物中，<strong>有 13 种的原产地都在欧亚大陆</strong>！</p>
+
+        <!-- 互动拖拽分类 -->
+        <div class="drag-box-wrapper">
+          <h4 style="font-size:14px;font-weight:800;margin-bottom:8px;">🎮 互动分类：试着将以下动物拖入对应篮子</h4>
+          <div class="drag-source" id="animalSource">
+            <span class="drag-item" draggable="true" data-animal="horse" data-correct="yes">🐴 马</span>
+            <span class="drag-item" draggable="true" data-animal="cow" data-correct="yes">🐄 牛</span>
+            <span class="drag-item" draggable="true" data-animal="sheep" data-correct="yes">🐑 绵羊</span>
+            <span class="drag-item" draggable="true" data-animal="zebra" data-correct="no">🦓 斑马</span>
+            <span class="drag-item" draggable="true" data-animal="rhino" data-correct="no">🦏 犀牛</span>
+            <span class="drag-item" draggable="true" data-animal="pig" data-correct="yes">🐷 猪</span>
+            <span class="drag-item" draggable="true" data-animal="lion" data-correct="no">🦁 狮子</span>
+          </div>
+
+          <div class="drag-zone">
+            <div class="drop-target" id="dropYes" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'yes')">
+              <h4>✅ 可以驯化</h4>
+              <div class="dropped-items" id="droppedYes"></div>
+            </div>
+            <div class="drop-target" id="dropNo" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event, 'no')">
+              <h4>❌ 无法驯化</h4>
+              <div class="dropped-items" id="droppedNo"></div>
+            </div>
+          </div>
+          <div id="dragFeedback" style="text-align:center;font-weight:800;margin-top:8px;font-size:13px;"></div>
+        </div>
+
+        <button class="reveal-btn" onclick="toggleReveal(this)">💡 这说明了什么？</button>
+        <div class="reveal-content">
+          <p>牛提供了翻耕土地的几倍动力，马提供了远距离机动与骑兵冲锋。美洲原住民因冰期后大型动物灭绝，失去了拥有大型役畜的全部可能。</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- 线索 3：大陆走向 -->
+    <article class="chapter-card" id="ch3">
+      <div class="chapter-header" onclick="toggleChapterCard(this)">
+        <div class="ch-title-group">
+          <div class="ch-icon-badge">🧭</div>
+          <div class="ch-meta">
+            <span class="ch-label">线索三</span>
+            <h2 class="ch-heading">横着走 vs 竖着走</h2>
+            <span class="ch-hint">欧亚大陆东西轴线 vs 美洲非洲南北轴线</span>
+          </div>
+        </div>
+        <span class="ch-arrow-btn">▼</span>
+      </div>
+      <div class="chapter-body">
+        <p>大陆的地理走向决定了技术的传播速度。<strong>欧亚大陆是东西横向走向</strong>，处于相似纬度，温度、气候与日照一致，中东的小麦、中国的丝绸造纸可以自由向西向东传播；而<strong>美洲与非洲是纵向南北走向</strong>，横跨热带雨林、沙漠与高寒地带，技术与种子极难跨越气候带交流。</p>
+      </div>
+    </article>
+
+    <!-- 线索 4：病菌武器 -->
+    <article class="chapter-card" id="ch4">
+      <div class="chapter-header" onclick="toggleChapterCard(this)">
+        <div class="ch-title-group">
+          <div class="ch-icon-badge">🦠</div>
+          <div class="ch-meta">
+            <span class="ch-label">线索四</span>
+            <h2 class="ch-heading">看不见的“生化武器”</h2>
+            <span class="ch-hint">杀死 95% 美洲原住民的其实是天花与麻疹</span>
+          </div>
+        </div>
+        <span class="ch-arrow-btn">▼</span>
+      </div>
+      <div class="chapter-body">
+        <div class="story-bubble">
+          <span class="bubble-tag">💀 历史震撼真相</span>
+          <p>人类主要烈性传染病（天花、麻疹、流感）均演变自欧亚大陆长期群居圈养的家畜。欧亚人群历经千年淘汰形成了免疫抗体，而完全与家畜隔离的美洲原住民对此毫无免疫力，90%以上死于病菌蔓延。</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- 线索 5：技术滚雪球 -->
+    <article class="chapter-card" id="ch5">
+      <div class="chapter-header" onclick="toggleChapterCard(this)">
+        <div class="ch-title-group">
+          <div class="ch-icon-badge">⚙️</div>
+          <div class="ch-meta">
+            <span class="ch-label">线索五</span>
+            <h2 class="ch-heading">枪炮与钢铁：技术的滚雪球</h2>
+            <span class="ch-hint">五大线索最终汇聚成历史的绝对壁垒</span>
+          </div>
+        </div>
+        <span class="ch-arrow-btn">▼</span>
+      </div>
+      <div class="chapter-body">
+        <p>农作物富足 → 人口密集 → 劳动分工 → 文字与冶金技术发明 → 枪炮钢铁与远洋舰队。初始地理微小的优势，经过上万年的放大，最终形成了卡哈马卡悬殊的历史惨剧。</p>
+      </div>
+    </article>
+
+    <!-- 结语展板 -->
+    <section class="conclusion-card">
+      <h2>🔎 破案终章 · 认知的升华</h2>
+      <p>
+        文明起跑线的不公，不是因为有人更优秀，而是地理与环境赋予了不同的初始筹码。<br>
+        理解这一点，不是为了宿命论，而是让我们学会一种深刻的思维方式：<br>
+        <strong>在评价任何成就与困境时，不要只看“谁更努力”，更要清醒洞察“谁身处怎样的系统与结构之中”。</strong>
+      </p>
+    </section>
+
+  </div> <!-- container -->
+
+  <!-- 右下角伴读书僮小猫咪：「花花喵」 -->
+  <aside class="mascot-corner" aria-label="伴读书僮花花喵">
+    <div class="mascot-bubble" id="mascot-speech">
+      🐾 喵呜！我是伴读书僮「花花喵」~ 这篇历史探案笔记是不是超级过瘾呀？
     </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- ===== 线索三：地理方向 ===== -->
-<div class="chapter c4" id="ch3">
-  <div class="chapter-header" onclick="toggleChapter(this)">
-    <div class="chapter-num">🧭</div>
-    <div class="chapter-info">
-      <div class="ch-label">线索三</div>
-      <h2>横着走 vs 竖着走</h2>
-      <div class="ch-hint">大陆的方向，决定文明的命运</div>
-    </div>
-    <div class="chapter-arrow">▼</div>
-  </div>
-  <div class="chapter-body">
-    <div class="chapter-body-inner">
-
-    <p>这是整本书里最精妙的一个观点，也是最容易被忽略的——<strong>大陆的形状，决定了文明的传播速度。</strong></p>
-
-    <div class="story-box">
-      <div class="story-label">🗺️ 关键观察</div>
-      <p><strong>欧亚大陆是"横着"的——东西走向。</strong>同一纬度上，气候差不多，温度差不多，日照时间差不多。所以中东的小麦可以一路传到中国，中国的水稻可以传到印度，欧洲的牛羊可以传到东亚。</p>
-      <p><strong>美洲和非洲是"竖着"的——南北走向。</strong>南北跨度大，跨越热带、温带、寒带。墨西哥的玉米很难传到安第斯山脉，因为中间隔着热带雨林，玉米根本适应不了。非洲的农作物也很难从北传到南，因为撒哈拉沙漠横在中间。</p>
-    </div>
-
-    <div class="map-container">
-      <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
-        <!-- Eurasia - horizontal -->
-        <rect x="20" y="60" width="760" height="120" rx="12" fill="#e8d5b7" stroke="#c4a97d" stroke-width="2"/>
-        <text x="400" y="115" text-anchor="middle" font-size="14" font-weight="700" fill="#6b4c2a">🌏 欧亚大陆（东西走向）</text>
-        <text x="400" y="135" text-anchor="middle" font-size="11" fill="#8b7355">小麦 → 大麦 → 水稻 → 技术 → 思想 → 自由传播</text>
-        <!-- Arrow -->
-        <line x1="80" y1="145" x2="720" y2="145" stroke="#c0392b" stroke-width="3" marker-end="url(#arrowRed)"/>
-        <text x="400" y="162" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="600">同一纬度，气候相似，一切畅通无阻</text>
-
-        <!-- Americas - vertical -->
-        <rect x="300" y="200" width="80" height="170" rx="12" fill="#c8dcc8" stroke="#8aac8a" stroke-width="2"/>
-        <text x="340" y="290" text-anchor="middle" font-size="13" font-weight="700" fill="#4a7c59" transform="rotate(-90,340,290)">🌎 美洲（南北走向）</text>
-        <!-- Arrows show blocked -->
-        <line x1="340" y1="215" x2="340" y2="355" stroke="#c0392b" stroke-width="3" marker-end="url(#arrowRed)"/>
-        <text x="355" y="290" font-size="10" fill="#c0392b" font-weight="600">✗ 热带雨林阻挡</text>
-
-        <!-- Africa - vertical -->
-        <rect x="500" y="210" width="70" height="150" rx="12" fill="#d4c8a0" stroke="#a89860" stroke-width="2"/>
-        <text x="535" y="290" text-anchor="middle" font-size="13" font-weight="700" fill="#8b7640" transform="rotate(-90,535,290)">🌍 非洲（南北走向）</text>
-        <line x1="535" y1="225" x2="535" y2="345" stroke="#c0392b" stroke-width="3" marker-end="url(#arrowRed)"/>
-        <text x="550" y="290" font-size="10" fill="#c0392b" font-weight="600">✗ 撒哈拉沙漠阻挡</text>
-
+    <button class="mascot-avatar-btn" id="mascot-btn" type="button" onclick="interactMascot()" title="戳戳「花花喵」！">
+      <svg class="mascot-cat-svg" viewBox="0 0 100 100" aria-hidden="true">
         <defs>
-          <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-            <polygon points="0 0, 8 3, 0 6" fill="#c0392b"/>
-          </marker>
+          <linearGradient id="silverFur" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFFFFF" />
+            <stop offset="60%" stop-color="#E8ECEF" />
+            <stop offset="100%" stop-color="#CBD2D9" />
+          </linearGradient>
+          <linearGradient id="earShade" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#555C66" />
+            <stop offset="45%" stop-color="#9CA3AF" />
+            <stop offset="100%" stop-color="#E8ECEF" />
+          </linearGradient>
+          <radialGradient id="emeraldEye" cx="35%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#68F5CE" />
+            <stop offset="45%" stop-color="#10B981" />
+            <stop offset="100%" stop-color="#047857" />
+          </radialGradient>
         </defs>
+        <polygon points="16,36 32,8 46,28" fill="url(#earShade)" stroke="#352621" stroke-width="2.5" stroke-linejoin="round" />
+        <polygon points="22,32 32,15 41,27" fill="#FFB8C6" opacity="0.9" />
+        <polygon points="84,36 68,8 54,28" fill="url(#earShade)" stroke="#352621" stroke-width="2.5" stroke-linejoin="round" />
+        <polygon points="78,32 68,15 59,27" fill="#FFB8C6" opacity="0.9" />
+        <ellipse cx="50" cy="53" rx="38" ry="33" fill="url(#silverFur)" stroke="#352621" stroke-width="2.5" />
+        <path d="M47,23 Q50,27 53,23" stroke="#8492A6" stroke-width="2" stroke-linecap="round" fill="none" />
+        <path d="M43,27 Q50,32 57,27" stroke="#8492A6" stroke-width="1.8" stroke-linecap="round" fill="none" />
+        <ellipse cx="34" cy="49" rx="9" ry="11" fill="url(#emeraldEye)" stroke="#111827" stroke-width="2.2" />
+        <ellipse cx="34" cy="49" rx="4" ry="7.5" fill="#111827" />
+        <circle cx="31.5" cy="45" r="3.2" fill="#FFFFFF" />
+        <circle cx="36.5" cy="53" r="1.5" fill="#FFFFFF" />
+        <ellipse cx="66" cy="49" rx="9" ry="11" fill="url(#emeraldEye)" stroke="#111827" stroke-width="2.2" />
+        <ellipse cx="66" cy="49" rx="4" ry="7.5" fill="#111827" />
+        <circle cx="63.5" cy="45" r="3.2" fill="#FFFFFF" />
+        <circle cx="68.5" cy="53" r="1.5" fill="#FFFFFF" />
+        <ellipse cx="21" cy="59" rx="6.5" ry="3.5" fill="#FFAEC0" opacity="0.65" />
+        <ellipse cx="79" cy="59" rx="6.5" ry="3.5" fill="#FFAEC0" opacity="0.65" />
+        <polygon points="50,58 45,54 55,54" fill="#FF6584" stroke="#352621" stroke-width="1.5" stroke-linejoin="round" />
+        <path d="M45,62 Q50,65 50,59 Q50,65 55,62" stroke="#352621" stroke-width="2" stroke-linecap="round" fill="none" />
+        <line x1="16" y1="55" x2="28" y2="57" stroke="#352621" stroke-width="1.5" stroke-linecap="round" />
+        <line x1="14" y1="62" x2="27" y2="61" stroke="#352621" stroke-width="1.5" stroke-linecap="round" />
+        <line x1="84" y1="55" x2="72" y2="57" stroke="#352621" stroke-width="1.5" stroke-linecap="round" />
+        <line x1="86" y1="62" x2="73" y2="61" stroke="#352621" stroke-width="1.5" stroke-linecap="round" />
+        <g transform="translate(50, 84)">
+          <circle cx="-5" cy="-2" r="4.2" fill="#FF6584" />
+          <circle cx="5" cy="-2" r="4.2" fill="#FF6584" />
+          <circle cx="-3" cy="4" r="4.2" fill="#FF6584" />
+          <circle cx="3" cy="4" r="4.2" fill="#FF6584" />
+          <circle cx="0" cy="-6" r="4.2" fill="#FF6584" />
+          <circle cx="0" cy="0" r="3.8" fill="#FFCE47" stroke="#352621" stroke-width="1.2" />
+        </g>
       </svg>
+      <span class="mascot-badge-online"></span>
+    </button>
+  </aside>
+
+  <!-- 底部胶囊导航条 -->
+  <nav class="floating-dock" aria-label="快捷导航浮动栏">
+    <a class="dock-btn" href="#top" onclick="playBubbleSound()">
+      <span>☁️ 回到顶部</span>
+    </a>
+    <a class="dock-btn" href="../index.html" onclick="playBubbleSound()">
+      <span>📖 返回书架</span>
+    </a>
+    <button class="dock-btn dock-dice-btn" type="button" onclick="randomBookJump()" title="随机翻开一本笔记！">
+      <span>🎲 随手翻</span>
+    </button>
+  </nav>
+
+  <!-- 页脚 -->
+  <footer>
+    <p>© 2026 Bella Read. 保持思考，保持留白，保持童心。</p>
+    <p>静读，慢记，常回看。在温暖的角落里与自己对话。</p>
+    <div class="footer-stamp">
+      <span>🐾 手账印章 ·「花花喵」温暖盖戳</span>
     </div>
+  </footer>
 
-    <button class="reveal-btn" onclick="revealContent(this)">💡 这说明了什么？</button>
-    <div class="reveal-content">
-      <p>想想看：中国发明了造纸术，过了几百年，欧洲人也用上了纸。但墨西哥人发明了文字，安第斯山脉的人却根本不知道。</p>
-      <p><strong>欧亚大陆的"横向"结构，让技术、思想、农作物可以像接力赛一样从东传到西。</strong>而美洲和非洲的"纵向"结构，每一段都像被不同的气候带隔开的孤岛。</p>
-      <p>这不是任何人能决定的——这是大陆板块漂移了几亿年之后的结果。</p>
-    </div>
+  <script>
+    let isSoundEnabled = false;
+    let audioCtx = null;
+    let targetScrollY = 0;
+    let currentScrollY = 0;
+    let lastScrollY = 0;
+    let isScrollingFast = false;
+    let fastScrollTimer = null;
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    <div class="think-section">
-      <h3>🧠 思维训练</h3>
-      <div class="think-level">
-        <span class="level-badge badge-observe">🧐 观察层</span>
-        <p>在地图上，欧亚大陆和美洲大陆的形状有什么不同？</p>
-        <textarea class="think-input" placeholder="写下你的观察..."></textarea>
-      </div>
-      <div class="think-level">
-        <span class="level-badge badge-reason">🤔 推理层</span>
-        <p>如果美洲大陆也是东西走向的，你觉得印加文明可能会发展成什么样？</p>
-        <textarea class="think-input" placeholder="写下你的推理..."></textarea>
-      </div>
-      <div class="think-level">
-        <span class="level-badge badge-transfer">💡 迁移层</span>
-        <p>在你的学校或生活中，有没有什么东西"传播"得很快，而有的东西"传播"得很慢？为什么？</p>
-        <textarea class="think-input" placeholder="写下你的思考..."></textarea>
-      </div>
-    </div>
+    const catQuotes = [
+      "🐾 喵~ 我是花花喵，毛茸茸的脑袋给你蹭蹭！戴蒙德爷爷的书是不是超级开脑洞？",
+      "✨ 花花喵温馨提醒：读书累了记得伸个大懒腰，眺望远方哦！",
+      "🌾 原来一颗小麦种子也能决定大历史，太奇妙了喵！",
+      "🦓 斑马脾气太暴躁所以不能驯化，花花喵我可是脾气最好的小猫咪~",
+      "🎲 点下底部的【🎲 随手翻】，让花花喵带你逛逛下一本精彩书卷吧！"
+    ];
+    let catQuoteIndex = 0;
 
-    </div>
-  </div>
-</div>
+    // 视差引擎
+    function updateScrollState() {
+      targetScrollY = window.pageYOffset || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progressPercent = docHeight > 0 ? Math.min(100, Math.max(0, (targetScrollY / docHeight) * 100)) : 0;
+      const progressBar = document.getElementById('scroll-progress');
+      if (progressBar) progressBar.style.width = progressPercent + '%';
 
-<!-- ===== 线索四：病菌 ===== -->
-<div class="chapter c5" id="ch4">
-  <div class="chapter-header" onclick="toggleChapter(this)">
-    <div class="chapter-num">🦠</div>
-    <div class="chapter-info">
-      <div class="ch-label">线索四</div>
-      <h2>看不见的"核武器"</h2>
-      <div class="ch-hint">杀死最多人的，不是枪炮，是病菌</div>
-    </div>
-    <div class="chapter-arrow">▼</div>
-  </div>
-  <div class="chapter-body">
-    <div class="chapter-body-inner">
-
-    <div class="story-box">
-      <div class="story-label">💀 震撼数据</div>
-      <p>哥伦布到达美洲时，美洲大约有<strong>2000万到5000万</strong>原住民。100年后，只剩下<strong>不到100万</strong>。</p>
-      <p>杀死他们的，主要不是西班牙人的枪炮和刀剑，而是<strong>天花、麻疹、流感、斑疹伤寒</strong>——这些欧洲人带去的传染病。</p>
-      <p>据估计，<strong>90%以上的美洲原住民死于疾病，而不是战争。</strong></p>
-    </div>
-
-    <p>为什么是欧洲人把病菌带到了美洲，而不是反过来？</p>
-
-    <div class="fact-card">
-      <span class="fact-icon">🐄</span>
-      <div>
-        <strong>答案还是和动物有关。</strong>天花、麻疹、流感这些传染病，最初都来自家畜。欧亚大陆的人跟牛、猪、鸡、羊生活了几千年，这些病菌一轮又一轮地流行，活下来的人都有了免疫力。
-      </div>
-    </div>
-
-    <div class="fact-card">
-      <span class="fact-icon">🦙</span>
-      <div>
-        <strong>美洲原住民几乎没有大规模饲养家畜。</strong>他们唯一驯化的大型动物是羊驼，但羊驼不和人住在一起，也不会传播这些密集型传染病。所以美洲原住民对这些病菌完全没有免疫力。
-      </div>
-    </div>
-
-    <div class="quiz" id="quiz1">
-      <h4>🧪 快速问答：欧洲人带到美洲的最致命"武器"是什么？</h4>
-      <div class="quiz-option" onclick="checkQuiz(this, 'wrong', 'quiz1')">A. 枪炮</div>
-      <div class="quiz-option" onclick="checkQuiz(this, 'wrong', 'quiz1')">B. 钢铁盔甲</div>
-      <div class="quiz-option" onclick="checkQuiz(this, 'correct', 'quiz1')">C. 天花、麻疹等传染病</div>
-      <div class="quiz-option" onclick="checkQuiz(this, 'wrong', 'quiz1')">D. 战马</div>
-      <div class="quiz-feedback" id="quiz1-feedback"></div>
-    </div>
-
-    <button class="reveal-btn" onclick="revealContent(this)">💡 这说明了什么？</button>
-    <div class="reveal-content">
-      <p>欧洲人并不是故意使用了"生化武器"——他们自己都不知道自己携带了这些病菌。但事实就是：<strong>几千年来与家畜共处积累的免疫力，成了他们无意中拥有的最致命优势。</strong></p>
-      <p>这个"线索"最讽刺的地方在于：欧洲人征服美洲的最大功臣，不是他们引以为傲的枪炮和钢铁，而是他们肉眼看不见的微生物。而这一切的根源，又回到了——<strong>他们恰好生活在可驯化动物最多的地区。</strong></p>
-    </div>
-
-    <div class="think-section">
-      <h3>🧠 思维训练</h3>
-      <div class="think-level">
-        <span class="level-badge badge-observe">🧐 观察层</span>
-        <p>为什么欧亚大陆的人有对这些传染病的免疫力，而美洲原住民没有？</p>
-        <textarea class="think-input" placeholder="写下你的观察..."></textarea>
-      </div>
-      <div class="think-level">
-        <span class="level-badge badge-reason">🤔 推理层</span>
-        <p>如果美洲原住民也有大规模家畜饲养，你觉得历史会怎样改写？</p>
-        <textarea class="think-input" placeholder="写下你的推理..."></textarea>
-      </div>
-      <div class="think-level">
-        <span class="level-badge badge-transfer">💡 迁移层</span>
-        <p>在你的生活中，有没有什么是你自己没有意识到、但却在影响你的"隐形优势"？</p>
-        <textarea class="think-input" placeholder="写下你的思考..."></textarea>
-      </div>
-    </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- ===== 线索五：技术传播 ===== -->
-<div class="chapter c1" id="ch5">
-  <div class="chapter-header" onclick="toggleChapter(this)">
-    <div class="chapter-num">⚙️</div>
-    <div class="chapter-info">
-      <div class="ch-label">线索五</div>
-      <h2>枪炮与钢铁：技术的滚雪球</h2>
-      <div class="ch-hint">前四个线索，最终汇聚成了什么？</div>
-    </div>
-    <div class="chapter-arrow">▼</div>
-  </div>
-  <div class="chapter-body">
-    <div class="chapter-body-inner">
-
-    <p>现在让我们把前四个线索串起来，看看它们是怎样"汇聚"成历史的不公平的。</p>
-
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="tl-year">🌾 第一步</div>
-        <div class="tl-content">欧亚大陆有最好的可驯化植物 → 农业先发展 → 粮食充足 → 人口密集</div>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-year">🐴 第二步</div>
-        <div class="tl-content">欧亚大陆有最多的可驯化动物 → 畜牧业发展 → 劳动力、运输、军事优势</div>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-year">🧭 第三步</div>
-        <div class="tl-content">欧亚大陆是东西走向 → 技术、思想、作物快速传播 → 文明加速发展</div>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-year">⚙️ 第四步</div>
-        <div class="tl-content">人口密集 + 分工细化 → 文字、冶金、火药、航海技术 → 枪炮与钢铁</div>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-year">🦠 第五步</div>
-        <div class="tl-content">长期与家畜共处 → 对传染病产生免疫力 → 无意中的"生化武器"</div>
-      </div>
-      <div class="timeline-item">
-        <div class="tl-year">🌎 最终结果</div>
-        <div class="tl-content">168个西班牙人，凭借枪炮、钢铁、战马和病菌，征服了拥有8万大军的印加帝国</div>
-      </div>
-    </div>
-
-    <div class="think-section">
-      <h3>🧠 思维训练</h3>
-      <div class="think-level">
-        <span class="level-badge badge-observe">🧐 观察层</span>
-        <p>试着用你自己的话，把上面五个步骤串起来，讲一遍"为什么欧洲征服了美洲"。</p>
-        <textarea class="think-input" placeholder="写下你的理解..."></textarea>
-      </div>
-      <div class="think-level">
-        <span class="level-badge badge-reason">🤔 推理层</span>
-        <p>书中说"不是人种问题，而是地理问题"。你同意吗？有没有什么因素是这本书没有解释到的？</p>
-        <textarea class="think-input" placeholder="写下你的推理..."></textarea>
-      </div>
-      <div class="think-level">
-        <span class="level-badge badge-transfer">💡 迁移层</span>
-        <p>把"地理决定论"的思维方式用在别的地方——比如，为什么有的学校成绩好，有的学校成绩差？是"学生更聪明"还是"条件更好"？</p>
-        <textarea class="think-input" placeholder="写下你的思考..."></textarea>
-      </div>
-    </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- ===== 结语 ===== -->
-<div class="conclusion">
-  <h2>🔎 破案了</h2>
-  <p>人类历史的不公平，<br>不是因为有些种族"更聪明"或"更优秀"，<br>而是因为地理和环境的"初始条件"不同。<br><br>这就像一场赛跑，<br>但每个人的起跑线不一样。<br><br>欧亚大陆的人并不是"跑得更快"，<br>他们只是<strong>恰好站在了离终点更近的地方</strong>。<br><br>而理解这一点，<br>不是为了给历史找借口，<br>而是为了学会一种思维方式：<br><strong>看问题时，不要只看"谁更努力"，<br>还要看"谁的条件更好"。</strong></p>
-</div>
-
-<!-- ===== 最终思考 ===== -->
-<div class="think-section">
-  <h3>🎯 终极挑战：写一段话给你的朋友</h3>
-  <div class="think-level">
-    <span class="level-badge badge-transfer">💡 迁移层</span>
-    <p>假设你的朋友问你："这本书到底讲了什么？有什么厉害的？"<br>请用不超过200字，写一段话告诉他。要包含：这本书的核心问题、核心答案、以及为什么这个答案很重要。</p>
-    <textarea class="think-input" style="min-height:100px;" placeholder="开始写吧..."></textarea>
-  </div>
-</div>
-
-</div> <!-- container -->
-
-<!-- ===== FLOATING NAV & TOC ===== -->
-<div class="floating-nav">
-  <button class="nav-btn" onclick="toggleToc()">
-    <span style="font-size: 16px">📚</span> 目录
-  </button>
-  <div class="nav-divider"></div>
-  <button class="nav-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-    <span style="font-size: 16px">⬆️</span> 顶部
-  </button>
-</div>
-
-<div class="toc-overlay" id="tocOverlay" onclick="if(event.target===this) toggleToc()">
-  <div class="toc-modal">
-    <div class="toc-header">
-      <h3><span>📚</span> 章节目录</h3>
-      <button class="toc-close" onclick="toggleToc()">×</button>
-    </div>
-    <div class="toc-list">
-      <a href="javascript:void(0)" class="toc-item" onclick="scrollToChapter('ch0')">
-        <span class="icon">🔍</span> 案发现场：一个让所有人沉默的问题
-      </a>
-      <a href="javascript:void(0)" class="toc-item" onclick="scrollToChapter('ch1')">
-        <span class="icon">🌾</span> 线索一：谁先吃饱，谁先起跑
-      </a>
-      <a href="javascript:void(0)" class="toc-item" onclick="scrollToChapter('ch2')">
-        <span class="icon">🐴</span> 线索二：为什么斑马从来没被骑过？
-      </a>
-      <a href="javascript:void(0)" class="toc-item" onclick="scrollToChapter('ch3')">
-        <span class="icon">🧭</span> 线索三：横着走 vs 竖着走
-      </a>
-      <a href="javascript:void(0)" class="toc-item" onclick="scrollToChapter('ch4')">
-        <span class="icon">🦠</span> 线索四：看不见的"核武器"
-      </a>
-      <a href="javascript:void(0)" class="toc-item" onclick="scrollToChapter('ch5')">
-        <span class="icon">⚙️</span> 线索五：枪炮与钢铁：技术的滚雪球
-      </a>
-    </div>
-  </div>
-</div>
-
-<script>
-// ===== CHAPTER TOGGLE =====
-function toggleChapter(header) {
-  const chapter = header.parentElement;
-  chapter.classList.toggle('open');
-  updateProgress();
-}
-
-// ===== REVEAL CONTENT =====
-function revealContent(btn) {
-  const content = btn.nextElementSibling;
-  content.classList.toggle('show');
-  btn.textContent = content.classList.contains('show') ? '▲ 收起' : btn.textContent.replace('▲ 收起', btn.getAttribute('data-original') || btn.textContent);
-  if (!btn.getAttribute('data-original')) {
-    btn.setAttribute('data-original', btn.textContent);
-  }
-}
-
-// ===== DRAG & DROP =====
-document.addEventListener('DOMContentLoaded', () => {
-  const dragItems = document.querySelectorAll('.drag-item');
-  dragItems.forEach(item => {
-    item.addEventListener('dragstart', (e) => {
-      e.dataTransfer.setData('text/plain', item.dataset.animal);
-      item.style.opacity = '0.5';
-    });
-    item.addEventListener('dragend', (e) => {
-      item.style.opacity = '1';
-    });
-  });
-});
-
-function handleDragOver(e) {
-  e.preventDefault();
-  e.currentTarget.classList.add('hover');
-}
-function handleDragLeave(e) {
-  e.currentTarget.classList.remove('hover');
-}
-function handleDrop(e, target) {
-  e.preventDefault();
-  e.currentTarget.classList.remove('hover');
-  const animal = e.dataTransfer.getData('text/plain');
-  const sourceItem = document.querySelector(`.drag-item[data-animal="${animal}"]`);
-  if (!sourceItem) return;
-
-  const isCorrect = (target === 'yes' && sourceItem.dataset.correct === 'yes') ||
-                    (target === 'no' && sourceItem.dataset.correct === 'no');
-
-  const droppedContainer = target === 'yes' ? document.getElementById('droppedYes') : document.getElementById('droppedNo');
-  const feedback = document.getElementById('dragFeedback');
-
-  // Move item
-  const clone = sourceItem.cloneNode(true);
-  clone.draggable = false;
-  clone.style.cursor = 'default';
-  clone.classList.add(isCorrect ? 'correct' : 'wrong');
-  droppedContainer.appendChild(clone);
-  sourceItem.remove();
-
-  if (isCorrect) {
-    feedback.innerHTML = '✅ 正确！';
-    feedback.style.color = '#4a7c59';
-  } else {
-    feedback.innerHTML = '❌ 再想想？这个动物其实' + (target === 'yes' ? '不能' : '可以') + '被驯化哦';
-    feedback.style.color = '#c0392b';
-  }
-  setTimeout(() => { feedback.innerHTML = ''; }, 2000);
-}
-
-// ===== QUIZ =====
-function checkQuiz(option, result, quizId) {
-  const parent = option.parentElement;
-  const allOptions = parent.querySelectorAll('.quiz-option');
-  const feedback = document.getElementById(quizId + '-feedback');
-
-  allOptions.forEach(opt => {
-    opt.style.pointerEvents = 'none';
-    if (opt.dataset.answer === 'correct') opt.classList.add('correct');
-  });
-
-  if (result === 'correct') {
-    option.classList.add('correct');
-    feedback.textContent = '✅ 答对了！天花、麻疹等传染病杀死了90%以上的美洲原住民。';
-    feedback.style.color = '#4a7c59';
-  } else {
-    option.classList.add('wrong');
-    feedback.textContent = '❌ 不对哦。正确答案是 C——天花、麻疹等传染病才是最致命的。';
-    feedback.style.color = '#c0392b';
-  }
-  feedback.classList.add('show');
-}
-
-// Set quiz answer data
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.quiz-option').forEach(opt => {
-    if (opt.textContent.includes('天花')) opt.dataset.answer = 'correct';
-  });
-});
-
-// ===== PROGRESS =====
-function updateProgress() {
-  const chapters = document.querySelectorAll('.chapter:not(#ch0)');
-  const openChapters = document.querySelectorAll('.chapter:not(#ch0).open');
-  const total = chapters.length;
-  const done = openChapters.length;
-  const pct = (done / total) * 100;
-
-  document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressText').textContent = done + '/' + total;
-}
-
-// Initial progress
-document.addEventListener('DOMContentLoaded', updateProgress);
-
-// ===== TOC NAVIGATION =====
-function toggleToc() {
-  const overlay = document.getElementById('tocOverlay');
-  overlay.classList.toggle('active');
-}
-
-function scrollToChapter(chId) {
-  toggleToc();
-  const ch = document.getElementById(chId);
-  if (ch) {
-    if (!ch.classList.contains('open')) {
-      ch.classList.add('open');
-      updateProgress();
+      const scrollVelocity = Math.abs(targetScrollY - lastScrollY);
+      lastScrollY = targetScrollY;
+      const mascotBtn = document.getElementById('mascot-btn');
+      if (scrollVelocity > 25 && mascotBtn) {
+        if (!isScrollingFast) {
+          isScrollingFast = true;
+          mascotBtn.classList.add('scrolling-fast');
+        }
+        clearTimeout(fastScrollTimer);
+        fastScrollTimer = setTimeout(() => {
+          isScrollingFast = false;
+          if (mascotBtn) mascotBtn.classList.remove('scrolling-fast');
+        }, 300);
+      }
     }
-    setTimeout(() => {
-      ch.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 300);
-  }
-}
+    window.addEventListener('scroll', updateScrollState, { passive: true });
 
-// ===== SCROLL ANIMATION =====
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('animate-in');
+    function renderParallax() {
+      if (!isReducedMotion) {
+        currentScrollY += (targetScrollY - currentScrollY) * 0.12;
+        const props = document.querySelectorAll('[data-parallax-speed]');
+        props.forEach(el => {
+          const speed = parseFloat(el.getAttribute('data-parallax-speed')) || 0;
+          el.style.transform = `translate3d(0, ${(currentScrollY * speed).toFixed(2)}px, 0)`;
+        });
+      }
+      requestAnimationFrame(renderParallax);
     }
-  });
-}, { threshold: 0.1 });
+    requestAnimationFrame(renderParallax);
 
-document.querySelectorAll('.chapter, .conclusion, .think-section').forEach(el => {
-  el.classList.add('animate-in-target');
-  observer.observe(el);
-});
-</script>
+    // 交互逻辑
+    function toggleChapterCard(header) {
+      playBubbleSound(520);
+      const card = header.parentElement;
+      card.classList.toggle('open');
+    }
 
+    function toggleReveal(btn) {
+      playBubbleSound(600);
+      const content = btn.nextElementSibling;
+      content.classList.toggle('show');
+      btn.textContent = content.classList.contains('show') ? '▲ 收起解析' : '💡 点击揭晓侦探假说';
+    }
+
+    function scrollToSection(id) {
+      playBubbleSound(550);
+      const el = document.getElementById(id);
+      if (el) {
+        if (!el.classList.contains('open')) el.classList.add('open');
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function interactMascot() {
+      playKittyMeowSound();
+      burstParticles(window.innerWidth - 60, window.innerHeight - 60, ['🐾', '🌸', '✨', '🤍', '🎀', '🐱', '💖']);
+      const bubble = document.getElementById('mascot-speech');
+      bubble.innerText = catQuotes[catQuoteIndex % catQuotes.length];
+      catQuoteIndex++;
+      bubble.classList.add('show');
+      clearTimeout(window.mascotTimer);
+      window.mascotTimer = setTimeout(() => bubble.classList.remove('show'), 4500);
+    }
+
+    function setAppTheme(themeName) {
+      playBubbleSound(550);
+      document.documentElement.setAttribute('data-theme', themeName);
+      document.querySelectorAll('.theme-pill-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.id === `btn-theme-${themeName}`);
+      });
+      localStorage.setItem('bella_read_theme', themeName);
+    }
+    const savedTheme = localStorage.getItem('bella_read_theme');
+    if (savedTheme) setAppTheme(savedTheme);
+
+    function playKittyMeowSound() {
+      if (!isSoundEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        const now = audioCtx.currentTime;
+        osc.frequency.setValueAtTime(680, now);
+        osc.frequency.exponentialRampToValueAtTime(1080, now + 0.08);
+        osc.frequency.exponentialRampToValueAtTime(840, now + 0.24);
+        gain.gain.setValueAtTime(0.01, now);
+        gain.gain.linearRampToValueAtTime(0.18, now + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.24);
+      } catch (e) {}
+    }
+
+    function playBubbleSound(freq = 480) {
+      if (!isSoundEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(freq * 1.8, audioCtx.currentTime + 0.08);
+        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.12);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.12);
+      } catch (e) {}
+    }
+
+    function toggleSoundEffect() {
+      isSoundEnabled = !isSoundEnabled;
+      const text = document.getElementById('sound-text');
+      const icon = document.getElementById('sound-icon');
+      if (isSoundEnabled) {
+        text.innerText = '音效: 开'; icon.innerText = '🔔';
+        playKittyMeowSound();
+      } else {
+        text.innerText = '音效: 关'; icon.innerText = '🔕';
+      }
+    }
+
+    document.addEventListener('click', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.closest('#mascot-btn')) return;
+      burstParticles(e.clientX, e.clientY);
+    });
+
+    function burstParticles(x, y, customSymbols = null) {
+      const symbols = customSymbols || ['✨', '⭐', '🌸', '💖', '🎀', '🍀', '🍰'];
+      for (let i = 0; i < 4; i++) {
+        const p = document.createElement('span');
+        p.className = 'sparkle-particle';
+        p.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+        p.style.left = `${x}px`; p.style.top = `${y}px`;
+        p.style.setProperty('--tx', `${(Math.random() - 0.5) * 70}px`);
+        p.style.setProperty('--ty', `${-30 - Math.random() * 50}px`);
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 800);
+      }
+    }
+
+    // 拖拽逻辑
+    document.querySelectorAll('.drag-item').forEach(item => {
+      item.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData('text/plain', item.dataset.animal);
+      });
+    });
+    function handleDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('hover'); }
+    function handleDragLeave(e) { e.currentTarget.classList.remove('hover'); }
+    function handleDrop(e, target) {
+      e.preventDefault();
+      e.currentTarget.classList.remove('hover');
+      const animal = e.dataTransfer.getData('text/plain');
+      const item = document.querySelector(`.drag-item[data-animal="${animal}"]`);
+      if (!item) return;
+      const isCorrect = (target === 'yes' && item.dataset.correct === 'yes') || (target === 'no' && item.dataset.correct === 'no');
+      const container = target === 'yes' ? document.getElementById('droppedYes') : document.getElementById('droppedNo');
+      const feedback = document.getElementById('dragFeedback');
+      
+      const clone = item.cloneNode(true);
+      clone.draggable = false;
+      clone.style.cursor = 'default';
+      container.appendChild(clone);
+      item.remove();
+
+      if (isCorrect) {
+        feedback.innerHTML = '✅ 正确分类！太聪明了！';
+        feedback.style.color = '#43B581';
+        playBubbleSound(650);
+      } else {
+        feedback.innerHTML = '❌ 咦？再想想，这种动物其实' + (target === 'yes' ? '无法' : '可以') + '被驯化哦';
+        feedback.style.color = '#FF6584';
+        playBubbleSound(320);
+      }
+      setTimeout(() => feedback.innerHTML = '', 2200);
+    }
+
+    function randomBookJump() {
+      playBubbleSound(720);
+      burstParticles(window.innerWidth / 2, window.innerHeight - 50);
+      const links = [
+        "../books/how-an-economy-grows.html",
+        "../books/sophies-world.html",
+        "../books/guns-germs-steel.html",
+        "../books/被讨厌的勇气_课堂讲义.html",
+        "../books/西游记-青春成长课堂.html",
+        "../english/english-learning-guide.html"
+      ];
+      const randomIndex = Math.floor(Math.random() * links.length);
+      setTimeout(() => { window.location.href = links[randomIndex]; }, 250);
+    }
+  </script>
 </body>
 </html>

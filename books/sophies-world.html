@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="day">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>《苏菲的世界》深度精读讲义 | 一封信开启的西方哲学思辨奇旅</title>
-  <meta name="description" content="在成长关键期读懂苏格拉底、柏拉图、亚里士多德、笛卡尔与康德。献给青少年的批判性思维与独立人格觉醒之书。">
+  <title>《苏菲的世界》精读讲义 | 一封信开启的西方哲学漫游</title>
+  <meta name="description" content="从“你是谁”、“世界从何而来”的神秘信件开始，跟随苏菲漫步西方三千年哲学星空。专为初中生与青年量身打造的批判性思维与哲学通识讲义。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  
   <style>
     @font-face {
       font-family: "Smiley Sans";
@@ -18,486 +19,775 @@
     }
 
     :root {
-      --bg: #F8F5FB;
-      --card-bg: #FFFFFF;
-      --ink: #2E223D;
-      --ink-subtle: #68577D;
-      --ink-muted: #9A89B0;
-      --accent: #8E44AD;
-      --accent-soft: #F4ECF7;
-      --blue: #2980B9;
-      --blue-soft: #EAF2F8;
-      --gold: #D35400;
-      --gold-soft: #FEF9E7;
-      --green: #27AE60;
-      --green-soft: #E8F8F5;
-      --pink: #E84393;
-      --pink-soft: #FDEDF4;
-      --border: 2px solid #2E223D;
-      --shadow: 4px 4px 0px #2E223D;
-      --shadow-sm: 2px 2px 0px #2E223D;
-      --radius: 16px;
-      --radius-sm: 10px;
+      --bg-cream: #FDFBF7;
+      --bg-warm: #FFF5E8;
+      --bg-card: #FFFFFF;
+      --ink-dark: #352621;
+      --ink-subtle: #76635D;
+      --ink-muted: #A3928B;
+      --border-line: #352621;
+      --card-shadow-color: #352621;
+      --washi-opacity: 0.85;
+
+      --color-strawberry: #FF6584;
+      --color-strawberry-soft: #FFEAF0;
+      --color-peach: #FFA07A;
+      --color-peach-soft: #FFF1EB;
+      --color-butter: #FFCE47;
+      --color-butter-soft: #FFF7DD;
+      --color-matcha: #43B581;
+      --color-matcha-soft: #E7F7EF;
+      --color-sky: #5B93FF;
+      --color-sky-soft: #EDF3FF;
+      --color-lavender: #9C79FF;
+      --color-lavender-soft: #F3EEFF;
+      --color-gold: #E67E22;
+      --color-gold-soft: #FDF2E9;
+
+      --border-cartoon: 2.5px solid var(--border-line);
+      --shadow-cartoon: 4px 5px 0px var(--card-shadow-color);
+      --shadow-cartoon-sm: 2.5px 3px 0px var(--card-shadow-color);
+      --shadow-cartoon-lg: 6px 8px 0px var(--card-shadow-color);
+      --shadow-cartoon-hover: 7px 10px 0px var(--card-shadow-color);
+
+      --font-display: "Smiley Sans", "Nunito", "PingFang SC", sans-serif;
+      --font-body: "Nunito", "Smiley Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
       --radius-pill: 999px;
-      --font-display: "Smiley Sans", "Nunito", -apple-system, sans-serif;
-      --font-body: "Nunito", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
-      --transition: 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      --bounce-timing: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --transition-smooth: all 0.28s var(--bounce-timing);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    [data-theme="sunset"] {
+      --bg-cream: #FFF1E6;
+      --bg-warm: #FFE4D6;
+      --bg-card: #FFFAF5;
+      --ink-dark: #3D231E;
+      --ink-subtle: #7F5850;
+      --ink-muted: #A87E76;
+      --border-line: #3D231E;
+      --card-shadow-color: #3D231E;
+      --color-strawberry: #FF5A79;
+      --color-butter: #FFB347;
+      --color-matcha: #4CAE78;
+    }
+
+    [data-theme="night"] {
+      --bg-cream: #1C1829;
+      --bg-warm: #262038;
+      --bg-card: #27213C;
+      --ink-dark: #F6F3FF;
+      --ink-subtle: #C3BAE2;
+      --ink-muted: #8E84B2;
+      --border-line: #F6F3FF;
+      --card-shadow-color: #9D7BFF;
+      --color-strawberry: #FF7096;
+      --color-strawberry-soft: #3B2435;
+      --color-peach: #FF9E80;
+      --color-peach-soft: #38252C;
+      --color-butter: #FFD45A;
+      --color-butter-soft: #383125;
+      --color-matcha: #52D197;
+      --color-matcha-soft: #1E382E;
+      --color-sky: #70A5FF;
+      --color-sky-soft: #202D45;
+      --color-lavender: #B599FF;
+      --color-lavender-soft: #31274F;
+      --color-gold: #FFA834;
+      --color-gold-soft: #3B2E20;
+      --washi-opacity: 0.65;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
     body {
-      background: var(--bg);
-      color: var(--ink);
+      background-color: var(--bg-cream);
+      background-image:
+        radial-gradient(circle at 18px 18px, rgba(160, 130, 115, 0.08) 2.5px, transparent 0),
+        radial-gradient(circle at 78px 78px, rgba(255, 175, 195, 0.12) 3px, transparent 0),
+        linear-gradient(180deg, var(--bg-cream) 0%, var(--bg-warm) 100%);
+      background-size: 60px 60px, 120px 120px, 100% 100%;
+      color: var(--ink-dark);
       font-family: var(--font-body);
       line-height: 1.8;
-      font-size: 16px;
-      padding-bottom: 90px;
-      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
 
-    /* 顶部导航与标签栏 */
+    .top-bunting {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 12px;
+      background: repeating-linear-gradient(
+        45deg,
+        var(--color-strawberry) 0, var(--color-strawberry) 20px,
+        var(--color-butter) 20px, var(--color-butter) 40px,
+        var(--color-matcha) 40px, var(--color-matcha) 60px,
+        var(--color-sky) 60px, var(--color-sky) 80px,
+        var(--color-lavender) 80px, var(--color-lavender) 100px
+      );
+      opacity: 0.9;
+      z-index: 101;
+    }
+
+    .scroll-progress-container {
+      position: fixed;
+      top: 12px; left: 0; width: 100%; height: 6px;
+      background: rgba(53, 38, 33, 0.08);
+      z-index: 100;
+      pointer-events: none;
+    }
+    .scroll-progress-bar {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, var(--color-strawberry), var(--color-butter), var(--color-matcha), var(--color-sky), var(--color-lavender));
+      border-radius: 0 4px 4px 0;
+      position: relative;
+      transition: width 0.08s linear;
+    }
+    .scroll-progress-head {
+      position: absolute; right: -10px; top: -9px;
+      font-size: 16px; line-height: 1;
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+      transform: scaleX(-1);
+    }
+
+    .parallax-layer {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .layer-fg { z-index: 2; }
+    .prop-item { position: absolute; will-change: transform; user-select: none; }
+
+    .prop-cloud-1 { top: 12%; left: 4%; font-size: 42px; opacity: 0.45; }
+    .prop-cloud-2 { top: 48%; right: 4%; font-size: 46px; opacity: 0.4; }
+    .prop-plane { top: 24%; right: 12%; font-size: 34px; opacity: 0.85; filter: drop-shadow(2px 3px 0 rgba(53,38,33,0.15)); }
+    .prop-coffee { top: 54%; left: 4%; font-size: 36px; opacity: 0.85; filter: drop-shadow(2px 3px 0 rgba(53,38,33,0.15)); }
+    .prop-sparkle-1 { top: 18%; left: 22%; font-size: 22px; opacity: 0.9; }
+
     .top-nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(248, 245, 251, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 2px solid var(--ink);
-      padding: 10px 20px;
+      position: sticky; top: 12px; z-index: 95;
+      background: rgba(253, 251, 247, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: var(--border-cartoon);
+      padding: 12px 24px;
       display: flex; align-items: center; justify-content: space-between;
       gap: 12px; flex-wrap: wrap;
+      transition: background-color 0.4s ease;
     }
-    .back-btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-weight: 800; font-size: 13.5px;
-      background: #FFF; border: var(--border);
-      box-shadow: 2px 2px 0 var(--ink);
-      padding: 6px 14px; border-radius: var(--radius-pill);
-      text-decoration: none; color: var(--ink);
-      transition: var(--transition);
-      white-space: nowrap;
-    }
-    .back-btn:hover { transform: translateY(-2px); box-shadow: 3px 3px 0 var(--ink); }
+    [data-theme="sunset"] .top-nav { background: rgba(255, 241, 230, 0.92); }
+    [data-theme="night"] .top-nav { background: rgba(28, 24, 41, 0.92); }
 
-    .nav-tabs {
-      display: flex; gap: 6px; flex-wrap: wrap;
+    .nav-left-group { display: flex; align-items: center; gap: 12px; }
+    .back-home-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--bg-card); border: var(--border-cartoon);
+      box-shadow: var(--shadow-cartoon-sm);
+      border-radius: var(--radius-pill);
+      padding: 7px 16px; font-size: 13.5px; font-weight: 800;
+      color: var(--ink-dark); text-decoration: none;
+      transition: var(--transition-smooth);
     }
-    .nav-tab-btn {
+    .back-home-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-cartoon);
+      background: var(--color-butter);
+    }
+
+    .nav-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .nav-tab-chip {
       padding: 6px 14px; border-radius: var(--radius-pill);
-      font-size: 13px; font-weight: 800; color: var(--ink-subtle);
+      font-size: 12.5px; font-weight: 800; color: var(--ink-subtle);
       background: transparent; border: 1.8px solid transparent;
-      cursor: pointer; transition: var(--transition);
-      white-space: nowrap;
+      cursor: pointer; transition: var(--transition-smooth);
     }
-    .nav-tab-btn:hover { background: #FFF; border-color: var(--ink); }
-    .nav-tab-btn.active {
-      background: var(--accent); color: #FFF;
-      border-color: var(--ink); box-shadow: 2px 2px 0 var(--ink);
+    .nav-tab-chip:hover { background: var(--bg-card); border-color: var(--ink-dark); color: var(--ink-dark); }
+    .nav-tab-chip.active {
+      background: var(--color-lavender); color: #FFF;
+      border-color: var(--ink-dark); box-shadow: 2px 2px 0 var(--ink-dark);
       transform: translateY(-2px);
     }
 
-    .container { max-width: 900px; margin: 0 auto; padding: 28px 20px; }
+    .nav-right-controls { display: flex; align-items: center; gap: 10px; }
+    .theme-switch-group {
+      background: var(--bg-card); border: var(--border-cartoon);
+      box-shadow: var(--shadow-cartoon-sm); border-radius: var(--radius-pill);
+      padding: 3px; display: inline-flex; align-items: center; gap: 4px;
+    }
+    .theme-pill-btn {
+      padding: 5px 10px; border-radius: var(--radius-pill);
+      font-size: 11.5px; font-weight: 800; color: var(--ink-subtle);
+      border: none; background: none; cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+    .theme-pill-btn.active {
+      background: var(--color-butter); color: #352621;
+      box-shadow: 1.5px 1.5px 0 var(--ink-dark); transform: scale(1.04);
+    }
+    .sound-toggle-btn {
+      background: var(--bg-card); border: var(--border-cartoon);
+      box-shadow: var(--shadow-cartoon-sm); border-radius: var(--radius-pill);
+      padding: 7px 12px; font-size: 12px; font-weight: 800;
+      color: var(--ink-dark); display: inline-flex; align-items: center; gap: 6px;
+      cursor: pointer; transition: var(--transition-smooth);
+    }
+    .sound-toggle-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-cartoon); }
 
-    /* 顶部展板 */
-    .hero-box {
-      background: #FFF;
-      border: var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 32px;
-      margin-bottom: 32px;
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 28px;
-      align-items: center;
-      position: relative;
-    }
-    .book-thumb {
-      width: 160px; height: 215px;
-      border: var(--border); border-radius: 12px;
-      object-fit: cover; box-shadow: 4px 4px 0 var(--ink);
-      background: #FFF;
-    }
-    .hero-info h1 {
-      font-family: var(--font-display);
-      font-size: 32px; line-height: 1.3;
-      margin-bottom: 8px; color: var(--ink);
-    }
-    .hero-quote-bar {
-      background: var(--accent-soft);
-      border-left: 4px solid var(--accent);
-      padding: 10px 14px; border-radius: 4px 8px 8px 4px;
-      font-size: 14px; font-weight: 700; color: var(--accent);
-      margin: 12px 0 16px;
-    }
-    .hero-meta-badges { display: flex; gap: 8px; flex-wrap: wrap; }
-    .hero-badge {
-      font-size: 12px; font-weight: 800;
-      background: var(--bg); border: 1.5px solid var(--ink);
-      padding: 4px 10px; border-radius: var(--radius-pill);
+    .container {
+      max-width: 920px; margin: 0 auto;
+      padding: 40px 20px 120px;
+      position: relative; z-index: 1;
     }
 
-    /* 页面分段切换 */
-    .tab-section { display: none; }
-    .tab-section.active { display: block; animation: fadeIn 0.35s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-card {
+      background: var(--bg-card);
+      border: var(--border-cartoon);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-cartoon-lg);
+      padding: 38px; margin-bottom: 36px;
+      display: grid; grid-template-columns: 180px 1fr;
+      gap: 32px; align-items: center;
+      position: relative; overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+    .washi-tape {
+      position: absolute; width: 100px; height: 24px;
+      background: rgba(255, 206, 71, var(--washi-opacity));
+      border: 1.5px dashed rgba(53, 38, 33, 0.3);
+      top: -10px; left: 50%;
+      transform: translateX(-50%) rotate(-1.5deg);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05); z-index: 5;
+    }
+    .washi-tape.tape-left { left: 40px; transform: rotate(-5deg); background: rgba(156, 121, 255, var(--washi-opacity)); }
+    .washi-tape.tape-right { left: auto; right: 40px; transform: rotate(4deg); background: rgba(255, 101, 132, var(--washi-opacity)); }
 
-    /* 内容卡片 */
-    .card {
-      background: #FFF;
-      border: var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 30px 28px;
-      margin-bottom: 26px;
+    .hero-book-wrap {
+      width: 180px; height: 245px;
+      position: relative; border-radius: 14px;
+      border: var(--border-cartoon);
+      box-shadow: 4px 6px 0 var(--card-shadow-color);
+      overflow: hidden; background: #FFF;
     }
-    .card h2 {
-      font-family: var(--font-display);
-      font-size: 24px; color: var(--ink);
-      margin-bottom: 16px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .card h3 {
-      font-size: 18px; font-weight: 800;
-      color: var(--accent); margin: 22px 0 10px;
-    }
-    .card h4 {
-      font-size: 16px; font-weight: 800;
-      color: var(--blue); margin: 16px 0 6px;
-    }
-    .card p {
-      color: var(--ink-subtle);
-      margin-bottom: 14px;
-      font-size: 15.5px;
+    .hero-book-wrap img, .hero-book-wrap svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-book-wrap::after {
+      content: ""; position: absolute; top: 0; left: 0; width: 16px; height: 100%;
+      background: linear-gradient(90deg, rgba(255,255,255,0.45) 0%, rgba(0,0,0,0.12) 80%, transparent 100%);
+      pointer-events: none;
     }
 
-    /* 哲学家名言与高亮框 */
-    .quote-box {
-      background: var(--accent-soft);
-      border-left: 4px solid var(--accent);
-      padding: 14px 18px;
-      border-radius: 4px 10px 10px 4px;
-      font-size: 14.5px;
-      color: var(--ink);
-      margin: 16px 0;
-      font-weight: 600;
+    .hero-info { display: flex; flex-direction: column; }
+    .hero-badges-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .badge-pill {
+      font-size: 11.5px; font-weight: 800; padding: 4px 12px;
+      border-radius: var(--radius-pill); border: 1.5px solid var(--ink-dark);
+      box-shadow: 1.5px 2px 0 var(--ink-dark);
     }
-    .concept-box {
-      background: var(--gold-soft);
-      border: 2px dashed #E67E22;
-      border-radius: 12px;
-      padding: 16px 20px;
-      margin: 18px 0;
-      font-size: 15px;
-    }
-    .concept-box strong { color: #D35400; }
+    .badge-purple { background: var(--color-lavender-soft); color: var(--color-lavender); }
+    .badge-pink { background: var(--color-strawberry-soft); color: var(--color-strawberry); }
+    .badge-green { background: var(--color-matcha-soft); color: var(--color-matcha); }
 
-    /* 哲学家思想卡片网格 */
+    .hero-title {
+      font-family: var(--font-display); font-size: 34px; line-height: 1.3;
+      margin-bottom: 12px; letter-spacing: 1px; color: var(--ink-dark);
+    }
+    .hero-quote-tape {
+      background: var(--bg-warm);
+      border-left: 4px solid var(--color-lavender);
+      padding: 10px 16px; border-radius: 4px 12px 12px 4px;
+      font-size: 13.5px; font-weight: 700; color: var(--ink-dark);
+      margin-bottom: 14px; line-height: 1.6;
+    }
+    .hero-desc { font-size: 14px; color: var(--ink-subtle); line-height: 1.7; }
+
+    .note-card {
+      background: var(--bg-card);
+      border: var(--border-cartoon);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-cartoon);
+      padding: 32px 34px; margin-bottom: 32px;
+      position: relative; overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+    .note-card:hover { box-shadow: var(--shadow-cartoon-hover); }
+
+    .section-heading-row {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
+      padding-bottom: 14px; border-bottom: 2px dashed rgba(53, 38, 33, 0.15);
+    }
+    .section-badge-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      border: 2px solid var(--ink-dark); background: var(--color-butter-soft);
+      box-shadow: 2px 2px 0 var(--ink-dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .section-title { font-family: var(--font-display); font-size: 24px; color: var(--ink-dark); }
+
     .philosopher-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 16px; margin: 20px 0;
     }
     .philo-card {
-      background: var(--bg); border: 1.8px solid var(--ink);
-      border-radius: var(--radius-sm); padding: 16px;
-      box-shadow: 2px 2px 0 var(--ink);
+      background: var(--bg-warm); border: 2px solid var(--ink-dark);
+      border-radius: var(--radius-md); padding: 18px; box-shadow: var(--shadow-cartoon-sm);
     }
-    .philo-card strong { display: block; font-size: 16px; color: var(--accent); margin-bottom: 4px; }
-    .philo-card span { font-size: 12.5px; color: var(--ink-subtle); line-height: 1.5; display: block; }
+    .philo-card h4 { font-size: 16px; font-weight: 800; margin-bottom: 4px; color: var(--ink-dark); }
+    .philo-card p { font-size: 13px; color: var(--ink-subtle); line-height: 1.6; }
 
-    /* 互动问答测试 */
-    .quiz-box {
-      background: #FFFDFE; border: 2px solid var(--ink);
-      border-radius: 14px; padding: 22px; margin: 20px 0;
-      box-shadow: var(--shadow-sm);
+    /* 右下角伴读书僮小猫咪：「花花喵」 */
+    .mascot-corner {
+      position: fixed; right: 28px; bottom: 24px; z-index: 98;
+      display: flex; flex-direction: column; align-items: flex-end;
     }
-    .quiz-question { font-weight: 800; font-size: 16px; margin-bottom: 12px; color: var(--ink); }
-    .quiz-options { display: flex; flex-direction: column; gap: 8px; }
-    .quiz-opt {
-      padding: 10px 16px; border: 1.8px solid var(--ink);
-      border-radius: 8px; background: #FFF; cursor: pointer;
-      font-size: 14px; font-weight: 700; color: var(--ink);
-      text-align: left; transition: var(--transition);
+    .mascot-bubble {
+      background: var(--bg-card); border: 2px solid var(--ink-dark);
+      box-shadow: var(--shadow-cartoon-sm); border-radius: 16px 16px 4px 16px;
+      padding: 10px 16px; font-size: 12.5px; font-weight: 800; color: var(--ink-dark);
+      max-width: 220px; margin-bottom: 8px; opacity: 0;
+      transform: translateY(10px) scale(0.9); transition: var(--transition-smooth);
+      pointer-events: none;
     }
-    .quiz-opt:hover { background: var(--accent-soft); }
-    .quiz-opt.correct { background: var(--green-soft); border-color: var(--green); color: var(--green); }
-    .quiz-opt.wrong { background: #FDEDEC; border-color: #E74C3C; color: #E74C3C; }
-    .quiz-feedback { margin-top: 10px; font-size: 13.5px; font-weight: 700; display: none; }
-    .quiz-feedback.show { display: block; }
+    .mascot-bubble.show { opacity: 1; transform: translateY(0) scale(1); }
+    .mascot-avatar-btn {
+      width: 62px; height: 62px; background: #FFFFFF;
+      border: 2.5px solid var(--ink-dark); box-shadow: var(--shadow-cartoon);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: var(--transition-smooth); position: relative;
+    }
+    .mascot-avatar-btn:hover { transform: scale(1.12) rotate(6deg); box-shadow: var(--shadow-cartoon-hover); }
+    .mascot-avatar-btn.scrolling-fast { animation: fastWag 0.22s infinite alternate; }
+    @keyframes fastWag { 0% { transform: scale(1.08) rotate(-10deg); } 100% { transform: scale(1.08) rotate(10deg); } }
+    .mascot-cat-svg { width: 52px; height: 52px; display: block; }
+    .mascot-badge-online {
+      position: absolute; top: -2px; right: -2px; width: 15px; height: 15px;
+      background: var(--color-matcha); border: 2px solid var(--ink-dark);
+      border-radius: 50%; box-shadow: 0 0 0 2px rgba(255,255,255,0.9);
+    }
 
-    /* 折叠面板 */
-    .accordion-header {
-      background: var(--bg); border: 1.8px solid var(--ink);
-      border-radius: 8px; padding: 12px 16px; cursor: pointer;
-      font-weight: 800; font-size: 15px; display: flex;
-      justify-content: space-between; align-items: center;
-      margin-top: 10px; transition: var(--transition);
+    .floating-dock {
+      position: fixed; bottom: 24px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-card); border: 2.5px solid var(--ink-dark);
+      box-shadow: var(--shadow-cartoon-lg); border-radius: var(--radius-pill);
+      padding: 8px 14px; display: inline-flex; align-items: center; gap: 8px;
+      z-index: 99; transition: var(--transition-smooth);
     }
-    .accordion-header:hover { background: var(--accent-soft); }
-    .accordion-body {
-      max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease;
-      background: #FFF; border: 1.8px solid var(--ink); border-top: none;
-      border-radius: 0 0 8px 8px; padding: 0 16px; font-size: 14.5px;
+    .dock-btn {
+      padding: 9px 16px; border-radius: var(--radius-pill);
+      font-size: 13px; font-weight: 800; color: var(--ink-dark);
+      background: transparent; border: 1.8px solid transparent;
+      display: inline-flex; align-items: center; gap: 6px;
+      cursor: pointer; text-decoration: none; transition: var(--transition-smooth);
     }
-    .accordion-body.open { max-height: 600px; padding: 14px 16px; margin-bottom: 10px; }
+    .dock-btn:hover { background: var(--bg-warm); border-color: var(--ink-dark); transform: translateY(-2px); }
+    .dock-dice-btn { background: var(--color-butter); border: 1.8px solid var(--ink-dark); }
+
+    footer {
+      text-align: center; padding: 48px 20px 110px;
+      font-size: 12.5px; color: var(--ink-subtle);
+      border-top: 2px dashed rgba(53, 38, 33, 0.18);
+    }
+    .footer-stamp {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--bg-card); border: 1.5px solid var(--ink-dark);
+      box-shadow: 2px 2px 0 var(--card-shadow-color); border-radius: var(--radius-pill);
+      padding: 4px 14px; font-size: 11px; font-weight: 800;
+      color: var(--color-strawberry); margin-top: 10px;
+    }
+
+    .sparkle-particle {
+      position: fixed; pointer-events: none; z-index: 9999;
+      font-size: 18px; user-select: none;
+      animation: sparkleFly 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    @keyframes sparkleFly {
+      0% { opacity: 1; transform: translate(0, 0) scale(0.6) rotate(0deg); }
+      100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(1.4) rotate(180deg); }
+    }
 
     @media (max-width: 768px) {
-      .hero-box { grid-template-columns: 1fr; text-align: center; }
-      .book-thumb { margin: 0 auto; }
-      .hero-meta-badges { justify-content: center; }
-      .nav-tabs { width: 100%; overflow-x: auto; padding-bottom: 4px; }
-      .card { padding: 22px 18px; }
+      .hero-card { grid-template-columns: 1fr; padding: 24px; text-align: center; }
+      .hero-book-wrap { margin: 0 auto; }
+      .floating-dock { width: 92%; justify-content: space-around; padding: 6px 8px; }
+      .dock-btn { padding: 8px 10px; font-size: 12px; }
     }
   </style>
 </head>
 <body>
-  <!-- 顶部导航与模块切换 -->
-  <nav class="top-nav" aria-label="讲义章节切换">
-    <a href="../index.html" class="back-btn">⬅️ 返回书架</a>
-    <div class="nav-tabs" role="tablist">
-      <button class="nav-tab-btn active" onclick="showSection('mod0')">导读·神秘信件</button>
-      <button class="nav-tab-btn" onclick="showSection('mod1')">01·自然派与原子</button>
-      <button class="nav-tab-btn" onclick="showSection('mod2')">02·雅典三巨头</button>
-      <button class="nav-tab-btn" onclick="showSection('mod3')">03·理性与经验</button>
-      <button class="nav-tab-btn" onclick="showSection('mod4')">04·存在与觉醒</button>
-      <button class="nav-tab-btn" onclick="showSection('mod5')">通关·思辨工坊</button>
+
+  <div class="top-bunting" aria-hidden="true"></div>
+
+  <div class="scroll-progress-container" aria-hidden="true">
+    <div class="scroll-progress-bar" id="scroll-progress">
+      <span class="scroll-progress-head">✏️</span>
     </div>
-  </nav>
-
-  <div class="container">
-    <!-- 顶部书籍信息展板 -->
-    <header class="hero-box">
-      <img src="../assets/covers/sophies-world.svg" alt="苏菲的世界专属绘本封面" class="book-thumb">
-      <div class="hero-info">
-        <h1>《苏菲的世界》（Sophie's World）</h1>
-        <p style="font-size: 14px; color: var(--ink-subtle); font-weight: 700;">[挪威] 乔斯坦·贾德 著 · 西方哲学史探险小说</p>
-        <div class="hero-quote-bar">
-          “哲学唯一的条件，就是保持对世界的好奇心，永远不要把周遭的一切视为理所当然。”
-        </div>
-        <div class="hero-meta-badges">
-          <span class="hero-badge">🌌 批判性独立思考</span>
-          <span class="hero-badge">🏛️ 柏拉图洞穴寓言</span>
-          <span class="hero-badge">💭 笛卡尔怀疑论</span>
-          <span class="hero-badge">🎯 中学生思维奠基</span>
-        </div>
-      </div>
-    </header>
-
-    <!-- 模块 0：导读 -->
-    <section class="tab-section active" id="sec-mod0">
-      <article class="card">
-        <h2>✉️ 导读：魔术师的大白兔与信箱里的秘密</h2>
-        <p>14 岁的挪威少女苏菲，原本过着平凡无奇的初中日常。直到某天下学，她在自家的信箱里翻出了一封没有邮票的白色信封，里面只有薄薄的一张纸条，上面写着三个直击灵魂的字：</p>
-        
-        <div class="quote-box" style="text-align: center; font-size: 18px; color: var(--accent);">
-          “你 是 谁 ？”
-        </div>
-
-        <p>紧接着第二封信问：<strong>“世界从何而来？”</strong></p>
-
-        <h3>魔术师礼帽与大白兔的绝妙隐喻</h3>
-        <p>哲学导师艾伯特告诉苏菲：整个宇宙就像一位魔术师从虚无的礼帽中拽出的一只<strong>巨大的白兔</strong>。我们所有的生命都生活在这只白兔的皮毛上。</p>
-        
-        <div class="concept-box">
-          <strong>🐰 普通人 vs 哲学家：</strong><br>
-          绝大部分成年人生活得太久了，习惯了周遭的琐碎，逐渐钻进了白兔皮毛的最深处，舒服地睡起大觉，对世界不再感到惊奇。<br>
-          <strong>而哲学家，就是那些紧紧抓住白兔皮毛最顶端、探着头拼命想要看清魔术师是谁的孩子！</strong>
-        </div>
-      </article>
-    </section>
-
-    <!-- 模块 1：自然派与原子论 -->
-    <section class="tab-section" id="sec-mod1">
-      <article class="card">
-        <h2>🌊 01. 自然派哲学：世界由什么构成？</h2>
-        <p>在神话时代，古人把打雷归咎于托尔发怒，把冬天归咎于冥王抢走春神。直到公元前 6 世纪，古希腊的一群哲学家站了出来，他们拒绝用神话编故事，而是**试图从大自然本身寻找一切变化的源头**。</p>
-
-        <div class="philosopher-grid">
-          <div class="philo-card">
-            <strong>泰勒斯（Thales）· 水是本原</strong>
-            <span>观察到水能结冰、化气、滋养万物生命，是人类历史上第一个试图用自然现象解释自然的人。</span>
-          </div>
-          <div class="philo-card">
-            <strong>赫拉克利特 · 万物皆流</strong>
-            <span>“人不能两次踏进同一条河流。”世界永远处于恒常的变化与矛盾转化之中。</span>
-          </div>
-          <div class="philo-card">
-            <strong>德谟克利特 · 不可分割的原子</strong>
-            <span>天才地提出：万物都是由微小的、不可分割的“原子”（Atom）拼接而成的，就像宇宙中永不磨损的乐高积木！</span>
-          </div>
-        </div>
-
-        <div class="concept-box">
-          <strong>💡 乐高积木的现代启示：</strong><br>
-          德谟克利特不用显微镜，仅凭纯粹的理性思考就推导出了原子的存在：为什么一块橡皮泥捏成小狗后打碎，还能重新捏成小猫？因为最底层的基本单元本身并没有改变！
-        </div>
-      </article>
-    </section>
-
-    <!-- 模块 2：雅典三巨头 -->
-    <section class="tab-section" id="sec-mod2">
-      <article class="card">
-        <h2>🏛️ 02. 雅典三巨头：苏格拉底、柏拉图与亚里士多德</h2>
-        
-        <h3>1. 苏格拉底（Socrates）：“认识你自己”</h3>
-        <p>苏格拉底把自己比作一只<strong>雅典城邦的“牛虻”</strong>——专门叮咬那些自命不凡、自以为懂一切的达官显贵。他从不直接传授所谓的标准答案，而是像他母亲（产婆）一样，通过连续的发问引导对方自己生出真理（产婆术）。</p>
-        <div class="quote-box">
-          “我唯一知道的，就是我一无所知。” —— 苏格拉底
-        </div>
-
-        <h3>2. 柏拉图（Plato）：洞穴寓言（Cave Allegory）</h3>
-        <p>一群囚徒从小被锁在漆黑的洞穴里，只能看着石壁上跳动的投影。他们把影子当成整个世界。直到有一个人挣脱锁链走出洞穴，看到了灿烂的太阳与真实的星空。</p>
-        <div class="concept-box">
-          <strong>💡 破除认知洞穴：</strong><br>
-          社交媒体上的潮流八卦、别人的偏见评判，往往只是洞壁上的虚妄投影。真正的学习与思考，就是艰难爬出洞穴、直视真理阳光的历练。
-        </div>
-
-        <h3>3. 亚里士多德（Aristotle）：百科全书与黄金中庸</h3>
-        <p>亚里士多德热爱观察自然，建立了生物分类学与逻辑学。他提出了**“黄金中庸之道”**：勇敢不是鲁莽（过头），也不是怯懦（不足），而是介于两者之间的恰到好处。</p>
-      </article>
-    </section>
-
-    <!-- 模块 3：理性与经验的碰撞 -->
-    <section class="tab-section" id="sec-mod3">
-      <article class="card">
-        <h2>🧭 03. 理性派 vs 经验派：我们如何确信知识？</h2>
-
-        <h3>笛卡尔（Descartes）：普遍怀疑与“我思故我在”</h3>
-        <p>笛卡尔做了一个极致的思维实验：如果眼睛会看花、耳朵会听错、甚至整个世界都可能是一个恶魔制造的虚拟梦境，那到底有没有任何事物是绝对无可置疑的？</p>
-        <div class="concept-box">
-          <strong>💡 “Cogito, ergo sum”（我思故我在）：</strong><br>
-          “我可以怀疑眼前的一切，但我绝对无法怀疑‘我正在怀疑’这件事情本身！” 只要你在思考，你的存在就坚如磐石。
-        </div>
-
-        <h3>洛克（Locke）与休谟（Hume）：心灵是一块白板</h3>
-        <p>经验派认为，婴儿出生时头脑就像一块纯净的**白板（Tabula Rasa）**。所有的知识都来自于我们后天的感知与生活经验。</p>
-
-        <h3>康德（Kant）：理性的调和者与绝对命令</h3>
-        <p>康德指出：我们看待世界，就像戴着一副先天的“有色眼镜”（时间与空间感知框架）。同时，康德提出了震撼的道德法则：</p>
-        <div class="quote-box">
-          “你要永远把人当做目的本身，而决不要仅仅当做达成某个目的的工具手段。”
-        </div>
-      </article>
-    </section>
-
-    <!-- 模块 4：现代思潮与存在主义 -->
-    <section class="tab-section" id="sec-mod4">
-      <article class="card">
-        <h2>🌌 04. 存在主义与小说的高潮解谜</h2>
-        <p>随着剧情推进，苏菲惊骇地发现：自己竟然只是挪威联合国观察员少校为女儿**席德（Hilde）**写的一本哲学小说里的虚构角色！</p>
-
-        <h3>萨特（Sartre）的存在主义：存在先于本质</h3>
-        <div class="concept-box">
-          <strong>💡 一把剪刀 vs 一个活生生的人：</strong><br>
-          剪刀在被制造前，它的本质（用来剪东西）就已经被预设好了。<br>
-          <strong>但人不同！人首先存在在这个世界上，你未来成为什么样的人、赋予生命什么意义，完全取决于你当下的自主选择与勇敢行动！</strong>
-        </div>
-
-        <p>即便苏菲发现自己身处虚构的故事中，她也没有自暴自弃，而是和哲学导师联手策划了一场“逃离作者设定、奔向真实世界”的精神冒险！</p>
-      </article>
-    </section>
-
-    <!-- 模块 5：思辨工坊 -->
-    <section class="tab-section" id="sec-mod5">
-      <article class="card">
-        <h2>🛠️ 少年思辨工坊：写在手账上的 4 个批判性思维锦囊</h2>
-        
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>锦囊 1：苏格拉底式追问（Socratic Questioning）</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-body">
-          <p>当听到一个看似不容置疑的断言时，先问自己三个问题：① 这个结论的前提是什么？② 有没有相反的事实案例？③ 如果大家都这样做，长期后果会怎样？</p>
-        </div>
-
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>锦囊 2：跳出白兔毛的温床</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-body">
-          <p>永远对习以为常的事物保留一份惊奇。为什么学校要这样排课？为什么人们要这样打招呼？多问几个“为什么”，你的大脑就不会过早老化。</p>
-        </div>
-
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>锦囊 3：康德的道德律令</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-body">
-          <p>在做选择时问自己：“如果我的这个行为变成全人类共同遵守的法则，世界会变得更好还是更糟？”</p>
-        </div>
-
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>锦囊 4：拒绝被贴标签（存在先于本质）</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-body">
-          <p>不要让别人给你的评分、星座、性格标签定义你的上限。唯有你每一次面对选择时的具体行动，在真正雕刻你的人生。</p>
-        </div>
-
-        <h3 style="margin-top: 30px;">🎯 少年哲学思辨检阅（2 题过关测试）</h3>
-
-        <div class="quiz-box">
-          <div class="quiz-question">1. 柏拉图的“洞穴寓言”核心想告诉我们什么？</div>
-          <div class="quiz-options">
-            <button class="quiz-opt" onclick="checkQuiz(this, false, '柏拉图不是在讲原始人的生活，而是在讲人类认识真理的哲学过程。')">A. 原始人生活在洞穴里非常辛苦，应该多盖砖房</button>
-            <button class="quiz-opt" onclick="checkQuiz(this, true, '完全正确！我们未经审视接受的偏见与流行风潮往往只是虚幻投影，真正的真理需要独立勇敢地去探求。')">B. 我们日常看到的往往只是偏见与投影，需通过理性和独立思考走出洞穴直面真理</button>
-            <button class="quiz-opt" onclick="checkQuiz(this, false, '这只是寓言里的细节，并非哲学主旨。')">C. 阳光太刺眼容易刺伤眼睛，所以最好永远待在洞里不出来</button>
-          </div>
-          <div class="quiz-feedback"></div>
-        </div>
-
-        <div class="quiz-box">
-          <div class="quiz-question">2. 笛卡尔说“我思故我在”，他得出这句结论的出发点是：</div>
-          <div class="quiz-options">
-            <button class="quiz-opt" onclick="checkQuiz(this, true, '太棒了！只要我在怀疑与思考，我的思考主体就是确凿无疑的！')">A. 即使能怀疑一切感官与梦境，但我无法怀疑“我正在怀疑”本身</button>
-            <button class="quiz-opt" onclick="checkQuiz(this, false, '这过于简单粗暴，笛卡尔是通过严谨的普遍怀疑逻辑推导出来的。')">B. 只要我每天不停地做数学题，我就可以长生不老</button>
-            <button class="quiz-opt" onclick="checkQuiz(this, false, '笛卡尔并不是自恋，而是寻找哲学的阿基米德支点。')">C. 证明自己比周围所有人都聪明</button>
-          </div>
-          <div class="quiz-feedback"></div>
-        </div>
-      </article>
-    </section>
   </div>
 
+  <div class="parallax-layer layer-bg" aria-hidden="true">
+    <span class="prop-item prop-cloud-1" data-parallax-speed="0.08">☁️</span>
+    <span class="prop-item prop-cloud-2" data-parallax-speed="0.12">☁️</span>
+  </div>
+  <div class="parallax-layer layer-props" aria-hidden="true">
+    <span class="prop-item prop-plane" data-parallax-speed="0.4" title="神秘信封">✉️</span>
+    <span class="prop-item prop-coffee" data-parallax-speed="-0.3" title="智慧猫头鹰">🦉</span>
+  </div>
+  <div class="parallax-layer layer-fg" aria-hidden="true">
+    <span class="prop-item prop-sparkle-1" data-parallax-speed="1.2">✨</span>
+  </div>
+
+  <header class="top-nav">
+    <div class="nav-left-group">
+      <a href="../index.html" class="back-home-btn" onclick="playBubbleSound()">
+        <span>← 📖 返回书架</span>
+      </a>
+      <div class="nav-tabs">
+        <button class="nav-tab-chip active" onclick="scrollToSection('sec1')">✉️ 神秘信件</button>
+        <button class="nav-tab-chip" onclick="scrollToSection('sec2')">🏛️ 雅典三哲</button>
+        <button class="nav-tab-chip" onclick="scrollToSection('sec3')">💡 近代思辨</button>
+      </div>
+    </div>
+
+    <div class="nav-right-controls">
+      <div class="theme-switch-group">
+        <button class="theme-pill-btn active" id="btn-theme-day" onclick="setAppTheme('day')">☀️ 晴日</button>
+        <button class="theme-pill-btn" id="btn-theme-sunset" onclick="setAppTheme('sunset')">🌅 暮色</button>
+        <button class="theme-pill-btn" id="btn-theme-night" onclick="setAppTheme('night')">🌙 星夜</button>
+      </div>
+      <button class="sound-toggle-btn" id="sound-btn" onclick="toggleSoundEffect()" title="开关治愈音效">
+        <span id="sound-icon">🔔</span>
+        <span id="sound-text">音效: 关</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <section class="hero-card" id="top">
+      <div class="washi-tape tape-left"></div>
+      <div class="washi-tape tape-right"></div>
+
+      <div class="hero-book-wrap">
+        <img src="../assets/covers/sophies-world.svg" alt="《苏菲的世界》精读封面">
+      </div>
+
+      <div class="hero-info">
+        <div class="hero-badges-row">
+          <span class="badge-pill badge-purple">🦉 哲学启蒙</span>
+          <span class="badge-pill badge-pink">👤 乔斯坦·贾德</span>
+          <span class="badge-pill badge-green">⏱️ 15 分钟精读</span>
+        </div>
+
+        <h1 class="hero-title">《苏菲的世界》精读讲义</h1>
+
+        <div class="hero-quote-tape">
+          “哲学唯一的条件，就是保持对世界的好奇心，不要把一切视为理所当然。”
+        </div>
+
+        <p class="hero-desc">
+          14 岁少女苏菲在信箱里收到一封神秘信件：“你是谁？”、“世界从何而来？”——一场穿越古希腊、中世纪到近代欧洲的思想漫游就此拉开序幕。
+        </p>
+      </div>
+    </section>
+
+    <!-- 模块 1 -->
+    <article class="note-card" id="sec1">
+      <div class="section-heading-row">
+        <div class="section-badge-icon">✉️</div>
+        <h2 class="section-title">第一讲：两封神秘来信 · 什么是哲学家的眼光？</h2>
+      </div>
+
+      <div style="background:var(--bg-warm);border:2px solid var(--ink-dark);border-radius:var(--radius-md);padding:18px;">
+        <p><strong>白兔的比喻：</strong>世界就像魔术师从帽子里变出的巨大白兔。大多数人在白兔柔软深层的皮毛里安家，把一切视为理所当然；而哲学家则竭力爬到兔毛顶端，睁大眼睛好奇地打量魔术师。</p>
+      </div>
+    </article>
+
+    <!-- 模块 2 -->
+    <article class="note-card" id="sec2">
+      <div class="section-heading-row">
+        <div class="section-badge-icon">🏛️</div>
+        <h2 class="section-title">第二讲：雅典黄金时代的智慧灯塔 · 希腊三哲</h2>
+      </div>
+
+      <div class="philosopher-grid">
+        <div class="philo-card">
+          <h4>🏛️ 苏格拉底（Socrates）</h4>
+          <p>“自知自己无知”。像精神助产士一样，通过不断提问戳破偏见，唤醒人们内心的真正智慧。</p>
+        </div>
+        <div class="philo-card">
+          <h4>洞穴之喻 · 柏拉图（Plato）</h4>
+          <p>感官所见如同洞穴石壁上的火光投影。真正的知识是理性认知彼岸完美的“理念世界”。</p>
+        </div>
+        <div class="philo-card">
+          <h4>万物分类 · 亚里士多德（Aristotle）</h4>
+          <p>强调观察与归纳逻辑。寻找事物的“质料”与“形式”，奠定了自然科学与中庸伦理的基石。</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- 模块 3 -->
+    <article class="note-card" id="sec3">
+      <div class="section-heading-row">
+        <div class="section-badge-icon">💡</div>
+        <h2 class="section-title">第三讲：我思故我在 · 笛卡尔与近代思想的破晓</h2>
+      </div>
+
+      <div style="background:var(--color-lavender-soft);border:2px solid var(--color-lavender);border-radius:var(--radius-md);padding:18px;">
+        <p><strong>笛卡尔的普遍怀疑：</strong>我可以怀疑感官、怀疑世界、怀疑梦境，但我绝无法怀疑“我正在怀疑”这件事情本身。由此诞生了人类理性第一坚固基石——<strong>“我思故我在”</strong>。</p>
+      </div>
+    </article>
+
+  </div> <!-- container -->
+
+  <aside class="mascot-corner" aria-label="伴读书僮花花喵">
+    <div class="mascot-bubble" id="mascot-speech">
+      🐾 喵呜！我是伴读书僮「花花喵」~ 带着哲学的好奇心，看世界每天都闪闪发光！
+    </div>
+    <button class="mascot-avatar-btn" id="mascot-btn" type="button" onclick="interactMascot()" title="戳戳「花花喵」！">
+      <svg class="mascot-cat-svg" viewBox="0 0 100 100" aria-hidden="true">
+        <defs>
+          <linearGradient id="silverFur" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFFFFF" />
+            <stop offset="60%" stop-color="#E8ECEF" />
+            <stop offset="100%" stop-color="#CBD2D9" />
+          </linearGradient>
+          <linearGradient id="earShade" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#555C66" />
+            <stop offset="45%" stop-color="#9CA3AF" />
+            <stop offset="100%" stop-color="#E8ECEF" />
+          </linearGradient>
+          <radialGradient id="emeraldEye" cx="35%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#68F5CE" />
+            <stop offset="45%" stop-color="#10B981" />
+            <stop offset="100%" stop-color="#047857" />
+          </radialGradient>
+        </defs>
+        <polygon points="16,36 32,8 46,28" fill="url(#earShade)" stroke="#352621" stroke-width="2.5" stroke-linejoin="round" />
+        <polygon points="22,32 32,15 41,27" fill="#FFB8C6" opacity="0.9" />
+        <polygon points="84,36 68,8 54,28" fill="url(#earShade)" stroke="#352621" stroke-width="2.5" stroke-linejoin="round" />
+        <polygon points="78,32 68,15 59,27" fill="#FFB8C6" opacity="0.9" />
+        <ellipse cx="50" cy="53" rx="38" ry="33" fill="url(#silverFur)" stroke="#352621" stroke-width="2.5" />
+        <path d="M47,23 Q50,27 53,23" stroke="#8492A6" stroke-width="2" stroke-linecap="round" fill="none" />
+        <path d="M43,27 Q50,32 57,27" stroke="#8492A6" stroke-width="1.8" stroke-linecap="round" fill="none" />
+        <ellipse cx="34" cy="49" rx="9" ry="11" fill="url(#emeraldEye)" stroke="#111827" stroke-width="2.2" />
+        <ellipse cx="34" cy="49" rx="4" ry="7.5" fill="#111827" />
+        <circle cx="31.5" cy="45" r="3.2" fill="#FFFFFF" />
+        <circle cx="36.5" cy="53" r="1.5" fill="#FFFFFF" />
+        <ellipse cx="66" cy="49" rx="9" ry="11" fill="url(#emeraldEye)" stroke="#111827" stroke-width="2.2" />
+        <ellipse cx="66" cy="49" rx="4" ry="7.5" fill="#111827" />
+        <circle cx="63.5" cy="45" r="3.2" fill="#FFFFFF" />
+        <circle cx="68.5" cy="53" r="1.5" fill="#FFFFFF" />
+        <ellipse cx="21" cy="59" rx="6.5" ry="3.5" fill="#FFAEC0" opacity="0.65" />
+        <ellipse cx="79" cy="59" rx="6.5" ry="3.5" fill="#FFAEC0" opacity="0.65" />
+        <polygon points="50,58 45,54 55,54" fill="#FF6584" stroke="#352621" stroke-width="1.5" stroke-linejoin="round" />
+        <path d="M45,62 Q50,65 50,59 Q50,65 55,62" stroke="#352621" stroke-width="2" stroke-linecap="round" fill="none" />
+        <line x1="16" y1="55" x2="28" y2="57" stroke="#352621" stroke-width="1.5" stroke-linecap="round" />
+        <line x1="14" y1="62" x2="27" y2="61" stroke="#352621" stroke-width="1.5" stroke-linecap="round" />
+        <line x1="84" y1="55" x2="72" y2="57" stroke="#352621" stroke-width="1.5" stroke-linecap="round" />
+        <line x1="86" y1="62" x2="73" y2="61" stroke="#352621" stroke-width="1.5" stroke-linecap="round" />
+        <g transform="translate(50, 84)">
+          <circle cx="-5" cy="-2" r="4.2" fill="#FF6584" />
+          <circle cx="5" cy="-2" r="4.2" fill="#FF6584" />
+          <circle cx="-3" cy="4" r="4.2" fill="#FF6584" />
+          <circle cx="3" cy="4" r="4.2" fill="#FF6584" />
+          <circle cx="0" cy="-6" r="4.2" fill="#FF6584" />
+          <circle cx="0" cy="0" r="3.8" fill="#FFCE47" stroke="#352621" stroke-width="1.2" />
+        </g>
+      </svg>
+      <span class="mascot-badge-online"></span>
+    </button>
+  </aside>
+
+  <nav class="floating-dock" aria-label="快捷导航浮动栏">
+    <a class="dock-btn" href="#top" onclick="playBubbleSound()">
+      <span>☁️ 回到顶部</span>
+    </a>
+    <a class="dock-btn" href="../index.html" onclick="playBubbleSound()">
+      <span>📖 返回书架</span>
+    </a>
+    <button class="dock-btn dock-dice-btn" type="button" onclick="randomBookJump()" title="随机翻开一本笔记！">
+      <span>🎲 随手翻</span>
+    </button>
+  </nav>
+
+  <footer>
+    <p>© 2026 Bella Read. 保持思考，保持留白，保持童心。</p>
+    <p>静读，慢记，常回看。在温暖的角落里与自己对话。</p>
+    <div class="footer-stamp">
+      <span>🐾 手账印章 ·「花花喵」温暖盖戳</span>
+    </div>
+  </footer>
+
   <script>
-    function showSection(modId) {
-      document.querySelectorAll('.tab-section').forEach(sec => sec.classList.remove('active'));
-      document.querySelectorAll('.nav-tab-btn').forEach(btn => btn.classList.remove('active'));
+    let isSoundEnabled = false;
+    let audioCtx = null;
+    let targetScrollY = 0;
+    let currentScrollY = 0;
+    let lastScrollY = 0;
+    let isScrollingFast = false;
+    let fastScrollTimer = null;
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      const target = document.getElementById('sec-' + modId);
-      if (target) target.classList.add('active');
+    const catQuotes = [
+      "🐾 喵~ 我是花花喵，毛茸茸的脑袋给你蹭蹭！花花喵也在思考猫咪人生的意义呢~",
+      "✨ 保持好奇心，像苏菲一样勇敢探索智慧的兔子耳朵！",
+      "🍵 累了就摸摸花花喵，让心灵放个轻松的小假吧。"
+    ];
+    let catQuoteIndex = 0;
 
-      const activeBtn = Array.from(document.querySelectorAll('.nav-tab-btn')).find(b => b.getAttribute('onclick').includes(modId));
-      if (activeBtn) activeBtn.classList.add('active');
+    function updateScrollState() {
+      targetScrollY = window.pageYOffset || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progressPercent = docHeight > 0 ? Math.min(100, Math.max(0, (targetScrollY / docHeight) * 100)) : 0;
+      const progressBar = document.getElementById('scroll-progress');
+      if (progressBar) progressBar.style.width = progressPercent + '%';
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function checkQuiz(btn, isCorrect, explanation) {
-      const container = btn.closest('.quiz-box');
-      const options = container.querySelectorAll('.quiz-opt');
-      const feedback = container.querySelector('.quiz-feedback');
-
-      options.forEach(opt => {
-        opt.disabled = true;
-        opt.style.cursor = 'default';
-      });
-
-      if (isCorrect) {
-        btn.classList.add('correct');
-        feedback.innerHTML = '🎉 ' + explanation;
-        feedback.style.color = 'var(--green)';
-      } else {
-        btn.classList.add('wrong');
-        feedback.innerHTML = '❌ ' + explanation;
-        feedback.style.color = '#C0392B';
+      const scrollVelocity = Math.abs(targetScrollY - lastScrollY);
+      lastScrollY = targetScrollY;
+      const mascotBtn = document.getElementById('mascot-btn');
+      if (scrollVelocity > 25 && mascotBtn) {
+        if (!isScrollingFast) {
+          isScrollingFast = true;
+          mascotBtn.classList.add('scrolling-fast');
+        }
+        clearTimeout(fastScrollTimer);
+        fastScrollTimer = setTimeout(() => {
+          isScrollingFast = false;
+          if (mascotBtn) mascotBtn.classList.remove('scrolling-fast');
+        }, 300);
       }
-      feedback.classList.add('show');
+    }
+    window.addEventListener('scroll', updateScrollState, { passive: true });
+
+    function renderParallax() {
+      if (!isReducedMotion) {
+        currentScrollY += (targetScrollY - currentScrollY) * 0.12;
+        const props = document.querySelectorAll('[data-parallax-speed]');
+        props.forEach(el => {
+          const speed = parseFloat(el.getAttribute('data-parallax-speed')) || 0;
+          el.style.transform = `translate3d(0, ${(currentScrollY * speed).toFixed(2)}px, 0)`;
+        });
+      }
+      requestAnimationFrame(renderParallax);
+    }
+    requestAnimationFrame(renderParallax);
+
+    function scrollToSection(id) {
+      playBubbleSound(550);
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    function toggleAccordion(header) {
-      const body = header.nextElementSibling;
-      const isOpen = body.classList.contains('open');
-      body.classList.toggle('open', !isOpen);
-      header.querySelector('span:last-child').innerText = isOpen ? '▼' : '▲';
+    function interactMascot() {
+      playKittyMeowSound();
+      burstParticles(window.innerWidth - 60, window.innerHeight - 60, ['🐾', '🌸', '✨', '🤍', '🎀', '🐱', '💖']);
+      const bubble = document.getElementById('mascot-speech');
+      bubble.innerText = catQuotes[catQuoteIndex % catQuotes.length];
+      catQuoteIndex++;
+      bubble.classList.add('show');
+      clearTimeout(window.mascotTimer);
+      window.mascotTimer = setTimeout(() => bubble.classList.remove('show'), 4500);
+    }
+
+    function setAppTheme(themeName) {
+      playBubbleSound(550);
+      document.documentElement.setAttribute('data-theme', themeName);
+      document.querySelectorAll('.theme-pill-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.id === `btn-theme-${themeName}`);
+      });
+      localStorage.setItem('bella_read_theme', themeName);
+    }
+    const savedTheme = localStorage.getItem('bella_read_theme');
+    if (savedTheme) setAppTheme(savedTheme);
+
+    function playKittyMeowSound() {
+      if (!isSoundEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        const now = audioCtx.currentTime;
+        osc.frequency.setValueAtTime(680, now);
+        osc.frequency.exponentialRampToValueAtTime(1080, now + 0.08);
+        osc.frequency.exponentialRampToValueAtTime(840, now + 0.24);
+        gain.gain.setValueAtTime(0.01, now);
+        gain.gain.linearRampToValueAtTime(0.18, now + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.24);
+      } catch (e) {}
+    }
+
+    function playBubbleSound(freq = 480) {
+      if (!isSoundEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(freq * 1.8, audioCtx.currentTime + 0.08);
+        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.12);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.12);
+      } catch (e) {}
+    }
+
+    function toggleSoundEffect() {
+      isSoundEnabled = !isSoundEnabled;
+      const text = document.getElementById('sound-text');
+      const icon = document.getElementById('sound-icon');
+      if (isSoundEnabled) {
+        text.innerText = '音效: 开'; icon.innerText = '🔔';
+        playKittyMeowSound();
+      } else {
+        text.innerText = '音效: 关'; icon.innerText = '🔕';
+      }
+    }
+
+    document.addEventListener('click', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.closest('#mascot-btn')) return;
+      burstParticles(e.clientX, e.clientY);
+    });
+
+    function burstParticles(x, y, customSymbols = null) {
+      const symbols = customSymbols || ['✨', '⭐', '🌸', '💖', '🎀', '🍀', '🍰'];
+      for (let i = 0; i < 4; i++) {
+        const p = document.createElement('span');
+        p.className = 'sparkle-particle';
+        p.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+        p.style.left = `${x}px`; p.style.top = `${y}px`;
+        p.style.setProperty('--tx', `${(Math.random() - 0.5) * 70}px`);
+        p.style.setProperty('--ty', `${-30 - Math.random() * 50}px`);
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 800);
+      }
+    }
+
+    function randomBookJump() {
+      playBubbleSound(720);
+      burstParticles(window.innerWidth / 2, window.innerHeight - 50);
+      const links = [
+        "../books/how-an-economy-grows.html",
+        "../books/sophies-world.html",
+        "../books/guns-germs-steel.html",
+        "../books/被讨厌的勇气_课堂讲义.html",
+        "../books/西游记-青春成长课堂.html",
+        "../english/english-learning-guide.html"
+      ];
+      const randomIndex = Math.floor(Math.random() * links.length);
+      setTimeout(() => { window.location.href = links[randomIndex]; }, 250);
     }
   </script>
 </body>

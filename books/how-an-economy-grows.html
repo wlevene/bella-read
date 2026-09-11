@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="day">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,8 @@
   <meta name="description" content="用一张渔网和一座小岛，看懂储蓄、投资、货币、分工与通胀的底层逻辑。初中生也能轻松掌握的经济学思维大课。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  
   <style>
     @font-face {
       font-family: "Smiley Sans";
@@ -18,539 +19,819 @@
     }
 
     :root {
-      --bg: #FAF6F0;
-      --card-bg: #FFFFFF;
-      --ink: #342621;
-      --ink-subtle: #6D5C56;
-      --ink-muted: #9E8C85;
-      --accent: #E67E22;
-      --accent-soft: #FDF2E9;
-      --blue: #2980B9;
-      --blue-soft: #EAF2F8;
-      --green: #27AE60;
-      --green-soft: #E8F8F5;
-      --purple: #8E44AD;
-      --purple-soft: #F4ECF7;
-      --gold: #D35400;
-      --border: 2px solid #342621;
-      --shadow: 4px 4px 0px #342621;
-      --shadow-sm: 2px 2px 0px #342621;
-      --radius: 16px;
-      --radius-sm: 10px;
+      --bg-cream: #FDFBF7;
+      --bg-warm: #FFF5E8;
+      --bg-card: #FFFFFF;
+      --ink-dark: #352621;
+      --ink-subtle: #76635D;
+      --ink-muted: #A3928B;
+      --border-line: #352621;
+      --card-shadow-color: #352621;
+      --washi-opacity: 0.85;
+
+      --color-strawberry: #FF6584;
+      --color-strawberry-soft: #FFEAF0;
+      --color-peach: #FFA07A;
+      --color-peach-soft: #FFF1EB;
+      --color-butter: #FFCE47;
+      --color-butter-soft: #FFF7DD;
+      --color-matcha: #43B581;
+      --color-matcha-soft: #E7F7EF;
+      --color-sky: #5B93FF;
+      --color-sky-soft: #EDF3FF;
+      --color-lavender: #9C79FF;
+      --color-lavender-soft: #F3EEFF;
+      --color-gold: #E67E22;
+      --color-gold-soft: #FDF2E9;
+
+      --border-cartoon: 2.5px solid var(--border-line);
+      --shadow-cartoon: 4px 5px 0px var(--card-shadow-color);
+      --shadow-cartoon-sm: 2.5px 3px 0px var(--card-shadow-color);
+      --shadow-cartoon-lg: 6px 8px 0px var(--card-shadow-color);
+      --shadow-cartoon-hover: 7px 10px 0px var(--card-shadow-color);
+
+      --font-display: "Smiley Sans", "Nunito", "PingFang SC", sans-serif;
+      --font-body: "Nunito", "Smiley Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
       --radius-pill: 999px;
-      --font-display: "Smiley Sans", "Nunito", -apple-system, sans-serif;
-      --font-body: "Nunito", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
-      --transition: 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      --bounce-timing: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --transition-smooth: all 0.28s var(--bounce-timing);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    [data-theme="sunset"] {
+      --bg-cream: #FFF1E6;
+      --bg-warm: #FFE4D6;
+      --bg-card: #FFFAF5;
+      --ink-dark: #3D231E;
+      --ink-subtle: #7F5850;
+      --ink-muted: #A87E76;
+      --border-line: #3D231E;
+      --card-shadow-color: #3D231E;
+      --color-strawberry: #FF5A79;
+      --color-butter: #FFB347;
+      --color-matcha: #4CAE78;
+    }
+
+    [data-theme="night"] {
+      --bg-cream: #1C1829;
+      --bg-warm: #262038;
+      --bg-card: #27213C;
+      --ink-dark: #F6F3FF;
+      --ink-subtle: #C3BAE2;
+      --ink-muted: #8E84B2;
+      --border-line: #F6F3FF;
+      --card-shadow-color: #9D7BFF;
+      --color-strawberry: #FF7096;
+      --color-strawberry-soft: #3B2435;
+      --color-peach: #FF9E80;
+      --color-peach-soft: #38252C;
+      --color-butter: #FFD45A;
+      --color-butter-soft: #383125;
+      --color-matcha: #52D197;
+      --color-matcha-soft: #1E382E;
+      --color-sky: #70A5FF;
+      --color-sky-soft: #202D45;
+      --color-lavender: #B599FF;
+      --color-lavender-soft: #31274F;
+      --color-gold: #FFA834;
+      --color-gold-soft: #3B2E20;
+      --washi-opacity: 0.65;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
     body {
-      background: var(--bg);
-      color: var(--ink);
+      background-color: var(--bg-cream);
+      background-image:
+        radial-gradient(circle at 18px 18px, rgba(160, 130, 115, 0.08) 2.5px, transparent 0),
+        radial-gradient(circle at 78px 78px, rgba(255, 175, 195, 0.12) 3px, transparent 0),
+        linear-gradient(180deg, var(--bg-cream) 0%, var(--bg-warm) 100%);
+      background-size: 60px 60px, 120px 120px, 100% 100%;
+      color: var(--ink-dark);
       font-family: var(--font-body);
       line-height: 1.8;
-      font-size: 16px;
-      padding-bottom: 90px;
-      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
 
-    /* 顶部导航与标签栏 */
+    .top-bunting {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 12px;
+      background: repeating-linear-gradient(
+        45deg,
+        var(--color-strawberry) 0, var(--color-strawberry) 20px,
+        var(--color-butter) 20px, var(--color-butter) 40px,
+        var(--color-matcha) 40px, var(--color-matcha) 60px,
+        var(--color-sky) 60px, var(--color-sky) 80px,
+        var(--color-lavender) 80px, var(--color-lavender) 100px
+      );
+      opacity: 0.9;
+      z-index: 101;
+    }
+
+    .scroll-progress-container {
+      position: fixed;
+      top: 12px; left: 0; width: 100%; height: 6px;
+      background: rgba(53, 38, 33, 0.08);
+      z-index: 100;
+      pointer-events: none;
+    }
+    .scroll-progress-bar {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, var(--color-strawberry), var(--color-butter), var(--color-matcha), var(--color-sky), var(--color-lavender));
+      border-radius: 0 4px 4px 0;
+      position: relative;
+      transition: width 0.08s linear;
+    }
+    .scroll-progress-head {
+      position: absolute; right: -10px; top: -9px;
+      font-size: 16px; line-height: 1;
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+      transform: scaleX(-1);
+    }
+
+    .parallax-layer {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .layer-fg { z-index: 2; }
+    .prop-item { position: absolute; will-change: transform; user-select: none; }
+
+    .prop-cloud-1 { top: 12%; left: 4%; font-size: 42px; opacity: 0.45; }
+    .prop-cloud-2 { top: 48%; right: 4%; font-size: 46px; opacity: 0.4; }
+    .prop-plane { top: 24%; right: 12%; font-size: 34px; opacity: 0.85; filter: drop-shadow(2px 3px 0 rgba(53,38,33,0.15)); }
+    .prop-coffee { top: 54%; left: 4%; font-size: 36px; opacity: 0.85; filter: drop-shadow(2px 3px 0 rgba(53,38,33,0.15)); }
+    .prop-sparkle-1 { top: 18%; left: 22%; font-size: 22px; opacity: 0.9; }
+
     .top-nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(250, 246, 240, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 2px solid var(--ink);
-      padding: 10px 20px;
+      position: sticky; top: 12px; z-index: 95;
+      background: rgba(253, 251, 247, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: var(--border-cartoon);
+      padding: 12px 24px;
       display: flex; align-items: center; justify-content: space-between;
       gap: 12px; flex-wrap: wrap;
+      transition: background-color 0.4s ease;
     }
-    .back-btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-weight: 800; font-size: 13.5px;
-      background: #FFF; border: var(--border);
-      box-shadow: 2px 2px 0 var(--ink);
-      padding: 6px 14px; border-radius: var(--radius-pill);
-      text-decoration: none; color: var(--ink);
-      transition: var(--transition);
-      white-space: nowrap;
-    }
-    .back-btn:hover { transform: translateY(-2px); box-shadow: 3px 3px 0 var(--ink); }
+    [data-theme="sunset"] .top-nav { background: rgba(255, 241, 230, 0.92); }
+    [data-theme="night"] .top-nav { background: rgba(28, 24, 41, 0.92); }
 
-    .nav-tabs {
-      display: flex; gap: 6px; flex-wrap: wrap;
+    .nav-left-group { display: flex; align-items: center; gap: 12px; }
+    .back-home-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--bg-card); border: var(--border-cartoon);
+      box-shadow: var(--shadow-cartoon-sm);
+      border-radius: var(--radius-pill);
+      padding: 7px 16px; font-size: 13.5px; font-weight: 800;
+      color: var(--ink-dark); text-decoration: none;
+      transition: var(--transition-smooth);
     }
-    .nav-tab-btn {
+    .back-home-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-cartoon);
+      background: var(--color-butter);
+    }
+
+    .nav-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .nav-tab-chip {
       padding: 6px 14px; border-radius: var(--radius-pill);
-      font-size: 13px; font-weight: 800; color: var(--ink-subtle);
+      font-size: 12.5px; font-weight: 800; color: var(--ink-subtle);
       background: transparent; border: 1.8px solid transparent;
-      cursor: pointer; transition: var(--transition);
-      white-space: nowrap;
+      cursor: pointer; transition: var(--transition-smooth);
     }
-    .nav-tab-btn:hover { background: #FFF; border-color: var(--ink); }
-    .nav-tab-btn.active {
-      background: var(--accent); color: #FFF;
-      border-color: var(--ink); box-shadow: 2px 2px 0 var(--ink);
+    .nav-tab-chip:hover { background: var(--bg-card); border-color: var(--ink-dark); color: var(--ink-dark); }
+    .nav-tab-chip.active {
+      background: var(--color-gold); color: #FFF;
+      border-color: var(--ink-dark); box-shadow: 2px 2px 0 var(--ink-dark);
       transform: translateY(-2px);
     }
 
-    .container { max-width: 900px; margin: 0 auto; padding: 28px 20px; }
+    .nav-right-controls { display: flex; align-items: center; gap: 10px; }
+    .theme-switch-group {
+      background: var(--bg-card); border: var(--border-cartoon);
+      box-shadow: var(--shadow-cartoon-sm); border-radius: var(--radius-pill);
+      padding: 3px; display: inline-flex; align-items: center; gap: 4px;
+    }
+    .theme-pill-btn {
+      padding: 5px 10px; border-radius: var(--radius-pill);
+      font-size: 11.5px; font-weight: 800; color: var(--ink-subtle);
+      border: none; background: none; cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+    .theme-pill-btn.active {
+      background: var(--color-butter); color: #352621;
+      box-shadow: 1.5px 1.5px 0 var(--ink-dark); transform: scale(1.04);
+    }
+    .sound-toggle-btn {
+      background: var(--bg-card); border: var(--border-cartoon);
+      box-shadow: var(--shadow-cartoon-sm); border-radius: var(--radius-pill);
+      padding: 7px 12px; font-size: 12px; font-weight: 800;
+      color: var(--ink-dark); display: inline-flex; align-items: center; gap: 6px;
+      cursor: pointer; transition: var(--transition-smooth);
+    }
+    .sound-toggle-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-cartoon); }
 
-    /* 顶部展板 */
-    .hero-box {
-      background: #FFF;
-      border: var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 32px;
-      margin-bottom: 32px;
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 28px;
-      align-items: center;
-      position: relative;
-    }
-    .book-thumb {
-      width: 160px; height: 215px;
-      border: var(--border); border-radius: 12px;
-      object-fit: cover; box-shadow: 4px 4px 0 var(--ink);
-    }
-    .hero-info h1 {
-      font-family: var(--font-display);
-      font-size: 32px; line-height: 1.3;
-      margin-bottom: 8px; color: var(--ink);
-    }
-    .hero-quote-bar {
-      background: var(--accent-soft);
-      border-left: 4px solid var(--accent);
-      padding: 10px 14px; border-radius: 4px 8px 8px 4px;
-      font-size: 14px; font-weight: 700; color: #9C5103;
-      margin: 12px 0 16px;
-    }
-    .hero-meta-badges { display: flex; gap: 8px; flex-wrap: wrap; }
-    .hero-badge {
-      font-size: 12px; font-weight: 800;
-      background: var(--bg); border: 1.5px solid var(--ink);
-      padding: 4px 10px; border-radius: var(--radius-pill);
+    .container {
+      max-width: 920px; margin: 0 auto;
+      padding: 40px 20px 120px;
+      position: relative; z-index: 1;
     }
 
-    /* 页面分段切换 */
-    .tab-section { display: none; }
-    .tab-section.active { display: block; animation: fadeIn 0.35s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-card {
+      background: var(--bg-card);
+      border: var(--border-cartoon);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-cartoon-lg);
+      padding: 38px; margin-bottom: 36px;
+      display: grid; grid-template-columns: 180px 1fr;
+      gap: 32px; align-items: center;
+      position: relative; overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+    .washi-tape {
+      position: absolute; width: 100px; height: 24px;
+      background: rgba(255, 206, 71, var(--washi-opacity));
+      border: 1.5px dashed rgba(53, 38, 33, 0.3);
+      top: -10px; left: 50%;
+      transform: translateX(-50%) rotate(-1.5deg);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05); z-index: 5;
+    }
+    .washi-tape.tape-left { left: 40px; transform: rotate(-5deg); background: rgba(255, 160, 122, var(--washi-opacity)); }
+    .washi-tape.tape-right { left: auto; right: 40px; transform: rotate(4deg); background: rgba(156, 121, 255, var(--washi-opacity)); }
 
-    /* 内容卡片 */
-    .card {
-      background: #FFF;
-      border: var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 30px 28px;
-      margin-bottom: 26px;
+    .hero-book-wrap {
+      width: 180px; height: 245px;
+      position: relative; border-radius: 14px;
+      border: var(--border-cartoon);
+      box-shadow: 4px 6px 0 var(--card-shadow-color);
+      overflow: hidden; background: #FFF;
     }
-    .card h2 {
-      font-family: var(--font-display);
-      font-size: 24px; color: var(--ink);
-      margin-bottom: 16px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .card h3 {
-      font-size: 18px; font-weight: 800;
-      color: var(--accent); margin: 22px 0 10px;
-    }
-    .card h4 {
-      font-size: 16px; font-weight: 800;
-      color: var(--blue); margin: 16px 0 6px;
-    }
-    .card p {
-      color: var(--ink-subtle);
-      margin-bottom: 14px;
-      font-size: 15.5px;
+    .hero-book-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-book-wrap::after {
+      content: ""; position: absolute; top: 0; left: 0; width: 16px; height: 100%;
+      background: linear-gradient(90deg, rgba(255,255,255,0.45) 0%, rgba(0,0,0,0.12) 80%, transparent 100%);
+      pointer-events: none;
     }
 
-    /* 角色人物卡 */
-    .character-grid {
+    .hero-info { display: flex; flex-direction: column; }
+    .hero-badges-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .badge-pill {
+      font-size: 11.5px; font-weight: 800; padding: 4px 12px;
+      border-radius: var(--radius-pill); border: 1.5px solid var(--ink-dark);
+      box-shadow: 1.5px 2px 0 var(--ink-dark);
+    }
+    .badge-gold { background: var(--color-gold-soft); color: var(--color-gold); }
+    .badge-pink { background: var(--color-strawberry-soft); color: var(--color-strawberry); }
+    .badge-green { background: var(--color-matcha-soft); color: var(--color-matcha); }
+
+    .hero-title {
+      font-family: var(--font-display); font-size: 34px; line-height: 1.3;
+      margin-bottom: 12px; letter-spacing: 1px; color: var(--ink-dark);
+    }
+    .hero-quote-tape {
+      background: var(--bg-warm);
+      border-left: 4px solid var(--color-gold);
+      padding: 10px 16px; border-radius: 4px 12px 12px 4px;
+      font-size: 13.5px; font-weight: 700; color: var(--ink-dark);
+      margin-bottom: 14px; line-height: 1.6;
+    }
+    .hero-desc { font-size: 14px; color: var(--ink-subtle); line-height: 1.7; }
+
+    .note-card {
+      background: var(--bg-card);
+      border: var(--border-cartoon);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-cartoon);
+      padding: 32px 34px; margin-bottom: 32px;
+      position: relative; overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+    .note-card:hover { box-shadow: var(--shadow-cartoon-hover); }
+
+    .section-heading-row {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
+      padding-bottom: 14px; border-bottom: 2px dashed rgba(53, 38, 33, 0.15);
+    }
+    .section-badge-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      border: 2px solid var(--ink-dark); background: var(--color-butter-soft);
+      box-shadow: 2px 2px 0 var(--ink-dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .section-title { font-family: var(--font-display); font-size: 24px; color: var(--ink-dark); }
+
+    /* 角色卡片 */
+    .char-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 16px; margin: 18px 0;
     }
     .char-card {
-      background: var(--bg); border: 1.8px solid var(--ink);
-      border-radius: var(--radius-sm); padding: 16px;
-      box-shadow: 2px 2px 0 var(--ink);
+      background: var(--bg-warm); border: 2px solid var(--ink-dark);
+      border-radius: var(--radius-md); padding: 16px; box-shadow: var(--shadow-cartoon-sm);
     }
-    .char-card strong { display: block; font-size: 16px; color: var(--ink); margin-bottom: 4px; }
-    .char-card span { font-size: 12.5px; color: var(--ink-subtle); line-height: 1.5; display: block; }
+    .char-card h4 { font-size: 16px; font-weight: 800; margin-bottom: 4px; color: var(--ink-dark); }
+    .char-card p { font-size: 13px; color: var(--ink-subtle); line-height: 1.5; }
 
-    /* 概念高亮框 */
-    .concept-box {
-      background: var(--blue-soft);
-      border: 2px dashed var(--blue);
-      border-radius: 12px;
-      padding: 16px 20px;
-      margin: 18px 0;
-      font-size: 15px;
+    /* 概念便签 */
+    .concept-tape-box {
+      background: var(--color-gold-soft); border: 2px solid var(--color-gold);
+      border-radius: var(--radius-md); padding: 18px 22px; margin: 18px 0;
     }
-    .concept-box strong { color: var(--blue); }
+    .concept-tape-box strong { color: var(--color-gold); }
 
-    .warning-box {
-      background: #FDEDEC;
-      border: 2px dashed #C0392B;
-      border-radius: 12px;
-      padding: 16px 20px;
-      margin: 18px 0;
-      font-size: 15px;
+    /* 测验小卡 */
+    .quiz-card {
+      background: var(--bg-warm); border: 2px solid var(--ink-dark);
+      border-radius: var(--radius-md); padding: 20px; margin: 20px 0;
     }
-    .warning-box strong { color: #C0392B; }
+    .quiz-opt-btn {
+      width: 100%; text-align: left; padding: 10px 16px;
+      border: 1.8px solid var(--ink-dark); border-radius: var(--radius-pill);
+      background: #FFF; cursor: pointer; font-size: 13.5px; font-weight: 700;
+      margin-top: 8px; transition: var(--transition-smooth);
+    }
+    .quiz-opt-btn:hover { background: var(--color-butter); transform: translateX(4px); }
+    .quiz-feedback-box { margin-top: 10px; font-weight: 800; font-size: 13.5px; display: none; }
 
-    .quote-box {
-      background: var(--purple-soft);
-      border-left: 4px solid var(--purple);
-      padding: 14px 18px;
-      border-radius: 4px 10px 10px 4px;
-      font-size: 14.5px;
-      color: var(--ink);
-      margin: 16px 0;
-      font-weight: 600;
+    /* 右下角伴读书僮小猫咪：「花花喵」 */
+    .mascot-corner {
+      position: fixed; right: 28px; bottom: 24px; z-index: 98;
+      display: flex; flex-direction: column; align-items: flex-end;
+    }
+    .mascot-bubble {
+      background: var(--bg-card); border: 2px solid var(--ink-dark);
+      box-shadow: var(--shadow-cartoon-sm); border-radius: 16px 16px 4px 16px;
+      padding: 10px 16px; font-size: 12.5px; font-weight: 800; color: var(--ink-dark);
+      max-width: 220px; margin-bottom: 8px; opacity: 0;
+      transform: translateY(10px) scale(0.9); transition: var(--transition-smooth);
+      pointer-events: none;
+    }
+    .mascot-bubble.show { opacity: 1; transform: translateY(0) scale(1); }
+    .mascot-avatar-btn {
+      width: 62px; height: 62px; background: #FFFFFF;
+      border: 2.5px solid var(--ink-dark); box-shadow: var(--shadow-cartoon);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: var(--transition-smooth); position: relative;
+    }
+    .mascot-avatar-btn:hover { transform: scale(1.12) rotate(6deg); box-shadow: var(--shadow-cartoon-hover); }
+    .mascot-avatar-btn.scrolling-fast { animation: fastWag 0.22s infinite alternate; }
+    @keyframes fastWag { 0% { transform: scale(1.08) rotate(-10deg); } 100% { transform: scale(1.08) rotate(10deg); } }
+    .mascot-cat-svg { width: 52px; height: 52px; display: block; }
+    .mascot-badge-online {
+      position: absolute; top: -2px; right: -2px; width: 15px; height: 15px;
+      background: var(--color-matcha); border: 2px solid var(--ink-dark);
+      border-radius: 50%; box-shadow: 0 0 0 2px rgba(255,255,255,0.9);
     }
 
-    /* 对比表格 */
-    .compare-table {
-      width: 100%; border-collapse: collapse; margin: 18px 0;
-      border: 2px solid var(--ink); border-radius: 10px; overflow: hidden;
+    .floating-dock {
+      position: fixed; bottom: 24px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-card); border: 2.5px solid var(--ink-dark);
+      box-shadow: var(--shadow-cartoon-lg); border-radius: var(--radius-pill);
+      padding: 8px 14px; display: inline-flex; align-items: center; gap: 8px;
+      z-index: 99; transition: var(--transition-smooth);
     }
-    .compare-table th, .compare-table td {
-      border: 1px solid rgba(52, 38, 33, 0.2); padding: 12px 14px;
-      font-size: 14px; text-align: left;
+    .dock-btn {
+      padding: 9px 16px; border-radius: var(--radius-pill);
+      font-size: 13px; font-weight: 800; color: var(--ink-dark);
+      background: transparent; border: 1.8px solid transparent;
+      display: inline-flex; align-items: center; gap: 6px;
+      cursor: pointer; text-decoration: none; transition: var(--transition-smooth);
     }
-    .compare-table th { background: var(--accent-soft); color: var(--ink); font-weight: 800; }
-    .compare-table tr:nth-child(even) { background: #FAF7F2; }
+    .dock-btn:hover { background: var(--bg-warm); border-color: var(--ink-dark); transform: translateY(-2px); }
+    .dock-dice-btn { background: var(--color-butter); border: 1.8px solid var(--ink-dark); }
 
-    /* 互动问答测试 */
-    .quiz-box {
-      background: #FFFDF9; border: 2px solid var(--ink);
-      border-radius: 14px; padding: 22px; margin: 20px 0;
-      box-shadow: var(--shadow-sm);
+    footer {
+      text-align: center; padding: 48px 20px 110px;
+      font-size: 12.5px; color: var(--ink-subtle);
+      border-top: 2px dashed rgba(53, 38, 33, 0.18);
     }
-    .quiz-question { font-weight: 800; font-size: 16px; margin-bottom: 12px; color: var(--ink); }
-    .quiz-options { display: flex; flex-direction: column; gap: 8px; }
-    .quiz-opt {
-      padding: 10px 16px; border: 1.8px solid var(--ink);
-      border-radius: 8px; background: #FFF; cursor: pointer;
-      font-size: 14px; font-weight: 700; color: var(--ink);
-      text-align: left; transition: var(--transition);
+    .footer-stamp {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--bg-card); border: 1.5px solid var(--ink-dark);
+      box-shadow: 2px 2px 0 var(--card-shadow-color); border-radius: var(--radius-pill);
+      padding: 4px 14px; font-size: 11px; font-weight: 800;
+      color: var(--color-strawberry); margin-top: 10px;
     }
-    .quiz-opt:hover { background: var(--accent-soft); }
-    .quiz-opt.correct { background: var(--green-soft); border-color: var(--green); color: var(--green); }
-    .quiz-opt.wrong { background: #FDEDEC; border-color: #E74C3C; color: #E74C3C; }
-    .quiz-feedback { margin-top: 10px; font-size: 13.5px; font-weight: 700; display: none; }
-    .quiz-feedback.show { display: block; }
 
-    /* 折叠面板 */
-    .accordion-header {
-      background: var(--bg); border: 1.8px solid var(--ink);
-      border-radius: 8px; padding: 12px 16px; cursor: pointer;
-      font-weight: 800; font-size: 15px; display: flex;
-      justify-content: space-between; align-items: center;
-      margin-top: 10px; transition: var(--transition);
+    .sparkle-particle {
+      position: fixed; pointer-events: none; z-index: 9999;
+      font-size: 18px; user-select: none;
+      animation: sparkleFly 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     }
-    .accordion-header:hover { background: var(--accent-soft); }
-    .accordion-body {
-      max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease;
-      background: #FFF; border: 1.8px solid var(--ink); border-top: none;
-      border-radius: 0 0 8px 8px; padding: 0 16px; font-size: 14.5px;
+    @keyframes sparkleFly {
+      0% { opacity: 1; transform: translate(0, 0) scale(0.6) rotate(0deg); }
+      100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(1.4) rotate(180deg); }
     }
-    .accordion-body.open { max-height: 600px; padding: 14px 16px; margin-bottom: 10px; }
 
     @media (max-width: 768px) {
-      .hero-box { grid-template-columns: 1fr; text-align: center; }
-      .book-thumb { margin: 0 auto; }
-      .hero-meta-badges { justify-content: center; }
-      .nav-tabs { width: 100%; overflow-x: auto; padding-bottom: 4px; }
-      .card { padding: 22px 18px; }
+      .hero-card { grid-template-columns: 1fr; padding: 24px; text-align: center; }
+      .hero-book-wrap { margin: 0 auto; }
+      .floating-dock { width: 92%; justify-content: space-around; padding: 6px 8px; }
+      .dock-btn { padding: 8px 10px; font-size: 12px; }
     }
   </style>
 </head>
 <body>
-  <!-- 顶部导航与模块切换 -->
-  <nav class="top-nav" aria-label="讲义章节切换">
-    <a href="../index.html" class="back-btn">⬅️ 返回书架</a>
-    <div class="nav-tabs" role="tablist">
-      <button class="nav-tab-btn active" onclick="showSection('mod0')">导读·小岛密码</button>
-      <button class="nav-tab-btn" onclick="showSection('mod1')">01·渔网与资本</button>
-      <button class="nav-tab-btn" onclick="showSection('mod2')">02·储蓄与借贷</button>
-      <button class="nav-tab-btn" onclick="showSection('mod3')">03·分工与贸易</button>
-      <button class="nav-tab-btn" onclick="showSection('mod4')">04·纸币与通胀</button>
-      <button class="nav-tab-btn" onclick="showSection('mod5')">通关·思维工坊</button>
+
+  <div class="top-bunting" aria-hidden="true"></div>
+
+  <div class="scroll-progress-container" aria-hidden="true">
+    <div class="scroll-progress-bar" id="scroll-progress">
+      <span class="scroll-progress-head">✏️</span>
     </div>
-  </nav>
-
-  <div class="container">
-    <!-- 顶部书籍信息展板 -->
-    <header class="hero-box">
-      <img src="../assets/covers/how-an-economy-grows.jpg" alt="小岛经济学精装封面" class="book-thumb">
-      <div class="hero-info">
-        <h1>《小岛经济学：鱼、美元和经济的故事》</h1>
-        <p style="font-size: 14px; color: var(--ink-subtle); font-weight: 700;">[美] 彼得·希夫 & 安德鲁·希夫 著 · 青少年财商与通识启蒙</p>
-        <div class="hero-quote-bar">
-          “经济增长的根本动力只有一个：生产力的提升，而不是盲目的消费刺激。”
-        </div>
-        <div class="hero-meta-badges">
-          <span class="hero-badge">💡 资本与工具起源</span>
-          <span class="hero-badge">🏦 借贷与风险定价</span>
-          <span class="hero-badge">📈 货币与通胀本质</span>
-          <span class="hero-badge">🎯 中学经典必读</span>
-        </div>
-      </div>
-    </header>
-
-    <!-- 模块 0：导读 -->
-    <section class="tab-section active" id="sec-mod0">
-      <article class="card">
-        <h2>🏝️ 导读：为什么初中生要读一点经济学？</h2>
-        <p>很多同学以为“经济学”就是炒股、算账、或者大人的复杂数学模型。但其实，经济学的本质非常纯粹：**它是在研究人类如何通过协作、工具与分工，把原本有限匮乏的资源，变成能让我们活得更丰盛的财富。**</p>
-        
-        <div class="quote-box">
-          “如果你不懂经济学，你就会把‘纸币’当成财富，把‘借债消费’当成富裕，最终在通货膨胀的浪潮中沦为被动承担代价的人。”
-        </div>
-
-        <h3>核心人物档案卡</h3>
-        <p>全书所有的宏大理论，都由一座小岛上的三位原住民拉开帷幕：</p>
-        <div class="character-grid">
-          <div class="char-card">
-            <strong>艾伯（Able）· 创新者</strong>
-            <span>敢于忍饥挨饿一天，发明了小岛历史上第一张渔网。是资本主义企业家精神的代表。</span>
-          </div>
-          <div class="char-card">
-            <strong>贝克（Baker）· 跟随者</strong>
-            <span>勤奋务实，向艾伯借鱼作为口粮，成功织出第二张渔网，开启了小岛商业借贷。</span>
-          </div>
-          <div class="char-card">
-            <strong>查理（Charlie）· 享乐者</strong>
-            <span>保守且好逸恶劳，总希望天上掉馅饼，代表了借贷消费而无生产力的潜在坏账者。</span>
-          </div>
-        </div>
-      </article>
-    </section>
-
-    <!-- 模块 1：第一幕 渔网与资本 -->
-    <section class="tab-section" id="sec-mod1">
-      <article class="card">
-        <h2>🎣 第一幕：第一张渔网 —— 资本与生产力的真正起源</h2>
-        <p>最初的小岛上，三个人每天徒手抓鱼：<strong>每天抓 1 条，吃 1 条，没有任何结余</strong>。没有储蓄，一旦生病受风寒无法抓鱼，就会面临饿死的危险。</p>
-
-        <h3>关键转折：推迟消费与承担风险</h3>
-        <p>艾伯开始思考：如果能造出一个工具，是不是就能一次抓更多鱼？但他面临一个巨大的风险：</p>
-        <ul style="padding-left: 20px; margin-bottom: 14px; color: var(--ink-subtle);">
-          <li>制作渔网需要整整一天时间。</li>
-          <li>如果这一天他不抓鱼，他就必须<strong>自愿挨饿整整一天</strong>。</li>
-          <li>如果编出来的网根本捞不到鱼，那他白白挨饿，甚至会虚弱生病。</li>
-        </ul>
-
-        <div class="concept-box">
-          <strong>💡 什么是经济学意义上的“资本（Capital）”？</strong><br>
-          资本绝不仅仅是银行卡里的数字，而是**“能够显著提升生产效率的工具、设备与技术”**！艾伯忍饿编织的这张渔网，就是小岛历史上的第一笔真正的资本积累。
-        </div>
-
-        <p>有了渔网后，艾伯每天能抓 <strong>2 条鱼</strong>！这意味着什么？他只需要抓一天鱼，就能获得两天的口粮！他腾出了一半的时间，可以去建造遮风挡雨的木屋、做衣服、甚至研发更高级的工具。</p>
-
-        <div class="quiz-box">
-          <div class="quiz-question">🧠 课堂思辨：根据《小岛经济学》，以下哪一项属于真正的“资本积累”？</div>
-          <div class="quiz-options">
-            <button class="quiz-opt" onclick="checkQuiz(this, false, '印刷纸币并没有增加任何能够捕鱼或盖房的工具，只是稀释了物价。')">A. 管理者给每人多印发 100 张兑换券</button>
-            <button class="quiz-opt" onclick="checkQuiz(this, true, '正确！农具提高了土地产出效率，这是实打实的资本！')">B. 农夫省下口粮购买了一台高效率拖拉机</button>
-            <button class="quiz-opt" onclick="checkQuiz(this, false, '借钱大吃大喝属于无生产力的单纯消费，并未创造未来价值。')">C. 借钱买了一套豪华礼服去参加宴会</button>
-          </div>
-          <div class="quiz-feedback"></div>
-        </div>
-      </article>
-    </section>
-
-    <!-- 模块 2：第二幕 借贷与银行 -->
-    <section class="tab-section" id="sec-mod2">
-      <article class="card">
-        <h2>🏦 第二幕：储蓄、借贷与银行 —— 让闲置资本流动起来</h2>
-        <p>艾伯手里有了多余的鱼（储蓄）。贝克和查理眼红了，也想要渔网，但他们不想挨饿。于是，金融体系开始发芽。</p>
-
-        <h3>借贷的三种可能去向与风险定价</h3>
-        <table class="compare-table">
-          <thead>
-            <tr>
-              <th>借贷类型</th>
-              <th>借款人动机</th>
-              <th>最终结果</th>
-              <th>对小岛的影响</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>商业贷款（生产性）</strong></td>
-              <td>贝克借 2 条鱼当口粮去织网</td>
-              <td>捕鱼效率翻倍，归还 2 条本金 + 1 条利息</td>
-              <td>🟢 双赢，全岛总财富增加</td>
-            </tr>
-            <tr>
-              <td><strong>消费贷款（非生产性）</strong></td>
-              <td>查理借 2 条鱼举办烤鱼派对</td>
-              <td>鱼吃完了，没有产生任何新工具，无力偿还</td>
-              <td>🔴 坏账，储蓄被挥霍浪费</td>
-            </tr>
-            <tr>
-              <td><strong>高风险创新贷款</strong></td>
-              <td>达菲借鱼去勘探外岛铜矿</td>
-              <td>成功则带来新金属，失败则血本无归</td>
-              <td>🟡 风险与超额收益并存</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="concept-box">
-          <strong>💡 利率是如何自发形成的？</strong><br>
-          当小岛丰收、金库里存鱼堆积如山时，借贷供给充足，利率就会自发走低，鼓励大家借鱼投资；当遇到风暴、存鱼见底时，利率就会飙升，提醒大家克制借贷、优先储蓄。**利率是市场的体温计，人为强行压低利率只会引发发烧与误判。**
-        </div>
-      </article>
-    </section>
-
-    <!-- 模块 3：第三幕 分工与贸易 -->
-    <section class="tab-section" id="sec-mod3">
-      <article class="card">
-        <h2>🌴 第三幕：分工、专业化与跨岛贸易 —— 繁荣的秘密</h2>
-        <p>当大家捕鱼都不成问题后，小岛迎来了“社会大分工”：</p>
-        <ul style="padding-left: 20px; margin-bottom: 14px; color: var(--ink-subtle);">
-          <li>擅长抓鱼的人专职捕鱼，发明了巨大的“水下巨兽捕鱼器”。</li>
-          <li>动手能力强的人专职做独木舟、制造冲浪板。</li>
-          <li>有厨艺的人开办了烤鱼餐馆，有医疗天分的人培育草药。</li>
-        </ul>
-
-        <div class="quote-box">
-          “每个人做自己最擅长的事，然后通过市场自由交换。这使得所有人付出的劳动更少，享受到的物资反而更多！”
-        </div>
-
-        <h3>国际贸易：与外岛的互通有无</h3>
-        <p>邻近的“中鱼岛”盛产椰子，但附近海域鱼少；我们的小岛鱼多，但缺椰子。通过自由贸易，我们用吃不完的鱼干换来香甜的椰汁。贸易从来不是零和博弈的你死我活，而是互利共赢的价值倍增。</p>
-      </article>
-    </section>
-
-    <!-- 模块 4：第四幕 纸币与通胀 -->
-    <section class="tab-section" id="sec-mod4">
-      <article class="card">
-        <h2>💸 第四幕：兑换券、政治私心与通货膨胀泡沫</h2>
-        <p>天天背着几十斤生鱼上街买东西既沉重又容易变质，于是小岛金库发行了<strong>“存鱼兑换券”（纸币的雏形）</strong>：凭券随时能在金库领出一条真鱼。</p>
-
-        <div class="warning-box">
-          <strong>⚠️ 灾难是如何一步步降临的？</strong><br>
-          后来的小岛管委会为了修建豪华办公楼、讨好选民发放免费福利，发现自己手里的鱼不够用了。于是他们想出了一个“绝妙”的办法：<strong>在没有存入新鱼的情况下，开动印刷机多印了 1000 张兑换券！</strong>
-        </div>
-
-        <h3>通货膨胀的底层真相公式：</h3>
-        <p>最初：全岛 100 条真鱼流通 100 张券 ➔ <strong>1 张券 = 1 条鱼</strong>（物价平稳）<br>
-        后来：依然只有 100 条真鱼，却印了 200 张券 ➔ <strong>2 张券才能换 1 条鱼</strong>（物价翻倍！）</p>
-
-        <p>官员们把物价上涨怪罪为“渔夫贪婪”，但真相只有一个：**是管理者人为超发货币，稀释了每个普通人手里的储蓄购买力！通胀本质上是一种隐形的隐蔽税收。**</p>
-      </article>
-    </section>
-
-    <!-- 模块 5：实战与通关思维工坊 -->
-    <section class="tab-section" id="sec-mod5">
-      <article class="card">
-        <h2>🛠️ 少年思维工坊：写在手账上的 4 个硬核经济学模型</h2>
-        
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>模型 1：生产 vs 消费 —— 财富的真正源泉</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-body">
-          <p>消费只是享受财富的过程，本身并不创造财富。要想生活水平提高，唯一的途径是提高生产能力。学习新技能、打磨底层认知，就是在为你的人生编织更高效的“渔网”。</p>
-        </div>
-
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>模型 2：机会成本（Opportunity Cost）</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-body">
-          <p>当你选择用周末 2 小时刷短视频，你失去的不只是时间，还有这 2 小时用来读透一本好书、掌握一个算法模型的潜在复利收益。任何选择背后都有隐形代价。</p>
-        </div>
-
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>模型 3：自愿交换与看不见的手</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-body">
-          <p>在自由市场中，你想赚到更多的鱼，就必须先为别人提供别人真心需要的优质产品或服务。利他与创造价值，才是商业世界最大的利己。</p>
-        </div>
-
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-          <span>模型 4：警惕免费的午餐与债务幻觉</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-body">
-          <p>天下没有凭空出现的繁荣。如果一个提议听起来“既能少干活、又能多发钱”，那它背后一定隐藏着通胀税或转嫁给未来的债务陷阱。</p>
-        </div>
-
-        <h3 style="margin-top: 30px;">🎯 少年财商实战检阅（2 题过关测试）</h3>
-        
-        <div class="quiz-box">
-          <div class="quiz-question">1. 初中生小明拿到了 1000 元压岁钱，以下哪种做法最符合“艾伯投资渔网”的逻辑？</div>
-          <div class="quiz-options">
-            <button class="quiz-opt" onclick="checkQuiz(this, false, '这属于即时消费，玩具会折旧，并没有增强未来的生产能力。')">A. 立即买下最新款限量版游戏手办</button>
-            <button class="quiz-opt" onclick="checkQuiz(this, true, '棒极了！投资于能持续提升自身技能与视野的工具，是复利最高的资本积累！')">B. 购买优质编程/英文研读课程与工具书，打磨硬核技能</button>
-            <button class="quiz-opt" onclick="checkQuiz(this, false, '请客只能带来短暂的虚荣，无法持续带来生产力增长。')">C. 请全班同学喝奶茶以换取好人缘</button>
-          </div>
-          <div class="quiz-feedback"></div>
-        </div>
-
-        <div class="quiz-box">
-          <div class="quiz-question">2. 当超市里的牛奶和面包价格普遍上涨时，最根本的原因通常是：</div>
-          <div class="quiz-options">
-            <button class="quiz-opt" onclick="checkQuiz(this, false, '个别农夫贪婪无法左右整个社会的普遍物价，竞争会让价格回归均衡。')">A. 所有的奶农和面包师傅突然联合起来心变黑了</button>
-            <button class="quiz-opt" onclick="checkQuiz(this, true, '正确！流通中的货币增长速度远超商品产出增长，使得钱贬值了。')">B. 货币供应量的扩张速度超过了商品实际生产力的增长</button>
-            <button class="quiz-opt" onclick="checkQuiz(this, false, '牛和麦子并没有突然减少，通常是货币端发生了扩张。')">C. 母牛突然集体罢工不产奶了</button>
-          </div>
-          <div class="quiz-feedback"></div>
-        </div>
-      </article>
-    </section>
   </div>
 
+  <div class="parallax-layer layer-bg" aria-hidden="true">
+    <span class="prop-item prop-cloud-1" data-parallax-speed="0.08">☁️</span>
+    <span class="prop-item prop-cloud-2" data-parallax-speed="0.12">☁️</span>
+  </div>
+  <div class="parallax-layer layer-props" aria-hidden="true">
+    <span class="prop-item prop-plane" data-parallax-speed="0.4" title="小海岛">🏝️</span>
+    <span class="prop-item prop-coffee" data-parallax-speed="-0.3" title="烤大鱼">🐟</span>
+  </div>
+  <div class="parallax-layer layer-fg" aria-hidden="true">
+    <span class="prop-item prop-sparkle-1" data-parallax-speed="1.2">✨</span>
+  </div>
+
+  <header class="top-nav">
+    <div class="nav-left-group">
+      <a href="../index.html" class="back-home-btn" onclick="playBubbleSound()">
+        <span>← 📖 返回书架</span>
+      </a>
+      <div class="nav-tabs">
+        <button class="nav-tab-chip active" onclick="scrollToSection('sec1')">🐟 抓鱼与资本</button>
+        <button class="nav-tab-chip" onclick="scrollToSection('sec2')">🏦 储蓄与借贷</button>
+        <button class="nav-tab-chip" onclick="scrollToSection('sec3')">💸 货币与通胀</button>
+        <button class="nav-tab-chip" onclick="scrollToSection('sec4')">🚢 贸易与启示</button>
+      </div>
+    </div>
+
+    <div class="nav-right-controls">
+      <div class="theme-switch-group">
+        <button class="theme-pill-btn active" id="btn-theme-day" onclick="setAppTheme('day')">☀️ 晴日</button>
+        <button class="theme-pill-btn" id="btn-theme-sunset" onclick="setAppTheme('sunset')">🌅 暮色</button>
+        <button class="theme-pill-btn" id="btn-theme-night" onclick="setAppTheme('night')">🌙 星夜</button>
+      </div>
+      <button class="sound-toggle-btn" id="sound-btn" onclick="toggleSoundEffect()" title="开关治愈音效">
+        <span id="sound-icon">🔔</span>
+        <span id="sound-text">音效: 关</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <section class="hero-card" id="top">
+      <div class="washi-tape tape-left"></div>
+      <div class="washi-tape tape-right"></div>
+
+      <div class="hero-book-wrap">
+        <img src="../assets/covers/how-an-economy-grows.jpg" alt="《小岛经济学》精读封面">
+      </div>
+
+      <div class="hero-info">
+        <div class="hero-badges-row">
+          <span class="badge-pill badge-gold">🐟 经济启蒙</span>
+          <span class="badge-pill badge-pink">👤 彼得·希夫 · 安德鲁·希夫</span>
+          <span class="badge-pill badge-green">⏱️ 14 分钟精读</span>
+        </div>
+
+        <h1 class="hero-title">《小岛经济学》精读讲义</h1>
+
+        <div class="hero-quote-tape">
+          “经济增长的根本原因只有一个：生产力的提升，而不是消费的刺激。”
+        </div>
+
+        <p class="hero-desc">
+          三个人在一座与世隔绝的小岛上徒手抓鱼。一张渔网的发明，如何彻底改变了人类财富的积累法则？初中生也能秒懂的经济学底层课。
+        </p>
+      </div>
+    </section>
+
+    <!-- 模块 1 -->
+    <article class="note-card" id="sec1">
+      <div class="section-heading-row">
+        <div class="section-badge-icon">🐟</div>
+        <h2 class="section-title">第一讲：一张渔网诞生的奇迹 · 什么是真正的“资本”？</h2>
+      </div>
+
+      <div class="char-grid">
+        <div class="char-card">
+          <h4>艾伯（Able）</h4>
+          <p>敢于冒挨饿一整天的风险，发明了第一张渔网。生产力从每天 1 条鱼跃升为 2 条鱼！</p>
+        </div>
+        <div class="char-card">
+          <h4>贝克（Baker）与查理（Charlie）</h4>
+          <p>保守生活，每天徒手抓鱼吃一条。直到艾伯展示了资本工具的巨大威力。</p>
+        </div>
+      </div>
+
+      <div class="concept-tape-box">
+        <strong>💡 核心思维模型：</strong>资本（Capital）不是存折上的数字，而是<strong>任何能提高生产效率的工具与手段</strong>。资本的来源永远是<strong>“自我克制与储蓄”</strong>（艾伯忍受了一整天的饥饿才编出了渔网）。
+      </div>
+    </article>
+
+    <!-- 模块 2 -->
+    <article class="note-card" id="sec2">
+      <div class="section-heading-row">
+        <div class="section-badge-icon">🏦</div>
+        <h2 class="section-title">第二讲：储蓄、投资与银行 · 财富是如何流转的？</h2>
+      </div>
+
+      <p>艾伯有多余的鱼（储蓄），贝克想借鱼来制作巨型捕鱼器（商业贷款）。借贷由此诞生：</p>
+      <ul style="padding-left:22px;margin:12px 0;line-height:2;">
+        <li><strong>商业贷款</strong>：借钱用于生产性投资（造渔网、开农场），能够创造出更多财富。</li>
+        <li><strong>消费贷款</strong>：借钱用于提前享受（吃大餐、买奢侈品），如果生产力没提高，只会陷入债务泥潭。</li>
+      </ul>
+    </article>
+
+    <!-- 模块 3 -->
+    <article class="note-card" id="sec3">
+      <div class="section-heading-row">
+        <div class="section-badge-icon">💸</div>
+        <h2 class="section-title">第三讲：纸币与通货膨胀 · 谁悄悄稀释了你的鱼？</h2>
+      </div>
+
+      <p>当岛屿引入代表真鱼的兑换券（纸币），如果官方悄悄印制了双倍的兑换券，但海里抓上来的真鱼并没有变多，会发生什么？</p>
+
+      <div class="quiz-card">
+        <p style="font-weight:800;font-size:15px;">🧪 随堂小测：如果市场上的货币翻倍，但商品总数不变，物价会？</p>
+        <button class="quiz-opt-btn" onclick="answerQuiz(this, true)">A. 物价上涨（通货膨胀，手里的钱贬值）</button>
+        <button class="quiz-opt-btn" onclick="answerQuiz(this, false)">B. 大家都变得更富有了</button>
+        <div class="quiz-feedback-box" id="quiz-fb"></div>
+      </div>
+    </article>
+
+  </div> <!-- container -->
+
+  <aside class="mascot-corner" aria-label="伴读书僮花花喵">
+    <div class="mascot-bubble" id="mascot-speech">
+      🐾 喵呜！我是伴读书僮「花花喵」~ 学懂了小岛抓鱼，你就是小小经济学家啦！
+    </div>
+    <button class="mascot-avatar-btn" id="mascot-btn" type="button" onclick="interactMascot()" title="戳戳「花花喵」！">
+      <svg class="mascot-cat-svg" viewBox="0 0 100 100" aria-hidden="true">
+        <defs>
+          <linearGradient id="silverFur" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFFFFF" />
+            <stop offset="60%" stop-color="#E8ECEF" />
+            <stop offset="100%" stop-color="#CBD2D9" />
+          </linearGradient>
+          <linearGradient id="earShade" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#555C66" />
+            <stop offset="45%" stop-color="#9CA3AF" />
+            <stop offset="100%" stop-color="#E8ECEF" />
+          </linearGradient>
+          <radialGradient id="emeraldEye" cx="35%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#68F5CE" />
+            <stop offset="45%" stop-color="#10B981" />
+            <stop offset="100%" stop-color="#047857" />
+          </radialGradient>
+        </defs>
+        <polygon points="16,36 32,8 46,28" fill="url(#earShade)" stroke="#352621" stroke-width="2.5" stroke-linejoin="round" />
+        <polygon points="22,32 32,15 41,27" fill="#FFB8C6" opacity="0.9" />
+        <polygon points="84,36 68,8 54,28" fill="url(#earShade)" stroke="#352621" stroke-width="2.5" stroke-linejoin="round" />
+        <polygon points="78,32 68,15 59,27" fill="#FFB8C6" opacity="0.9" />
+        <ellipse cx="50" cy="53" rx="38" ry="33" fill="url(#silverFur)" stroke="#352621" stroke-width="2.5" />
+        <path d="M47,23 Q50,27 53,23" stroke="#8492A6" stroke-width="2" stroke-linecap="round" fill="none" />
+        <path d="M43,27 Q50,32 57,27" stroke="#8492A6" stroke-width="1.8" stroke-linecap="round" fill="none" />
+        <ellipse cx="34" cy="49" rx="9" ry="11" fill="url(#emeraldEye)" stroke="#111827" stroke-width="2.2" />
+        <ellipse cx="34" cy="49" rx="4" ry="7.5" fill="#111827" />
+        <circle cx="31.5" cy="45" r="3.2" fill="#FFFFFF" />
+        <circle cx="36.5" cy="53" r="1.5" fill="#FFFFFF" />
+        <ellipse cx="66" cy="49" rx="9" ry="11" fill="url(#emeraldEye)" stroke="#111827" stroke-width="2.2" />
+        <ellipse cx="66" cy="49" rx="4" ry="7.5" fill="#111827" />
+        <circle cx="63.5" cy="45" r="3.2" fill="#FFFFFF" />
+        <circle cx="68.5" cy="53" r="1.5" fill="#FFFFFF" />
+        <ellipse cx="21" cy="59" rx="6.5" ry="3.5" fill="#FFAEC0" opacity="0.65" />
+        <ellipse cx="79" cy="59" rx="6.5" ry="3.5" fill="#FFAEC0" opacity="0.65" />
+        <polygon points="50,58 45,54 55,54" fill="#FF6584" stroke="#352621" stroke-width="1.5" stroke-linejoin="round" />
+        <path d="M45,62 Q50,65 50,59 Q50,65 55,62" stroke="#352621" stroke-width="2" stroke-linecap="round" fill="none" />
+        <line x1="16" y1="55" x2="28" y2="57" stroke="#352621" stroke-width="1.5" stroke-linecap="round" />
+        <line x1="14" y1="62" x2="27" y2="61" stroke="#352621" stroke-width="1.5" stroke-linecap="round" />
+        <line x1="84" y1="55" x2="72" y2="57" stroke="#352621" stroke-width="1.5" stroke-linecap="round" />
+        <line x1="86" y1="62" x2="73" y2="61" stroke="#352621" stroke-width="1.5" stroke-linecap="round" />
+        <g transform="translate(50, 84)">
+          <circle cx="-5" cy="-2" r="4.2" fill="#FF6584" />
+          <circle cx="5" cy="-2" r="4.2" fill="#FF6584" />
+          <circle cx="-3" cy="4" r="4.2" fill="#FF6584" />
+          <circle cx="3" cy="4" r="4.2" fill="#FF6584" />
+          <circle cx="0" cy="-6" r="4.2" fill="#FF6584" />
+          <circle cx="0" cy="0" r="3.8" fill="#FFCE47" stroke="#352621" stroke-width="1.2" />
+        </g>
+      </svg>
+      <span class="mascot-badge-online"></span>
+    </button>
+  </aside>
+
+  <nav class="floating-dock" aria-label="快捷导航浮动栏">
+    <a class="dock-btn" href="#top" onclick="playBubbleSound()">
+      <span>☁️ 回到顶部</span>
+    </a>
+    <a class="dock-btn" href="../index.html" onclick="playBubbleSound()">
+      <span>📖 返回书架</span>
+    </a>
+    <button class="dock-btn dock-dice-btn" type="button" onclick="randomBookJump()" title="随机翻开一本笔记！">
+      <span>🎲 随手翻</span>
+    </button>
+  </nav>
+
+  <footer>
+    <p>© 2026 Bella Read. 保持思考，保持留白，保持童心。</p>
+    <p>静读，慢记，常回看。在温暖的角落里与自己对话。</p>
+    <div class="footer-stamp">
+      <span>🐾 手账印章 ·「花花喵」温暖盖戳</span>
+    </div>
+  </footer>
+
   <script>
-    function showSection(modId) {
-      document.querySelectorAll('.tab-section').forEach(sec => sec.classList.remove('active'));
-      document.querySelectorAll('.nav-tab-btn').forEach(btn => btn.classList.remove('active'));
+    let isSoundEnabled = false;
+    let audioCtx = null;
+    let targetScrollY = 0;
+    let currentScrollY = 0;
+    let lastScrollY = 0;
+    let isScrollingFast = false;
+    let fastScrollTimer = null;
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      const target = document.getElementById('sec-' + modId);
-      if (target) target.classList.add('active');
+    const catQuotes = [
+      "🐾 喵~ 我是花花喵，毛茸茸的脑袋给你蹭蹭！花花喵也想抓好多好多大鱼吃~",
+      "✨ 记住哦：真正的财富是生产力，不是纸币的数量喵！",
+      "🍵 投资自己就是最好的“编织渔网”，每天都在变得更有价值！"
+    ];
+    let catQuoteIndex = 0;
 
-      const activeBtn = Array.from(document.querySelectorAll('.nav-tab-btn')).find(b => b.getAttribute('onclick').includes(modId));
-      if (activeBtn) activeBtn.classList.add('active');
+    function updateScrollState() {
+      targetScrollY = window.pageYOffset || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progressPercent = docHeight > 0 ? Math.min(100, Math.max(0, (targetScrollY / docHeight) * 100)) : 0;
+      const progressBar = document.getElementById('scroll-progress');
+      if (progressBar) progressBar.style.width = progressPercent + '%';
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function checkQuiz(btn, isCorrect, explanation) {
-      const container = btn.closest('.quiz-box');
-      const options = container.querySelectorAll('.quiz-opt');
-      const feedback = container.querySelector('.quiz-feedback');
-
-      options.forEach(opt => {
-        opt.disabled = true;
-        opt.style.cursor = 'default';
-      });
-
-      if (isCorrect) {
-        btn.classList.add('correct');
-        feedback.innerHTML = '🎉 ' + explanation;
-        feedback.style.color = 'var(--green)';
-      } else {
-        btn.classList.add('wrong');
-        feedback.innerHTML = '❌ ' + explanation;
-        feedback.style.color = '#C0392B';
+      const scrollVelocity = Math.abs(targetScrollY - lastScrollY);
+      lastScrollY = targetScrollY;
+      const mascotBtn = document.getElementById('mascot-btn');
+      if (scrollVelocity > 25 && mascotBtn) {
+        if (!isScrollingFast) {
+          isScrollingFast = true;
+          mascotBtn.classList.add('scrolling-fast');
+        }
+        clearTimeout(fastScrollTimer);
+        fastScrollTimer = setTimeout(() => {
+          isScrollingFast = false;
+          if (mascotBtn) mascotBtn.classList.remove('scrolling-fast');
+        }, 300);
       }
-      feedback.classList.add('show');
+    }
+    window.addEventListener('scroll', updateScrollState, { passive: true });
+
+    function renderParallax() {
+      if (!isReducedMotion) {
+        currentScrollY += (targetScrollY - currentScrollY) * 0.12;
+        const props = document.querySelectorAll('[data-parallax-speed]');
+        props.forEach(el => {
+          const speed = parseFloat(el.getAttribute('data-parallax-speed')) || 0;
+          el.style.transform = `translate3d(0, ${(currentScrollY * speed).toFixed(2)}px, 0)`;
+        });
+      }
+      requestAnimationFrame(renderParallax);
+    }
+    requestAnimationFrame(renderParallax);
+
+    function scrollToSection(id) {
+      playBubbleSound(550);
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    function toggleAccordion(header) {
-      const body = header.nextElementSibling;
-      const isOpen = body.classList.contains('open');
-      body.classList.toggle('open', !isOpen);
-      header.querySelector('span:last-child').innerText = isOpen ? '▼' : '▲';
+    function answerQuiz(btn, isCorrect) {
+      const fb = document.getElementById('quiz-fb');
+      if (isCorrect) {
+        fb.innerHTML = '✅ 完全正确！过多的货币追逐有限的商品，引发物价上涨与通胀。';
+        fb.style.color = '#43B581';
+        playBubbleSound(650);
+      } else {
+        fb.innerHTML = '❌ 再想想哦，单纯印钞票并不能增加实际抓到的鱼！';
+        fb.style.color = '#FF6584';
+        playBubbleSound(320);
+      }
+      fb.style.display = 'block';
+    }
+
+    function interactMascot() {
+      playKittyMeowSound();
+      burstParticles(window.innerWidth - 60, window.innerHeight - 60, ['🐾', '🌸', '✨', '🤍', '🎀', '🐱', '💖']);
+      const bubble = document.getElementById('mascot-speech');
+      bubble.innerText = catQuotes[catQuoteIndex % catQuotes.length];
+      catQuoteIndex++;
+      bubble.classList.add('show');
+      clearTimeout(window.mascotTimer);
+      window.mascotTimer = setTimeout(() => bubble.classList.remove('show'), 4500);
+    }
+
+    function setAppTheme(themeName) {
+      playBubbleSound(550);
+      document.documentElement.setAttribute('data-theme', themeName);
+      document.querySelectorAll('.theme-pill-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.id === `btn-theme-${themeName}`);
+      });
+      localStorage.setItem('bella_read_theme', themeName);
+    }
+    const savedTheme = localStorage.getItem('bella_read_theme');
+    if (savedTheme) setAppTheme(savedTheme);
+
+    function playKittyMeowSound() {
+      if (!isSoundEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        const now = audioCtx.currentTime;
+        osc.frequency.setValueAtTime(680, now);
+        osc.frequency.exponentialRampToValueAtTime(1080, now + 0.08);
+        osc.frequency.exponentialRampToValueAtTime(840, now + 0.24);
+        gain.gain.setValueAtTime(0.01, now);
+        gain.gain.linearRampToValueAtTime(0.18, now + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.24);
+      } catch (e) {}
+    }
+
+    function playBubbleSound(freq = 480) {
+      if (!isSoundEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(freq * 1.8, audioCtx.currentTime + 0.08);
+        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.12);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.12);
+      } catch (e) {}
+    }
+
+    function toggleSoundEffect() {
+      isSoundEnabled = !isSoundEnabled;
+      const text = document.getElementById('sound-text');
+      const icon = document.getElementById('sound-icon');
+      if (isSoundEnabled) {
+        text.innerText = '音效: 开'; icon.innerText = '🔔';
+        playKittyMeowSound();
+      } else {
+        text.innerText = '音效: 关'; icon.innerText = '🔕';
+      }
+    }
+
+    document.addEventListener('click', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.closest('#mascot-btn')) return;
+      burstParticles(e.clientX, e.clientY);
+    });
+
+    function burstParticles(x, y, customSymbols = null) {
+      const symbols = customSymbols || ['✨', '⭐', '🌸', '💖', '🎀', '🍀', '🍰'];
+      for (let i = 0; i < 4; i++) {
+        const p = document.createElement('span');
+        p.className = 'sparkle-particle';
+        p.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+        p.style.left = `${x}px`; p.style.top = `${y}px`;
+        p.style.setProperty('--tx', `${(Math.random() - 0.5) * 70}px`);
+        p.style.setProperty('--ty', `${-30 - Math.random() * 50}px`);
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 800);
+      }
+    }
+
+    function randomBookJump() {
+      playBubbleSound(720);
+      burstParticles(window.innerWidth / 2, window.innerHeight - 50);
+      const links = [
+        "../books/how-an-economy-grows.html",
+        "../books/sophies-world.html",
+        "../books/guns-germs-steel.html",
+        "../books/被讨厌的勇气_课堂讲义.html",
+        "../books/西游记-青春成长课堂.html",
+        "../english/english-learning-guide.html"
+      ];
+      const randomIndex = Math.floor(Math.random() * links.length);
+      setTimeout(() => { window.location.href = links[randomIndex]; }, 250);
     }
   </script>
 </body>

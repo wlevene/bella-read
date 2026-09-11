@@ -1,644 +1,802 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="day">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>给初中生的英语学习指南 - 从"学英语"到"用英语"</title>
-<style>
-  :root {
-    --bg: #fafaf8;
-    --card-bg: #ffffff;
-    --text: #2c2c2c;
-    --text-secondary: #5a5a5a;
-    --accent: #2563eb;
-    --accent-light: #eff6ff;
-    --border: #e5e5e0;
-    --tag-bg: #f0f4ff;
-    --tag-text: #3b6eeb;
-    --warning-bg: #fffbeb;
-    --warning-border: #fde68a;
-    --success-bg: #f0fdf4;
-    --success-border: #bbf7d0;
-    --radius: 12px;
-    --shadow: 0 1px 3px rgba(0,0,0,0.06);
-    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>初中生英语高效习得指南 | 从“苦学死背”到“自然用英语”</title>
+  <meta name="description" content="基于二语习得理论（SLA）的可理解输入法：拆解听力磨耳朵、分级原版阅读、口语自言自语与写作复述的实战闭环。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    @font-face {
+      font-family: "Smiley Sans";
+      src: url("../assets/fonts/得意黑/SmileySans-Oblique.woff2") format("woff2"),
+           url("../assets/fonts/得意黑/SmileySans-Oblique.woff") format("woff"),
+           url("../assets/fonts/得意黑/SmileySans-Oblique.ttf") format("truetype");
+      font-display: swap;
+    }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg-cream: #FDFBF7;
+      --bg-warm: #FFF5E8;
+      --bg-card: #FFFFFF;
+      --ink-dark: #352621;
+      --ink-subtle: #76635D;
+      --ink-muted: #A3928B;
+      --border-line: #352621;
+      --card-shadow-color: #352621;
+      --washi-opacity: 0.85;
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font);
-    line-height: 1.8;
-    font-size: 16px;
-    -webkit-font-smoothing: antialiased;
-  }
+      --color-strawberry: #FF6584;
+      --color-strawberry-soft: #FFEAF0;
+      --color-peach: #FFA07A;
+      --color-peach-soft: #FFF1EB;
+      --color-butter: #FFCE47;
+      --color-butter-soft: #FFF7DD;
+      --color-matcha: #43B581;
+      --color-matcha-soft: #E7F7EF;
+      --color-sky: #5B93FF;
+      --color-sky-soft: #EDF3FF;
+      --color-lavender: #9C79FF;
+      --color-lavender-soft: #F3EEFF;
+      --color-gold: #E67E22;
+      --color-gold-soft: #FDF2E9;
 
-  .container {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 48px 24px 80px;
-  }
+      --border-cartoon: 2.5px solid var(--border-line);
+      --shadow-cartoon: 4px 5px 0px var(--card-shadow-color);
+      --shadow-cartoon-sm: 2.5px 3px 0px var(--card-shadow-color);
+      --shadow-cartoon-lg: 6px 8px 0px var(--card-shadow-color);
+      --shadow-cartoon-hover: 7px 10px 0px var(--card-shadow-color);
 
-  /* Hero */
-  .hero {
-    text-align: center;
-    padding: 60px 0 40px;
-  }
-  .hero h1 {
-    font-size: 32px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    line-height: 1.3;
-    margin-bottom: 12px;
-    background: linear-gradient(135deg, #1e3a8a, #2563eb);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .hero .subtitle {
-    color: var(--text-secondary);
-    font-size: 17px;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-  .hero .meta {
-    margin-top: 20px;
-    font-size: 13px;
-    color: #999;
-  }
+      --font-display: "Smiley Sans", "Nunito", "PingFang SC", sans-serif;
+      --font-body: "Nunito", "Smiley Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
+      --radius-pill: 999px;
 
-  /* Section */
-  .section {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 32px;
-    margin-bottom: 24px;
-    box-shadow: var(--shadow);
-  }
-  .section h2 {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: #1e3a8a;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .section h2 .emoji {
-    font-size: 26px;
-  }
-  .section h3 {
-    font-size: 18px;
-    font-weight: 700;
-    margin: 24px 0 8px;
-    color: #1e40af;
-  }
-  .section h3:first-of-type {
-    margin-top: 8px;
-  }
-  .section p {
-    margin-bottom: 12px;
-    color: var(--text-secondary);
-  }
-  .section ul, .section ol {
-    margin: 8px 0 16px 20px;
-    color: var(--text-secondary);
-  }
-  .section li {
-    margin-bottom: 6px;
-  }
+      --bounce-timing: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --transition-smooth: all 0.28s var(--bounce-timing);
+    }
 
-  /* Tags */
-  .tag {
-    display: inline-block;
-    background: var(--tag-bg);
-    color: var(--tag-text);
-    font-size: 12px;
-    font-weight: 600;
-    padding: 2px 10px;
-    border-radius: 20px;
-    margin-right: 4px;
-    vertical-align: middle;
-  }
+    [data-theme="sunset"] {
+      --bg-cream: #FFF1E6;
+      --bg-warm: #FFE4D6;
+      --bg-card: #FFFAF5;
+      --ink-dark: #3D231E;
+      --ink-subtle: #7F5850;
+      --ink-muted: #A87E76;
+      --border-line: #3D231E;
+      --card-shadow-color: #3D231E;
+      --color-strawberry: #FF5A79;
+      --color-butter: #FFB347;
+      --color-matcha: #4CAE78;
+    }
 
-  /* Callout boxes */
-  .callout {
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px 0;
-    font-size: 15px;
-  }
-  .callout-tip {
-    background: var(--accent-light);
-    border-left: 4px solid var(--accent);
-  }
-  .callout-warning {
-    background: var(--warning-bg);
-    border-left: 4px solid #f59e0b;
-  }
-  .callout-success {
-    background: var(--success-bg);
-    border-left: 4px solid #22c55e;
-  }
-  .callout strong {
-    display: block;
-    margin-bottom: 4px;
-    font-size: 15px;
-  }
+    [data-theme="night"] {
+      --bg-cream: #1C1829;
+      --bg-warm: #262038;
+      --bg-card: #27213C;
+      --ink-dark: #F6F3FF;
+      --ink-subtle: #C3BAE2;
+      --ink-muted: #8E84B2;
+      --border-line: #F6F3FF;
+      --card-shadow-color: #9D7BFF;
+      --color-strawberry: #FF7096;
+      --color-strawberry-soft: #3B2435;
+      --color-peach: #FF9E80;
+      --color-peach-soft: #38252C;
+      --color-butter: #FFD45A;
+      --color-butter-soft: #383125;
+      --color-matcha: #52D197;
+      --color-matcha-soft: #1E382E;
+      --color-sky: #70A5FF;
+      --color-sky-soft: #202D45;
+      --color-lavender: #B599FF;
+      --color-lavender-soft: #31274F;
+      --color-gold: #FFA834;
+      --color-gold-soft: #3B2E20;
+      --washi-opacity: 0.65;
+    }
 
-  /* Step list */
-  .step-list {
-    counter-reset: step;
-    list-style: none;
-    margin-left: 0;
-  }
-  .step-list li {
-    counter-increment: step;
-    position: relative;
-    padding-left: 44px;
-    margin-bottom: 16px;
-    color: var(--text-secondary);
-  }
-  .step-list li::before {
-    content: counter(step);
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 28px;
-    height: 28px;
-    background: var(--accent);
-    color: white;
-    border-radius: 50%;
-    font-size: 14px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-  }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-  /* Table */
-  .table-wrap {
-    overflow-x: auto;
-    margin: 16px 0;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-  }
-  th, td {
-    border: 1px solid var(--border);
-    padding: 10px 14px;
-    text-align: left;
-  }
-  th {
-    background: #f8fafc;
-    font-weight: 700;
-    color: #1e3a8a;
-    font-size: 13px;
-  }
-  td {
-    color: var(--text-secondary);
-  }
+    body {
+      background-color: var(--bg-cream);
+      background-image:
+        radial-gradient(circle at 18px 18px, rgba(160, 130, 115, 0.08) 2.5px, transparent 0),
+        radial-gradient(circle at 78px 78px, rgba(255, 175, 195, 0.12) 3px, transparent 0),
+        linear-gradient(180deg, var(--bg-cream) 0%, var(--bg-warm) 100%);
+      background-size: 60px 60px, 120px 120px, 100% 100%;
+      color: var(--ink-dark);
+      font-family: var(--font-body);
+      line-height: 1.8;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
 
-  /* Checklist */
-  .checklist {
-    list-style: none;
-    margin-left: 0;
-  }
-  .checklist li {
-    margin-bottom: 8px;
-    padding-left: 0;
-    color: var(--text-secondary);
-  }
-  .checklist li::before {
-    content: "☐ ";
-    color: #aaa;
-    font-size: 16px;
-    margin-right: 6px;
-  }
+    .top-bunting {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 12px;
+      background: repeating-linear-gradient(
+        45deg,
+        var(--color-strawberry) 0, var(--color-strawberry) 20px,
+        var(--color-butter) 20px, var(--color-butter) 40px,
+        var(--color-matcha) 40px, var(--color-matcha) 60px,
+        var(--color-sky) 60px, var(--color-sky) 80px,
+        var(--color-lavender) 80px, var(--color-lavender) 100px
+      );
+      opacity: 0.9;
+      z-index: 101;
+    }
 
-  /* Quote */
-  blockquote {
-    border-left: 3px solid var(--border);
-    padding: 8px 16px;
-    margin: 16px 0;
-    color: #888;
-    font-style: italic;
-    font-size: 15px;
-  }
+    .scroll-progress-container {
+      position: fixed;
+      top: 12px; left: 0; width: 100%; height: 6px;
+      background: rgba(53, 38, 33, 0.08);
+      z-index: 100;
+      pointer-events: none;
+    }
+    .scroll-progress-bar {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, var(--color-strawberry), var(--color-butter), var(--color-matcha), var(--color-sky), var(--color-lavender));
+      border-radius: 0 4px 4px 0;
+      position: relative;
+      transition: width 0.08s linear;
+    }
+    .scroll-progress-head {
+      position: absolute; right: -10px; top: -9px;
+      font-size: 16px; line-height: 1;
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+      transform: scaleX(-1);
+    }
 
-  /* Story box */
-  .story {
-    background: #fefce8;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px 0;
-    font-size: 15px;
-    color: #713f12;
-  }
-  .story .story-label {
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #a16207;
-    margin-bottom: 6px;
-  }
+    .parallax-layer {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .layer-fg { z-index: 2; }
+    .prop-item { position: absolute; will-change: transform; user-select: none; }
 
-  /* Divider */
-  hr {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 28px 0;
-  }
+    .prop-cloud-1 { top: 12%; left: 4%; font-size: 42px; opacity: 0.45; }
+    .prop-cloud-2 { top: 48%; right: 4%; font-size: 46px; opacity: 0.4; }
+    .prop-plane { top: 22%; right: 12%; font-size: 34px; opacity: 0.85; filter: drop-shadow(2px 3px 0 rgba(53,38,33,0.15)); }
+    .prop-coffee { top: 52%; left: 4%; font-size: 36px; opacity: 0.85; filter: drop-shadow(2px 3px 0 rgba(53,38,33,0.15)); }
+    .prop-sparkle-1 { top: 18%; left: 22%; font-size: 22px; opacity: 0.9; }
 
-  /* Footer */
-  .footer {
-    display: none;
-  }
+    .top-nav {
+      position: sticky; top: 12px; z-index: 95;
+      background: rgba(253, 251, 247, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: var(--border-cartoon);
+      padding: 12px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap;
+      transition: background-color 0.4s ease;
+    }
+    [data-theme="sunset"] .top-nav { background: rgba(255, 241, 230, 0.92); }
+    [data-theme="night"] .top-nav { background: rgba(28, 24, 41, 0.92); }
 
-  /* Print */
-  @media print {
-    body { background: white; font-size: 13px; }
-    .container { max-width: 100%; padding: 0; }
-    .section { border: 1px solid #ddd; box-shadow: none; break-inside: avoid; }
-    .hero { padding: 20px 0; }
-    .hero h1 { -webkit-text-fill-color: #1e3a8a; }
-  }
+    .nav-left-group { display: flex; align-items: center; gap: 12px; }
+    .back-home-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--bg-card); border: var(--border-cartoon);
+      box-shadow: var(--shadow-cartoon-sm);
+      border-radius: var(--radius-pill);
+      padding: 7px 16px; font-size: 13.5px; font-weight: 800;
+      color: var(--ink-dark); text-decoration: none;
+      transition: var(--transition-smooth);
+    }
+    .back-home-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-cartoon);
+      background: var(--color-butter);
+    }
 
-  /* Responsive */
-  @media (max-width: 600px) {
-    .container { padding: 24px 16px 60px; }
-    .section { padding: 24px 20px; }
-    .hero h1 { font-size: 26px; }
-    .hero { padding: 40px 0 24px; }
-  }
-</style>
+    .nav-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .nav-tab-chip {
+      padding: 6px 14px; border-radius: var(--radius-pill);
+      font-size: 12.5px; font-weight: 800; color: var(--ink-subtle);
+      background: transparent; border: 1.8px solid transparent;
+      cursor: pointer; transition: var(--transition-smooth);
+    }
+    .nav-tab-chip:hover { background: var(--bg-card); border-color: var(--ink-dark); color: var(--ink-dark); }
+    .nav-tab-chip.active {
+      background: var(--color-sky); color: #FFF;
+      border-color: var(--ink-dark); box-shadow: 2px 2px 0 var(--ink-dark);
+      transform: translateY(-2px);
+    }
+
+    .nav-right-controls { display: flex; align-items: center; gap: 10px; }
+    .theme-switch-group {
+      background: var(--bg-card); border: var(--border-cartoon);
+      box-shadow: var(--shadow-cartoon-sm); border-radius: var(--radius-pill);
+      padding: 3px; display: inline-flex; align-items: center; gap: 4px;
+    }
+    .theme-pill-btn {
+      padding: 5px 10px; border-radius: var(--radius-pill);
+      font-size: 11.5px; font-weight: 800; color: var(--ink-subtle);
+      border: none; background: none; cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+    .theme-pill-btn.active {
+      background: var(--color-butter); color: #352621;
+      box-shadow: 1.5px 1.5px 0 var(--ink-dark); transform: scale(1.04);
+    }
+    .sound-toggle-btn {
+      background: var(--bg-card); border: var(--border-cartoon);
+      box-shadow: var(--shadow-cartoon-sm); border-radius: var(--radius-pill);
+      padding: 7px 12px; font-size: 12px; font-weight: 800;
+      color: var(--ink-dark); display: inline-flex; align-items: center; gap: 6px;
+      cursor: pointer; transition: var(--transition-smooth);
+    }
+    .sound-toggle-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-cartoon); }
+
+    .container {
+      max-width: 920px; margin: 0 auto;
+      padding: 40px 20px 120px;
+      position: relative; z-index: 1;
+    }
+
+    .hero-card {
+      background: var(--bg-card);
+      border: var(--border-cartoon);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-cartoon-lg);
+      padding: 38px; margin-bottom: 36px;
+      display: grid; grid-template-columns: 180px 1fr;
+      gap: 32px; align-items: center;
+      position: relative; overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+    .washi-tape {
+      position: absolute; width: 100px; height: 24px;
+      background: rgba(255, 206, 71, var(--washi-opacity));
+      border: 1.5px dashed rgba(53, 38, 33, 0.3);
+      top: -10px; left: 50%;
+      transform: translateX(-50%) rotate(-1.5deg);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05); z-index: 5;
+    }
+    .washi-tape.tape-left { left: 40px; transform: rotate(-5deg); background: rgba(91, 147, 255, var(--washi-opacity)); }
+    .washi-tape.tape-right { left: auto; right: 40px; transform: rotate(4deg); background: rgba(255, 101, 132, var(--washi-opacity)); }
+
+    .hero-book-wrap {
+      width: 180px; height: 245px;
+      position: relative; border-radius: 14px;
+      border: var(--border-cartoon);
+      box-shadow: 4px 6px 0 var(--card-shadow-color);
+      overflow: hidden; background: #FFF;
+    }
+    .hero-book-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-book-wrap::after {
+      content: ""; position: absolute; top: 0; left: 0; width: 16px; height: 100%;
+      background: linear-gradient(90deg, rgba(255,255,255,0.45) 0%, rgba(0,0,0,0.12) 80%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero-info { display: flex; flex-direction: column; }
+    .hero-badges-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .badge-pill {
+      font-size: 11.5px; font-weight: 800; padding: 4px 12px;
+      border-radius: var(--radius-pill); border: 1.5px solid var(--ink-dark);
+      box-shadow: 1.5px 2px 0 var(--ink-dark);
+    }
+    .badge-blue { background: var(--color-sky-soft); color: var(--color-sky); }
+    .badge-green { background: var(--color-matcha-soft); color: var(--color-matcha); }
+    .badge-gold { background: var(--color-gold-soft); color: var(--color-gold); }
+
+    .hero-title {
+      font-family: var(--font-display); font-size: 34px; line-height: 1.3;
+      margin-bottom: 12px; letter-spacing: 1px; color: var(--ink-dark);
+    }
+    .hero-quote-tape {
+      background: var(--bg-warm);
+      border-left: 4px solid var(--color-sky);
+      padding: 10px 16px; border-radius: 4px 12px 12px 4px;
+      font-size: 13.5px; font-weight: 700; color: var(--ink-dark);
+      margin-bottom: 14px; line-height: 1.6;
+    }
+    .hero-desc { font-size: 14px; color: var(--ink-subtle); line-height: 1.7; }
+
+    .note-card {
+      background: var(--bg-card);
+      border: var(--border-cartoon);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-cartoon);
+      padding: 32px 34px; margin-bottom: 32px;
+      position: relative; overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+    .note-card:hover { box-shadow: var(--shadow-cartoon-hover); }
+
+    .section-heading-row {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
+      padding-bottom: 14px; border-bottom: 2px dashed rgba(53, 38, 33, 0.15);
+    }
+    .section-badge-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      border: 2px solid var(--ink-dark); background: var(--color-butter-soft);
+      box-shadow: 2px 2px 0 var(--ink-dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .section-title { font-family: var(--font-display); font-size: 24px; color: var(--ink-dark); }
+
+    /* 习惯 3 步卡 */
+    .step-list-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px; margin: 18px 0;
+    }
+    .step-card {
+      background: var(--bg-warm); border: 2px solid var(--ink-dark);
+      border-radius: var(--radius-md); padding: 18px; box-shadow: var(--shadow-cartoon-sm);
+    }
+    .step-num-pill {
+      display: inline-block; background: var(--color-butter); border: 1.5px solid var(--ink-dark);
+      border-radius: var(--radius-pill); padding: 2px 10px; font-weight: 800; font-size: 12px;
+      margin-bottom: 8px; color: #352621;
+    }
+    .step-card h4 { font-size: 16px; font-weight: 800; margin-bottom: 6px; color: var(--ink-dark); }
+    .step-card p { font-size: 13px; color: var(--ink-subtle); line-height: 1.6; }
+
+    /* 右下角伴读书僮小猫咪：「花花喵」 */
+    .mascot-corner {
+      position: fixed; right: 28px; bottom: 24px; z-index: 98;
+      display: flex; flex-direction: column; align-items: flex-end;
+    }
+    .mascot-bubble {
+      background: var(--bg-card); border: 2px solid var(--ink-dark);
+      box-shadow: var(--shadow-cartoon-sm); border-radius: 16px 16px 4px 16px;
+      padding: 10px 16px; font-size: 12.5px; font-weight: 800; color: var(--ink-dark);
+      max-width: 220px; margin-bottom: 8px; opacity: 0;
+      transform: translateY(10px) scale(0.9); transition: var(--transition-smooth);
+      pointer-events: none;
+    }
+    .mascot-bubble.show { opacity: 1; transform: translateY(0) scale(1); }
+    .mascot-avatar-btn {
+      width: 62px; height: 62px; background: #FFFFFF;
+      border: 2.5px solid var(--ink-dark); box-shadow: var(--shadow-cartoon);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: var(--transition-smooth); position: relative;
+    }
+    .mascot-avatar-btn:hover { transform: scale(1.12) rotate(6deg); box-shadow: var(--shadow-cartoon-hover); }
+    .mascot-avatar-btn.scrolling-fast { animation: fastWag 0.22s infinite alternate; }
+    @keyframes fastWag { 0% { transform: scale(1.08) rotate(-10deg); } 100% { transform: scale(1.08) rotate(10deg); } }
+    .mascot-cat-svg { width: 52px; height: 52px; display: block; }
+    .mascot-badge-online {
+      position: absolute; top: -2px; right: -2px; width: 15px; height: 15px;
+      background: var(--color-matcha); border: 2px solid var(--ink-dark);
+      border-radius: 50%; box-shadow: 0 0 0 2px rgba(255,255,255,0.9);
+    }
+
+    .floating-dock {
+      position: fixed; bottom: 24px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-card); border: 2.5px solid var(--ink-dark);
+      box-shadow: var(--shadow-cartoon-lg); border-radius: var(--radius-pill);
+      padding: 8px 14px; display: inline-flex; align-items: center; gap: 8px;
+      z-index: 99; transition: var(--transition-smooth);
+    }
+    .dock-btn {
+      padding: 9px 16px; border-radius: var(--radius-pill);
+      font-size: 13px; font-weight: 800; color: var(--ink-dark);
+      background: transparent; border: 1.8px solid transparent;
+      display: inline-flex; align-items: center; gap: 6px;
+      cursor: pointer; text-decoration: none; transition: var(--transition-smooth);
+    }
+    .dock-btn:hover { background: var(--bg-warm); border-color: var(--ink-dark); transform: translateY(-2px); }
+    .dock-dice-btn { background: var(--color-butter); border: 1.8px solid var(--ink-dark); }
+
+    footer {
+      text-align: center; padding: 48px 20px 110px;
+      font-size: 12.5px; color: var(--ink-subtle);
+      border-top: 2px dashed rgba(53, 38, 33, 0.18);
+    }
+    .footer-stamp {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--bg-card); border: 1.5px solid var(--ink-dark);
+      box-shadow: 2px 2px 0 var(--card-shadow-color); border-radius: var(--radius-pill);
+      padding: 4px 14px; font-size: 11px; font-weight: 800;
+      color: var(--color-strawberry); margin-top: 10px;
+    }
+
+    .sparkle-particle {
+      position: fixed; pointer-events: none; z-index: 9999;
+      font-size: 18px; user-select: none;
+      animation: sparkleFly 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    @keyframes sparkleFly {
+      0% { opacity: 1; transform: translate(0, 0) scale(0.6) rotate(0deg); }
+      100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(1.4) rotate(180deg); }
+    }
+
+    @media (max-width: 768px) {
+      .hero-card { grid-template-columns: 1fr; padding: 24px; text-align: center; }
+      .hero-book-wrap { margin: 0 auto; }
+      .floating-dock { width: 92%; justify-content: space-around; padding: 6px 8px; }
+      .dock-btn { padding: 8px 10px; font-size: 12px; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
+  <div class="top-bunting" aria-hidden="true"></div>
 
-<!-- ====== HERO ====== -->
-<div class="hero">
-  <h1>给初中生的英语学习指南</h1>
-  <p class="subtitle">不只是"学英语"，而是学会"用英语"——<br>一套能真正用起来的方法</p>
-  <p class="meta">2026年8月</p>
-</div>
-
-<!-- ====== 前言 ====== -->
-<div class="section">
-  <h2><span class="emoji">👋</span> 先看这里</h2>
-
-  <p>这份指南是写给你的——一个正在上初中、英语说不上差但也谈不上好的同学。</p>
-  <p>你可能遇到过这些情况：单词背了又忘、听力一放就懵、考试分数忽高忽低、想说英语的时候脑子里只有"yeah…yeah…"</p>
-  <p>别担心，<strong>这些都正常</strong>。问题是：你是不是在用对的方法？</p>
-
-  <div class="story">
-    <div class="story-label">一个真实的故事</div>
-    <p>有个人高中时为了学好英语，每天早上5:20起床，中午不休息，晚上熄灯了还继续看书。他以为"努力"就等于"学好"。结果呢？时间花得越多，成绩反而下降了。</p>
-    <p>后来他才明白：<strong>英语不是靠"耗时间"学好的，而是靠"用对方法"。</strong>他调整之后，高考英语拿到了115分（满分120）。</p>
-    <p>所以这份指南不讲"努力"的大道理，只讲<strong>什么方法真正有效、什么坑千万别踩</strong>。</p>
+  <div class="scroll-progress-container" aria-hidden="true">
+    <div class="scroll-progress-bar" id="scroll-progress">
+      <span class="scroll-progress-head">✏️</span>
+    </div>
   </div>
 
-  <p>整份指南的核心原则其实就一句话：</p>
-
-  <div class="callout callout-tip">
-    <strong>核心原则</strong>
-    不要只是"看"和"听"——要主动回忆、主动输出、然后根据反馈改进。合上书能说出什么、关上音频能听懂什么，才是你真正学会的。
+  <div class="parallax-layer layer-bg" aria-hidden="true">
+    <span class="prop-item prop-cloud-1" data-parallax-speed="0.08">☁️</span>
+    <span class="prop-item prop-cloud-2" data-parallax-speed="0.12">☁️</span>
   </div>
-</div>
-
-<!-- ====== 一、学习方法 ====== -->
-<div class="section">
-  <h2><span class="emoji">🧠</span> 一、最重要的三条学习方法</h2>
-
-  <p>在讲听说读写之前，先搞清楚<strong>怎么学才有效</strong>。这三条被大量研究证实过，比任何"速成秘籍"都靠谱。</p>
-
-  <h3>1. 主动回忆，而不是反复看</h3>
-  <p>反复看单词、反复读课文，会让你产生"我已经会了"的错觉。但合上书，你能说出来吗？</p>
-  <p><strong>正确做法：</strong>看完一段内容后，把书合上，试着回忆、复述、写出来。回忆越费力，记忆越深刻。</p>
-
-  <div class="callout callout-warning">
-    <strong>⚠️ 常见误区</strong>
-    看一遍觉得"眼熟"≠ 掌握了。只有合上书还能说出来的，才是你的。
+  <div class="parallax-layer layer-props" aria-hidden="true">
+    <span class="prop-item prop-plane" data-parallax-speed="0.4" title="英语卡片">🔤</span>
+    <span class="prop-item prop-coffee" data-parallax-speed="-0.3" title="耳机">🎧</span>
+  </div>
+  <div class="parallax-layer layer-fg" aria-hidden="true">
+    <span class="prop-item prop-sparkle-1" data-parallax-speed="1.2">✨</span>
   </div>
 
-  <h3>2. 分散练习，而不是一次死磕</h3>
-  <p>一天背100个单词，不如每天背15个、连续背一周。大脑需要时间"消化"。</p>
-  <p><strong>参考节奏：</strong>今天学新内容 → 明天复习 → 隔两天再复习 → 一周后再复习 → 一个月后再测试。每次复习都要"主动回忆"，而不是重看一遍。</p>
+  <header class="top-nav">
+    <div class="nav-left-group">
+      <a href="../index.html" class="back-home-btn" onclick="playBubbleSound()">
+        <span>← 📖 返回书架</span>
+      </a>
+      <div class="nav-tabs">
+        <button class="nav-tab-chip active" onclick="scrollToSection('sec1')">💡 核心理念</button>
+        <button class="nav-tab-chip" onclick="scrollToSection('sec2')">🔄 闭环系统</button>
+        <button class="nav-tab-chip" onclick="scrollToSection('sec3')">📅 30分钟日常</button>
+      </div>
+    </div>
 
-  <h3>3. 每次学习都完成一个"回路"</h3>
-  <p>每次25–45分钟的学习，至少包含这五步：</p>
-  <ol class="step-list">
-    <li><strong>明确任务</strong>：比如"听懂2分钟英文故事并复述"，而不是模糊的"练听力"</li>
-    <li><strong>先试一次</strong>：在不查词、不求助的情况下先做一遍，留下原始水平</li>
-    <li><strong>针对性学习</strong>：只补刚才卡住的地方，不是从头学到尾</li>
-    <li><strong>主动输出</strong>：合上材料，再试一次，看有没有进步</li>
-    <li><strong>记录反馈</strong>：哪里错了？为什么错了？下一步练什么？</li>
-  </ol>
+    <div class="nav-right-controls">
+      <div class="theme-switch-group">
+        <button class="theme-pill-btn active" id="btn-theme-day" onclick="setAppTheme('day')">☀️ 晴日</button>
+        <button class="theme-pill-btn" id="btn-theme-sunset" onclick="setAppTheme('sunset')">🌅 暮色</button>
+        <button class="theme-pill-btn" id="btn-theme-night" onclick="setAppTheme('night')">🌙 星夜</button>
+      </div>
+      <button class="sound-toggle-btn" id="sound-btn" onclick="toggleSoundEffect()" title="开关治愈音效">
+        <span id="sound-icon">🔔</span>
+        <span id="sound-text">音效: 关</span>
+      </button>
+    </div>
+  </header>
 
-  <div class="callout callout-tip">
-    <strong>💡 小技巧</strong>
-    每次学习结束，给自己写一句话："今天学会了什么？哪里还不会？下次重点练什么？" 这比学完就关书有用十倍。
-  </div>
-</div>
+  <div class="container">
 
-<!-- ====== 二、词汇 ====== -->
-<div class="section">
-  <h2><span class="emoji">📖</span> 二、背单词：别再傻傻背拼写了</h2>
+    <section class="hero-card" id="top">
+      <div class="washi-tape tape-left"></div>
+      <div class="washi-tape tape-right"></div>
 
-  <p>背单词可能是你最头疼的事。但问题可能不是"记不住"，而是你背的方式从一开始就错了。</p>
+      <div class="hero-book-wrap">
+        <img src="../assets/covers/english-guide.jpg" alt="英语指南封面">
+      </div>
 
-  <h3>一个单词要真正学会，需要在四件事上过关：</h3>
-  <div class="table-wrap">
-    <table>
-      <tr><th>维度</th><th>什么意思</th><th>怎么检验</th></tr>
-      <tr><td>听</td><td>听到时能听懂</td><td>不看字幕听句子，能理解意思</td></tr>
-      <tr><td>读</td><td>看到时能理解</td><td>在文章里遇到，能根据上下文理解</td></tr>
-      <tr><td>说</td><td>需要时能说出来</td><td>造句或对话时能自然用出来</td></tr>
-      <tr><td>写</td><td>能拼写正确、搭配恰当</td><td>写句子或短文时准确使用</td></tr>
-    </table>
-  </div>
+      <div class="hero-info">
+        <div class="hero-badges-row">
+          <span class="badge-pill badge-blue">✏️ 英语系统实战</span>
+          <span class="badge-pill badge-green">🌱 科学二语习得</span>
+          <span class="badge-pill badge-gold">⏱️ 12 分钟速览</span>
+        </div>
 
-  <p>如果只是"看一遍中英文对照"，那你只练了"读"这一种能力，另外三种根本没练到。</p>
+        <h1 class="hero-title">初中生英语高效习得指南</h1>
 
-  <h3>怎么选要背的单词？</h3>
-  <p>不要从abandon开始按字母表背。按这个优先级：</p>
-  <ol>
-    <li><strong>在你正在读/听的材料里反复出现的</strong></li>
-    <li><strong>不懂它就看不懂整句话的</strong></li>
-    <li><strong>未来两周就能用上的</strong></li>
-    <li>专有名词、只出现一次、不影响理解的——先跳过</li>
-  </ol>
+        <div class="hero-quote-tape">
+          “语言不是死记硬背灌进去的，而是在大量‘可理解输入’中自然生长出来的。”
+        </div>
 
-  <h3>一个30分钟背单词的流程</h3>
-  <ol class="step-list">
-    <li><strong>5分钟</strong>：从一篇你要读的文章里挑出5–8个重要的词或短语</li>
-    <li><strong>8分钟</strong>：查发音（一定要听！）、常见搭配、例句</li>
-    <li><strong>7分钟</strong>：做一张"填空卡"——正面写句子挖空，背面写答案。不要只写"apple=苹果"</li>
-    <li><strong>7分钟</strong>：合上所有材料，用这些词自己说一段话或写一段短文</li>
-    <li><strong>3分钟</strong>：记录哪些词用错了，下次怎么改</li>
-  </ol>
+        <p class="hero-desc">
+          告别刷题死背与中英互译内耗。用克拉申可理解输入法（i+1），搭建一套每天 30 分钟、轻松好玩的英语听说读写成长飞轮。
+        </p>
+      </div>
+    </section>
 
-  <div class="callout callout-success">
-    <strong>✅ 做一张好用的词卡</strong>
-    <strong>正面：</strong>"The new rule may ____ a risk to the project."（填哪个词？）<br>
-    <strong>背面：</strong>pose / 发音 / 原句 / 你自己的例句 / 易混淆词（cause vs pose）
-  </div>
+    <!-- 模块 1 -->
+    <article class="note-card" id="sec1">
+      <div class="section-heading-row">
+        <div class="section-badge-icon">💡</div>
+        <h2 class="section-title">第一章：打破三大误区 · 重新认识英语学习</h2>
+      </div>
 
-  <div class="callout callout-warning">
-    <strong>⚠️ 别踩这些坑</strong>
-    <ul>
-      <li>"1000词能看懂75%英文"——这种说法不靠谱，看懂多少取决于你读什么、怎么定义"看懂"</li>
-      <li>用Anki等复习软件时，不要死守"第1、2、4、7天复习"的固定时间表，根据实际表现调整</li>
-      <li>卡片答对了但真实场景用不出来？说明你该减少背卡、增加实际使用</li>
-    </ul>
-  </div>
-</div>
+      <div style="background:var(--bg-warm);border:2px solid var(--ink-dark);border-radius:var(--radius-md);padding:18px;">
+        <p><strong>误区 1：背单词书就能提高英语？</strong><br>孤立背诵中英对照只会导致“认得但听不懂、说不出”。单词必须放在完整的原汁原味语境中吸收。</p>
+        <p style="margin-top:10px;"><strong>误区 2：语法必须先全学透？</strong><br>母语者从不先学语法分析。语法是总结规律的工具，海量输入带来的“语感”才是听说流利的根本。</p>
+      </div>
+    </article>
 
-<!-- ====== 三、听力 ====== -->
-<div class="section">
-  <h2><span class="emoji">🎧</span> 三、听力：从"一句话都听不懂"到"能听懂大意"</h2>
+    <!-- 模块 2 -->
+    <article class="note-card" id="sec2">
+      <div class="section-heading-row">
+        <div class="section-badge-icon">🔄</div>
+        <h2 class="section-title">第二章：二语习得闭环 · 听说读写协同飞轮</h2>
+      </div>
 
-  <p>听力可能是最让人沮丧的部分。但"听不懂"不是你的问题，而是<strong>材料和方法</strong>的问题。</p>
+      <p><strong>克拉申可理解输入理论（i+1）：</strong>选择生词率在 5%~10% 的材料，理解大意即可，让大脑在愉悦状态下自然建立语言中枢。</p>
+    </article>
 
-  <h3>你可能正在犯的错</h3>
-  <ul>
-    <li><strong>材料太难：</strong>一上来就听VOA、BBC新闻，生词太多，听到一半就放弃了</li>
-    <li><strong>过度依赖字幕：</strong>看美剧开着中英字幕，你以为听懂了，关了字幕才发现啥也没听进去</li>
-    <li><strong>材料太散：</strong>今天听VOA，明天听BBC，后天换个播客，没有持续输入一种材料</li>
-    <li><strong>无意识地听：</strong>听英文歌只听旋律不看歌词，白白浪费了练习机会</li>
-  </ul>
+    <!-- 模块 3 -->
+    <article class="note-card" id="sec3">
+      <div class="section-heading-row">
+        <div class="section-badge-icon">📅</div>
+        <h2 class="section-title">第三章：日常 30 分钟极简微习惯清单</h2>
+      </div>
 
-  <h3>精听 vs 泛听</h3>
-  <p><strong>精听（每天15–20分钟）：</strong>选一段2–3分钟的材料，目标是听懂每一个词。第一遍听大意，第二遍标记听不懂的地方，第三遍对照原文，最后跟读模仿。</p>
-  <p><strong>泛听（利用碎片时间）：</strong>听英文歌、有声书、电影、YouTube视频，目标是培养语感，不用每句都听懂，感受英语的节奏和语调就行。</p>
+      <div class="step-list-grid">
+        <div class="step-card">
+          <span class="step-num-pill">Step 1 · 10 mins</span>
+          <h4>🎧 沉浸泛听</h4>
+          <p>原声播客、动画片段或故事音频，不看文本纯听，捕捉语音语调与情景节奏。</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num-pill">Step 2 · 15 mins</span>
+          <h4>📖 分级原版阅读</h4>
+          <p>阅读《哈利波特》、《神奇树屋》或牛津分级读物，享受故事情节，不频繁查字典。</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num-pill">Step 3 · 5 mins</span>
+          <h4>🗣️ 自言自语输出</h4>
+          <p>用 3 句话复述今天读到的最有趣情节或用英文自言自语，激活口语神经通路。</p>
+        </div>
+      </div>
+    </article>
 
-  <h3>一次有效的精听训练</h3>
-  <ol class="step-list">
-    <li><strong>首听不暂停</strong>：完整听一遍，写下主旨和你能抓到的三个细节</li>
-    <li><strong>第二遍标记</strong>：标记听不懂的时间点，但先别急着看原文</li>
-    <li><strong>对照原文分析</strong>：把错误分成五类——生词不认识 / 认识但没听出来 / 连读弱读没听清 / 走神了 / 背景知识不够</li>
-    <li><strong>跟读</strong>：选2–3个最难的句子，反复跟读，模仿发音和节奏</li>
-    <li><strong>合上原文复述</strong>：不看原文，用自己的话把内容说出来</li>
-  </ol>
+  </div> <!-- container -->
 
-  <h3>推荐材料（从易到难）</h3>
-  <div class="table-wrap">
-    <table>
-      <tr><th>难度</th><th>材料</th><th>说明</th></tr>
-      <tr><td>入门</td><td>Basic English Grammar (YouTube)</td><td>语速慢，词汇简单，适合建立信心</td></tr>
-      <tr><td>初级</td><td>English with Lucy / Learn English with Ronnie</td><td>教学类频道，发音清晰，内容有趣</td></tr>
-      <tr><td>中级</td><td>TED Talks（选热门且有字幕的）</td><td>话题广泛，有中英文字幕</td></tr>
-      <tr><td>进阶</td><td>《老友记》《摩登家庭》</td><td>生活化口语，但需要一定基础</td></tr>
-    </table>
-  </div>
+  <aside class="mascot-corner" aria-label="伴读书僮花花喵">
+    <div class="mascot-bubble" id="mascot-speech">
+      🐾 喵呜！我是伴读书僮「花花喵」~ Keep reading and having fun every day!
+    </div>
+    <button class="mascot-avatar-btn" id="mascot-btn" type="button" onclick="interactMascot()" title="戳戳「花花喵」！">
+      <svg class="mascot-cat-svg" viewBox="0 0 100 100" aria-hidden="true">
+        <defs>
+          <linearGradient id="silverFur" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFFFFF" />
+            <stop offset="60%" stop-color="#E8ECEF" />
+            <stop offset="100%" stop-color="#CBD2D9" />
+          </linearGradient>
+          <linearGradient id="earShade" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#555C66" />
+            <stop offset="45%" stop-color="#9CA3AF" />
+            <stop offset="100%" stop-color="#E8ECEF" />
+          </linearGradient>
+          <radialGradient id="emeraldEye" cx="35%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#68F5CE" />
+            <stop offset="45%" stop-color="#10B981" />
+            <stop offset="100%" stop-color="#047857" />
+          </radialGradient>
+        </defs>
+        <polygon points="16,36 32,8 46,28" fill="url(#earShade)" stroke="#352621" stroke-width="2.5" stroke-linejoin="round" />
+        <polygon points="22,32 32,15 41,27" fill="#FFB8C6" opacity="0.9" />
+        <polygon points="84,36 68,8 54,28" fill="url(#earShade)" stroke="#352621" stroke-width="2.5" stroke-linejoin="round" />
+        <polygon points="78,32 68,15 59,27" fill="#FFB8C6" opacity="0.9" />
+        <ellipse cx="50" cy="53" rx="38" ry="33" fill="url(#silverFur)" stroke="#352621" stroke-width="2.5" />
+        <path d="M47,23 Q50,27 53,23" stroke="#8492A6" stroke-width="2" stroke-linecap="round" fill="none" />
+        <path d="M43,27 Q50,32 57,27" stroke="#8492A6" stroke-width="1.8" stroke-linecap="round" fill="none" />
+        <ellipse cx="34" cy="49" rx="9" ry="11" fill="url(#emeraldEye)" stroke="#111827" stroke-width="2.2" />
+        <ellipse cx="34" cy="49" rx="4" ry="7.5" fill="#111827" />
+        <circle cx="31.5" cy="45" r="3.2" fill="#FFFFFF" />
+        <circle cx="36.5" cy="53" r="1.5" fill="#FFFFFF" />
+        <ellipse cx="66" cy="49" rx="9" ry="11" fill="url(#emeraldEye)" stroke="#111827" stroke-width="2.2" />
+        <ellipse cx="66" cy="49" rx="4" ry="7.5" fill="#111827" />
+        <circle cx="63.5" cy="45" r="3.2" fill="#FFFFFF" />
+        <circle cx="68.5" cy="53" r="1.5" fill="#FFFFFF" />
+        <ellipse cx="21" cy="59" rx="6.5" ry="3.5" fill="#FFAEC0" opacity="0.65" />
+        <ellipse cx="79" cy="59" rx="6.5" ry="3.5" fill="#FFAEC0" opacity="0.65" />
+        <polygon points="50,58 45,54 55,54" fill="#FF6584" stroke="#352621" stroke-width="1.5" stroke-linejoin="round" />
+        <path d="M45,62 Q50,65 50,59 Q50,65 55,62" stroke="#352621" stroke-width="2" stroke-linecap="round" fill="none" />
+        <line x1="16" y1="55" x2="28" y2="57" stroke="#352621" stroke-width="1.5" stroke-linecap="round" />
+        <line x1="14" y1="62" x2="27" y2="61" stroke="#352621" stroke-width="1.5" stroke-linecap="round" />
+        <line x1="84" y1="55" x2="72" y2="57" stroke="#352621" stroke-width="1.5" stroke-linecap="round" />
+        <line x1="86" y1="62" x2="73" y2="61" stroke="#352621" stroke-width="1.5" stroke-linecap="round" />
+        <g transform="translate(50, 84)">
+          <circle cx="-5" cy="-2" r="4.2" fill="#FF6584" />
+          <circle cx="5" cy="-2" r="4.2" fill="#FF6584" />
+          <circle cx="-3" cy="4" r="4.2" fill="#FF6584" />
+          <circle cx="3" cy="4" r="4.2" fill="#FF6584" />
+          <circle cx="0" cy="-6" r="4.2" fill="#FF6584" />
+          <circle cx="0" cy="0" r="3.8" fill="#FFCE47" stroke="#352621" stroke-width="1.2" />
+        </g>
+      </svg>
+      <span class="mascot-badge-online"></span>
+    </button>
+  </aside>
 
-  <div class="callout callout-tip">
-    <strong>💡 一个改变听力的技巧</strong>
-    不要逐词翻译！英语中很多词的发音在连读时会改变。听整句的意思，而不是一个词一个词地对号入座。推荐看这个视频：<em>Understand Native English Speakers with this Advanced Listening Lesson</em>（YouTube）。
-  </div>
-</div>
+  <nav class="floating-dock" aria-label="快捷导航浮动栏">
+    <a class="dock-btn" href="#top" onclick="playBubbleSound()">
+      <span>☁️ 回到顶部</span>
+    </a>
+    <a class="dock-btn" href="../index.html" onclick="playBubbleSound()">
+      <span>📖 返回书架</span>
+    </a>
+    <button class="dock-btn dock-dice-btn" type="button" onclick="randomBookJump()" title="随机翻开一本笔记！">
+      <span>🎲 随手翻</span>
+    </button>
+  </nav>
 
-<!-- ====== 四、阅读 ====== -->
-<div class="section">
-  <h2><span class="emoji">📚</span> 四、阅读：从"查完生词"到"读懂作者"</h2>
+  <footer>
+    <p>© 2026 Bella Read. 保持思考，保持留白，保持童心。</p>
+    <p>静读，慢记，常回看。在温暖的角落里与自己对话。</p>
+    <div class="footer-stamp">
+      <span>🐾 手账印章 ·「花花喵」温暖盖戳</span>
+    </div>
+  </footer>
 
-  <p>阅读不是把所有生词查完就完事了。真正的阅读能力是：<strong>能抓住作者的观点、证据，然后自己判断对错。</strong></p>
+  <script>
+    let isSoundEnabled = false;
+    let audioCtx = null;
+    let targetScrollY = 0;
+    let currentScrollY = 0;
+    let lastScrollY = 0;
+    let isScrollingFast = false;
+    let fastScrollTimer = null;
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  <h3>精读 vs 泛读</h3>
-  <p><strong>精读：</strong>短文章（比如经济学人、新闻评论），反复读，分析作者的论证结构、言外之意。</p>
-  <p><strong>泛读：</strong>小说（比如《动物庄园》《哈利波特》），享受阅读，不追求每个词都查，读懂大意即可。</p>
+    const catQuotes = [
+      "🐾 喵~ 我是花花喵，毛茸茸的脑袋给你蹭蹭！每天坚持 30 分钟，英语就会悄悄变厉害喵！",
+      "✨ Don't study English, use English!",
+      "🍵 累了就听听英文小儿歌或摸摸花花喵，快乐最重要！"
+    ];
+    let catQuoteIndex = 0;
 
-  <h3>怎么读英文书？</h3>
-  <p>不要一上来就挑战《冰与火之歌》。从这些入门书开始：</p>
-  <ol>
-    <li><strong>《动物庄园》Animal Farm</strong> — 篇幅短，语言简洁，但寓意深刻</li>
-    <li><strong>《哈利波特》系列</strong> — 很多人推荐，跟着故事走，生词不会太影响理解</li>
-    <li><strong>《追风筝的人》The Kite Runner</strong> — 文字优美，故事震撼</li>
-    <li><strong>《安妮日记》The Diary of a Young Girl</strong> — 一个女孩的日记，语言真实自然</li>
-  </ol>
-  <p>小技巧：如果看过中文版，再读英文原著会轻松很多。</p>
+    function updateScrollState() {
+      targetScrollY = window.pageYOffset || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progressPercent = docHeight > 0 ? Math.min(100, Math.max(0, (targetScrollY / docHeight) * 100)) : 0;
+      const progressBar = document.getElementById('scroll-progress');
+      if (progressBar) progressBar.style.width = progressPercent + '%';
 
-  <h3>读英文文档/网站的方法</h3>
-  <p>遇到生词不要立刻查。先快速读一遍，只标记；第二遍只查那些反复出现、影响理解的关键词；最后合上词典，用自己的话复述文章结构。</p>
-  <p>推荐常逛的英文网站：<strong>Medium</strong>（优质长文）、<strong>Quora</strong>（英文版知乎）、<strong>Hacker News</strong>（科技资讯）、<strong>Stack Overflow</strong>（编程问答）。</p>
+      const scrollVelocity = Math.abs(targetScrollY - lastScrollY);
+      lastScrollY = targetScrollY;
+      const mascotBtn = document.getElementById('mascot-btn');
+      if (scrollVelocity > 25 && mascotBtn) {
+        if (!isScrollingFast) {
+          isScrollingFast = true;
+          mascotBtn.classList.add('scrolling-fast');
+        }
+        clearTimeout(fastScrollTimer);
+        fastScrollTimer = setTimeout(() => {
+          isScrollingFast = false;
+          if (mascotBtn) mascotBtn.classList.remove('scrolling-fast');
+        }, 300);
+      }
+    }
+    window.addEventListener('scroll', updateScrollState, { passive: true });
 
-  <h3>一次有效的阅读训练</h3>
-  <ol class="step-list">
-    <li><strong>限时首读</strong>：不查词，快速读完，写一句主旨</li>
-    <li><strong>标出每段的作用</strong>：这段是观点？是证据？是例子？还是转折？</li>
-    <li><strong>用自己的话重构论证</strong>：用五句话重写作者的核心逻辑</li>
-    <li><strong>提出质疑</strong>：写一个原文支持的推断和一个反例</li>
-    <li><strong>一周后复述</strong>：还记得多少？忘了什么？</li>
-  </ol>
-</div>
+    function renderParallax() {
+      if (!isReducedMotion) {
+        currentScrollY += (targetScrollY - currentScrollY) * 0.12;
+        const props = document.querySelectorAll('[data-parallax-speed]');
+        props.forEach(el => {
+          const speed = parseFloat(el.getAttribute('data-parallax-speed')) || 0;
+          el.style.transform = `translate3d(0, ${(currentScrollY * speed).toFixed(2)}px, 0)`;
+        });
+      }
+      requestAnimationFrame(renderParallax);
+    }
+    requestAnimationFrame(renderParallax);
 
-<!-- ====== 五、口语 ====== -->
-<div class="section">
-  <h2><span class="emoji">🗣️</span> 五、口语：从"yeah yeah yeah"到"有自己的观点"</h2>
+    function scrollToSection(id) {
+      playBubbleSound(550);
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 
-  <p>你是不是也有过这种经历：心里想了好多，一开口只能蹦出一个"yeah"？这太正常了。问题不是你不会说，而是你<strong>缺少"从想到说"的练习</strong>。</p>
+    function interactMascot() {
+      playKittyMeowSound();
+      burstParticles(window.innerWidth - 60, window.innerHeight - 60, ['🐾', '🌸', '✨', '🤍', '🎀', '🐱', '💖']);
+      const bubble = document.getElementById('mascot-speech');
+      bubble.innerText = catQuotes[catQuoteIndex % catQuotes.length];
+      catQuoteIndex++;
+      bubble.classList.add('show');
+      clearTimeout(window.mascotTimer);
+      window.mascotTimer = setTimeout(() => bubble.classList.remove('show'), 4500);
+    }
 
-  <h3>第一步：音标要过关</h3>
-  <p>音标是口语的"地基"。不需要学得多完美，但至少要能区分容易混淆的音。推荐跟着YouTube上的发音教程练习，一个音一个音地过。推荐频道：<strong>EnglishAnyone</strong>、<strong>Speak English With Vanessa</strong>。</p>
+    function setAppTheme(themeName) {
+      playBubbleSound(550);
+      document.documentElement.setAttribute('data-theme', themeName);
+      document.querySelectorAll('.theme-pill-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.id === `btn-theme-${themeName}`);
+      });
+      localStorage.setItem('bella_read_theme', themeName);
+    }
+    const savedTheme = localStorage.getItem('bella_read_theme');
+    if (savedTheme) setAppTheme(savedTheme);
 
-  <h3>第二步：大声朗读</h3>
-  <p>小声读和大声明读的效果完全不同。建议用《新概念英语》第三册作为朗读材料。先听录音，再模仿朗读，最开始追求每个词清晰标准，熟练后再模仿连读和语调。</p>
+    function playKittyMeowSound() {
+      if (!isSoundEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        const now = audioCtx.currentTime;
+        osc.frequency.setValueAtTime(680, now);
+        osc.frequency.exponentialRampToValueAtTime(1080, now + 0.08);
+        osc.frequency.exponentialRampToValueAtTime(840, now + 0.24);
+        gain.gain.setValueAtTime(0.01, now);
+        gain.gain.linearRampToValueAtTime(0.18, now + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.24);
+      } catch (e) {}
+    }
 
-  <h3>第三步：为自己准备常说的"话题包"</h3>
-  <p>提前准备并反复练习这些话题，直到能流利地说出来：</p>
-  <ul>
-    <li>自我介绍（你是谁、喜欢什么、梦想是什么）</li>
-    <li>介绍你的家乡或学校</li>
-    <li>最近发生的开心事</li>
-    <li>一件记忆深刻的小事</li>
-    <li>对某本书/某部电影/某个游戏的看法</li>
-  </ul>
+    function playBubbleSound(freq = 480) {
+      if (!isSoundEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(freq * 1.8, audioCtx.currentTime + 0.08);
+        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.12);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.12);
+      } catch (e) {}
+    }
 
-  <h3>一次12分钟的口语训练</h3>
-  <ol class="step-list">
-    <li><strong>1分钟</strong>：不看稿，说清楚你要练什么场景</li>
-    <li><strong>6轮对话</strong>：自己模拟问答，每轮只说1–2句，强迫自己组织语言</li>
-    <li><strong>2分钟</strong>：连续完成同一个话题，录音</li>
-    <li><strong>3分钟</strong>：回听录音，标记停顿、重复、哪些地方卡住了</li>
-  </ol>
+    function toggleSoundEffect() {
+      isSoundEnabled = !isSoundEnabled;
+      const text = document.getElementById('sound-text');
+      const icon = document.getElementById('sound-icon');
+      if (isSoundEnabled) {
+        text.innerText = '音效: 开'; icon.innerText = '🔔';
+        playKittyMeowSound();
+      } else {
+        text.innerText = '音效: 关'; icon.innerText = '🔕';
+      }
+    }
 
-  <div class="callout callout-tip">
-    <strong>💡 一个超实用的方法</strong>
-    录一段自己说的英语，然后找一个人（同学、家长或老师）只听录音，让他复述你说的主旨。他能不能听懂？如果听不懂，问题出在哪？这比任何"评分"都直观。
-  </div>
+    document.addEventListener('click', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.closest('#mascot-btn')) return;
+      burstParticles(e.clientX, e.clientY);
+    });
 
-  <h3>唱英文歌也是练口语</h3>
-  <p>选一首喜欢的英文歌，把歌词抄下来，学会生词，然后跟着唱。不是为了唱得多好听，而是为了练习发音、节奏和连读。推荐戳爷、霉霉、Ed Sheeran、Adele——挑你喜欢的就行。</p>
-</div>
+    function burstParticles(x, y, customSymbols = null) {
+      const symbols = customSymbols || ['✨', '⭐', '🌸', '💖', '🎀', '🍀', '🍰'];
+      for (let i = 0; i < 4; i++) {
+        const p = document.createElement('span');
+        p.className = 'sparkle-particle';
+        p.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+        p.style.left = `${x}px`; p.style.top = `${y}px`;
+        p.style.setProperty('--tx', `${(Math.random() - 0.5) * 70}px`);
+        p.style.setProperty('--ty', `${-30 - Math.random() * 50}px`);
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 800);
+      }
+    }
 
-<!-- ====== 六、写作 ====== -->
-<div class="section">
-  <h2><span class="emoji">✍️</span> 六、写作：从"写不出来"到"改得更好"</h2>
-
-  <p>写作不是一次就能写好的。好文章是改出来的。关键是<strong>保留最初的版本，然后一步步修改</strong>，这样才能看到自己的进步。</p>
-
-  <h3>写作的三个要素</h3>
-  <ul>
-    <li><strong>阅读是基础：</strong>不读好文章，就写不出好句子。多读，模仿，慢慢形成自己的风格</li>
-    <li><strong>练习是核心：</strong>从写邮件、写日记、写读后感开始，不断练习</li>
-    <li><strong>交流是催化剂：</strong>把写的东西给别人看，接受反馈，改进</li>
-  </ul>
-
-  <h3>每次写作保留三个版本</h3>
-  <ol class="step-list">
-    <li><strong>初稿：</strong>不借助任何工具，限时完成。这是你的真实水平</li>
-    <li><strong>带批注的版本：</strong>自己检查，或者让老师/AI指出问题，但不替你改</li>
-    <li><strong>终稿：</strong>你自己动手修改，不是让工具替你润色</li>
-  </ol>
-
-  <div class="callout callout-warning">
-    <strong>⚠️ 关于AI写作工具</strong>
-    AI可以帮你发现语法错误、提供修改建议，但<strong>不要让AI替你写</strong>。如果AI润色后的文章看起来很好，但你关掉AI还是写不出来，那你的能力并没有真正提高。保留你的初稿，对比修改前后的变化，才是真正的学习。
-  </div>
-
-  <h3>写一封英文邮件的三个检查</h3>
-  <ol>
-    <li><strong>理解检查：</strong>对方能不能知道我要什么、什么时候要、为什么？</li>
-    <li><strong>风险检查：</strong>有没有过度承诺、歧义或不合适的语气？</li>
-    <li><strong>压缩检查：</strong>删掉废话，把请求和下一步放在最前面</li>
-  </ol>
-</div>
-
-<!-- ====== 七、AI辅助 ====== -->
-<div class="section">
-  <h2><span class="emoji">🤖</span> 七、用AI学英语：让AI当教练，别当替身</h2>
-
-  <p>AI可以帮你很多忙，但有一个原则永远不能忘：<strong>AI是帮你练习的，不是替你完成的。</strong></p>
-
-  <h3>AI能帮你做什么</h3>
-  <div class="table-wrap">
-    <table>
-      <tr><th>任务</th><th>AI可以帮忙</th><th>你必须自己做的</th></tr>
-      <tr><td>单词</td><td>从真实材料中提取高频词块，生成填空练习</td><td>主动回忆、发音、在真实场景中使用</td></tr>
-      <tr><td>听力</td><td>生成慢速版本、分析错误类型</td><td>首听、标记、跟读、复述</td></tr>
-      <tr><td>口语</td><td>模拟对话、追问、反馈发音特征</td><td>实际开口说、录音、自我评估</td></tr>
-      <tr><td>阅读</td><td>提问引导理解、帮你找段落证据</td><td>自己读完、自己判断、自己总结</td></tr>
-      <tr><td>写作</td><td>指出问题、给出修改建议</td><td>写初稿、自己动手修改、承担最终责任</td></tr>
-    </table>
-  </div>
-
-  <h3>跟AI合作时的"不许清单"</h3>
-  <p>每次开始学习前，先想清楚：</p>
-  <ul>
-    <li>✅ 允许AI：提示、追问、纠错、生成平行练习</li>
-    <li>❌ 禁止AI：直接代答、整段改写、编造来源</li>
-  </ul>
-
-  <div class="callout callout-tip">
-    <strong>💡 关键原则</strong>
-    先做一次"无AI基线"——不用任何AI帮助完成一次任务，保留原始水平。然后才让AI介入。如果AI润色后的成品变好了，但你的无AI基线没有改善，那说明你该减少AI辅助，不是增加。
-  </div>
-</div>
-
-<!-- ====== 八、计划 ====== -->
-<div class="section">
-  <h2><span class="emoji">📅</span> 八、你的学习计划</h2>
-
-  <h3>第一周：建立基线</h3>
-  <ul class="checklist">
-    <li>第1天：完成听说读写四项测试，各保存一个原始样本</li>
-    <li>第2–5天：每天选一项，做25–45分钟的完整学习回路</li>
-    <li>第6天：重复最弱的一项，比较同类错误是否减少</li>
-    <li>第7天：复盘，确定下周只重点攻克一个方向</li>
-  </ul>
-
-  <h3>30天：建立节奏</h3>
-  <ul class="checklist">
-    <li>每周至少完成听、说、读、写各一次可检查的任务</li>
-    <li>建立错误分类，不要用"粗心"一笔带过</li>
-    <li>每周重做一次旧任务，比较表现而不是比较感觉</li>
-    <li>第30天用同一主题复测，看前后差异</li>
-  </ul>
-
-  <h3>12周：完成一个真实目标</h3>
-  <ul class="checklist">
-    <li>第1–4周：建立稳定节奏，任务难度不要太高</li>
-    <li>第5–8周：增加材料难度，练习跨主题迁移</li>
-    <li>第9–11周：模拟真实场景（考试、演讲、对话）</li>
-    <li>第12周：完成最终任务，让真实的人给你反馈</li>
-  </ul>
-
-  <div class="callout callout-success">
-    <strong>✅ 一个合格的英语目标</strong>
-    不是"我要学好英语"，而是：<br>
-    "12周后，我能用英语做一次3分钟的自我介绍，听众不用翻译也能听懂我的主要意思，我保存第1、4、8、12周的录音作为证据。"
-  </div>
-</div>
-
-<!-- ====== 九、总结 ====== -->
-<div class="section">
-  <h2><span class="emoji">🎯</span> 九、最后，记住这七件事</h2>
-
-  <ol>
-    <li><strong>不要只用眼睛学英语。</strong>合上书、关掉字幕，能说出来、听出来的才是你的。</li>
-    <li><strong>错误是学习的信号，不是失败的证据。</strong>越早发现错误，越能精准地改进。</li>
-    <li><strong>分散练习比集中死磕有效。</strong>每天15分钟坚持一周，比一天死磕3小时强。</li>
-    <li><strong>选你感兴趣的材料。</strong>喜欢游戏就看游戏英文攻略，喜欢音乐就学歌词，喜欢电影就看英文影评。兴趣是最好的老师。</li>
-    <li><strong>睡眠和休息不是奖励，是学习的必要条件。</strong>熬夜死磕反而会降低效率。</li>
-    <li><strong>保留你的"原始版本"。</strong>第一遍尝试的录音、初稿都不要删，过一段时间回头看，你才能看到自己的进步。</li>
-    <li><strong>不要跟别人比。</strong>有人口语好、有人阅读快、有人词汇量大——跟自己的基线比，每周比上周多完成一件真实的事就够了。</li>
-  </ol>
-
-  <blockquote>
-    "不要等道路变得宽阔才出发；很多路，正是在脚落下之后才显现。"
-  </blockquote>
-</div>
-
-
-</div>
-
+    function randomBookJump() {
+      playBubbleSound(720);
+      burstParticles(window.innerWidth / 2, window.innerHeight - 50);
+      const links = [
+        "../books/how-an-economy-grows.html",
+        "../books/sophies-world.html",
+        "../books/guns-germs-steel.html",
+        "../books/被讨厌的勇气_课堂讲义.html",
+        "../books/西游记-青春成长课堂.html",
+        "../english/english-learning-guide.html"
+      ];
+      const randomIndex = Math.floor(Math.random() * links.length);
+      setTimeout(() => { window.location.href = links[randomIndex]; }, 250);
+    }
+  </script>
 </body>
 </html>
