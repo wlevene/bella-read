@@ -139,12 +139,13 @@
       transition: background-color 0.4s ease, color 0.4s ease;
     }
 
+    /* 顶部彩旗飘带 */
     .top-bunting {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 14px;
+      height: 12px;
       background: repeating-linear-gradient(
         45deg,
         var(--color-strawberry) 0,
@@ -158,9 +159,83 @@
         var(--color-lavender) 80px,
         var(--color-lavender) 100px
       );
-      opacity: 0.88;
-      z-index: 10;
+      opacity: 0.9;
+      z-index: 101;
     }
+
+    /* 顶部手账彩铅阅读进度轨 (Parallax Scroll Progress) */
+    .scroll-progress-container {
+      position: fixed;
+      top: 12px;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: rgba(53, 38, 33, 0.08);
+      z-index: 100;
+      pointer-events: none;
+    }
+    .scroll-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--color-strawberry), var(--color-butter), var(--color-matcha), var(--color-sky), var(--color-lavender));
+      border-radius: 0 4px 4px 0;
+      position: relative;
+      transition: width 0.08s linear;
+    }
+    .scroll-progress-head {
+      position: absolute;
+      right: -10px;
+      top: -9px;
+      font-size: 16px;
+      line-height: 1;
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+      transform: scaleX(-1);
+    }
+
+    /* ==========================================================================
+       视差图层系统（多景深背景与中景手账物件）
+       ========================================================================== */
+    .parallax-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .layer-fg {
+      z-index: 2;
+    }
+
+    /* 漂浮物件通用类 */
+    .prop-item {
+      position: absolute;
+      will-change: transform;
+      user-select: none;
+      transition: opacity 0.3s ease;
+    }
+
+    /* 远景元素（0.1x 慢速平移） */
+    .prop-cloud-1 { top: 12%; left: 3%; font-size: 42px; opacity: 0.45; }
+    .prop-cloud-2 { top: 38%; right: 4%; font-size: 48px; opacity: 0.4; }
+    .prop-cloud-3 { top: 72%; left: 5%; font-size: 40px; opacity: 0.35; }
+    .prop-star-far-1 { top: 8%; right: 18%; font-size: 26px; opacity: 0.6; }
+    .prop-star-far-2 { top: 55%; left: 8%; font-size: 24px; opacity: 0.55; }
+
+    /* 中景手账物件（0.35x ~ 0.5x 速度） */
+    .prop-plane { top: 22%; right: 12%; font-size: 34px; opacity: 0.85; filter: drop-shadow(2px 3px 0 rgba(53,38,33,0.15)); }
+    .prop-coffee { top: 48%; left: 4%; font-size: 36px; opacity: 0.85; filter: drop-shadow(2px 3px 0 rgba(53,38,33,0.15)); }
+    .prop-pencil { top: 65%; right: 6%; font-size: 32px; opacity: 0.8; filter: drop-shadow(2px 3px 0 rgba(53,38,33,0.15)); }
+    .prop-tape-roll { top: 82%; right: 14%; font-size: 30px; opacity: 0.75; }
+    .prop-paw { top: 30%; left: 14%; font-size: 28px; opacity: 0.6; }
+    .prop-bookmark { top: 88%; left: 8%; font-size: 32px; opacity: 0.75; }
+
+    /* 前景微粒子（1.25x 快速掠过） */
+    .prop-sparkle-1 { top: 18%; left: 22%; font-size: 22px; opacity: 0.9; }
+    .prop-sparkle-2 { top: 42%; right: 20%; font-size: 24px; opacity: 0.85; }
+    .prop-sparkle-3 { top: 75%; left: 28%; font-size: 20px; opacity: 0.9; }
 
     a {
       color: inherit;
@@ -183,7 +258,7 @@
       padding: 10px 18px;
       border-radius: var(--radius-pill);
       font-size: 13px;
-      z-index: 100;
+      z-index: 102;
       transition: top 0.2s ease;
       font-weight: 800;
     }
@@ -194,7 +269,7 @@
     .container {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 40px 24px 130px;
+      padding: 50px 24px 130px;
       flex: 1;
       width: 100%;
       position: relative;
@@ -207,8 +282,10 @@
       justify-content: flex-end;
       align-items: center;
       gap: 12px;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       flex-wrap: wrap;
+      position: relative;
+      z-index: 10;
     }
 
     .theme-switch-group {
@@ -259,29 +336,11 @@
       box-shadow: 3px 4px 0 var(--card-shadow-color);
     }
 
-    /* HERO 区块 */
+    /* HERO 区块（视差分离结构） */
     .hero-wrapper {
       position: relative;
-      margin-bottom: 36px;
-    }
-
-    .floating-deco {
-      position: absolute;
-      pointer-events: none;
-      z-index: 2;
-      animation: floatSlow 4s ease-in-out infinite alternate;
-    }
-    .deco-star-1 { top: -8px; left: 4%; font-size: 28px; }
-    .deco-star-2 { top: 12px; right: 6%; font-size: 30px; animation-delay: -1.8s; }
-    .deco-cloud { bottom: -18px; left: 10%; font-size: 32px; animation: floatHoriz 6s ease-in-out infinite alternate; }
-
-    @keyframes floatSlow {
-      0% { transform: translateY(0px) rotate(-4deg); }
-      100% { transform: translateY(-14px) rotate(6deg); }
-    }
-    @keyframes floatHoriz {
-      0% { transform: translateX(0px) scale(1); }
-      100% { transform: translateX(14px) scale(1.06); }
+      margin-bottom: 40px;
+      perspective: 1000px;
     }
 
     .hero-card {
@@ -292,10 +351,11 @@
       display: grid;
       grid-template-columns: 1.18fr 0.82fr;
       gap: 36px;
-      padding: 42px;
+      padding: 44px;
       position: relative;
       overflow: hidden;
       transition: background-color 0.4s ease;
+      will-change: transform;
     }
 
     .washi-tape {
@@ -328,6 +388,7 @@
       justify-content: center;
       position: relative;
       z-index: 2;
+      will-change: transform;
     }
 
     .hero-badge-row {
@@ -494,6 +555,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      will-change: transform;
     }
 
     .hero-frame {
@@ -551,12 +613,14 @@
       50% { transform: scale(1.3); opacity: 0.7; }
     }
 
-    /* 手账数据看板 */
+    /* 手账数据看板（交错微浮动） */
     .stats-ribbon {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 16px;
-      margin-bottom: 40px;
+      margin-bottom: 44px;
+      position: relative;
+      z-index: 2;
     }
     .stat-badge-card {
       background: var(--bg-card);
@@ -568,9 +632,10 @@
       align-items: center;
       gap: 12px;
       transition: var(--transition-smooth);
+      will-change: transform;
     }
     .stat-badge-card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-4px) scale(1.02);
       box-shadow: var(--shadow-cartoon);
     }
     .stat-icon-circle {
@@ -612,6 +677,7 @@
       flex-direction: column;
       gap: 18px;
       position: relative;
+      z-index: 2;
     }
 
     .control-top-row {
@@ -753,13 +819,15 @@
       transform: translateY(-2px);
     }
 
-    /* 卡片网格系统 */
+    /* 卡片网格系统（交错视差 + 3D悬浮） */
     .bookshelf-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 32px;
       margin-bottom: 64px;
       perspective: 1200px;
+      position: relative;
+      z-index: 2;
     }
 
     .book-item-card {
@@ -776,9 +844,10 @@
       color: inherit;
       cursor: pointer;
       transform-style: preserve-3d;
+      will-change: transform;
     }
     .book-item-card:hover {
-      transform: translateY(-8px) scale(1.02);
+      transform: translateY(-8px) scale(1.02) !important;
       box-shadow: var(--shadow-cartoon-hover);
     }
 
@@ -1034,7 +1103,7 @@
       color: #352621;
     }
 
-    /* 手账看板与便签区域 */
+    /* 手账布告栏 */
     .bulletin-header {
       display: flex;
       align-items: center;
@@ -1042,6 +1111,8 @@
       gap: 20px;
       margin-bottom: 28px;
       flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
     }
     .bulletin-title-group {
       display: flex;
@@ -1078,6 +1149,8 @@
       grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
       gap: 28px;
       margin-bottom: 60px;
+      position: relative;
+      z-index: 2;
     }
 
     .sticky-note-card {
@@ -1090,9 +1163,10 @@
       display: flex;
       flex-direction: column;
       transition: var(--transition-smooth);
+      will-change: transform;
     }
     .sticky-note-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-5px) !important;
       box-shadow: var(--shadow-cartoon-hover);
     }
     .sticky-pin {
@@ -1285,6 +1359,13 @@
       box-shadow: var(--shadow-cartoon);
       background: #FFC526;
     }
+    .mascot-avatar-btn.scrolling-fast {
+      animation: fastWag 0.25s infinite alternate;
+    }
+    @keyframes fastWag {
+      0% { transform: rotate(-8deg); }
+      100% { transform: rotate(8deg); }
+    }
     .mascot-badge-online {
       position: absolute;
       top: 0px;
@@ -1370,7 +1451,7 @@
       margin-top: auto;
       background: rgba(255, 255, 255, 0.08);
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
     footer p {
       margin-bottom: 6px;
@@ -1448,7 +1529,44 @@
   </style>
 </head>
 <body>
+  <!-- 顶部彩旗飘带 -->
   <div class="top-bunting" aria-hidden="true"></div>
+
+  <!-- 顶部手账彩铅阅读进度指示条 -->
+  <div class="scroll-progress-container" aria-hidden="true">
+    <div class="scroll-progress-bar" id="scroll-progress">
+      <span class="scroll-progress-head">✏️</span>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       多景深视差漂浮图层（Parallax Layers）
+       ========================================================================== -->
+  <!-- Layer 0: 远景云朵与远星（0.1x 慢移） -->
+  <div class="parallax-layer layer-bg" aria-hidden="true">
+    <span class="prop-item prop-cloud-1" data-parallax-speed="0.08">☁️</span>
+    <span class="prop-item prop-cloud-2" data-parallax-speed="0.12">☁️</span>
+    <span class="prop-item prop-cloud-3" data-parallax-speed="0.07">☁️</span>
+    <span class="prop-item prop-star-far-1" data-parallax-speed="0.09">⭐</span>
+    <span class="prop-item prop-star-far-2" data-parallax-speed="0.11">✨</span>
+  </div>
+
+  <!-- Layer 1: 中景手账物件（0.35x ~ 0.5x 缓速平移） -->
+  <div class="parallax-layer layer-props" aria-hidden="true">
+    <span class="prop-item prop-plane" data-parallax-speed="0.4" title="纸飞机">✈️</span>
+    <span class="prop-item prop-coffee" data-parallax-speed="-0.3" title="热可可">☕</span>
+    <span class="prop-item prop-pencil" data-parallax-speed="0.45" title="彩铅">✏️</span>
+    <span class="prop-item prop-paw" data-parallax-speed="-0.2" title="猫爪印">🐾</span>
+    <span class="prop-item prop-tape-roll" data-parallax-speed="0.35" title="和纸胶带">🎀</span>
+    <span class="prop-item prop-bookmark" data-parallax-speed="-0.25" title="书签">🔖</span>
+  </div>
+
+  <!-- Layer 3: 前景微粒子（1.25x 快速掠过） -->
+  <div class="parallax-layer layer-fg" aria-hidden="true">
+    <span class="prop-item prop-sparkle-1" data-parallax-speed="1.2">✨</span>
+    <span class="prop-item prop-sparkle-2" data-parallax-speed="1.3">🌸</span>
+    <span class="prop-item prop-sparkle-3" data-parallax-speed="1.25">⭐</span>
+  </div>
 
   <a class="skip-link" href="#main-content">跳到正文</a>
 
@@ -1473,17 +1591,13 @@
       </button>
     </div>
 
-    <!-- HERO 欢迎区 -->
+    <!-- HERO 欢迎区（视差解构组件） -->
     <header class="hero-wrapper" id="top">
-      <span class="floating-deco deco-star-1" aria-hidden="true">✨</span>
-      <span class="floating-deco deco-star-2" aria-hidden="true">⭐️</span>
-      <span class="floating-deco deco-cloud" aria-hidden="true">☁️</span>
-
-      <div class="hero-card">
+      <div class="hero-card" id="hero-main-card">
         <div class="washi-tape tape-left" aria-hidden="true"></div>
         <div class="washi-tape tape-right" aria-hidden="true"></div>
 
-        <div class="hero-content">
+        <div class="hero-content" id="hero-text-block">
           <div class="hero-badge-row">
             <span class="cartoon-pill">🎀 Bella's Reading Space</span>
             <span class="cartoon-pill pill-yellow">🐱 治愈手账风</span>
@@ -1518,7 +1632,7 @@
           </div>
         </div>
 
-        <div class="hero-art-box">
+        <div class="hero-art-box" id="hero-art-block">
           <div class="hero-frame">
             <img class="hero-banner-img" src="./assets/cartoon/hero-banner.jpg" alt="Bella 在温馨房间里捧着书阅读的可爱卡通插画">
             <div class="hero-status-tag">
@@ -1532,28 +1646,28 @@
 
     <!-- 手账数据小看板 -->
     <section class="stats-ribbon" aria-label="手账统计看板">
-      <div class="stat-badge-card">
+      <div class="stat-badge-card" data-parallax-stagger="-6">
         <div class="stat-icon-circle" style="background: var(--color-strawberry-soft); color: var(--color-strawberry);">📚</div>
         <div class="stat-meta">
           <span class="stat-num">6 卷典藏</span>
           <span class="stat-text">精选长文与笔记</span>
         </div>
       </div>
-      <div class="stat-badge-card">
+      <div class="stat-badge-card" data-parallax-stagger="6">
         <div class="stat-icon-circle" style="background: var(--color-butter-soft); color: #8A6400;">💡</div>
         <div class="stat-meta">
           <span class="stat-num">38 个模型</span>
           <span class="stat-text">认知与思维工具</span>
         </div>
       </div>
-      <div class="stat-badge-card">
+      <div class="stat-badge-card" data-parallax-stagger="-4">
         <div class="stat-icon-circle" style="background: var(--color-matcha-soft); color: var(--color-matcha);">⏳</div>
         <div class="stat-meta">
           <span class="stat-num">160+ 分钟</span>
           <span class="stat-text">深度沉浸时长</span>
         </div>
       </div>
-      <div class="stat-badge-card">
+      <div class="stat-badge-card" data-parallax-stagger="4">
         <div class="stat-icon-circle" style="background: var(--color-lavender-soft); color: var(--color-lavender);">🍵</div>
         <div class="stat-meta">
           <span class="stat-num">100% 治愈</span>
@@ -1590,7 +1704,7 @@
         </div>
       </div>
 
-      <!-- 优化后的精选快捷标签栏 -->
+      <!-- 快捷标签栏 -->
       <div class="filter-tags-row">
         <span class="filter-label">🏷️ 快捷筛选：</span>
         <button class="filter-chip active" data-filter="all" onclick="setFilter('all')">全部</button>
@@ -1602,7 +1716,7 @@
       </div>
     </section>
 
-    <!-- 主要书架卡片列表（6部经典作品） -->
+    <!-- 主要书架卡片列表（奇偶交错视差） -->
     <main id="main-content">
       <div class="bookshelf-grid" id="cards-container">
         
@@ -1612,6 +1726,7 @@
           data-category="books"
           data-filter="history"
           data-title="枪炮、病菌与钢铁 谁偷走了人类历史的公平 贾雷德戴蒙德 探案笔记 文明起跑线 结构与命运"
+          data-card-parallax="left"
         >
           <div class="book-cover-stage">
             <div class="bookmark-ribbon" aria-hidden="true"></div>
@@ -1644,12 +1759,13 @@
           </div>
         </article>
 
-        <!-- 书本卡片 2：小岛经济学（新增） -->
+        <!-- 书本卡片 2：小岛经济学 -->
         <article
           class="book-item-card"
           data-category="books"
           data-filter="economics"
           data-title="小岛经济学 鱼美元和经济的故事 彼得希夫 安德鲁希夫 经济启蒙 财富 生产力 储蓄 投资 借贷 通货膨胀 货币 资本 渔网 初中生推荐"
+          data-card-parallax="right"
         >
           <div class="book-cover-stage">
             <div class="bookmark-ribbon" style="background: var(--color-gold);" aria-hidden="true"></div>
@@ -1682,12 +1798,13 @@
           </div>
         </article>
 
-        <!-- 书本卡片 3：苏菲的世界（新增） -->
+        <!-- 书本卡片 3：苏菲的世界 -->
         <article
           class="book-item-card"
           data-category="books"
           data-filter="philosophy"
           data-title="苏菲的世界 乔斯坦贾德 哲学启蒙 独立思考 批判思维 苏格拉底 柏拉图 笛卡尔 我思故我在 好奇心 初中生推荐"
+          data-card-parallax="left"
         >
           <div class="book-cover-stage">
             <div class="bookmark-ribbon" style="background: var(--color-lavender);" aria-hidden="true"></div>
@@ -1726,6 +1843,7 @@
           data-category="books"
           data-filter="philosophy"
           data-title="被讨厌的勇气 是自由的开始 岸见一郎 古贺史健 哲思录 阿德勒心理学 人际关系 课题分离"
+          data-card-parallax="right"
         >
           <div class="book-cover-stage">
             <div class="bookmark-ribbon" style="background: var(--color-strawberry);" aria-hidden="true"></div>
@@ -1764,6 +1882,7 @@
           data-category="books"
           data-filter="growth"
           data-title="你的青春就是一部西游记 吴承恩 经典课 青春试炼 欲望与边界 成长修行 孙悟空"
+          data-card-parallax="left"
         >
           <div class="book-cover-stage">
             <div class="bookmark-ribbon" style="background: var(--color-matcha);" aria-hidden="true"></div>
@@ -1802,6 +1921,7 @@
           data-category="english"
           data-filter="english"
           data-title="英语学习系统构建 学习笔记 方法论 长期习得 输入理解复述 复盘 训练链路"
+          data-card-parallax="right"
         >
           <div class="book-cover-stage">
             <div class="bookmark-ribbon" style="background: var(--color-sky);" aria-hidden="true"></div>
@@ -1844,7 +1964,7 @@
       </div>
     </main>
 
-    <!-- 手账布告栏 -->
+    <!-- 手账布告栏（微风摆动视差） -->
     <section class="bulletin-section" aria-label="手账便签与阅读路径">
       <div class="bulletin-header">
         <div class="bulletin-title-group">
@@ -1857,7 +1977,7 @@
       </div>
 
       <div class="bulletin-board">
-        <article class="sticky-note-card">
+        <article class="sticky-note-card" style="transform: rotate(-1.5deg);">
           <div class="sticky-pin" aria-hidden="true"></div>
           <div class="note-tape-corner" aria-hidden="true"></div>
           <h3 class="sticky-title">🌱 最近整理的笔记</h3>
@@ -1889,7 +2009,7 @@
           </ul>
         </article>
 
-        <article class="sticky-note-card">
+        <article class="sticky-note-card" style="transform: rotate(1.8deg);">
           <div class="sticky-pin" style="background: var(--color-butter);" aria-hidden="true"></div>
           <div class="note-tape-corner" style="background: rgba(156, 121, 255, 0.45);" aria-hidden="true"></div>
           <h3 class="sticky-title">🗺️ 阅读探险路径</h3>
@@ -1907,7 +2027,7 @@
           </p>
         </article>
 
-        <article class="sticky-note-card">
+        <article class="sticky-note-card" style="transform: rotate(-0.8deg);">
           <div class="sticky-pin" style="background: var(--color-matcha);" aria-hidden="true"></div>
           <div class="note-tape-corner" style="background: rgba(67, 181, 129, 0.45);" aria-hidden="true"></div>
           <h3 class="sticky-title">☕ 每天的三步小练习</h3>
@@ -1942,9 +2062,9 @@
   <!-- 右下角互动吉祥物小猫咪 -->
   <aside class="mascot-corner" aria-label="伴读书僮小猫咪">
     <div class="mascot-bubble" id="mascot-speech">
-      🐱 喵~ 欢迎光临 Bella 的阅读小窝！今天想读《小岛经济学》还是《苏菲的世界》呢？
+      🐱 喵~ 欢迎光临 Bella 的阅读小窝！滑动手账看看立体视差吧！
     </div>
-    <button class="mascot-avatar-btn" type="button" onclick="interactMascot()" title="戳戳小猫咪！">
+    <button class="mascot-avatar-btn" id="mascot-btn" type="button" onclick="interactMascot()" title="戳戳小猫咪！">
       <span>🐱</span>
       <span class="mascot-badge-online"></span>
     </button>
@@ -1975,7 +2095,9 @@
     </div>
   </footer>
 
-  <!-- 交互逻辑 -->
+  <!-- ==========================================================================
+       页面交互逻辑与 60fps 原生视差物理引擎
+       ========================================================================== -->
   <script>
     let currentCategory = 'all';
     let currentFilter = 'all';
@@ -1983,7 +2105,15 @@
     let isSoundEnabled = false;
     let audioCtx = null;
 
-    // 扩充后的灵感签库
+    // 视差引擎状态
+    let targetScrollY = 0;
+    let currentScrollY = 0;
+    let lastScrollY = 0;
+    let isScrollingFast = false;
+    let fastScrollTimer = null;
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // 灵感签库
     const fortuneList = [
       { quote: "“经济增长的根本原因只有一个：生产力的提升，而不是消费的刺激。”", source: "《小岛经济学》" },
       { quote: "“哲学唯一的条件，就是保持对世界的好奇心，不要把一切视为理所当然。”", source: "《苏菲的世界》" },
@@ -2004,6 +2134,100 @@
     ];
     let catQuoteIndex = 0;
 
+    // --------------------------------------------------------------------------
+    // 60FPS 视差滚动核心驱动引擎 (Parallax Physics Loop)
+    // --------------------------------------------------------------------------
+    function updateScrollState() {
+      targetScrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+      // 滚动进度条
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progressPercent = docHeight > 0 ? Math.min(100, Math.max(0, (targetScrollY / docHeight) * 100)) : 0;
+      const progressBar = document.getElementById('scroll-progress');
+      if (progressBar) {
+        progressBar.style.width = progressPercent + '%';
+      }
+
+      // 检测快速滚动以触发猫咪尾巴摇晃
+      const scrollVelocity = Math.abs(targetScrollY - lastScrollY);
+      lastScrollY = targetScrollY;
+      const mascotBtn = document.getElementById('mascot-btn');
+
+      if (scrollVelocity > 25 && mascotBtn) {
+        if (!isScrollingFast) {
+          isScrollingFast = true;
+          mascotBtn.classList.add('scrolling-fast');
+        }
+        clearTimeout(fastScrollTimer);
+        fastScrollTimer = setTimeout(() => {
+          isScrollingFast = false;
+          if (mascotBtn) mascotBtn.classList.remove('scrolling-fast');
+        }, 300);
+      }
+    }
+
+    window.addEventListener('scroll', updateScrollState, { passive: true });
+
+    function renderParallax() {
+      if (!isReducedMotion) {
+        // 柔和平滑插值 (Lerp)
+        currentScrollY += (targetScrollY - currentScrollY) * 0.12;
+
+        // 1. 漂浮图层元素视差
+        const props = document.querySelectorAll('[data-parallax-speed]');
+        props.forEach(el => {
+          const speed = parseFloat(el.getAttribute('data-parallax-speed')) || 0;
+          const yOffset = currentScrollY * speed;
+          el.style.transform = `translate3d(0, ${yOffset.toFixed(2)}px, 0)`;
+        });
+
+        // 2. Hero 区域分离视差
+        const heroText = document.getElementById('hero-text-block');
+        const heroArt = document.getElementById('hero-art-block');
+        if (heroText && heroArt && currentScrollY < 800) {
+          const textY = currentScrollY * -0.06;
+          const artY = currentScrollY * 0.08;
+          const artRotate = 1.2 + currentScrollY * 0.005;
+          heroText.style.transform = `translate3d(0, ${textY.toFixed(2)}px, 0)`;
+          heroArt.style.transform = `translate3d(0, ${artY.toFixed(2)}px, 0) rotate(${artRotate.toFixed(2)}deg)`;
+        }
+
+        // 3. 数据徽章交错浮动
+        const staggers = document.querySelectorAll('[data-parallax-stagger]');
+        staggers.forEach(card => {
+          const offsetBase = parseFloat(card.getAttribute('data-parallax-stagger')) || 0;
+          const y = Math.sin(currentScrollY * 0.003 + offsetBase) * 4;
+          card.style.transform = `translate3d(0, ${y.toFixed(2)}px, 0)`;
+        });
+
+        // 4. 书本卡片奇偶交错轻微视差
+        const leftCards = document.querySelectorAll('[data-card-parallax="left"]');
+        const rightCards = document.querySelectorAll('[data-card-parallax="right"]');
+        leftCards.forEach(c => {
+          const rect = c.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const shift = (rect.top - window.innerHeight / 2) * -0.03;
+            c.style.transform = `translate3d(0, ${shift.toFixed(2)}px, 0)`;
+          }
+        });
+        rightCards.forEach(c => {
+          const rect = c.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const shift = (rect.top - window.innerHeight / 2) * 0.03;
+            c.style.transform = `translate3d(0, ${shift.toFixed(2)}px, 0)`;
+          }
+        });
+      }
+
+      requestAnimationFrame(renderParallax);
+    }
+
+    // 启动视差渲染循环
+    requestAnimationFrame(renderParallax);
+
+    // --------------------------------------------------------------------------
+    // 基础交互逻辑
+    // --------------------------------------------------------------------------
     function drawDailyFortune() {
       playBubbleSound(650);
       burstParticles(window.innerWidth / 2, window.innerHeight * 0.35);
@@ -2106,25 +2330,6 @@
       }
     }
 
-    // 绑定 3D 鼠标倾斜
-    function bindCardTilts() {
-      document.querySelectorAll('.book-item-card').forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-          const rotateX = ((y - centerY) / centerY) * -5;
-          const rotateY = ((x - centerX) / centerX) * 5;
-          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-        });
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = '';
-        });
-      });
-    }
-
     function switchCategory(cat, shouldScroll) {
       playBubbleSound(500);
       currentCategory = cat;
@@ -2224,8 +2429,7 @@
       }, 250);
     }
 
-    // 初始化
-    bindCardTilts();
+    // 初始化展示读书笔记
     switchCategory('books');
   </script>
 </body>
