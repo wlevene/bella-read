@@ -1666,7 +1666,7 @@
       <div class="stat-badge-card" data-parallax-stagger="-6">
         <div class="stat-icon-circle" style="background: var(--color-strawberry-soft); color: var(--color-strawberry);">📚</div>
         <div class="stat-meta">
-          <span class="stat-num">6 卷典藏</span>
+          <span class="stat-num">7 卷典藏</span>
           <span class="stat-text">精选长文与笔记</span>
         </div>
       </div>
@@ -1699,7 +1699,7 @@
         <div class="tab-pills" role="tablist">
           <button id="tab-btn-books" class="tab-btn active" type="button" role="tab" aria-selected="true" onclick="switchCategory('books')">
             <span>📚 读书笔记</span>
-            <span class="tab-badge" id="count-books">5</span>
+            <span class="tab-badge" id="count-books">6</span>
           </button>
           <button id="tab-btn-english" class="tab-btn" type="button" role="tab" aria-selected="false" onclick="switchCategory('english')">
             <span>✏️ 英文学习</span>
@@ -1729,6 +1729,7 @@
         <button class="filter-chip" data-filter="economics" onclick="setFilter('economics')">经济财富</button>
         <button class="filter-chip" data-filter="philosophy" onclick="setFilter('philosophy')">哲学心智</button>
         <button class="filter-chip" data-filter="growth" onclick="setFilter('growth')">经典成长</button>
+        <button class="filter-chip" data-filter="chinese" onclick="setFilter('chinese')">课内语文</button>
         <button class="filter-chip" data-filter="english" onclick="setFilter('english')">英语系统</button>
       </div>
     </section>
@@ -1932,7 +1933,46 @@
           </div>
         </article>
 
-        <!-- 英语卡片 6：英语学习方法 -->
+        <!-- 书本卡片 6：朱自清《春》 -->
+        <article
+          class="book-item-card"
+          data-category="books"
+          data-filter="chinese"
+          data-title="朱自清 春 语文冲刺 背诵卡 赏析卡 课内现代文 默写 修辞 写景散文 高分答题"
+          data-card-parallax="right"
+        >
+          <div class="book-cover-stage">
+            <div class="bookmark-ribbon" style="background: var(--color-strawberry);" aria-hidden="true"></div>
+            <div class="book-3d-wrap">
+              <img class="book-cover-img" src="./assets/covers/chun-exam-guide.svg" alt="朱自清《春》考霸背诵与赏析卡封面">
+            </div>
+          </div>
+          <div class="book-body">
+            <div class="book-meta-line">
+              <span class="book-author-chip">👤 朱自清</span>
+              <span class="book-category-badge badge-pink">🌸 语文冲刺</span>
+            </div>
+            <h2 class="book-title-text">《春》考霸背诵与赏析卡</h2>
+
+            <div class="book-quote-tape" style="border-left-color: var(--color-strawberry);">
+              “先拿住结构链，再拿住题眼，背诵和答题才会一起稳。”
+            </div>
+
+            <p class="book-desc-text">把《春》按高分复习思路重新排成“盼春-绘春-迎春-颂春”的冲刺页，包含原文提示、重点赏析和可直接套用的答题模板。</p>
+
+            <div class="card-ratings-row">
+              <span>📝 提分指数：★★★★★</span>
+              <span>🎯 课内名篇</span>
+            </div>
+
+            <div class="book-footer-action">
+              <span class="reading-time-pill">⏱️ ~8 分钟复习</span>
+              <a href="./语文/chun.html" class="read-arrow-btn">翻开专题 ➜</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 英语卡片 7：英语学习方法 -->
         <article
           class="book-item-card"
           data-category="english"
@@ -1974,7 +2014,7 @@
         <div class="empty-search-box" id="empty-state">
           <div class="empty-cat-art" aria-hidden="true">🐱📦</div>
           <h3 class="empty-title">哎呀，小书架上还没有找到这个关键词~</h3>
-          <p class="empty-sub">试试搜索“小岛”、“经济”、“苏菲”、“哲学”、“西游”或“英语”，或者点击下方按钮恢复全部展示。</p>
+          <p class="empty-sub">试试搜索“小岛”、“经济”、“苏菲”、“西游”、“春”或“英语”，或者点击下方按钮恢复全部展示。</p>
           <button class="empty-reset-btn" type="button" onclick="clearSearch()">✨ 显示所有笔记</button>
         </div>
 
@@ -1999,6 +2039,12 @@
           <div class="note-tape-corner" aria-hidden="true"></div>
           <h3 class="sticky-title">🌱 最近整理的笔记</h3>
           <ul class="sticky-item-list">
+            <li class="sticky-item">
+              <a class="sticky-link" href="./语文/chun.html">
+                <strong>《春》考霸卡</strong>
+                <span>把背诵、修辞赏析和答题模板合成一页冲刺资料。</span>
+              </a>
+            </li>
             <li class="sticky-item">
               <a class="sticky-link" href="./books/how-an-economy-grows.html">
                 <strong>《小岛经济学》</strong>
@@ -2032,6 +2078,7 @@
           <h3 class="sticky-title">🗺️ 阅读探险路径</h3>
           <p style="font-size: 13px; color: var(--ink-subtle); margin-bottom: 14px;">点击任意主题标签，即刻联想相关书卷：</p>
           <div class="tag-pool">
+            <button class="tag-pool-item" onclick="quickFilterKeyword('春')">🌸 课内名篇</button>
             <button class="tag-pool-item" onclick="quickFilterKeyword('小岛')">🐟 生产力与资本</button>
             <button class="tag-pool-item" onclick="quickFilterKeyword('哲学')">🌌 批判与觉醒</button>
             <button class="tag-pool-item" onclick="quickFilterKeyword('文明')">🌍 文明起跑线</button>
@@ -2196,6 +2243,7 @@
       { quote: "“所谓的自由，就是被人讨厌的勇气。”", source: "《被讨厌的勇气》" },
       { quote: "“文明的起跑线不是由于智力，而是环境与生态的馈赠。”", source: "《枪炮、病菌与钢铁》" },
       { quote: "“心生，种种魔生；心灭，种种魔灭。第一难是降伏心猿。”", source: "《西游记》" },
+      { quote: "“背《春》时，先抓住盼春、绘春、迎春、颂春的推进，再去记每段关键词。”", source: "《春》语文冲刺卡" },
       { quote: "“语言不是机械灌进去的，而是在大量有意义的理解中生长出来的。”", source: "《英语学习指南》" },
       { quote: "“我可以怀疑一切，但我无法怀疑‘我正在怀疑’这件事情本身。”", source: "笛卡尔 · 《苏菲的世界》" },
       { quote: "“每一页被认真读过的文字，都会悄悄化作你抵御焦虑的骨骼。”", source: "Bella's Note" }
@@ -2529,6 +2577,7 @@
         "./books/guns-germs-steel.html",
         "./books/被讨厌的勇气_课堂讲义.html",
         "./books/西游记-青春成长课堂.html",
+        "./语文/chun.html",
         "./english/english-learning-guide.html"
       ];
       const randomIndex = Math.floor(Math.random() * links.length);

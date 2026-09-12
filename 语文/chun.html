@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>朱自清《春》｜考霸背诵与赏析卡</title>
+    <meta name="description" content="面向考霸的《春》复习页：结构链、背诵提示、原文赏析、高频题眼与答题模板一次整理。">
+    <style>
+        @font-face {
+            font-family: "Smiley Sans";
+            src: url("../assets/fonts/得意黑/SmileySans-Oblique.woff2") format("woff2"),
+                url("../assets/fonts/得意黑/SmileySans-Oblique.woff") format("woff"),
+                url("../assets/fonts/得意黑/SmileySans-Oblique.ttf") format("truetype");
+            font-display: swap;
+        }
+
+        :root {
+            --bg-page: #faf6ef;
+            --bg-soft: #fffaf4;
+            --bg-card: #ffffff;
+            --ink-main: #382b26;
+            --ink-subtle: #6f615b;
+            --line: rgba(56, 43, 38, 0.18);
+            --pink: #ff6f8e;
+            --pink-soft: #fff0f4;
+            --gold: #ffc845;
+            --gold-soft: #fff7dc;
+            --green: #43b581;
+            --green-soft: #eef9f3;
+            --blue: #4e86ff;
+            --blue-soft: #eff4ff;
+            --shadow: 0 20px 40px rgba(56, 43, 38, 0.08);
+            --radius-lg: 28px;
+            --radius-md: 20px;
+            --radius-sm: 14px;
+            --font-display: "Smiley Sans", "Microsoft YaHei", sans-serif;
+            --font-body: "Microsoft YaHei", "PingFang SC", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink-main);
+            font-family: var(--font-body);
+            background:
+                radial-gradient(circle at top left, rgba(255, 200, 69, 0.16), transparent 24%),
+                radial-gradient(circle at top right, rgba(255, 111, 142, 0.14), transparent 22%),
+                linear-gradient(180deg, #fff8f1 0%, var(--bg-page) 100%);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page-shell {
+            width: min(1100px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 28px 0 64px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid var(--line);
+            box-shadow: 0 8px 20px rgba(56, 43, 38, 0.06);
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+            gap: 24px;
+            align-items: stretch;
+            margin-bottom: 22px;
+        }
+
+        .hero-card,
+        .author-card,
+        .panel,
+        .segment-card,
+        .template-card {
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(8px);
+        }
+
+        .hero-card {
+            padding: 30px;
+        }
+
+        .eyebrow-row,
+        .chip-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .eyebrow,
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .eyebrow {
+            background: var(--pink-soft);
+            color: var(--pink);
+        }
+
+        .eyebrow.gold,
+        .chip.gold {
+            background: var(--gold-soft);
+            color: #8e6500;
+        }
+
+        .eyebrow.green,
+        .chip.green {
+            background: var(--green-soft);
+            color: #237f57;
+        }
+
+        .eyebrow.blue,
+        .chip.blue {
+            background: var(--blue-soft);
+            color: var(--blue);
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(34px, 5vw, 54px);
+            line-height: 1.16;
+            margin: 18px 0 14px;
+            letter-spacing: 1px;
+        }
+
+        .hero-title span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title span::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 5px;
+            height: 14px;
+            background: rgba(255, 200, 69, 0.4);
+            z-index: -1;
+            border-radius: 6px;
+        }
+
+        .hero-desc {
+            font-size: 15px;
+            color: var(--ink-subtle);
+            margin-bottom: 20px;
+            max-width: 56ch;
+        }
+
+        /* Full-text motto card: the single most important element */
+        .motto-card {
+            padding: 20px 22px 16px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, #fff4dc 0%, #fffaf0 100%);
+            border: 1px solid rgba(255, 200, 69, 0.45);
+        }
+
+        .motto-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .motto-badge {
+            background: var(--pink);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 999px;
+            letter-spacing: 2px;
+        }
+
+        .motto-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: #8e6500;
+            letter-spacing: 1px;
+        }
+
+        .motto-row {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+
+        .motto-char {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 2px 8px;
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            box-shadow: 0 6px 14px rgba(56, 43, 38, 0.08);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .motto-char:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 18px rgba(56, 43, 38, 0.14);
+        }
+
+        .motto-glyph {
+            font-family: var(--font-display);
+            font-size: clamp(24px, 4.2vw, 36px);
+            line-height: 1;
+            color: var(--ink-main);
+        }
+
+        .motto-sub {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--ink-subtle);
+        }
+
+        .motto-char.hot {
+            background: var(--pink-soft);
+        }
+
+        .motto-char.hot .motto-glyph {
+            color: var(--pink);
+        }
+
+        .motto-note {
+            margin: 12px 0 0;
+            font-size: 12.5px;
+            color: var(--ink-subtle);
+        }
+
+        .motto-note a {
+            color: var(--pink);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .author-card {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .author-top {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 24px;
+            border: 3px solid rgba(56, 43, 38, 0.1);
+            box-shadow: 0 12px 24px rgba(56, 43, 38, 0.12);
+        }
+
+        .author-name {
+            font-size: 24px;
+            font-family: var(--font-display);
+        }
+
+        .author-meta {
+            font-size: 14px;
+            color: var(--ink-subtle);
+        }
+
+        .author-desc {
+            font-size: 14px;
+            color: var(--ink-subtle);
+            margin: 0;
+        }
+
+        .author-note {
+            padding: 14px 16px;
+            border-radius: var(--radius-md);
+            background: var(--blue-soft);
+            color: #3459a8;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .stats-grid,
+        .panel-grid,
+        .segment-grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        .stats-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            margin: 22px 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.78);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            padding: 18px;
+            box-shadow: 0 12px 30px rgba(56, 43, 38, 0.06);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--ink-subtle);
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .stat-value {
+            font-size: 22px;
+            font-family: var(--font-display);
+        }
+
+        .panel {
+            padding: 24px;
+            margin-bottom: 22px;
+        }
+
+        .panel-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: flex-start;
+            margin-bottom: 18px;
+        }
+
+        .panel-head p {
+            margin: 6px 0 0;
+            color: var(--ink-subtle);
+            font-size: 14px;
+        }
+
+        .panel-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .mini-card {
+            padding: 18px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--line);
+            background: var(--bg-soft);
+        }
+
+        .mini-card h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .mini-card p {
+            margin: 0;
+            font-size: 14px;
+            color: var(--ink-subtle);
+        }
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .toolbar-actions,
+        .toolbar-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            font: inherit;
+        }
+
+        .action-btn {
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 700;
+            background: var(--bg-card);
+            border: 1px solid var(--line);
+            box-shadow: 0 8px 18px rgba(56, 43, 38, 0.06);
+        }
+
+        .action-btn.primary {
+            background: var(--pink);
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .jump-link {
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid var(--line);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .segment-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .segment-card {
+            padding: 22px;
+        }
+
+        .segment-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: flex-start;
+            margin-bottom: 14px;
+        }
+
+        .segment-index {
+            min-width: 44px;
+            padding: 6px 8px;
+            border-radius: var(--radius-sm);
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            background: var(--gold-soft);
+            color: #8e6500;
+            text-align: center;
+        }
+
+        .segment-index .glyph {
+            font-family: var(--font-display);
+            font-size: 22px;
+            line-height: 1;
+        }
+
+        .segment-index .num {
+            font-size: 10px;
+            font-weight: 700;
+            opacity: 0.75;
+        }
+
+        .segment-title {
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+
+        .segment-hook {
+            color: var(--ink-subtle);
+            font-size: 14px;
+            margin: 0 0 12px;
+        }
+
+        .segment-focus {
+            border-radius: var(--radius-md);
+            background: var(--bg-soft);
+            border: 1px dashed rgba(56, 43, 38, 0.18);
+            padding: 14px 16px;
+            font-size: 14px;
+            margin-bottom: 14px;
+        }
+
+        .segment-focus strong {
+            color: var(--ink-main);
+        }
+
+        .detail-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .ghost-btn {
+            padding: 8px 12px;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            background: #fff;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .detail-block {
+            display: none;
+            border-radius: var(--radius-md);
+            padding: 14px 16px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .detail-block.is-visible {
+            display: block;
+        }
+
+        .detail-tip {
+            background: var(--gold-soft);
+        }
+
+        .detail-text {
+            background: #fff8fb;
+        }
+
+        .detail-answer {
+            background: var(--green-soft);
+        }
+
+        .detail-title {
+            display: block;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--ink-subtle);
+            letter-spacing: 0.4px;
+        }
+
+        .template-card {
+            margin-top: 22px;
+            padding: 24px;
+        }
+
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .template-box {
+            padding: 18px;
+            border-radius: var(--radius-md);
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+        }
+
+        .template-box p,
+        .template-box ul {
+            margin: 10px 0 0;
+            color: var(--ink-subtle);
+            font-size: 14px;
+        }
+
+        .template-box ul {
+            padding-left: 18px;
+        }
+
+        .footer-row {
+            margin-top: 24px;
+            text-align: center;
+            color: var(--ink-subtle);
+            font-size: 13px;
+        }
+
+        @media (max-width: 920px) {
+            .hero,
+            .stats-grid,
+            .panel-grid,
+            .segment-grid,
+            .template-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page-shell">
+        <a class="back-link" href="../index.html">← 返回主页书架</a>
+
+        <section class="hero">
+            <article class="hero-card">
+                <div class="eyebrow-row">
+                    <span class="eyebrow">课内现代文</span>
+                    <span class="eyebrow gold">背诵 + 默写</span>
+                    <span class="eyebrow green">赏析 + 答题</span>
+                </div>
+                <h1 class="hero-title">朱自清《<span>春</span>》考霸背诵与赏析卡</h1>
+                <p class="hero-desc">
+                    这页不再只是“能背下来”，而是按高分思路重排成三层：先抓结构链，再抓每段题眼，最后直接过渡到赏析表达。
+                    目标很明确：背诵不散、默写不漏、答题不空。
+                </p>
+                <div class="motto-card">
+                    <div class="motto-head">
+                        <span class="motto-badge">全文口诀</span>
+                        <span class="motto-title">背下这七个字 = 拿下全文结构</span>
+                    </div>
+                    <div class="motto-row">
+                        <a class="motto-char" href="#seg-1"><span class="motto-glyph">盼</span><span class="motto-sub">盼春</span></a>
+                        <a class="motto-char" href="#seg-2"><span class="motto-glyph">醒</span><span class="motto-sub">春醒</span></a>
+                        <a class="motto-char" href="#seg-3"><span class="motto-glyph">草</span><span class="motto-sub">春草</span></a>
+                        <a class="motto-char hot" href="#seg-4"><span class="motto-glyph">树</span><span class="motto-sub">春花</span></a>
+                        <a class="motto-char hot" href="#seg-5"><span class="motto-glyph">风</span><span class="motto-sub">春风</span></a>
+                        <a class="motto-char hot" href="#seg-6"><span class="motto-glyph">雨</span><span class="motto-sub">春雨</span></a>
+                        <a class="motto-char" href="#seg-7"><span class="motto-glyph">人</span><span class="motto-sub">迎春</span></a>
+                    </div>
+                    <p class="motto-note">
+                        口诀就是全文地图：答题先念「盼醒草树风雨人」定位段落。标红的「树·风·雨」最容易考赏析；
+                        结尾三喻（娃娃→姑娘→青年）是收束，见 <a href="#seg-8">08 颂春卡</a>。
+                    </p>
+                </div>
+            </article>
+
+            <aside class="author-card">
+                <div class="author-top">
+                    <img class="author-avatar" src="../assets/authors/zhu-ziqing.jpg" alt="朱自清照片">
+                    <div>
+                        <div class="author-name">朱自清</div>
+                        <div class="author-meta">1898 - 1948 · 散文家 / 诗人 / 学者</div>
+                    </div>
+                </div>
+                <p class="author-desc">
+                    《春》是教材里的经典写景散文。它厉害的地方，不只是景物写得美，而是把“春天来了”拆成草、花、风、雨、人，再一路推到希望和生命力。
+                </p>
+                <div class="author-note">
+                    高频命题点：修辞赏析、写景顺序、情感主旨、结构作用、词句表达效果。
+                </div>
+            </aside>
+        </section>
+
+        <section class="stats-grid" aria-label="复习小看板">
+            <article class="stat-card">
+                <div class="stat-label">全文口诀</div>
+                <div class="stat-value">7 个字</div>
+            </article>
+            <article class="stat-card">
+                <div class="stat-label">最容易出题</div>
+                <div class="stat-value">花 / 风 / 雨</div>
+            </article>
+            <article class="stat-card">
+                <div class="stat-label">结尾重点</div>
+                <div class="stat-value">3 个比喻</div>
+            </article>
+            <article class="stat-card">
+                <div class="stat-label">答题抓手</div>
+                <div class="stat-value">手法 + 作用 + 情感</div>
+            </article>
+        </section>
+
+        <section class="panel">
+            <div class="panel-head">
+                <div>
+                    <h2>考霸视角：先背什么，答题怎么说</h2>
+                    <p>先拿住结构，再记住每段核心画面，最后把赏析句式练顺。</p>
+                </div>
+                <div class="chip-row">
+                    <span class="chip gold">口诀：盼 醒 草 树 风 雨 人</span>
+                    <span class="chip green">借景抒情</span>
+                    <span class="chip blue">由景到人</span>
+                </div>
+            </div>
+            <div class="panel-grid">
+                <article class="mini-card">
+                    <h3>1. 主旨一句话</h3>
+                    <p>文章通过描绘春草、春花、春风、春雨和迎春图，赞美春天的生机、美好与希望。</p>
+                </article>
+                <article class="mini-card">
+                    <h3>2. 结构一句话</h3>
+                    <p>开头盼春，中间绘春，后面迎春，结尾颂春，层层推进，气势越来越足。</p>
+                </article>
+                <article class="mini-card">
+                    <h3>3. 赏析一句话</h3>
+                    <p>先点修辞或感官描写，再说写出了什么景，再落到“表达了对春天的喜爱赞美”。</p>
+                </article>
+                <article class="mini-card">
+                    <h3>4. 晨读顺序</h3>
+                    <p>先通读全文，再背结构链，最后重点盯住春花、春风、春雨和结尾三喻。</p>
+                </article>
+            </div>
+        </section>
+
+        <div class="toolbar">
+            <div class="toolbar-actions">
+                <button class="action-btn" type="button" onclick="hideAll()">全部收起</button>
+                <button class="action-btn primary" type="button" onclick="showAll('tip')">全部看提示</button>
+                <button class="action-btn" type="button" onclick="showAll('text')">全部看原文</button>
+                <button class="action-btn" type="button" onclick="showAll('answer')">全部看赏析</button>
+            </div>
+            <div class="toolbar-links">
+                <a class="jump-link" href="#seg-4">看春花</a>
+                <a class="jump-link" href="#seg-5">看春风</a>
+                <a class="jump-link" href="#seg-6">看春雨</a>
+                <a class="jump-link" href="#seg-8">看结尾三喻</a>
+            </div>
+        </div>
+
+        <section class="segment-grid">
+            <article class="segment-card" id="seg-1">
+                <div class="segment-head">
+                    <div>
+                        <div class="segment-title">盼春</div>
+                        <p class="segment-hook">开篇先把情绪拉满，先有盼头，后有春景。</p>
+                    </div>
+                    <span class="segment-index"><span class="glyph">盼</span><span class="num">01</span></span>
+                </div>
+                <div class="segment-focus"><strong>考点：</strong>反复手法，突出盼春心切，为下文总领全文蓄势。</div>
+                <div class="detail-actions">
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('tip-1')">看提示</button>
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('text-1')">看原文</button>
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('answer-1')">看赏析</button>
+                </div>
+                <div class="detail-block detail-tip" id="tip-1"><span class="detail-title">速记提示</span>盼啊盼，东风到，春天一步步走近。</div>
+                <div class="detail-block detail-text" id="text-1"><span class="detail-title">原文</span>盼望着，盼望着，东风来了，春天的脚步近了。</div>
+                <div class="detail-block detail-answer" id="answer-1"><span class="detail-title">高分表达</span>连用两个“盼望着”，运用反复，直接写出作者急切期待春天到来的心情，开篇点题，也为下文绘春蓄足情感力量。</div>
+            </article>
+
+            <article class="segment-card" id="seg-2">
+                <div class="segment-head">
+                    <div>
+                        <div class="segment-title">总写春醒</div>
+                        <p class="segment-hook">不是一上来就写具体景物，而是先让整个世界“醒过来”。</p>
+                    </div>
+                    <span class="segment-index"><span class="glyph">醒</span><span class="num">02</span></span>
+                </div>
+                <div class="segment-focus"><strong>考点：</strong>总领下文，拟人化总写，给全文定下“欣欣向荣”的底色。</div>
+                <div class="detail-actions">
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('tip-2')">看提示</button>
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('text-2')">看原文</button>
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('answer-2')">看赏析</button>
+                </div>
+                <div class="detail-block detail-tip" id="tip-2"><span class="detail-title">速记提示</span>大地睁眼，山润、水涨、太阳脸红。</div>
+                <div class="detail-block detail-text" id="text-2"><span class="detail-title">原文</span>一切都像刚睡醒的样子，欣欣然张开了眼。山朗润起来了，水涨起来了，太阳的脸红起来了。</div>
+                <div class="detail-block detail-answer" id="answer-2"><span class="detail-title">高分表达</span>作者先从整体上写春天苏醒，运用拟人的写法，把山、水、太阳写得有神有情，既总写春景，也自然引出后面的分写。</div>
+            </article>
+
+            <article class="segment-card" id="seg-3">
+                <div class="segment-head">
+                    <div>
+                        <div class="segment-title">春草图</div>
+                        <p class="segment-hook">从最容易被忽略的小草写起，春天的生命力一下就立住了。</p>
+                    </div>
+                    <span class="segment-index"><span class="glyph">草</span><span class="num">03</span></span>
+                </div>
+                <div class="segment-focus"><strong>考点：</strong>“偷偷地”“钻”最常考；写草也写人，景中有人的活动感。</div>
+                <div class="detail-actions">
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('tip-3')">看提示</button>
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('text-3')">看原文</button>
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('answer-3')">看赏析</button>
+                </div>
+                <div class="detail-block detail-tip" id="tip-3"><span class="detail-title">速记提示</span>小草偷偷钻出土，嫩嫩绿绿一大片，人在草上玩，风轻草软。</div>
+                <div class="detail-block detail-text" id="text-3"><span class="detail-title">原文</span>小草偷偷地从土里钻出来，嫩嫩的，绿绿的。园子里，田野里，瞧去，一大片一大片满是的。坐着，躺着，打两个滚，踢几脚球，赛几趟跑，捉几回迷藏。风轻悄悄的，草软绵绵的。</div>
+                <div class="detail-block detail-answer" id="answer-3"><span class="detail-title">高分表达</span>“偷偷地”和“钻”把小草写活了，既写出不经意间萌发的动态，也写出旺盛的生命力；后面连写人的活动，让春草不只是“看得到”，还让人“想扑进去”，画面特别有参与感。</div>
+            </article>
+
+            <article class="segment-card" id="seg-4">
+                <div class="segment-head">
+                    <div>
+                        <div class="segment-title">春花图</div>
+                        <p class="segment-hook">这段最容易拿高分，因为颜色、气味、联想、动物都写进去了。</p>
+                    </div>
+                    <span class="segment-index"><span class="glyph">树</span><span class="num">04</span></span>
+                </div>
+                <div class="segment-focus"><strong>考点：</strong>比喻、拟人、虚实结合、多感官描写，是赏析重灾区。</div>
+                <div class="detail-actions">
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('tip-4')">看提示</button>
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('text-4')">看原文</button>
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('answer-4')">看赏析</button>
+                </div>
+                <div class="detail-block detail-tip" id="tip-4"><span class="detail-title">速记提示</span>桃杏梨争开花，红像火、粉像霞、白像雪；香甜、蜂闹蝶飞、野花像眼睛星星。</div>
+                <div class="detail-block detail-text" id="text-4"><span class="detail-title">原文</span>桃树、杏树、梨树，你不让我，我不让你，都开满了花赶趟儿。红的像火，粉的像霞，白的像雪。花里带着甜味儿；闭了眼，树上仿佛已经满是桃儿、杏儿、梨儿。花下成千成百的蜜蜂嗡嗡地闹着，大小的蝴蝶飞来飞去。野花遍地是：杂样儿，有名字的，没名字的，散在草丛里，像眼睛，像星星，还眨呀眨的。</div>
+                <div class="detail-block detail-answer" id="answer-4"><span class="detail-title">高分表达</span>这一段从颜色、气味、联想和动态几个角度写春花。先用拟人写花“赶趟儿”，再用三个比喻把色彩写得鲜明热烈；“闭了眼”一句由实到虚，写出花开之盛已经让人联想到果实满枝；蜂蝶和野花的加入，又让画面更热闹、更灵动。</div>
+            </article>
+
+            <article class="segment-card" id="seg-5">
+                <div class="segment-head">
+                    <div>
+                        <div class="segment-title">春风图</div>
+                        <p class="segment-hook">这段最妙的地方，是把“看不见”的风写成“摸得到”“闻得到”“听得到”。</p>
+                    </div>
+                    <span class="segment-index"><span class="glyph">风</span><span class="num">05</span></span>
+                </div>
+                <div class="segment-focus"><strong>考点：</strong>多感官描写很典型，触觉、嗅觉、听觉一齐上场。</div>
+                <div class="detail-actions">
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('tip-5')">看提示</button>
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('text-5')">看原文</button>
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('answer-5')">看赏析</button>
+                </div>
+                <div class="detail-block detail-tip" id="tip-5"><span class="detail-title">速记提示</span>春风像母亲的手；泥土味、青草味、花香；鸟唱歌，牧童吹笛。</div>
+                <div class="detail-block detail-text" id="text-5"><span class="detail-title">原文</span>“吹面不寒杨柳风”，不错的，像母亲的手抚摸着你。风里带来些新翻的泥土的气息，混着青草味儿，还有各种花的香，都在微微润湿的空气里酝酿。鸟儿将窠巢安在繁花嫩叶当中，高兴起来了，呼朋引伴地卖弄清脆的喉咙，唱出宛转的曲子，与轻风流水应和着。牛背上牧童的短笛，这时候也成天在嘹亮地响。</div>
+                <div class="detail-block detail-answer" id="answer-5"><span class="detail-title">高分表达</span>作者先用“像母亲的手抚摸着你”写春风的温柔，这是触觉；再写泥土、青草和花香，这是嗅觉；最后写鸟鸣和笛声，这是听觉。看不见的春风，因为多感官描写，变得又真又暖，特别有感染力。</div>
+            </article>
+
+            <article class="segment-card" id="seg-6">
+                <div class="segment-head">
+                    <div>
+                        <div class="segment-title">春雨图</div>
+                        <p class="segment-hook">这段有细密的雨，也有傍晚的人间烟火，最能写出春的温润和平。</p>
+                    </div>
+                    <span class="segment-index"><span class="glyph">雨</span><span class="num">06</span></span>
+                </div>
+                <div class="segment-focus"><strong>考点：</strong>三个比喻“牛毛、花针、细丝”常考，后半段环境气氛也常考。</div>
+                <div class="detail-actions">
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('tip-6')">看提示</button>
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('text-6')">看原文</button>
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('answer-6')">看赏析</button>
+                </div>
+                <div class="detail-block detail-tip" id="tip-6"><span class="detail-title">速记提示</span>春雨最寻常，像牛毛、花针、细丝；灯光黄晕，人慢慢走，农夫披蓑戴笠，草屋静默。</div>
+                <div class="detail-block detail-text" id="text-6"><span class="detail-title">原文</span>雨是最寻常的，一下就是三两天。可别恼。看，像牛毛，像花针，像细丝，密密地斜织着，人家屋顶上全笼着一层薄烟。树叶子却绿得发亮，小草也青得逼你的眼。傍晚时候，上灯了，一点点黄晕的光，烘托出一片安静而和平的夜。乡下去，小路上，石桥边，有撑起伞慢慢走着的人；还有地里工作的农夫，披着蓑，戴着笠的。他们的草屋，稀稀疏疏的，在雨里静默着。</div>
+                <div class="detail-block detail-answer" id="answer-6"><span class="detail-title">高分表达</span>三个比喻连用，写出春雨细、密、亮的特点；“斜织着”又让雨有了动态。后面从植物写到灯光、行人、农夫和草屋，画面从自然推进到人间生活，烘托出春夜安静、温润、和平的氛围。</div>
+            </article>
+
+            <article class="segment-card" id="seg-7">
+                <div class="segment-head">
+                    <div>
+                        <div class="segment-title">迎春图</div>
+                        <p class="segment-hook">写到这里，春天不只是景，更变成了人的行动和希望。</p>
+                    </div>
+                    <span class="segment-index">07</span>
+                </div>
+                <div class="segment-focus"><strong>考点：</strong>由写景转向写人，点出“一年之计在于春”，揭示春天的意义。</div>
+                <div class="detail-actions">
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('tip-7')">看提示</button>
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('text-7')">看原文</button>
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('answer-7')">看赏析</button>
+                </div>
+                <div class="detail-block detail-tip" id="tip-7"><span class="detail-title">速记提示</span>风筝多了，孩子多了，家家户户都出来了，舒筋骨、抖精神，一年之计在于春。</div>
+                <div class="detail-block detail-text" id="text-7"><span class="detail-title">原文</span>天上风筝渐渐多了，地上孩子也多了。城里乡下，家家户户，老老小小，他们也赶趟儿似的，一个个都出来了。舒活舒活筋骨，抖擞抖擞精神，各做各的一份事去。“一年之计在于春”，刚起头儿，有的是工夫，有的是希望。</div>
+                <div class="detail-block detail-answer" id="answer-7"><span class="detail-title">高分表达</span>作者由前面的写景转入写人，写出春天带来的活力和希望。这里的春不只是自然季节，更是一种新的开始，所以文章的感情也从“喜爱春景”推进到“赞美生活与希望”。</div>
+            </article>
+
+            <article class="segment-card" id="seg-8">
+                <div class="segment-head">
+                    <div>
+                        <div class="segment-title">结尾三喻颂春</div>
+                        <p class="segment-hook">娃娃、小姑娘、青年，三个比喻一层比一层有力量，必须单独记牢。</p>
+                    </div>
+                    <span class="segment-index"><span class="glyph">颂</span><span class="num">08</span></span>
+                </div>
+                <div class="segment-focus"><strong>考点：</strong>三个比喻的顺序和作用很关键，分别对应新、生、美、健。</div>
+                <div class="detail-actions">
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('tip-8')">看提示</button>
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('text-8')">看原文</button>
+                    <button class="ghost-btn" type="button" onclick="toggleBlock('answer-8')">看赏析</button>
+                </div>
+                <div class="detail-block detail-tip" id="tip-8"><span class="detail-title">速记提示</span>新生的娃娃 → 花枝招展的小姑娘 → 健壮的青年，最后“领着我们上前去”。</div>
+                <div class="detail-block detail-text" id="text-8"><span class="detail-title">原文</span>春天像刚落地的娃娃，从头到脚都是新的，他生长着。<br>春天像小姑娘，花枝招展的，笑着，走着。<br>春天像健壮的青年，有铁一般的胳膊和腰脚，他领着我们上前去。</div>
+                <div class="detail-block detail-answer" id="answer-8"><span class="detail-title">高分表达</span>结尾连用三个比喻，把春天写成娃娃、小姑娘和青年，层层递进。先写“新”，再写“美”，最后写“健”，不仅照应全文，也把作者对春天的赞美推向高潮，让文章在昂扬有力中收束。</div>
+            </article>
+        </section>
+
+        <section class="template-card">
+            <h2>考场直接能用的答题模板</h2>
+            <div class="template-grid">
+                <article class="template-box">
+                    <h3>修辞赏析模板</h3>
+                    <p>这句话运用了<span>比喻 / 拟人 / 排比 / 反复</span>的手法，生动形象地写出了<span>春景的某个特点</span>，表达了作者对春天的<span>喜爱、赞美和希望</span>之情。</p>
+                </article>
+                <article class="template-box">
+                    <h3>结构作用模板</h3>
+                    <p>这一段在结构上起到<span>开篇点题 / 总领下文 / 承上启下 / 总结全文</span>的作用，在内容上突出了<span>春天的生机与活力</span>。</p>
+                </article>
+                <article class="template-box">
+                    <h3>最后冲刺提醒</h3>
+                    <ul>
+                        <li>不要只死背句子，要先背“盼醒草树风雨人”的顺序。</li>
+                        <li>春花、春风、春雨是最容易考赏析的三段。</li>
+                        <li>结尾三喻常考顺序和表达效果，单独背三遍。</li>
+                    </ul>
+                </article>
+                <article class="template-box">
+                    <h3>默写自检清单</h3>
+                    <ul>
+                        <li>“偷偷地”“钻出来”“赶趟儿”“酝酿”这些词别写错。</li>
+                        <li>“红的像火，粉的像霞，白的像雪”顺序别乱。</li>
+                        <li>“牛毛、花针、细丝”“娃娃、小姑娘、青年”必须完整。</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <div class="footer-row">Bella Read · 语文专题页 · 面向高分复习的《春》</div>
+    </main>
+
+    <script>
+        function toggleBlock(id) {
+            const target = document.getElementById(id);
+            target.classList.toggle("is-visible");
+        }
+
+        function hideAll() {
+            document.querySelectorAll(".detail-block").forEach((block) => {
+                block.classList.remove("is-visible");
+            });
+        }
+
+        function showAll(type) {
+            hideAll();
+            document.querySelectorAll(`.detail-${type}`).forEach((block) => {
+                block.classList.add("is-visible");
+            });
+        }
+    </script>
+</body>
+
+</html>
